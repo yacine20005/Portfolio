@@ -3,7 +3,15 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Coffee, Code, Github, Linkedin, Mail, Send } from "lucide-react";
+import { Code, Coffee, Send } from "lucide-react";
+import { MdMail, MdDownload } from "react-icons/md";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaInstagram,
+  FaDiscord,
+  FaFileAlt,
+} from "react-icons/fa";
 import { MobileMenu } from "@/components/mobile-menu";
 import { AnimatedCanvas } from "@/components/animated-canvas";
 import { SectionBackground } from "@/components/section-background";
@@ -87,7 +95,7 @@ export default function Home() {
             className="hidden md:flex"
           >
             <Button variant="outline" size="sm">
-              <Mail className="mr-2 h-4 w-4" /> Contact
+              <MdMail className="mr-2 h-4 w-4" /> Contact
             </Button>
           </Link>
           <MobileMenu />
@@ -121,9 +129,16 @@ export default function Home() {
               <Button size="lg" className="rounded-full">
                 View Projects <Code className="ml-2 h-4 w-4" />
               </Button>
-              <Button variant="outline" size="lg" className="rounded-full">
-                Get in Touch <Send className="ml-2 h-4 w-4" />
-              </Button>
+              <Link href="#contact">
+                <Button variant="outline" size="lg" className="rounded-full">
+                  Get in Touch <Send className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+              <Link href="/path/to/cv.pdf" download>
+                <Button variant="outline" size="lg" className="rounded-full">
+                  Download CV <MdDownload className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
             </div>
 
             <div className="w-full flex justify-center mt-20 animate-bounce hidden md:flex">
@@ -338,7 +353,7 @@ export default function Home() {
                   href="#"
                   className="text-sm text-primary hover:underline flex items-center"
                 >
-                  <Github className="h-4 w-4 mr-1" /> View Code
+                  <FaGithub className="h-4 w-4 mr-1" /> View Code
                 </Link>
                 <Link
                   href="#"
@@ -381,7 +396,7 @@ export default function Home() {
                   href="#"
                   className="text-sm text-primary hover:underline flex items-center"
                 >
-                  <Github className="h-4 w-4 mr-1" /> View Code
+                  <FaGithub className="h-4 w-4 mr-1" /> View Code
                 </Link>
                 <Link
                   href="#"
@@ -474,140 +489,108 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="flex flex-col items-center p-6 border border-border rounded-lg hover:border-primary/50 transition-colors">
-            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-              <Mail className="h-6 w-6 text-primary" />
+          <a
+            href="mailto:ya.hamadouche@gmail.com"
+            className="flex flex-col items-center p-6 border border-border rounded-lg hover:border-primary hover:bg-primary/5 transition-all duration-300 group"
+          >
+            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+              <MdMail className="h-7 w-7 text-primary" />
             </div>
             <h3 className="text-lg font-semibold mb-2">Email</h3>
-            <Link href="mailto:ya.hamadouche@gmail.com" className="w-full">
-              <Button
-                variant="outline"
-                className="w-full mt-2 hover:bg-primary hover:text-white transition-colors"
-              >
-                ya.hamadouche@gmail.com
-              </Button>
-            </Link>
-          </div>
+            <p className="text-muted-foreground text-center mb-4">
+              ya.hamadouche@gmail.com
+            </p>
+            <Button
+              variant="default"
+              className="mt-auto bg-gradient-to-r from-primary/90 to-primary hover:from-primary hover:to-primary/90 transition-all duration-300 shadow-md hover:shadow-lg"
+            >
+              <MdMail className="mr-2 h-4 w-4" /> Send Email
+            </Button>
+          </a>
 
-          <div className="flex flex-col items-center p-6 border border-border rounded-lg hover:border-primary/50 transition-colors">
-            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-              <Github className="h-6 w-6 text-primary" />
+          <a
+            href="https://github.com/yacine20005"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center p-6 border border-border rounded-lg hover:border-primary hover:bg-primary/5 transition-all duration-300 group"
+          >
+            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+              <FaGithub className="h-7 w-7 text-primary" />
             </div>
             <h3 className="text-lg font-semibold mb-2">GitHub</h3>
-            <Link
-              href="https://github.com/yacine20005"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full"
+            <p className="text-muted-foreground text-center mb-4">
+              github.com/yacine20005
+            </p>
+            <Button
+              variant="default"
+              className="mt-auto bg-gradient-to-r from-primary/90 to-primary hover:from-primary hover:to-primary/90 transition-all duration-300 shadow-md hover:shadow-lg"
             >
-              <Button
-                variant="outline"
-                className="w-full mt-2 hover:bg-primary hover:text-white transition-colors"
-              >
-                <Github className="h-4 w-4 mr-2" /> View Profile
-              </Button>
-            </Link>
-          </div>
+              <FaGithub className="mr-2 h-4 w-4" /> View Profile
+            </Button>
+          </a>
 
-          <div className="flex flex-col items-center p-6 border border-border rounded-lg hover:border-primary/50 transition-colors">
-            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-              <Linkedin className="h-6 w-6 text-primary" />
+          <a
+            href="https://linkedin.com/in/yacine"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center p-6 border border-border rounded-lg hover:border-primary hover:bg-primary/5 transition-all duration-300 group"
+          >
+            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+              <FaLinkedin className="h-7 w-7 text-primary" />
             </div>
             <h3 className="text-lg font-semibold mb-2">LinkedIn</h3>
-            <Link
-              href="https://linkedin.com/in/yacine"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full"
+            <p className="text-muted-foreground text-center mb-4">
+              linkedin.com/in/yacine
+            </p>
+            <Button
+              variant="default"
+              className="mt-auto bg-gradient-to-r from-primary/90 to-primary hover:from-primary hover:to-primary/90 transition-all duration-300 shadow-md hover:shadow-lg"
             >
-              <Button
-                variant="outline"
-                className="w-full mt-2 hover:bg-primary hover:text-white transition-colors"
-              >
-                <Linkedin className="h-4 w-4 mr-2" /> Connect
-              </Button>
-            </Link>
-          </div>
+              <FaLinkedin className="mr-2 h-4 w-4" /> Connect
+            </Button>
+          </a>
 
-          <div className="flex flex-col items-center p-6 border border-border rounded-lg hover:border-primary/50 transition-colors">
-            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-primary"
-              >
-                <circle cx="12" cy="12" r="10"></circle>
-                <circle cx="12" cy="12" r="4"></circle>
-                <line x1="21.17" y1="8" x2="12" y2="8"></line>
-                <line x1="3.95" y1="6.06" x2="8.54" y2="14"></line>
-                <line x1="10.88" y1="21.94" x2="15.46" y2="14"></line>
-              </svg>
+          <a
+            href="https://instagram.com/yacine"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center p-6 border border-border rounded-lg hover:border-primary hover:bg-primary/5 transition-all duration-300 group"
+          >
+            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+              <FaInstagram className="h-7 w-7 text-primary" />
             </div>
             <h3 className="text-lg font-semibold mb-2">Instagram</h3>
-            <Link
-              href="https://instagram.com/yacine"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full"
+            <p className="text-muted-foreground text-center mb-4">
+              instagram.com/yacine
+            </p>
+            <Button
+              variant="default"
+              className="mt-auto bg-gradient-to-r from-primary/90 to-primary hover:from-primary hover:to-primary/90 transition-all duration-300 shadow-md hover:shadow-lg"
             >
-              <Button
-                variant="outline"
-                className="w-full mt-2 hover:bg-primary hover:text-white transition-colors"
-              >
-                Follow
-              </Button>
-            </Link>
-          </div>
+              <FaInstagram className="mr-2 h-4 w-4" /> Follow
+            </Button>
+          </a>
 
-          <div className="flex flex-col items-center p-6 border border-border rounded-lg hover:border-primary/50 transition-colors">
-            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-primary"
-              >
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                <path d="M16 10.37a4 4 0 1 1-4.63-4 4 4 0 0 1 4.63 4"></path>
-                <path d="M16 10.37a4 4 0 1 1-4.63-4 4 4 0 0 1 4.63 4"></path>
-              </svg>
+          <a
+            href="https://discord.com/users/yacine"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center p-6 border border-border rounded-lg hover:border-primary hover:bg-primary/5 transition-all duration-300 group"
+          >
+            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+              <FaDiscord className="h-7 w-7 text-primary" />
             </div>
             <h3 className="text-lg font-semibold mb-2">Discord</h3>
-            <Link
-              href="https://discord.com/users/yacine"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full"
+            <p className="text-muted-foreground text-center mb-4">
+              discord.com/users/yacine
+            </p>
+            <Button
+              variant="default"
+              className="mt-auto bg-gradient-to-r from-primary/90 to-primary hover:from-primary hover:to-primary/90 transition-all duration-300 shadow-md hover:shadow-lg"
             >
-              <Button
-                variant="outline"
-                className="w-full mt-2 hover:bg-primary hover:text-white transition-colors"
-              >
-                Join Server
-              </Button>
-            </Link>
-          </div>
-        </div>
-
-        <div className="mt-12 text-center">
-          <Link href="mailto:ya.hamadouche@gmail.com">
-            <Button size="lg" className="rounded-full px-8">
-              <Mail className="mr-2 h-5 w-5" /> Email Me
+              <FaDiscord className="mr-2 h-4 w-4" /> Join Server
             </Button>
-          </Link>
+          </a>
         </div>
       </section>
 
@@ -631,67 +614,35 @@ export default function Home() {
                 href="#"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
-                <Github className="h-5 w-5" />
+                <FaGithub className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
               </Link>
               <Link
                 href="#"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
-                <Linkedin className="h-5 w-5" />
+                <FaLinkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
               </Link>
               <Link
                 href="#"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
-                <Mail className="h-5 w-5" />
+                <MdMail className="h-5 w-5" />
                 <span className="sr-only">Email</span>
               </Link>
               <Link
                 href="#"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-5 w-5"
-                >
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <circle cx="12" cy="12" r="4"></circle>
-                  <line x1="21.17" y1="8" x2="12" y2="8"></line>
-                  <line x1="3.95" y1="6.06" x2="8.54" y2="14"></line>
-                  <line x1="10.88" y1="21.94" x2="15.46" y2="14"></line>
-                </svg>
+                <FaInstagram className="h-5 w-5" />
                 <span className="sr-only">Instagram</span>
               </Link>
               <Link
                 href="#"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-5 w-5"
-                >
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                  <path d="M16 10.37a4 4 0 1 1-4.63-4 4 4 0 0 1 4.63 4"></path>
-                  <path d="M16 10.37a4 4 0 1 1-4.63-4 4 4 0 0 1 4.63 4"></path>
-                </svg>
+                <FaDiscord className="h-5 w-5" />
                 <span className="sr-only">Discord</span>
               </Link>
             </div>
