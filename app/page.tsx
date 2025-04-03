@@ -10,11 +10,10 @@ import {
   FaLinkedin,
   FaInstagram,
   FaDiscord,
-  FaFileAlt,
   FaCloud,
   FaGamepad,
   FaFolder,
-  FaChessBoard
+  FaChessBoard,
 } from "react-icons/fa";
 import { GiSwordsEmblem } from "react-icons/gi";
 import { SiLeagueoflegends } from "react-icons/si";
@@ -280,6 +279,10 @@ export default function Home() {
                 <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
                 Windows Terminal
               </li>
+              <li className="flex items-center">
+                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
+                Vercel
+              </li>
             </ul>
           </div>
 
@@ -309,6 +312,10 @@ export default function Home() {
               <li className="flex items-center">
                 <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
                 Sidequest
+              </li>
+              <li className="flex items-center">
+                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
+                Ncurses
               </li>
             </ul>
           </div>
@@ -358,14 +365,18 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-4">
                 <Link
-                  href="#"
+                  href="https://github.com/yacine20005/Portfolio"
                   className="text-sm text-primary hover:underline flex items-center"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <FaGithub className="h-4 w-4 mr-1" /> View Code
                 </Link>
                 <Link
                   href="#"
                   className="text-sm text-primary hover:underline flex items-center"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <Send className="h-4 w-4 mr-1" /> Live Demo
                 </Link>
@@ -409,14 +420,18 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-4">
                 <Link
-                  href="#"
+                  href="https://github.com/yacine20005/Nuage"
                   className="text-sm text-primary hover:underline flex items-center"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <FaGithub className="h-4 w-4 mr-1" /> View Code
                 </Link>
                 <Link
-                  href="#"
+                  href="https://nuage-sigma.vercel.app/boutique"
                   className="text-sm text-primary hover:underline flex items-center"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <Send className="h-4 w-4 mr-1" /> Live Demo
                 </Link>
@@ -452,8 +467,10 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-4">
                 <Link
-                  href="#"
+                  href="https://aogirihouse-yacine20005s.vercel.app/"
                   className="text-sm text-primary hover:underline flex items-center"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <Send className="h-4 w-4 mr-1" /> Live Demo
                 </Link>
@@ -490,8 +507,10 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-4">
                 <Link
-                  href="#"
+                  href="https://github.com/yacine20005/Chomp"
                   className="text-sm text-primary hover:underline flex items-center"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <FaGithub className="h-4 w-4 mr-1" /> View Code
                 </Link>
@@ -521,8 +540,10 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-4">
                 <Link
-                  href="#"
+                  href="https://github.com/yacine20005/Darkest-Dungeon-C"
                   className="text-sm text-primary hover:underline flex items-center"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <FaGithub className="h-4 w-4 mr-1" /> View Code
                 </Link>
@@ -562,8 +583,10 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-4">
                 <Link
-                  href="#"
+                  href="https://github.com/yacine20005/Clash-Compagnon"
                   className="text-sm text-primary hover:underline flex items-center"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <FaGithub className="h-4 w-4 mr-1" /> View Code
                 </Link>
@@ -573,9 +596,15 @@ export default function Home() {
         </div>
 
         <div className="mt-10 text-center">
-          <Button variant="outline">
-            View All Projects <Code className="ml-2 h-4 w-4" />
-          </Button>
+          <Link
+            href="https://github.com/yacine20005"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button variant="outline">
+              View All Projects <Code className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
         </div>
       </section>
 
