@@ -1,0 +1,707 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Coffee, Code, Github, Linkedin, Mail, Send } from "lucide-react";
+import { MobileMenu } from "@/components/mobile-menu";
+import { AnimatedCanvas } from "@/components/animated-canvas";
+import { SectionBackground } from "@/components/section-background";
+import { FloatingElements } from "@/components/floating-elements";
+
+export default function Home() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-background text-foreground overflow-hidden">
+      {/* Navigation */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "bg-background/90 backdrop-blur-md py-4 shadow-md"
+            : "bg-transparent py-6"
+        }`}
+      >
+        <div className="container mx-auto flex items-center justify-between">
+          <Link
+            href="/"
+            className="text-xl font-mono text-primary hover:text-primary/80 transition-colors"
+          >
+            Yacine._
+          </Link>
+          <nav className="hidden md:flex items-center space-x-6">
+            <Link
+              href="#home"
+              className="group flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
+              <span className="text-primary text-xs">01</span>
+              <span className="inline-flex items-center">// home</span>
+            </Link>
+            <Link
+              href="#about"
+              className="group flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
+              <span className="text-primary text-xs">02</span>
+              <span className="inline-flex items-center">// about</span>
+            </Link>
+            <Link
+              href="#skills"
+              className="group flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
+              <span className="text-primary text-xs">03</span>
+              <span className="inline-flex items-center">// skills</span>
+            </Link>
+            <Link
+              href="#projects"
+              className="group flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
+              <span className="text-primary text-xs">04</span>
+              <span className="inline-flex items-center">// projects</span>
+            </Link>
+            <Link
+              href="#experience"
+              className="group flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
+              <span className="text-primary text-xs">05</span>
+              <span className="inline-flex items-center">// experience</span>
+            </Link>
+            <Link
+              href="#contact"
+              className="group flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
+              <span className="text-primary text-xs">06</span>
+              <span className="inline-flex items-center">// contact</span>
+            </Link>
+          </nav>
+          <Link
+            href="mailto:ya.hamadouche@gmail.com"
+            className="hidden md:flex"
+          >
+            <Button variant="outline" size="sm">
+              <Mail className="mr-2 h-4 w-4" /> Contact
+            </Button>
+          </Link>
+          <MobileMenu />
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section
+        id="home"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      >
+        <AnimatedCanvas />
+        <FloatingElements count={10} />
+
+        <div className="container mx-auto relative z-10 pt-20">
+          <div className="flex flex-col items-center justify-center text-center">
+            <h1 className="text-[8rem] md:text-[12rem] lg:text-[16rem] font-bold tracking-tighter leading-none animate-fade-in">
+              YACINE
+            </h1>
+            <p className="text-xl md:text-2xl font-mono text-muted-foreground mt-4 md:mt-0 animate-fade-in-delay">
+              COMPUTER SCIENCE STUDENT & DEVELOPER.
+            </p>
+            <div className="max-w-lg mx-auto mt-8 text-center animate-fade-in-delay">
+              <p className="text-muted-foreground">
+                Hi! I'm Yacine, currently studying Computer Science at Gustave
+                Eiffel University 🎓 where I turn coffee ☕ into code (and
+                sometimes into bugs).
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-4 mt-8 justify-center animate-fade-in-delay-3">
+              <Button size="lg" className="rounded-full">
+                View Projects <Code className="ml-2 h-4 w-4" />
+              </Button>
+              <Button variant="outline" size="lg" className="rounded-full">
+                Get in Touch <Send className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
+
+            <div className="w-full flex justify-center mt-20 animate-bounce hidden md:flex">
+              <div className="inline-flex flex-col items-center">
+                <p className="text-muted-foreground text-sm mb-2">
+                  Scroll Down
+                </p>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-primary"
+                >
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <polyline points="19 12 12 19 5 12"></polyline>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Me Section Placeholder */}
+      <section id="about" className="py-20 bg-background relative">
+        <SectionBackground />
+        <div className="container mx-auto">
+          <div className="space-y-4 mb-12">
+            <div className="flex items-center">
+              <span className="text-primary text-sm mr-2">02</span>
+              <h2 className="text-2xl md:text-3xl font-bold">// about me</h2>
+            </div>
+            <p className="text-muted-foreground max-w-2xl">
+              A bit more about who I am and what I'm looking for.
+            </p>
+          </div>
+          I work on various projects, whether personal or academic, which allow
+          me to put my skills into practice and sometimes explore new
+          technologies 🔍.
+          <br />
+          <br />
+          Feel free to check out my repositories to discover my achievements and
+          collaborations 🤝.
+          <br />
+          <br />I am looking for opportunities to take on new challenges and
+          collaborate on innovative projects 💡.
+          <br />
+          <br />
+          My goal is to perfect my programming skills.
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="container mx-auto py-20 relative">
+        <SectionBackground />
+        <div className="space-y-4 mb-12">
+          <div className="flex items-center">
+            <span className="text-primary text-sm mr-2">03</span>
+            <h2 className="text-2xl md:text-3xl font-bold">// skills</h2>
+          </div>
+          <p className="text-muted-foreground max-w-2xl">
+            Here are some of the technologies and tools I've been working with
+            during my studies and personal projects.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="border border-border rounded-lg p-6 hover:border-primary/50 transition-colors">
+            <h3 className="text-lg font-semibold mb-4">
+              Programming Languages
+            </h3>
+            <ul className="space-y-2 text-muted-foreground">
+              <li className="flex items-center">
+                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
+                JavaScript
+              </li>
+              <li className="flex items-center">
+                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
+                Python
+              </li>
+              <li className="flex items-center">
+                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
+                C
+              </li>
+              <li className="flex items-center">
+                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
+                HTML5
+              </li>
+              <li className="flex items-center">
+                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
+                Markdown
+              </li>
+              <li className="flex items-center">
+                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
+                PowerShell
+              </li>
+              <li className="flex items-center">
+                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
+                Bash Script
+              </li>
+            </ul>
+          </div>
+
+          <div className="border border-border rounded-lg p-6 hover:border-primary/50 transition-colors">
+            <h3 className="text-lg font-semibold mb-4">
+              Cloud & Infrastructure
+            </h3>
+            <ul className="space-y-2 text-muted-foreground">
+              <li className="flex items-center">
+                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
+                Azure
+              </li>
+              <li className="flex items-center">
+                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
+                DigitalOcean
+              </li>
+              <li className="flex items-center">
+                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
+                Google Cloud
+              </li>
+              <li className="flex items-center">
+                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
+                Postgres
+              </li>
+              <li className="flex items-center">
+                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
+                Windows Terminal
+              </li>
+            </ul>
+          </div>
+
+          <div className="border border-border rounded-lg p-6 hover:border-primary/50 transition-colors">
+            <h3 className="text-lg font-semibold mb-4">Tools & Libraries</h3>
+            <ul className="space-y-2 text-muted-foreground">
+              <li className="flex items-center">
+                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
+                Git & GitHub
+              </li>
+              <li className="flex items-center">
+                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
+                Matplotlib
+              </li>
+              <li className="flex items-center">
+                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
+                NumPy
+              </li>
+              <li className="flex items-center">
+                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
+                Canva
+              </li>
+              <li className="flex items-center">
+                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
+                Notion
+              </li>
+              <li className="flex items-center">
+                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
+                Sidequest
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="container mx-auto py-20 relative">
+        <SectionBackground />
+        <div className="space-y-4 mb-12">
+          <div className="flex items-center">
+            <span className="text-primary text-sm mr-2">04</span>
+            <h2 className="text-2xl md:text-3xl font-bold">// projects</h2>
+          </div>
+          <p className="text-muted-foreground max-w-2xl">
+            A selection of projects I've worked on during my academic journey
+            and in my free time.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="group border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-colors">
+            <div className="h-48 bg-muted relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20"></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Code className="h-16 w-16 text-primary/50" />
+              </div>
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                Personal Portfolio Website
+              </h3>
+              <p className="text-muted-foreground mb-4">
+                A responsive portfolio website built with Next.js and Tailwind
+                CSS to showcase my projects and skills.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                  Next.js
+                </span>
+                <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                  Tailwind CSS
+                </span>
+                <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                  TypeScript
+                </span>
+              </div>
+              <div className="flex items-center gap-4">
+                <Link
+                  href="#"
+                  className="text-sm text-primary hover:underline flex items-center"
+                >
+                  <Github className="h-4 w-4 mr-1" /> View Code
+                </Link>
+                <Link
+                  href="#"
+                  className="text-sm text-primary hover:underline flex items-center"
+                >
+                  <Send className="h-4 w-4 mr-1" /> Live Demo
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="group border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-colors">
+            <div className="h-48 bg-muted relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-primary/20"></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Coffee className="h-16 w-16 text-primary/50" />
+              </div>
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                Bug Tracker Application
+              </h3>
+              <p className="text-muted-foreground mb-4">
+                A full-stack application to track and manage software bugs and
+                issues for development teams.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                  React
+                </span>
+                <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                  Node.js
+                </span>
+                <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                  MongoDB
+                </span>
+              </div>
+              <div className="flex items-center gap-4">
+                <Link
+                  href="#"
+                  className="text-sm text-primary hover:underline flex items-center"
+                >
+                  <Github className="h-4 w-4 mr-1" /> View Code
+                </Link>
+                <Link
+                  href="#"
+                  className="text-sm text-primary hover:underline flex items-center"
+                >
+                  <Send className="h-4 w-4 mr-1" /> Live Demo
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-10 text-center">
+          <Button variant="outline">
+            View All Projects <Code className="ml-2 h-4 w-4" />
+          </Button>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="container mx-auto py-20 relative">
+        <SectionBackground />
+        <div className="space-y-4 mb-12">
+          <div className="flex items-center">
+            <span className="text-primary text-sm mr-2">05</span>
+            <h2 className="text-2xl md:text-3xl font-bold">// experience</h2>
+          </div>
+          <p className="text-muted-foreground max-w-2xl">
+            My academic journey and learning experiences.
+          </p>
+        </div>
+
+        <div className="space-y-8">
+          <div className="relative pl-8 border-l border-border">
+            <div className="absolute w-4 h-4 bg-primary rounded-full -left-2 top-0"></div>
+            <div className="mb-1 text-sm text-muted-foreground">
+              2023 - Present
+            </div>
+            <h3 className="text-xl font-semibold">Computer Science Student</h3>
+            <p className="text-primary">Gustave Eiffel University</p>
+            <p className="mt-2 text-muted-foreground">
+              Pursuing a degree in Computer Science, focusing on software
+              development, algorithms, and data structures. Participating in
+              coding competitions and collaborative projects.
+            </p>
+          </div>
+
+          <div className="relative pl-8 border-l border-border">
+            <div className="absolute w-4 h-4 bg-primary rounded-full -left-2 top-0"></div>
+            <div className="mb-1 text-sm text-muted-foreground">
+              2022 - 2023
+            </div>
+            <h3 className="text-xl font-semibold">Web Development Intern</h3>
+            <p className="text-primary">Tech Startup</p>
+            <p className="mt-2 text-muted-foreground">
+              Assisted in developing responsive web applications using modern
+              JavaScript frameworks. Collaborated with senior developers to
+              implement new features and fix bugs.
+            </p>
+          </div>
+
+          <div className="relative pl-8 border-l border-border">
+            <div className="absolute w-4 h-4 bg-primary rounded-full -left-2 top-0"></div>
+            <div className="mb-1 text-sm text-muted-foreground">
+              2021 - 2022
+            </div>
+            <h3 className="text-xl font-semibold">Self-taught Developer</h3>
+            <p className="text-primary">Personal Projects</p>
+            <p className="mt-2 text-muted-foreground">
+              Began learning programming through online courses and tutorials.
+              Built several small projects to practice and improve coding
+              skills.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="container mx-auto py-20 relative">
+        <SectionBackground />
+        <div className="space-y-4 mb-12">
+          <div className="flex items-center">
+            <span className="text-primary text-sm mr-2">06</span>
+            <h2 className="text-2xl md:text-3xl font-bold">// contact</h2>
+          </div>
+          <p className="text-muted-foreground max-w-2xl">
+            Feel free to reach out if you want to collaborate on a project, have
+            a question, or just want to connect.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="flex flex-col items-center p-6 border border-border rounded-lg hover:border-primary/50 transition-colors">
+            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+              <Mail className="h-6 w-6 text-primary" />
+            </div>
+            <h3 className="text-lg font-semibold mb-2">Email</h3>
+            <Link href="mailto:ya.hamadouche@gmail.com" className="w-full">
+              <Button
+                variant="outline"
+                className="w-full mt-2 hover:bg-primary hover:text-white transition-colors"
+              >
+                ya.hamadouche@gmail.com
+              </Button>
+            </Link>
+          </div>
+
+          <div className="flex flex-col items-center p-6 border border-border rounded-lg hover:border-primary/50 transition-colors">
+            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+              <Github className="h-6 w-6 text-primary" />
+            </div>
+            <h3 className="text-lg font-semibold mb-2">GitHub</h3>
+            <Link
+              href="https://github.com/yacine20005"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full"
+            >
+              <Button
+                variant="outline"
+                className="w-full mt-2 hover:bg-primary hover:text-white transition-colors"
+              >
+                <Github className="h-4 w-4 mr-2" /> View Profile
+              </Button>
+            </Link>
+          </div>
+
+          <div className="flex flex-col items-center p-6 border border-border rounded-lg hover:border-primary/50 transition-colors">
+            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+              <Linkedin className="h-6 w-6 text-primary" />
+            </div>
+            <h3 className="text-lg font-semibold mb-2">LinkedIn</h3>
+            <Link
+              href="https://linkedin.com/in/yacine"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full"
+            >
+              <Button
+                variant="outline"
+                className="w-full mt-2 hover:bg-primary hover:text-white transition-colors"
+              >
+                <Linkedin className="h-4 w-4 mr-2" /> Connect
+              </Button>
+            </Link>
+          </div>
+
+          <div className="flex flex-col items-center p-6 border border-border rounded-lg hover:border-primary/50 transition-colors">
+            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="text-primary"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="4"></circle>
+                <line x1="21.17" y1="8" x2="12" y2="8"></line>
+                <line x1="3.95" y1="6.06" x2="8.54" y2="14"></line>
+                <line x1="10.88" y1="21.94" x2="15.46" y2="14"></line>
+              </svg>
+            </div>
+            <h3 className="text-lg font-semibold mb-2">Instagram</h3>
+            <Link
+              href="https://instagram.com/yacine"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full"
+            >
+              <Button
+                variant="outline"
+                className="w-full mt-2 hover:bg-primary hover:text-white transition-colors"
+              >
+                Follow
+              </Button>
+            </Link>
+          </div>
+
+          <div className="flex flex-col items-center p-6 border border-border rounded-lg hover:border-primary/50 transition-colors">
+            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="text-primary"
+              >
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                <path d="M16 10.37a4 4 0 1 1-4.63-4 4 4 0 0 1 4.63 4"></path>
+                <path d="M16 10.37a4 4 0 1 1-4.63-4 4 4 0 0 1 4.63 4"></path>
+              </svg>
+            </div>
+            <h3 className="text-lg font-semibold mb-2">Discord</h3>
+            <Link
+              href="https://discord.com/users/yacine"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full"
+            >
+              <Button
+                variant="outline"
+                className="w-full mt-2 hover:bg-primary hover:text-white transition-colors"
+              >
+                Join Server
+              </Button>
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-12 text-center">
+          <Link href="mailto:ya.hamadouche@gmail.com">
+            <Button size="lg" className="rounded-full px-8">
+              <Mail className="mr-2 h-5 w-5" /> Email Me
+            </Button>
+          </Link>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-border py-8">
+        <div className="container mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-4 md:mb-0">
+              <Link
+                href="/"
+                className="text-xl font-mono text-primary hover:text-primary/80 transition-colors"
+              >
+                Yacine._
+              </Link>
+              <p className="text-sm text-muted-foreground mt-1">
+                Computer Science Student & Developer
+              </p>
+            </div>
+            <div className="flex items-center space-x-4">
+              <Link
+                href="#"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Github className="h-5 w-5" />
+                <span className="sr-only">GitHub</span>
+              </Link>
+              <Link
+                href="#"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Linkedin className="h-5 w-5" />
+                <span className="sr-only">LinkedIn</span>
+              </Link>
+              <Link
+                href="#"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Mail className="h-5 w-5" />
+                <span className="sr-only">Email</span>
+              </Link>
+              <Link
+                href="#"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-5 w-5"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <line x1="21.17" y1="8" x2="12" y2="8"></line>
+                  <line x1="3.95" y1="6.06" x2="8.54" y2="14"></line>
+                  <line x1="10.88" y1="21.94" x2="15.46" y2="14"></line>
+                </svg>
+                <span className="sr-only">Instagram</span>
+              </Link>
+              <Link
+                href="#"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-5 w-5"
+                >
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                  <path d="M16 10.37a4 4 0 1 1-4.63-4 4 4 0 0 1 4.63 4"></path>
+                  <path d="M16 10.37a4 4 0 1 1-4.63-4 4 4 0 0 1 4.63 4"></path>
+                </svg>
+                <span className="sr-only">Discord</span>
+              </Link>
+            </div>
+          </div>
+          <div className="mt-8 text-center text-sm text-muted-foreground">
+            <p>© {new Date().getFullYear()} Yacine. All rights reserved.</p>
+            <p className="mt-1">Built with Next.js and Tailwind CSS</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
