@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Code, Coffee, Send } from "lucide-react";
+import { Code, Send } from "lucide-react";
 import { MdMail, MdDownload } from "react-icons/md";
 import {
   FaGithub,
@@ -11,7 +11,13 @@ import {
   FaInstagram,
   FaDiscord,
   FaFileAlt,
+  FaCloud,
+  FaGamepad,
+  FaFolder,
+  FaChessBoard
 } from "react-icons/fa";
+import { GiSwordsEmblem } from "react-icons/gi";
+import { SiLeagueoflegends } from "react-icons/si";
 import { MobileMenu } from "@/components/mobile-menu";
 import { AnimatedCanvas } from "@/components/animated-canvas";
 import { SectionBackground } from "@/components/section-background";
@@ -126,9 +132,11 @@ export default function Home() {
               </p>
             </div>
             <div className="flex flex-wrap gap-4 mt-8 justify-center animate-fade-in-delay-3">
-              <Button size="lg" className="rounded-full">
-                View Projects <Code className="ml-2 h-4 w-4" />
-              </Button>
+              <Link href="#projects">
+                <Button size="lg" className="rounded-full">
+                  View Projects <Code className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
               <Link href="#contact">
                 <Button variant="outline" size="lg" className="rounded-full">
                   Get in Touch <Send className="ml-2 h-4 w-4" />
@@ -326,7 +334,7 @@ export default function Home() {
             <div className="h-48 bg-muted relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20"></div>
               <div className="absolute inset-0 flex items-center justify-center">
-                <Code className="h-16 w-16 text-primary/50" />
+                <FaFolder className="h-16 w-16 text-primary/50" />
               </div>
             </div>
             <div className="p-6">
@@ -369,26 +377,34 @@ export default function Home() {
             <div className="h-48 bg-muted relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-primary/20"></div>
               <div className="absolute inset-0 flex items-center justify-center">
-                <Coffee className="h-16 w-16 text-primary/50" />
+                <FaCloud className="h-16 w-16 text-primary/50" />
               </div>
             </div>
             <div className="p-6">
               <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                Bug Tracker Application
+                Nuage
               </h3>
               <p className="text-muted-foreground mb-4">
-                A full-stack application to track and manage software bugs and
-                issues for development teams.
+                Nuage is a full-stack web-based video game management
+                application. It enables users to view, buy, share and comment on
+                video games. Users can also manage their profile, add friends
+                and track their gaming successes.
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
                 <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
-                  React
+                  HTML
                 </span>
                 <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
-                  Node.js
+                  CSS
                 </span>
                 <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
-                  MongoDB
+                  Python
+                </span>
+                <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                  Flask
+                </span>
+                <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                  PostgreSQL
                 </span>
               </div>
               <div className="flex items-center gap-4">
@@ -403,6 +419,153 @@ export default function Home() {
                   className="text-sm text-primary hover:underline flex items-center"
                 >
                   <Send className="h-4 w-4 mr-1" /> Live Demo
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className="group border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-colors">
+            <div className="h-48 bg-muted relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20"></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <FaGamepad className="h-16 w-16 text-primary/50" />
+              </div>
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                Aogiri Website
+              </h3>
+              <p className="text-muted-foreground mb-4">
+                A responsive website built with Next.js and Tailwind CSS to
+                present the Aogiri association, its activities and its
+                contributions to the community of multiple video games.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                  Next.js
+                </span>
+                <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                  Tailwind CSS
+                </span>
+                <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                  TypeScript
+                </span>
+              </div>
+              <div className="flex items-center gap-4">
+                <Link
+                  href="#"
+                  className="text-sm text-primary hover:underline flex items-center"
+                >
+                  <Send className="h-4 w-4 mr-1" /> Live Demo
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className="group border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-colors">
+            <div className="h-48 bg-muted relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-primary/20"></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <FaChessBoard className="h-16 w-16 text-primary/50" />
+              </div>
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                Chomp
+              </h3>
+              <p className="text-muted-foreground mb-4">
+                Chomp is a strategy game for two players. The game is played on
+                a rectangular bar made up of chocolate squares. The aim of the
+                game is to avoid taking the poisoned chocolate square at the top
+                left of the bar.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                  C
+                </span>
+                <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                  Ncurses
+                </span>
+                <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                  Makefile
+                </span>
+              </div>
+              <div className="flex items-center gap-4">
+                <Link
+                  href="#"
+                  className="text-sm text-primary hover:underline flex items-center"
+                >
+                  <FaGithub className="h-4 w-4 mr-1" /> View Code
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className="group border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-colors">
+            <div className="h-48 bg-muted relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-primary/20"></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <GiSwordsEmblem className="h-16 w-16 text-primary/50" />
+              </div>
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                Darkest Dungeon
+              </h3>
+              <p className="text-muted-foreground mb-4">
+                Darkest-Dungeon-C is a game with rogue-like elements, as well as
+                resource and stress management. The game is developed in the C
+                language and is played on the command line.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                  C
+                </span>
+              </div>
+              <div className="flex items-center gap-4">
+                <Link
+                  href="#"
+                  className="text-sm text-primary hover:underline flex items-center"
+                >
+                  <FaGithub className="h-4 w-4 mr-1" /> View Code
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className="group border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-colors">
+            <div className="h-48 bg-muted relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-primary/20"></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <SiLeagueoflegends className="h-16 w-16 text-primary/50" />
+              </div>
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                Clash Companion - WIP
+              </h3>
+              <p className="text-muted-foreground mb-4">
+                Clash Companion is a companion app for Overwolf and the Clash
+                game mode of League of Legends. The app provides information
+                about teammates and opponents before the match, helping players
+                to better prepare for their games.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                  React
+                </span>
+                <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                  Overwolf
+                </span>
+                <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                  TypeScript
+                </span>
+                <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                  League of Legends
+                </span>
+              </div>
+              <div className="flex items-center gap-4">
+                <Link
+                  href="#"
+                  className="text-sm text-primary hover:underline flex items-center"
+                >
+                  <FaGithub className="h-4 w-4 mr-1" /> View Code
                 </Link>
               </div>
             </div>
