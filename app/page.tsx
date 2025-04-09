@@ -21,9 +21,11 @@ import { MobileMenu } from "@/components/mobile-menu";
 import { AnimatedCanvas } from "@/components/animated-canvas";
 import { SectionBackground } from "@/components/section-background";
 import { FloatingElements } from "@/components/floating-elements";
+import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
+  const { scrollToSection } = useSmoothScroll();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,55 +47,62 @@ export default function Home() {
         }`}
       >
         <div className="container mx-auto flex items-center justify-between">
-          <Link
-            href="/"
+          <a
+            href="#home"
+            onClick={(e) => scrollToSection(e, "#home")}
             className="text-xl font-mono text-primary hover:text-primary/80 transition-colors"
           >
             Yacine._
-          </Link>
+          </a>
           <nav className="hidden md:flex items-center space-x-6">
-            <Link
+            <a
               href="#home"
+              onClick={(e) => scrollToSection(e, "#home")}
               className="group flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
             >
               <span className="text-primary text-xs">01</span>
               <span className="inline-flex items-center">// home</span>
-            </Link>
-            <Link
+            </a>
+            <a
               href="#about"
+              onClick={(e) => scrollToSection(e, "#about")}
               className="group flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
             >
               <span className="text-primary text-xs">02</span>
               <span className="inline-flex items-center">// about</span>
-            </Link>
-            <Link
+            </a>
+            <a
               href="#skills"
+              onClick={(e) => scrollToSection(e, "#skills")}
               className="group flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
             >
               <span className="text-primary text-xs">03</span>
               <span className="inline-flex items-center">// skills</span>
-            </Link>
-            <Link
+            </a>
+            <a
               href="#projects"
+              onClick={(e) => scrollToSection(e, "#projects")}
               className="group flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
             >
               <span className="text-primary text-xs">04</span>
               <span className="inline-flex items-center">// projects</span>
-            </Link>
-            <Link
+            </a>
+            <a
               href="#experience"
+              onClick={(e) => scrollToSection(e, "#experience")}
               className="group flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
             >
               <span className="text-primary text-xs">05</span>
               <span className="inline-flex items-center">// experience</span>
-            </Link>
-            <Link
+            </a>
+            <a
               href="#contact"
+              onClick={(e) => scrollToSection(e, "#contact")}
               className="group flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
             >
               <span className="text-primary text-xs">06</span>
               <span className="inline-flex items-center">// contact</span>
-            </Link>
+            </a>
           </nav>
           <Link
             href="mailto:ya.hamadouche@gmail.com"
@@ -131,17 +140,21 @@ export default function Home() {
               </p>
             </div>
             <div className="flex flex-wrap gap-4 mt-8 justify-center animate-fade-in-delay-3">
-              <Link href="#projects">
-                <Button size="lg" className="rounded-full">
-                  View Projects <Code className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-              <Link href="#contact">
-                <Button variant="outline" size="lg" className="rounded-full">
-                  Get in Touch <Send className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-              <Link href="/path/to/cv.pdf" download>
+              <a
+                href="#projects"
+                onClick={(e) => scrollToSection(e, "#projects")}
+                className="inline-flex h-10 items-center justify-center rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+              >
+                View Projects <Code className="ml-2 h-4 w-4" />
+              </a>
+              <a
+                href="#contact"
+                onClick={(e) => scrollToSection(e, "#contact")}
+                className="inline-flex h-10 items-center justify-center rounded-full border border-input bg-background px-4 py-2 text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+              >
+                Get in Touch <Send className="ml-2 h-4 w-4" />
+              </a>
+              <Link href="/documents/CV.pdf" download>
                 <Button variant="outline" size="lg" className="rounded-full">
                   Download CV <MdDownload className="ml-2 h-4 w-4" />
                 </Button>
