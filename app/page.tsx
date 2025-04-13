@@ -238,11 +238,11 @@ export default function Home() {
             <ul className="space-y-2 text-muted-foreground">
               <li className="flex items-center">
                 <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
-                JavaScript
+                Python
               </li>
               <li className="flex items-center">
                 <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
-                Python
+                Flask
               </li>
               <li className="flex items-center">
                 <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
@@ -250,19 +250,23 @@ export default function Home() {
               </li>
               <li className="flex items-center">
                 <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
-                HTML5
+                HTML / CSS
               </li>
               <li className="flex items-center">
                 <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
-                Markdown
+                JavaScript / TypeScript
               </li>
               <li className="flex items-center">
                 <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
-                PowerShell
+                React / Next.js
               </li>
               <li className="flex items-center">
                 <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
-                Bash Script
+                Bash
+              </li>
+              <li className="flex items-center">
+                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
+                LaTeX
               </li>
             </ul>
           </div>
@@ -274,27 +278,19 @@ export default function Home() {
             <ul className="space-y-2 text-muted-foreground">
               <li className="flex items-center">
                 <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
-                Azure
-              </li>
-              <li className="flex items-center">
-                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
-                DigitalOcean
-              </li>
-              <li className="flex items-center">
-                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
                 Google Cloud
               </li>
               <li className="flex items-center">
                 <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
-                Postgres
-              </li>
-              <li className="flex items-center">
-                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
-                Windows Terminal
+                PostgreSQL
               </li>
               <li className="flex items-center">
                 <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
                 Vercel
+              </li>
+              <li className="flex items-center">
+                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
+                DigitalOcean
               </li>
             </ul>
           </div>
@@ -304,7 +300,7 @@ export default function Home() {
             <ul className="space-y-2 text-muted-foreground">
               <li className="flex items-center">
                 <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
-                Git & GitHub
+                Git / GitHub
               </li>
               <li className="flex items-center">
                 <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
@@ -316,19 +312,15 @@ export default function Home() {
               </li>
               <li className="flex items-center">
                 <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
-                Canva
-              </li>
-              <li className="flex items-center">
-                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
-                Notion
-              </li>
-              <li className="flex items-center">
-                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
-                Sidequest
-              </li>
-              <li className="flex items-center">
-                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
                 Ncurses
+              </li>
+              <li className="flex items-center">
+                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
+                MLV Library
+              </li>
+              <li className="flex items-center">
+                <span className="inline-block w-2 h-2 bg-primary rounded-full mr-2"></span>
+                Sanity CMS
               </li>
             </ul>
           </div>
@@ -412,7 +404,7 @@ export default function Home() {
                 Nuage is a full-stack web-based video game management
                 application. It enables users to view, buy, share and comment on
                 video games. Users can also manage their profile, add friends
-                and track their gaming successes.
+                and track their successes.
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
                 <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
@@ -630,7 +622,7 @@ export default function Home() {
             <h2 className="text-2xl md:text-3xl font-bold">// experience</h2>
           </div>
           <p className="text-muted-foreground max-w-2xl">
-            My academic journey and learning experiences.
+            My academic journey and professional experiences.
           </p>
         </div>
 
@@ -638,42 +630,50 @@ export default function Home() {
           <div className="relative pl-8 border-l border-border">
             <div className="absolute w-4 h-4 bg-primary rounded-full -left-2 top-0"></div>
             <div className="mb-1 text-sm text-muted-foreground">
-              2023 - Present
+              Since June 2023
             </div>
-            <h3 className="text-xl font-semibold">Computer Science Student</h3>
-            <p className="text-primary">Gustave Eiffel University</p>
+            <h3 className="text-xl font-semibold">Self-employed</h3>
+            <p className="text-primary">Freelancer</p>
             <p className="mt-2 text-muted-foreground">
-              Pursuing a degree in Computer Science, focusing on software
-              development, algorithms, and data structures. Participating in
-              coding competitions and collaborative projects.
+              Development and deployment of websites for associations and
+              businesses, including "Aogiri" - a website for an esports
+              association using Next.js, TypeScript, Tailwind CSS and Sanity
+              CMS. Client needs analysis, proposal of technical solutions and
+              client prospecting management.
             </p>
           </div>
 
           <div className="relative pl-8 border-l border-border">
             <div className="absolute w-4 h-4 bg-primary rounded-full -left-2 top-0"></div>
             <div className="mb-1 text-sm text-muted-foreground">
-              2022 - 2023
+              Since September 2023
             </div>
-            <h3 className="text-xl font-semibold">Web Development Intern</h3>
-            <p className="text-primary">Tech Startup</p>
+            <h3 className="text-xl font-semibold">
+              Bachelor's Degree in Mathematics/Computer Science
+            </h3>
+            <p className="text-primary">
+              Gustave Eiffel University - Champs-sur-Marne
+            </p>
             <p className="mt-2 text-muted-foreground">
-              Assisted in developing responsive web applications using modern
-              JavaScript frameworks. Collaborated with senior developers to
-              implement new features and fix bugs.
+              Academic training focused on mathematics and computer science,
+              including projects such as "Nuage" - a video game management
+              platform developed with Python/Flask, PostgreSQL and HTML/CSS, as
+              well as "Chomp" - a strategy game in C using the Ncurses library.
             </p>
           </div>
 
           <div className="relative pl-8 border-l border-border">
             <div className="absolute w-4 h-4 bg-primary rounded-full -left-2 top-0"></div>
             <div className="mb-1 text-sm text-muted-foreground">
-              2021 - 2022
+              September 2020 - July 2023
             </div>
-            <h3 className="text-xl font-semibold">Self-taught Developer</h3>
-            <p className="text-primary">Personal Projects</p>
+            <h3 className="text-xl font-semibold">General Baccalaureate</h3>
+            <p className="text-primary">
+              Louis Armand High School - Nogent-sur-Marne
+            </p>
             <p className="mt-2 text-muted-foreground">
-              Began learning programming through online courses and tutorials.
-              Built several small projects to practice and improve coding
-              skills.
+              Specializations in mathematics and computer science. With Honors
+              (20/20 in computer science, 15/20 in mathematics).
             </p>
           </div>
         </div>
@@ -724,7 +724,7 @@ export default function Home() {
             </div>
             <h3 className="text-lg font-semibold mb-2">GitHub</h3>
             <p className="text-muted-foreground text-center mb-4">
-              github.com/yacine20005
+              yacine20005
             </p>
             <Button
               variant="default"
@@ -735,7 +735,7 @@ export default function Home() {
           </a>
 
           <a
-            href="https://linkedin.com/in/yacine"
+            href="https://linkedin.com/in/yacine-hamadouche"
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center p-6 border border-border rounded-lg hover:border-primary hover:bg-primary/5 transition-all duration-300 group"
@@ -745,7 +745,7 @@ export default function Home() {
             </div>
             <h3 className="text-lg font-semibold mb-2">LinkedIn</h3>
             <p className="text-muted-foreground text-center mb-4">
-              linkedin.com/in/yacine
+              yacine-hamadouche
             </p>
             <Button
               variant="default"
@@ -756,7 +756,7 @@ export default function Home() {
           </a>
 
           <a
-            href="https://instagram.com/yacine"
+            href="https://instagram.com/yacine20005"
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center p-6 border border-border rounded-lg hover:border-primary hover:bg-primary/5 transition-all duration-300 group"
@@ -766,7 +766,7 @@ export default function Home() {
             </div>
             <h3 className="text-lg font-semibold mb-2">Instagram</h3>
             <p className="text-muted-foreground text-center mb-4">
-              instagram.com/yacine
+              yacine20005
             </p>
             <Button
               variant="default"
@@ -777,7 +777,7 @@ export default function Home() {
           </a>
 
           <a
-            href="https://discord.com/users/yacine"
+            href="https://discord.com/users/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center p-6 border border-border rounded-lg hover:border-primary hover:bg-primary/5 transition-all duration-300 group"
@@ -787,7 +787,7 @@ export default function Home() {
             </div>
             <h3 className="text-lg font-semibold mb-2">Discord</h3>
             <p className="text-muted-foreground text-center mb-4">
-              discord.com/users/yacine
+              yacine20005
             </p>
             <Button
               variant="default"
@@ -806,6 +806,8 @@ export default function Home() {
             <div className="mb-4 md:mb-0">
               <Link
                 href="/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-xl font-mono text-primary hover:text-primary/80 transition-colors"
               >
                 Yacine._
@@ -816,35 +818,45 @@ export default function Home() {
             </div>
             <div className="flex items-center space-x-4">
               <Link
-                href="#"
+                href="https://github.com/yacine20005"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 <FaGithub className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
               </Link>
               <Link
-                href="#"
+                href="https://linkedin.com/in/yacine-hamadouche"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 <FaLinkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
               </Link>
               <Link
-                href="#"
+                href="mailto:ya.hamadouche@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 <MdMail className="h-5 w-5" />
                 <span className="sr-only">Email</span>
               </Link>
               <Link
-                href="#"
+                href="https://instagram.com/yacine20005"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 <FaInstagram className="h-5 w-5" />
                 <span className="sr-only">Instagram</span>
               </Link>
               <Link
-                href="#"
+                href="https://discord.com/users/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 <FaDiscord className="h-5 w-5" />
