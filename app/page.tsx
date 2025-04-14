@@ -378,7 +378,7 @@ export default function Home() {
                   <FaGithub className="h-4 w-4 mr-1" /> View Code
                 </Link>
                 <Link
-                  href="#"
+                  href="https://yacine-hamadouche.me"
                   className="text-sm text-primary hover:underline flex items-center"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -777,7 +777,7 @@ export default function Home() {
           </a>
 
           <a
-            href="https://discord.com/users/"
+            href="https://discord.com/users/279308005428690944"
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center p-6 border border-border rounded-lg hover:border-primary hover:bg-primary/5 transition-all duration-300 group"
@@ -793,9 +793,10 @@ export default function Home() {
               variant="default"
               className="mt-auto bg-gradient-to-r from-primary/90 to-primary hover:from-primary hover:to-primary/90 transition-all duration-300 shadow-md hover:shadow-lg"
             >
-              <FaDiscord className="mr-2 h-4 w-4" /> Join Server
+              <FaDiscord className="mr-2 h-4 w-4" /> View Profile
             </Button>
           </a>
+
         </div>
       </section>
 
@@ -854,7 +855,7 @@ export default function Home() {
                 <span className="sr-only">Instagram</span>
               </Link>
               <Link
-                href="https://discord.com/users/"
+                href="https://discord.com/users/279308005428690944"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
@@ -866,7 +867,6 @@ export default function Home() {
           </div>
           <div className="mt-8 text-center text-sm text-muted-foreground">
             <p>© {new Date().getFullYear()} Yacine. All rights reserved.</p>
-            <p className="mt-1">Built with Next.js and Tailwind CSS</p>
           </div>
         </div>
       </footer>
