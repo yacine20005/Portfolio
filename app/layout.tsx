@@ -1,7 +1,8 @@
 import type React from "react"
+import { Analytics } from "@vercel/analytics/react"
 import "@/app/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { FloatingElements } from "@/components/floating-elements" // Ajout de l'import
+import { FloatingElements } from "@/components/floating-elements"
 import { Inter } from "next/font/google"
 import type { Metadata } from "next"
 
@@ -21,18 +22,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} antialiased relative`}> {/* Ajout de 'relative' pour le positionnement absolu des enfants */}
+      <body className={`${inter.className} antialiased relative`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
-          <FloatingElements /> {/* Composant déplacé ici */}
+          <FloatingElements />
           {children}
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
   )
 }
-
-import "./globals.css"
-
-
-
-import './globals.css'
