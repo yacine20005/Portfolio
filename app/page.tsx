@@ -4,19 +4,16 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Code, Send } from "lucide-react";
-import { MdMail, MdDownload } from "react-icons/md";
+import { MdMail, MdDownload, MdMemory } from "react-icons/md";
 import {
   FaGithub,
   FaLinkedin,
-  FaInstagram,
-  FaDiscord,
   FaCloud,
   FaGamepad,
   FaFolder,
   FaChessBoard,
 } from "react-icons/fa";
-import { GiSwordsEmblem } from "react-icons/gi";
-import { SiLeagueoflegends } from "react-icons/si";
+import { GiF1Car } from "react-icons/gi";
 import { MobileMenu } from "@/components/mobile-menu";
 import { AnimatedCanvas } from "@/components/animated-canvas";
 import { SectionBackground } from "@/components/section-background";
@@ -526,26 +523,29 @@ export default function Home() {
             <div className="h-48 bg-muted relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-primary/20"></div>
               <div className="absolute inset-0 flex items-center justify-center">
-                <GiSwordsEmblem className="h-16 w-16 text-primary/50" />
+                <MdMemory className="h-16 w-16 text-primary/50" />
               </div>
             </div>
             <div className="p-6">
               <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                Darkest Dungeon
+                Malloc
               </h3>
               <p className="text-muted-foreground mb-4">
-                Darkest-Dungeon-C is a game with rogue-like elements, as well as
-                resource and stress management. The game is developed in the C
-                language and is played on the command line.
+                This university project focuses on implementing custom versions
+                of the standard C library functions malloc and free. It delves
+                into the core mechanisms of dynamic memory allocation.
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
                 <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
                   C
                 </span>
+                <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                  Makefile
+                </span>
               </div>
               <div className="flex items-center gap-4">
                 <Link
-                  href="https://github.com/yacine20005/Darkest-Dungeon-C"
+                  href="https://github.com/yacine20005/malloc"
                   className="text-sm text-primary hover:underline flex items-center"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -559,36 +559,33 @@ export default function Home() {
             <div className="h-48 bg-muted relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-primary/20"></div>
               <div className="absolute inset-0 flex items-center justify-center">
-                <SiLeagueoflegends className="h-16 w-16 text-primary/50" />
+                <GiF1Car className="h-16 w-16 text-primary/50" />
               </div>
             </div>
             <div className="p-6">
               <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                Clash Companion - WIP
+                Racetrack
               </h3>
               <p className="text-muted-foreground mb-4">
-                Clash Companion is a companion app for Overwolf and the Clash
-                game mode of League of Legends. The app provides information
-                about teammates and opponents before the match, helping players
-                to better prepare for their games.
+                Racetrack is a Python-based game where players navigate a pawn
+                across a board, avoiding obstacles to reach the finish line.
+                This project showcases various play modes and includes a
+                sophisticated solver.
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
                 <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
-                  React
+                  Python
                 </span>
                 <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
-                  Overwolf
+                  FLTK
                 </span>
                 <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
-                  TypeScript
-                </span>
-                <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
-                  League of Legends
+                  Pillow
                 </span>
               </div>
               <div className="flex items-center gap-4">
                 <Link
-                  href="https://github.com/yacine20005/Clash-Compagnon"
+                  href="https://github.com/yacine20005/racetrack"
                   className="text-sm text-primary hover:underline flex items-center"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -754,49 +751,6 @@ export default function Home() {
               <FaLinkedin className="mr-2 h-4 w-4" /> Connect
             </Button>
           </a>
-
-          <a
-            href="https://instagram.com/yacine20005"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex flex-col items-center p-6 border border-border rounded-lg hover:border-primary hover:bg-primary/5 transition-all duration-300 group"
-          >
-            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-              <FaInstagram className="h-7 w-7 text-primary" />
-            </div>
-            <h3 className="text-lg font-semibold mb-2">Instagram</h3>
-            <p className="text-muted-foreground text-center mb-4">
-              yacine20005
-            </p>
-            <Button
-              variant="default"
-              className="mt-auto bg-gradient-to-r from-primary/90 to-primary hover:from-primary hover:to-primary/90 transition-all duration-300 shadow-md hover:shadow-lg"
-            >
-              <FaInstagram className="mr-2 h-4 w-4" /> Follow
-            </Button>
-          </a>
-
-          <a
-            href="https://discord.com/users/279308005428690944"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex flex-col items-center p-6 border border-border rounded-lg hover:border-primary hover:bg-primary/5 transition-all duration-300 group"
-          >
-            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-              <FaDiscord className="h-7 w-7 text-primary" />
-            </div>
-            <h3 className="text-lg font-semibold mb-2">Discord</h3>
-            <p className="text-muted-foreground text-center mb-4">
-              yacine20005
-            </p>
-            <Button
-              variant="default"
-              className="mt-auto bg-gradient-to-r from-primary/90 to-primary hover:from-primary hover:to-primary/90 transition-all duration-300 shadow-md hover:shadow-lg"
-            >
-              <FaDiscord className="mr-2 h-4 w-4" /> View Profile
-            </Button>
-          </a>
-
         </div>
       </section>
 
@@ -819,24 +773,6 @@ export default function Home() {
             </div>
             <div className="flex items-center space-x-4">
               <Link
-                href="https://github.com/yacine20005"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <FaGithub className="h-5 w-5" />
-                <span className="sr-only">GitHub</span>
-              </Link>
-              <Link
-                href="https://linkedin.com/in/yacine-hamadouche"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <FaLinkedin className="h-5 w-5" />
-                <span className="sr-only">LinkedIn</span>
-              </Link>
-              <Link
                 href="mailto:ya.hamadouche@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -845,23 +781,25 @@ export default function Home() {
                 <MdMail className="h-5 w-5" />
                 <span className="sr-only">Email</span>
               </Link>
+
               <Link
-                href="https://instagram.com/yacine20005"
+                href="https://github.com/yacine20005"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
-                <FaInstagram className="h-5 w-5" />
-                <span className="sr-only">Instagram</span>
+                <FaGithub className="h-5 w-5" />
+                <span className="sr-only">GitHub</span>
               </Link>
+
               <Link
-                href="https://discord.com/users/279308005428690944"
+                href="https://linkedin.com/in/yacine-hamadouche"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
-                <FaDiscord className="h-5 w-5" />
-                <span className="sr-only">Discord</span>
+                <FaLinkedin className="h-5 w-5" />
+                <span className="sr-only">LinkedIn</span>
               </Link>
             </div>
           </div>
