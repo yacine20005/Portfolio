@@ -86,4 +86,4 @@ To make this portfolio your own, you'll primarily need to modify the content fil
 
 Yacine - [ya.hamadouche@gmail.com](mailto:ya.hamadouche@gmail.com)
 
-Project Link: [https://github.com/yacine-hamadouche/Portfolio](https://github.com/yacine-hamadouche/Portfolio)
+Project Link: [https://github.com/yacine20005/Portfolio](https://github.com/yacine20005/Portfolio)
