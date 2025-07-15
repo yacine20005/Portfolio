@@ -24,10 +24,10 @@ export const aboutData: AboutData = {
     title: '// about me',
     subtitle: 'A bit more about who I am and what I\'m looking for.',
     paragraphs: [
-        'I work on various projects, whether personal or academic, which allow me to put my skills into practice and sometimes explore new technologies 🔍.',
-        'Feel free to check out my repositories to discover my achievements and collaborations 🤝.',
-        'I am looking for opportunities to take on new challenges and collaborate on innovative projects 💡.',
-        'My goal is to perfect my programming skills.',
+        'My passion for computer science is about turning coffee ☕ into functional and creative code 💻.',
+        'Whether developing a strategy game in C or designing websites for clients, I love exploring every facet of development 👀.',
+        'My projects allow me to combine technical rigor and creativity to bring ideas to life ✨.',
+        'I am now looking to bring this energy to a company as a work-study (apprenticeship) developer 👨‍💻, where I can continue to learn, collaborate, and build applications that have a real impact 🚀.',
     ],
 };
 
