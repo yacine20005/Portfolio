@@ -1,12 +1,12 @@
 import { NavLink, HeroData, AboutData, SkillsData, ProjectsData, ExperienceData, ContactData, FooterData } from './types';
 
 export const navLinks: NavLink[] = [
-    { name: '// home', href: '#home', id: 'home' },
-    { name: '// about', href: '#about', id: 'about' },
-    { name: '// skills', href: '#skills', id: 'skills' },
-    { name: '// projects', href: '#projects', id: 'projects' },
-    { name: '// experience', href: '#experience', id: 'experience' },
-    { name: '// contact', href: '#contact', id: 'contact' },
+    { name: '// home 🏠', href: '#home', id: 'home' },
+    { name: '// about 👨‍💻', href: '#about', id: 'about' },
+    { name: '// skills 🛠️', href: '#skills', id: 'skills' },
+    { name: '// projects 📁', href: '#projects', id: 'projects' },
+    { name: '// experience 👨‍💼', href: '#experience', id: 'experience' },
+    { name: '// contact 📞', href: '#contact', id: 'contact' },
 ];
 
 export const heroData: HeroData = {
@@ -21,7 +21,7 @@ export const heroData: HeroData = {
 };
 
 export const aboutData: AboutData = {
-    title: '// about me',
+    title: '// about me 👨‍💻',
     subtitle: 'A bit more about who I am and what I\'m looking for.',
     paragraphs: [
         'My passion for computer science is about turning coffee ☕ into functional and creative code 💻.',
@@ -32,7 +32,7 @@ export const aboutData: AboutData = {
 };
 
 export const skillsData: SkillsData = {
-    title: '// skills',
+    title: '// skills 🛠️',
     subtitle: 'Here are some of the technologies and tools I\'ve been working with during my studies and personal projects.',
     categories: [
         {
@@ -51,7 +51,7 @@ export const skillsData: SkillsData = {
 };
 
 export const projectsData: ProjectsData = {
-    title: '// projects',
+    title: '// projects 📁',
     subtitle: 'A selection of projects I\'ve worked on during my academic journey and in my free time.',
     projects: [
         {
@@ -115,7 +115,7 @@ export const projectsData: ProjectsData = {
 };
 
 export const experienceData: ExperienceData = {
-    title: '// experience',
+    title: '// experience 👨‍💼',
     subtitle: 'My academic journey and professional experiences.',
     experiences: [
         {
@@ -140,7 +140,7 @@ export const experienceData: ExperienceData = {
 };
 
 export const contactData: ContactData = {
-    title: '// contact',
+    title: '// contact 📞',
     subtitle: 'Feel free to reach out if you want to collaborate on a project, have a question, or just want to connect.',
     contacts: [
         {
