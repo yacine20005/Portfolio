@@ -32,7 +32,6 @@
     @apply border-border;
   }
   body {
-    /* @apply bg-background; */ /* Removed background */
     @apply text-foreground;
   }
 }
