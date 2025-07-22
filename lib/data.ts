@@ -110,6 +110,24 @@ export const projectsData: ProjectsData = {
                 { name: 'View Code', href: 'https://github.com/yacine20005/racetrack' },
             ],
         },
+        {
+            title: 'Orbit Market',
+            description: 'Orbit Market is a cross-platform mobile application built with Expo (React Native) and FastAPI (Python), this application provides real-time access to vendor inventories, world states, and essential game information across games.',
+            tags: ['React Native', 'Expo', 'FastAPI', 'Python', 'SQLite', 'TypeScript', 'Docker', 'DigitalOcean'],
+            icon : 'GiMoonOrbit',
+            links: [
+                { name: 'View Code', href: 'https://github.com/yacine20005/Orbit-Market' },
+                { name: 'Download APK', href: 'https://github.com/yacine20005/Orbit-Market/releases/latest/download/orbit-market.apk' },
+            ],
+        },
+        { title: 'Spark Love',
+            description: 'COMING SOON',
+            tags: ['React Native', 'Expo', 'TypeScript', 'PostgreSQL'],
+            icon: 'RiHeartsFill',
+            links: [
+                { name: 'COMING SOON', href: '#' },
+            ],
+        }
     ],
     viewAllLink: 'https://github.com/yacine20005',
 };
