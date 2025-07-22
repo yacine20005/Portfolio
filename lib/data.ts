@@ -36,16 +36,16 @@ export const skillsData: SkillsData = {
     subtitle: 'Here are some of the technologies and tools I\'ve been working with during my studies and personal projects.',
     categories: [
         {
-            name: 'Programming Languages',
-            skills: ['Python', 'Flask', 'C', 'HTML / CSS', 'JavaScript / TypeScript', 'React / Next.js', 'Bash', 'LaTeX'],
+            name: 'Programming Languages and Frameworks',
+            skills: ['Python', 'Flask', 'FastAPI', 'C', 'HTML / CSS', 'JavaScript / TypeScript', 'React', 'Next.js', 'Expo', 'Bash', 'LaTeX'],
         },
         {
             name: 'Cloud & Infrastructure',
-            skills: ['Google Cloud', 'PostgreSQL', 'Vercel', 'DigitalOcean'],
+            skills: ['Google Cloud', 'PostgreSQL', 'SQLite', 'Vercel', 'DigitalOcean'],
         },
         {
             name: 'Tools & Libraries',
-            skills: ['Git / GitHub', 'Matplotlib', 'NumPy', 'Ncurses', 'MLV Library', 'Sanity CMS'],
+            skills: ['Git / GitHub', 'Docker', 'Matplotlib', 'NumPy', 'Ncurses', 'MLV Library', 'Sanity CMS'],
         },
     ],
 };
@@ -117,7 +117,7 @@ export const projectsData: ProjectsData = {
             icon : 'GiMoonOrbit',
             links: [
                 { name: 'View Code', href: 'https://github.com/yacine20005/Orbit-Market' },
-                { name: 'Download APK', href: 'https://github.com/yacine20005/Orbit-Market/releases/latest/download/orbit-market.apk' },
+                { name: 'Learn More', href: '/orbit-market' },
             ],
         },
         { title: 'Spark Love',

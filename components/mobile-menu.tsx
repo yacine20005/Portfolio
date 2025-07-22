@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
@@ -9,12 +11,20 @@ import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
   const { scrollToSection } = useSmoothScroll();
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
 
   const handleLinkClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
-    scrollToSection(e, href);
+    if (!isHomePage) {
+      // If we're not on the home page, redirect to home page with anchor
+      window.location.href = `/${href}`;
+    } else {
+      // If we're on the home page, use normal scroll
+      scrollToSection(e, href);
+    }
     setOpen(false);
   };
 
@@ -29,7 +39,7 @@ export function MobileMenu() {
       <SheetContent side="right" className="w-[300px] sm:w-[400px]">
         <nav className="flex flex-col gap-6 mt-10">
           <a
-            href="#home"
+            href={!isHomePage ? "/#home" : "#home"}
             className="text-lg flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
             onClick={(e) => handleLinkClick(e, "#home")}
           >
@@ -37,7 +47,7 @@ export function MobileMenu() {
             <span className="inline-flex items-center">// home</span>
           </a>
           <a
-            href="#about"
+            href={!isHomePage ? "/#about" : "#about"}
             className="text-lg flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
             onClick={(e) => handleLinkClick(e, "#about")}
           >
@@ -45,7 +55,7 @@ export function MobileMenu() {
             <span className="inline-flex items-center">// about</span>
           </a>
           <a
-            href="#skills"
+            href={!isHomePage ? "/#skills" : "#skills"}
             className="text-lg flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
             onClick={(e) => handleLinkClick(e, "#skills")}
           >
@@ -53,7 +63,7 @@ export function MobileMenu() {
             <span className="inline-flex items-center">// skills</span>
           </a>
           <a
-            href="#projects"
+            href={!isHomePage ? "/#projects" : "#projects"}
             className="text-lg flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
             onClick={(e) => handleLinkClick(e, "#projects")}
           >
@@ -61,7 +71,7 @@ export function MobileMenu() {
             <span className="inline-flex items-center">// projects</span>
           </a>
           <a
-            href="#experience"
+            href={!isHomePage ? "/#experience" : "#experience"}
             className="text-lg flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
             onClick={(e) => handleLinkClick(e, "#experience")}
           >
@@ -69,13 +79,23 @@ export function MobileMenu() {
             <span className="inline-flex items-center">// experience</span>
           </a>
           <a
-            href="#contact"
+            href={!isHomePage ? "/#contact" : "#contact"}
             className="text-lg flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
             onClick={(e) => handleLinkClick(e, "#contact")}
           >
             <span className="text-primary text-sm">06</span>
             <span className="inline-flex items-center">// contact</span>
           </a>
+          <div className="border-t border-border pt-6">
+            <Link
+              href="/orbit-market"
+              className="text-lg flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
+              onClick={() => setOpen(false)}
+            >
+              <span className="text-secondary text-sm">★</span>
+              <span className="inline-flex items-center">// orbit market</span>
+            </Link>
+          </div>
         </nav>
       </SheetContent>
     </Sheet>

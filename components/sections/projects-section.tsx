@@ -69,22 +69,25 @@ export function ProjectsSection() {
                   ))}
                 </div>
                 <div className="flex items-center gap-4">
-                  {project.links.map((link, linkIndex) => (
-                    <Link
-                      key={linkIndex}
-                      href={link.href}
-                      className="text-sm text-primary hover:underline flex items-center"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {link.name === "View Code" ? (
-                        <Code className="h-4 w-4 mr-1" />
-                      ) : (
-                        <Send className="h-4 w-4 mr-1" />
-                      )}{" "}
-                      {link.name}
-                    </Link>
-                  ))}
+                  {project.links.map((link, linkIndex) => {
+                    const isInternalLink = link.href.startsWith("/");
+                    return (
+                      <Link
+                        key={linkIndex}
+                        href={link.href}
+                        className="text-sm text-primary hover:underline flex items-center"
+                        target={isInternalLink ? "_self" : "_blank"}
+                        rel={isInternalLink ? "" : "noopener noreferrer"}
+                      >
+                        {link.name === "View Code" ? (
+                          <Code className="h-4 w-4 mr-1" />
+                        ) : (
+                          <Send className="h-4 w-4 mr-1" />
+                        )}{" "}
+                        {link.name}
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
             </div>
