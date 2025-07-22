@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://yacine-hamadouche.me/sitemap.xml
+
+# Optimisations pour les moteurs de recherche
+Crawl-delay: 1
+
+# Bloque les bots indésirables tout en permettant aux principaux moteurs de recherche
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
