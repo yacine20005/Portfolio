@@ -433,7 +433,7 @@ export default function OrbitMarketPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                 <Link
-                  href="https://github.com/yacine20005/Orbit-Market/releases/latest/download/orbit-market.apk"
+                  href="https://github.com/yacine20005/Orbit-Market/releases/latest/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
