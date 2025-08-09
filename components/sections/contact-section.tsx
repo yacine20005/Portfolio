@@ -5,6 +5,7 @@ import { MdMail } from "react-icons/md";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { SectionBackground } from "@/components/section-background";
 import { contactData } from "@/lib/data";
+import { useGsapStaggerOnView } from "@/hooks/use-gsap-animations";
 
 const iconMap: { [key: string]: React.ElementType } = {
     Email: MdMail,
@@ -13,15 +14,16 @@ const iconMap: { [key: string]: React.ElementType } = {
 };
 
 export function ContactSection() {
+    const scope = useGsapStaggerOnView();
     return (
-        <section id="contact" className="container mx-auto py-20 relative">
+        <section id="contact" className="container mx-auto py-20 relative" ref={scope}>
             <SectionBackground />
-            <div className="space-y-4 mb-12">
-                <div className="flex items-center">
+            <div className="space-y-4 mb-12" data-animate>
+                <div className="flex items-center" data-animate>
                     <span className="text-primary text-sm mr-2">05</span>
                     <h2 className="text-2xl md:text-3xl font-bold">{contactData.title}</h2>
                 </div>
-                <p className="text-muted-foreground max-w-2xl">
+                <p className="text-muted-foreground max-w-2xl" data-animate>
                     {contactData.subtitle}
                 </p>
             </div>
@@ -36,6 +38,7 @@ export function ContactSection() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex flex-col items-center p-6 border border-border rounded-lg hover:border-primary hover:bg-primary/5 transition-all duration-300 group"
+                            data-animate
                         >
                             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                                 {Icon && <Icon className="h-7 w-7 text-primary" />}

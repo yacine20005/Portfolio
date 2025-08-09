@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -8,12 +8,15 @@ import { MdMail } from "react-icons/md";
 import { MobileMenu } from "@/components/mobile-menu";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 import { navLinks } from "@/lib/data";
+import { useHeaderScrollAnimation } from "@/hooks/use-gsap-animations";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const { scrollToSection } = useSmoothScroll();
   const pathname = usePathname();
   const isHomePage = pathname === "/";
+  const headerRef = useRef<HTMLElement | null>(null);
+  useHeaderScrollAnimation(headerRef);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,18 +45,19 @@ export function Header() {
   };
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+      ref={headerRef}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
           ? "bg-background/90 backdrop-blur-md py-4 shadow-md"
           : "bg-transparent py-6"
-      }`}
+        }`}
     >
       {isHomePage ? (
         <div className="container mx-auto flex items-center justify-between">
           <a
             href="#home"
             onClick={(e) => handleLinkClick(e, "#home")}
-            className="text-xl font-mono text-primary hover:text-primary/80 transition-colors"
+            className="text-xl font-mono text-primary hover:text-primary/80 transition-colors will-change-transform"
+            data-header="logo"
           >
             Yacine._
           </a>
@@ -106,7 +110,8 @@ export function Header() {
             <div className="justify-self-center">
               <Link
                 href="/"
-                className="text-xl font-mono text-primary hover:text-primary/80 transition-colors"
+                className="text-xl font-mono text-primary hover:text-primary/80 transition-colors will-change-transform"
+                data-header="logo"
               >
                 Yacine._
               </Link>
@@ -124,7 +129,8 @@ export function Header() {
             </Link>
             <Link
               href="/"
-              className="text-xl font-mono text-primary hover:text-primary/80 transition-colors"
+              className="text-xl font-mono text-primary hover:text-primary/80 transition-colors will-change-transform"
+              data-header="logo"
             >
               Yacine._
             </Link>

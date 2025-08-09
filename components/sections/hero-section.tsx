@@ -6,30 +6,50 @@ import { Code, Send } from "lucide-react";
 import { MdDownload } from "react-icons/md";
 import { AnimatedCanvas } from "@/components/animated-canvas";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
+import { useGsapIntro, useHeroTitleElegantReveal } from "@/hooks/use-gsap-animations";
 import { heroData } from "@/lib/data";
 
 export function HeroSection() {
   const { scrollToSection } = useSmoothScroll();
+  const introScope = useGsapIntro();
+  useHeroTitleElegantReveal(introScope);
 
   return (
     <section
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      ref={introScope}
     >
       <AnimatedCanvas />
 
       <div className="container mx-auto relative z-10 pt-20">
         <div className="flex flex-col items-center justify-center text-center">
-          <h1 className="text-[8rem] md:text-[12rem] lg:text-[16rem] font-bold tracking-tighter leading-none animate-fade-in">
-            {heroData.name}
-          </h1>
-          <p className="text-xl md:text-2xl font-mono text-muted-foreground mt-4 md:mt-0 animate-fade-in-delay">
+          <div data-hero="title" className="relative">
+            <h1
+              className="select-none text-[8rem] md:text-[12rem] lg:text-[16rem] font-bold tracking-tighter leading-none will-change-transform text-foreground"
+              aria-label={heroData.name}
+            >
+              {heroData.name.split("").map((ch, i) => (
+                <span
+                  key={i}
+                  data-hero-letter
+                  className="inline-block will-change-transform"
+                  style={{
+                    textShadow: "0 2px 8px rgba(0,0,0,0.25)",
+                  }}
+                >
+                  {ch === " " ? "\u00A0" : ch}
+                </span>
+              ))}
+            </h1>
+          </div>
+          <p data-hero="subtitle" className="text-xl md:text-2xl font-mono text-muted-foreground mt-4 md:mt-0 will-change-transform">
             {heroData.title}
           </p>
-          <div className="max-w-lg mx-auto mt-8 text-center animate-fade-in-delay">
+          <div data-hero="description" className="max-w-lg mx-auto mt-8 text-center will-change-transform">
             <p className="text-muted-foreground">{heroData.description}</p>
           </div>
-          <div className="flex flex-wrap gap-4 mt-8 justify-center animate-fade-in-delay-3">
+          <div data-hero="cta" className="flex flex-wrap gap-4 mt-8 justify-center will-change-transform">
             <Link href="/spark-love" className="relative">
               <Button className="rounded-full h-10 px-4 py-2 text-sm font-medium bg-gradient-to-r from-pink-500 via-rose-500 to-fuchsia-600 hover:from-pink-600 hover:via-rose-600 hover:to-fuchsia-700 text-white shadow-lg">
                 Spark Love
@@ -61,8 +81,7 @@ export function HeroSection() {
               </Button>
             </Link>
           </div>
-
-          <div className="w-full flex justify-center mt-20 animate-bounce hidden md:flex">
+          <div data-hero="scroll-indicator" className="w-full flex justify-center mt-20 hidden md:flex">
             <div className="inline-flex flex-col items-center">
               <p className="text-muted-foreground text-sm mb-2">Scroll Down</p>
               <svg

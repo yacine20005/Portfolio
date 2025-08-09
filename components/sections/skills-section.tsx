@@ -2,6 +2,7 @@
 
 import { SectionBackground } from "@/components/section-background";
 import { skillsData } from "@/lib/data";
+import { useGsapStaggerOnView } from "@/hooks/use-gsap-animations";
 import {
     FaPython,
     FaReact,
@@ -84,15 +85,18 @@ function SkillPill({ label }: { label: string }) {
 }
 
 export function SkillsSection() {
+    const scope = useGsapStaggerOnView({ y: 50 });
     return (
-        <section id="skills" className="container mx-auto py-20 relative">
+        <section id="skills" className="container mx-auto py-20 relative" ref={scope}>
             <SectionBackground />
-            <div className="space-y-4 mb-12">
-                <div className="flex items-center">
+            <div className="space-y-4 mb-12" data-animate>
+                <div className="flex items-center" data-animate>
                     <span className="text-primary text-sm mr-2">02</span>
                     <h2 className="text-2xl md:text-3xl font-bold">{skillsData.title}</h2>
                 </div>
-                <p className="text-muted-foreground max-w-2xl">{skillsData.subtitle}</p>
+                <p className="text-muted-foreground max-w-2xl" data-animate>
+                    {skillsData.subtitle}
+                </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -100,13 +104,14 @@ export function SkillsSection() {
                     <div
                         key={index}
                         className="relative overflow-hidden rounded-xl border border-border bg-card/40 backdrop-blur-sm p-6 transition-colors hover:border-primary/50"
+                        data-animate
                     >
                         <div className="mb-4 flex items-center gap-2">
                             <h3 className="text-lg font-semibold leading-tight">
                                 {category.name}
                             </h3>
                         </div>
-                        <ul className="flex flex-wrap gap-2">
+                        <ul className="flex flex-wrap gap-2" data-animate>
                             {category.skills.map((skill) => (
                                 <SkillPill key={skill} label={skill} />
                             ))}
