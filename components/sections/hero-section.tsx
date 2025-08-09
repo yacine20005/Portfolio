@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Code, Send } from "lucide-react";
 import { MdDownload } from "react-icons/md";
 import { AnimatedCanvas } from "@/components/animated-canvas";
-import { FloatingElements } from "@/components/floating-elements";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 import { heroData } from "@/lib/data";
 
@@ -18,7 +17,6 @@ export function HeroSection() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       <AnimatedCanvas />
-      <FloatingElements count={10} />
 
       <div className="container mx-auto relative z-10 pt-20">
         <div className="flex flex-col items-center justify-center text-center">
@@ -32,11 +30,11 @@ export function HeroSection() {
             <p className="text-muted-foreground">{heroData.description}</p>
           </div>
           <div className="flex flex-wrap gap-4 mt-8 justify-center animate-fade-in-delay-3">
-            <Link href="/orbit-market" className="relative">
-              <Button className="rounded-full h-10 px-4 py-2 text-sm font-medium bg-gradient-to-r from-blue-400 via-purple-500 to-purple-600 hover:from-blue-500 hover:via-purple-600 hover:to-purple-700 text-white shadow-lg">
-                Orbit Market
+            <Link href="/spark-love" className="relative">
+              <Button className="rounded-full h-10 px-4 py-2 text-sm font-medium bg-gradient-to-r from-pink-500 via-rose-500 to-fuchsia-600 hover:from-pink-600 hover:via-rose-600 hover:to-fuchsia-700 text-white shadow-lg">
+                Spark Love
               </Button>
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse">
+              <span className="absolute -top-2 -right-2 bg-pink-600 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse">
                 NEW
               </span>
             </Link>

@@ -18,7 +18,7 @@ export function ContactSection() {
             <SectionBackground />
             <div className="space-y-4 mb-12">
                 <div className="flex items-center">
-                    <span className="text-primary text-sm mr-2">06</span>
+                    <span className="text-primary text-sm mr-2">05</span>
                     <h2 className="text-2xl md:text-3xl font-bold">{contactData.title}</h2>
                 </div>
                 <p className="text-muted-foreground max-w-2xl">

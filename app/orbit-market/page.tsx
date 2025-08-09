@@ -3,7 +3,6 @@
 import { Header } from "@/components/sections/header";
 import { Footer } from "@/components/sections/footer";
 import { SectionBackground } from "@/components/section-background";
-import { FloatingElements } from "@/components/floating-elements";
 import { OrbitMarketScreenshots } from "@/components/orbit-market-screenshots";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,7 +12,6 @@ import {
   Clock,
   Shield,
   Zap,
-  ArrowRight,
   ExternalLink,
 } from "lucide-react";
 import { GiAlienFire } from "react-icons/gi";
@@ -112,23 +110,12 @@ const roadmapItems = [
 export default function OrbitMarketPage() {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-hidden">
-      <FloatingElements />
       <Header />
 
-      {/* Hero Section */}
-      <section className="container mx-auto py-32 relative">
+  <main>
+  {/* Hero Section */}
+  <section className="container mx-auto py-32 relative" role="banner">
         <SectionBackground />
-
-        {/* Back to Portfolio Link */}
-        <div className="mb-8">
-          <Link
-            href="/"
-            className="inline-flex items-center text-sm text-muted-foreground hover:text-primary transition-colors"
-          >
-            <ArrowRight className="h-4 w-4 mr-2 rotate-180" />
-            Back to Portfolio
-          </Link>
-        </div>
 
         <div className="flex flex-col items-center text-center gap-12">
           <div className="max-w-4xl space-y-6">
@@ -502,7 +489,8 @@ export default function OrbitMarketPage() {
         </div>
       </section>
 
-      <Footer />
+  </main>
+  <Footer />
     </div>
   );
 }

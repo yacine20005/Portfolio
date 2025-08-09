@@ -19,8 +19,6 @@ export function Footer() {
                     <div className="mb-4 md:mb-0">
                         <Link
                             href="/"
-                            target="_blank"
-                            rel="noopener noreferrer"
                             className="text-xl font-mono text-primary hover:text-primary/80 transition-colors"
                         >
                             {footerData.name}

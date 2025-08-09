@@ -21,7 +21,7 @@ export const heroData: HeroData = {
 };
 
 export const aboutData: AboutData = {
-    title: '// about me 👨‍💻',
+    title: '// about 👨‍💻',
     subtitle: 'A bit more about who I am and what I\'m looking for.',
     paragraphs: [
         'My passion for computer science is about turning coffee ☕ into functional and creative code 💻.',
@@ -37,11 +37,11 @@ export const skillsData: SkillsData = {
     categories: [
         {
             name: 'Programming Languages and Frameworks',
-            skills: ['Python', 'Flask', 'FastAPI', 'C', 'HTML / CSS', 'JavaScript / TypeScript', 'React', 'Next.js', 'Expo', 'Bash', 'LaTeX'],
+            skills: ['Python', 'Flask', 'FastAPI', 'C', 'HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Next.js', 'Expo', 'Bash', 'LaTeX'],
         },
         {
             name: 'Cloud & Infrastructure',
-            skills: ['Google Cloud', 'PostgreSQL', 'SQLite', 'Vercel', 'DigitalOcean'],
+            skills: ['Google Cloud', 'PostgreSQL', 'SQLite', 'Vercel', 'DigitalOcean', 'Supabase'],
         },
         {
             name: 'Tools & Libraries',
@@ -56,12 +56,11 @@ export const projectsData: ProjectsData = {
     projects: [
         {
             title: 'Personal Portfolio Website',
-            description: 'A responsive portfolio website built with Next.js and Tailwind CSS to showcase my projects and skills.',
+            description: 'A fully responsive and modern portfolio website designed to showcase my projects, skills, and professional journey. Built with Next.js and Tailwind CSS, it features smooth navigation, and a clean professional aesthetic.',
             tags: ['Next.js', 'Tailwind CSS', 'TypeScript'],
             icon: 'FaFolder',
             links: [
-                { name: 'View Code', href: 'https://github.com/yacine20005/Portfolio' },
-                { name: 'Live Demo', href: 'https://yacine-hamadouche.me' },
+                { name: 'View Code', href: 'https://github.com/yacine20005/Portfolio' }
             ],
         },
         {
@@ -114,18 +113,20 @@ export const projectsData: ProjectsData = {
             title: 'Orbit Market',
             description: 'Orbit Market is a cross-platform mobile application built with Expo (React Native) and FastAPI (Python), this application provides real-time access to vendor inventories, world states, and essential game information across games.',
             tags: ['React Native', 'Expo', 'FastAPI', 'Python', 'SQLite', 'TypeScript', 'Docker', 'DigitalOcean'],
-            icon : 'GiMoonOrbit',
+            icon: 'GiMoonOrbit',
             links: [
                 { name: 'View Code', href: 'https://github.com/yacine20005/Orbit-Market' },
                 { name: 'Learn More', href: '/orbit-market' },
             ],
         },
-        { title: 'Spark Love',
-            description: 'COMING SOON',
-            tags: ['React Native', 'Expo', 'TypeScript', 'PostgreSQL'],
+        {
+            title: 'Spark Love',
+            description: 'Spark Love helps couples connect through private quizzes, a shared journal, movie & date swipes, and meaningful prompts — More than an app. Your next conversation.',
+            tags: ['React Native', 'Expo', 'TypeScript', 'Supabase'],
             icon: 'RiHeartsFill',
             links: [
-                { name: 'COMING SOON', href: '#' },
+                { name: 'View Code', href: 'https://github.com/yacine20005/Spark-Love' },
+                { name: 'Learn More', href: '/spark-love' },
             ],
         }
     ],

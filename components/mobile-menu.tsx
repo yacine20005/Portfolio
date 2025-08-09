@@ -12,7 +12,7 @@ export function MobileMenu() {
   const [open, setOpen] = useState(false);
   const { scrollToSection } = useSmoothScroll();
   const pathname = usePathname();
-  const isHomePage = pathname === '/';
+  const isHomePage = pathname === "/";
 
   const handleLinkClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -38,6 +38,19 @@ export function MobileMenu() {
       </SheetTrigger>
       <SheetContent side="right" className="w-[300px] sm:w-[400px]">
         <nav className="flex flex-col gap-6 mt-10">
+          {!isHomePage && (
+            <Link
+              href="/"
+              className="text-lg flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors border border-border rounded-md px-3 py-2 hover:border-primary/50"
+              onClick={() => setOpen(false)}
+            >
+              <span className="text-primary text-sm">←</span>
+              <span className="inline-flex items-center">
+                // back to portfolio
+              </span>
+            </Link>
+          )}
+          {!isHomePage && <div className="border-t border-border" />}
           <a
             href={!isHomePage ? "/#home" : "#home"}
             className="text-lg flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
@@ -87,6 +100,14 @@ export function MobileMenu() {
             <span className="inline-flex items-center">// contact</span>
           </a>
           <div className="border-t border-border pt-6">
+            <Link
+              href="/spark-love"
+              className="text-lg flex items-center space-x-2 text-muted-foreground hover:text-pink-500 transition-colors"
+              onClick={() => setOpen(false)}
+            >
+              <span className="text-pink-500 text-sm">♡</span>
+              <span className="inline-flex items-center">// spark love</span>
+            </Link>
             <Link
               href="/orbit-market"
               className="text-lg flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"

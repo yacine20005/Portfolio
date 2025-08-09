@@ -10,7 +10,7 @@ export function AboutSection() {
             <div className="container mx-auto">
                 <div className="space-y-4 mb-12">
                     <div className="flex items-center">
-                        <span className="text-primary text-sm mr-2">02</span>
+                        <span className="text-primary text-sm mr-2">01</span>
                         <h2 className="text-2xl md:text-3xl font-bold">{aboutData.title}</h2>
                     </div>
                     <p className="text-muted-foreground max-w-2xl">

@@ -9,7 +9,7 @@ export function ExperienceSection() {
             <SectionBackground />
             <div className="space-y-4 mb-12">
                 <div className="flex items-center">
-                    <span className="text-primary text-sm mr-2">05</span>
+                    <span className="text-primary text-sm mr-2">04</span>
                     <h2 className="text-2xl md:text-3xl font-bold">{experienceData.title}</h2>
                 </div>
                 <p className="text-muted-foreground max-w-2xl">
