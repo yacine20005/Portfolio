@@ -217,7 +217,7 @@ export default function SparkLovePage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 rounded-lg bg-pink-500/15 flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="h-6 w-6 rounded-md bg-pink-500/15 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <Check
                         className="h-4 w-4 text-pink-500"
                         aria-hidden="true"
@@ -233,7 +233,7 @@ export default function SparkLovePage() {
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 rounded-lg bg-pink-500/15 flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="h-6 w-6 rounded-md bg-pink-500/15 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <Check
                         className="h-4 w-4 text-pink-500"
                         aria-hidden="true"
@@ -250,7 +250,7 @@ export default function SparkLovePage() {
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 rounded-lg bg-pink-500/15 flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="h-6 w-6 rounded-md bg-pink-500/15 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <Check
                         className="h-4 w-4 text-pink-500"
                         aria-hidden="true"
@@ -268,7 +268,7 @@ export default function SparkLovePage() {
 
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 rounded-lg bg-pink-500/15 flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="h-6 w-6 rounded-md bg-pink-500/15 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <Check
                         className="h-4 w-4 text-pink-500"
                         aria-hidden="true"
@@ -284,7 +284,7 @@ export default function SparkLovePage() {
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 rounded-lg bg-pink-500/15 flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="h-6 w-6 rounded-md bg-pink-500/15 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <Check
                         className="h-4 w-4 text-pink-500"
                         aria-hidden="true"
@@ -300,7 +300,7 @@ export default function SparkLovePage() {
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 rounded-lg bg-pink-500/15 flex items-center justify-center flex-shrink-0 mt-1">
+                    <div className="h-6 w-6 rounded-md bg-pink-500/15 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <Check
                         className="h-4 w-4 text-pink-500"
                         aria-hidden="true"
@@ -359,7 +359,7 @@ export default function SparkLovePage() {
                   </p>
                 </div>
                 <div className="md:col-span-6">
-                  <ul className="space-y-5">
+                  <ul className="space-y-5" data-spark-list>
                     {[
                       {
                         title: "Private answers",
@@ -375,8 +375,8 @@ export default function SparkLovePage() {
                       },
                     ].map((item, idx) => (
                       <li key={idx} className="flex items-start gap-4">
-                        <div className="mt-0.5 h-6 w-6 rounded-md bg-pink-500/15 text-pink-500 flex items-center justify-center">
-                          <Check className="h-4 w-4" aria-hidden="true" />
+                        <div className="h-6 w-6 rounded-md bg-pink-500/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="h-4 w-4 text-pink-500" aria-hidden="true" />
                         </div>
                         <div>
                           <h4 className="font-medium">{item.title}</h4>
@@ -451,8 +451,8 @@ export default function SparkLovePage() {
                       },
                     ].map((item, idx) => (
                       <li key={idx} className="flex items-start gap-4">
-                        <div className="mt-0.5 h-6 w-6 rounded-md bg-pink-500/15 text-pink-500 flex items-center justify-center">
-                          <Check className="h-4 w-4" aria-hidden="true" />
+                        <div className="h-6 w-6 rounded-md bg-pink-500/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="h-4 w-4 text-pink-500" aria-hidden="true" />
                         </div>
                         <div>
                           <h4 className="font-medium">{item.title}</h4>
@@ -510,7 +510,7 @@ export default function SparkLovePage() {
                   </p>
                 </div>
                 <div className="md:col-span-6">
-                  <ul className="space-y-5">
+                  <ul className="space-y-5" data-spark-list>
                     {[
                       {
                         title: "Swipe right for ‘let’s watch’",
@@ -526,8 +526,8 @@ export default function SparkLovePage() {
                       },
                     ].map((item, idx) => (
                       <li key={idx} className="flex items-start gap-4">
-                        <div className="mt-0.5 h-6 w-6 rounded-md bg-pink-500/15 text-pink-500 flex items-center justify-center">
-                          <Check className="h-4 w-4" aria-hidden="true" />
+                        <div className="h-6 w-6 rounded-md bg-pink-500/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="h-4 w-4 text-pink-500" aria-hidden="true" />
                         </div>
                         <div>
                           <h4 className="font-medium">{item.title}</h4>
@@ -583,7 +583,7 @@ export default function SparkLovePage() {
                   </p>
                 </div>
                 <div className="md:col-span-6">
-                  <ul className="space-y-5">
+                  <ul className="space-y-5" data-spark-list>
                     {[
                       {
                         title: "Curated categories",
@@ -599,8 +599,8 @@ export default function SparkLovePage() {
                       },
                     ].map((item, idx) => (
                       <li key={idx} className="flex items-start gap-4">
-                        <div className="mt-0.5 h-6 w-6 rounded-md bg-pink-500/15 text-pink-500 flex items-center justify-center">
-                          <Check className="h-4 w-4" aria-hidden="true" />
+                        <div className="h-6 w-6 rounded-md bg-pink-500/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="h-4 w-4 text-pink-500" aria-hidden="true" />
                         </div>
                         <div>
                           <h4 className="font-medium">{item.title}</h4>
