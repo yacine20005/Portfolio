@@ -49,7 +49,7 @@ export default function SparkLovePage() {
                   <h1
                     id="spark-love-hero-heading"
                     ref={titleRef}
-                    className="font-bold tracking-tighter leading-none bg-gradient-to-r from-pink-500 via-rose-500 to-fuchsia-500 bg-[length:200%_100%] bg-clip-text text-transparent select-none text-[3.2rem] sm:text-[5rem] md:text-[6.5rem] lg:text-[8rem] will-change-transform"
+                    className="font-bold tracking-tighter leading-none bg-gradient-to-r from-pink-500 via-rose-500 to-fuchsia-500 bg-[length:200%_100%] animate-[pulse_8s_linear_infinite] bg-clip-text text-transparent select-none text-[3.2rem] sm:text-[5rem] md:text-[6.5rem] lg:text-[8rem] will-change-transform"
                     style={{ textShadow: "0 4px 24px rgba(236,72,153,0.25)" }}
                   >
                     Spark Love
@@ -76,7 +76,11 @@ export default function SparkLovePage() {
                       Explore Features
                     </Button>
                   </Link>
-                  <Link href="/questionnaire" className="w-full sm:w-auto">
+                  <Link href="https://tally.so/r/mJ4rp4"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-auto"
+                  >
                     <Button size="lg" className="w-full sm:w-auto">
                       <ClipboardPen className="h-5 w-5 mr-2" aria-hidden="true" />
                       Take Survey
@@ -109,6 +113,7 @@ export default function SparkLovePage() {
             @keyframes fadeUp {from {opacity:0; transform: translateY(40px);} to {opacity:1; transform:translateY(0);} }
             @keyframes fadeIn {from {opacity:0;} to {opacity:1;} }
             @keyframes growLine {0%,100% {transform: scaleY(0); transform-origin: top;} 50% {transform: scaleY(1); transform-origin: top;} }
+            @keyframes pulse {0%,100% {background-position:0% 50%;} 50% {background-position:100% 50%;}}
           `}</style>
         </section>
 
@@ -817,7 +822,11 @@ export default function SparkLovePage() {
                 directly guides what we build next.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/questionnaire" className="w-full sm:w-auto">
+                <Link href="https://tally.so/r/mJ4rp4"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto"
+                >
                   <Button size="lg" className="w-full sm:w-auto">
                     <ClipboardPen className="h-5 w-5 mr-2" aria-hidden="true" />
                     Take Survey
@@ -836,20 +845,6 @@ export default function SparkLovePage() {
                   >
                     <FaGithub className="h-5 w-5 mr-2" aria-hidden="true" />
                     View on GitHub
-                  </Button>
-                </Link>
-                <Link
-                  href="#quizzes"
-                  className="w-full sm:w-auto"
-                  onClick={(e) => scrollToSection(e as any, "#quizzes")}
-                >
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="w-full sm:w-auto"
-                  >
-                    <Sparkles className="h-5 w-5 mr-2" aria-hidden="true" />
-                    Explore Features
                   </Button>
                 </Link>
               </div>
