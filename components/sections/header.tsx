@@ -18,6 +18,19 @@ export function Header() {
   const headerRef = useRef<HTMLElement | null>(null);
   useHeaderScrollAnimation(headerRef);
 
+  // Function to extract emoji from link name
+  const getEmojiFromName = (name: string) => {
+    const emojiMap: Record<string, string> = {
+      'home': '🏠',
+      'about': '👨‍💻',
+      'skills': '🛠️',
+      'projects': '📁',
+      'experience': '👨‍💼',
+      'contact': '📞'
+    };
+    return emojiMap[name.toLowerCase().split(' ')[1]] || '•';
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -70,14 +83,23 @@ export function Header() {
                 className="group flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors"
               >
                 <span className="text-primary text-xs">{`0${index + 1}`}</span>
-                <span className="inline-flex items-center">{link.name}</span>
+                <span className="inline-flex items-center">
+                  {/* Full text on large screens */}
+                  <span className="hidden xl:inline">{link.name}</span>
+                  {/* Emoji only on medium-large screens */}
+                  <span className="xl:hidden" title={link.name.replace(/\/\/ /g, '').trim()}>
+                    {getEmojiFromName(link.name)}
+                  </span>
+                </span>
               </a>
             ))}
           </nav>
           <div className="hidden md:flex items-center space-x-4">
             <Link href="mailto:ya.hamadouche@gmail.com">
               <Button variant="outline" size="sm">
-                <MdMail className="mr-2 h-4 w-4" /> Contact
+                <MdMail className="mr-2 h-4 w-4" />
+                {/* Full text on large screens */}
+                <span className="hidden lg:inline">Contact</span>
               </Button>
             </Link>
           </div>

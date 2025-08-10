@@ -22,11 +22,11 @@ export function HeroSection() {
     >
       <AnimatedCanvas />
 
-      <div className="container mx-auto relative z-10 p-0 pt-20">
+      <div className="container mx-auto relative z-10 pt-20">
         <div className="flex flex-col items-center justify-center text-center">
           <div data-hero="title" className="relative">
             <h1
-              className="select-none text-[8rem] md:text-[12rem] lg:text-[16rem] font-bold tracking-tighter leading-none will-change-transform text-foreground"
+              className="select-none text-[6rem] xs:text-[7rem] sm:text-[9rem] md:text-[11rem] lg:text-[13rem] xl:text-[15rem] font-bold tracking-tighter leading-none will-change-transform text-foreground"
               aria-label={heroData.name}
             >
               {heroData.name.split("").map((ch, i) => (
