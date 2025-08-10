@@ -75,18 +75,6 @@ export function Header() {
             ))}
           </nav>
           <div className="hidden md:flex items-center space-x-4">
-            <Link
-              href="/spark-love"
-              className="text-sm text-muted-foreground hover:text-pink-500 transition-colors border border-border rounded-md px-3 py-1 hover:border-pink-500/50"
-            >
-              Spark Love
-            </Link>
-            <Link
-              href="/orbit-market"
-              className="text-sm text-muted-foreground hover:text-primary transition-colors border border-border rounded-md px-3 py-1 hover:border-primary/50"
-            >
-              Orbit Market
-            </Link>
             <Link href="mailto:ya.hamadouche@gmail.com">
               <Button variant="outline" size="sm">
                 <MdMail className="mr-2 h-4 w-4" /> Contact

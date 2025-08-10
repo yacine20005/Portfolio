@@ -22,7 +22,7 @@ export function HeroSection() {
     >
       <AnimatedCanvas />
 
-      <div className="container mx-auto relative z-10 pt-20">
+      <div className="container mx-auto relative z-10 p-0 pt-20">
         <div className="flex flex-col items-center justify-center text-center">
           <div data-hero="title" className="relative">
             <h1
