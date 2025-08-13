@@ -76,16 +76,6 @@ export default function SparkLovePage() {
                       Explore Features
                     </Button>
                   </Link>
-                  <Link href="https://tally.so/r/mJ4rp4"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full sm:w-auto"
-                  >
-                    <Button size="lg" className="w-full sm:w-auto">
-                      <ClipboardPen className="h-5 w-5 mr-2" aria-hidden="true" />
-                      Take Survey
-                    </Button>
-                  </Link>
                   <Link
                     href="https://github.com/yacine20005/Spark-Love"
                     target="_blank"
@@ -93,7 +83,6 @@ export default function SparkLovePage() {
                     className="w-full sm:w-auto"
                   >
                     <Button
-                      variant="outline"
                       size="lg"
                       className="w-full sm:w-auto"
                     >
@@ -817,21 +806,9 @@ export default function SparkLovePage() {
                 Ready to Spark Something New?
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                Help shape Spark Love. Answer a short questionnaire and share your
-                expectations, must‑have features, and ideas. Your feedback
-                directly guides what we build next.
+                Help shape Spark Love by sharing ideas and feature requests on GitHub. Your feedback directly guides what we build next.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="https://tally.so/r/mJ4rp4"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto"
-                >
-                  <Button size="lg" className="w-full sm:w-auto">
-                    <ClipboardPen className="h-5 w-5 mr-2" aria-hidden="true" />
-                    Take Survey
-                  </Button>
-                </Link>
                 <Link
                   href="https://github.com/yacine20005/Spark-Love"
                   target="_blank"
@@ -839,7 +816,6 @@ export default function SparkLovePage() {
                   className="w-full sm:w-auto"
                 >
                   <Button
-                    variant="outline"
                     size="lg"
                     className="w-full sm:w-auto"
                   >
