@@ -111,7 +111,7 @@ export const projectsData: ProjectsData = {
         },
         {
             title: 'Orbit Market',
-            description: 'Orbit Market is a cross-platform mobile application built with Expo (React Native) and FastAPI (Python), this application provides real-time access to vendor inventories, world states, and essential game information across games.',
+            description: 'Orbit Market is a mobile application built with Expo (React Native) and FastAPI (Python), this application provides real-time access to vendor inventories, world states, and essential game information across games.',
             tags: ['React Native', 'Expo', 'FastAPI', 'Python', 'SQLite', 'TypeScript', 'Docker', 'DigitalOcean'],
             icon: 'GiMoonOrbit',
             links: [
@@ -121,7 +121,7 @@ export const projectsData: ProjectsData = {
         },
         {
             title: 'Spark Love',
-            description: 'Spark Love helps couples connect through private quizzes, a shared journal, movie & date swipes, and meaningful prompts — More than an app. Your next conversation.',
+            description: 'Spark Love is a cross-platform mobile application that helps couples connect through private quizzes, a shared journal, movie & date swipes, and meaningful prompts — More than an app. Your next conversation.',
             tags: ['React Native', 'Expo', 'TypeScript', 'Supabase'],
             icon: 'RiHeartsFill',
             links: [

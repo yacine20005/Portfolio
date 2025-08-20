@@ -49,37 +49,49 @@ export function HeroSection() {
           <div data-hero="description" className="max-w-lg mx-auto mt-8 text-center will-change-transform">
             <p className="text-muted-foreground">{heroData.description}</p>
           </div>
-          <div data-hero="cta" className="flex flex-wrap gap-4 mt-8 justify-center will-change-transform">
-            <Link href="/spark-love" className="relative">
-              <Button className="rounded-full h-10 px-4 py-2 text-sm font-medium bg-gradient-to-r from-pink-500 via-rose-500 to-fuchsia-600 hover:from-pink-600 hover:via-rose-600 hover:to-fuchsia-700 text-white shadow-lg">
-                Spark Love
-              </Button>
-              <span className="absolute -top-2 -right-2 bg-pink-600 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse">
-                NEW
-              </span>
-            </Link>
-            <a
-              href={heroData.cta.projects.href}
-              onClick={(e) => scrollToSection(e, heroData.cta.projects.href)}
-              className="inline-flex h-10 items-center justify-center rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-            >
-              {heroData.cta.projects.text} <Code className="ml-2 h-4 w-4" />
-            </a>
-            <a
-              href={heroData.cta.contact.href}
-              onClick={(e) => scrollToSection(e, heroData.cta.contact.href)}
-              className="inline-flex h-10 items-center justify-center rounded-full border border-input bg-background px-4 py-2 text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-            >
-              {heroData.cta.contact.text} <Send className="ml-2 h-4 w-4" />
-            </a>
-            <Link href={heroData.cta.cv.href} download>
-              <Button
-                variant="outline"
-                className="rounded-full h-10 px-4 py-2 text-sm font-medium"
+          <div data-hero="cta" className="mt-8 will-change-transform">
+            {/* First row: 3 main CTAs */}
+            <div className="flex flex-wrap gap-4 justify-center">
+              <a
+                href={heroData.cta.projects.href}
+                onClick={(e) => scrollToSection(e, heroData.cta.projects.href)}
+                className="inline-flex h-10 items-center justify-center rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
               >
-                {heroData.cta.cv.text} <MdDownload className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
+                {heroData.cta.projects.text} <Code className="ml-2 h-4 w-4" />
+              </a>
+              <a
+                href={heroData.cta.contact.href}
+                onClick={(e) => scrollToSection(e, heroData.cta.contact.href)}
+                className="inline-flex h-10 items-center justify-center rounded-full border border-input bg-background px-4 py-2 text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+              >
+                {heroData.cta.contact.text} <Send className="ml-2 h-4 w-4" />
+              </a>
+              <Link href={heroData.cta.cv.href} download>
+                <Button
+                  variant="outline"
+                  className="rounded-full h-10 px-4 py-2 text-sm font-medium"
+                >
+                  {heroData.cta.cv.text} <MdDownload className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+
+            {/* Second row: Spark Love + Orbit Market */}
+            <div className="flex flex-wrap gap-4 justify-center mt-4">
+              <Link href="/spark-love" className="relative">
+                <Button className="rounded-full h-10 px-4 py-2 text-sm font-medium bg-gradient-to-r from-pink-500 via-rose-500 to-fuchsia-600 hover:from-pink-600 hover:via-rose-600 hover:to-fuchsia-700 text-white shadow-lg">
+                  Spark Love
+                </Button>
+                <span className="absolute -top-2 -right-2 bg-pink-600 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse">
+                  NEW
+                </span>
+              </Link>
+              <Link href="/orbit-market">
+                <Button className="rounded-full h-10 px-4 py-2 text-sm font-medium bg-gradient-to-r from-primary to-secondary text-white shadow-lg">
+                  Orbit Market
+                </Button>
+              </Link>
+            </div>
           </div>
           <div data-hero="scroll-indicator" className="w-full flex justify-center mt-20 hidden md:flex">
             <div className="inline-flex flex-col items-center">

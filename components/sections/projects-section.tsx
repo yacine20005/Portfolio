@@ -75,6 +75,29 @@ export function ProjectsSection() {
                 <div className="flex items-center gap-4">
                   {project.links.map((link, linkIndex) => {
                     const isInternalLink = link.href.startsWith("/");
+                    const isHighlightProject =
+                      (project.title === "Orbit Market" || project.title === "Spark Love") &&
+                      link.name === "Learn More";
+
+                    if (isHighlightProject) {
+                      return (
+                        <Button
+                          key={linkIndex}
+                          asChild
+                          className={`glow-animated ${project.title === "Spark Love" ? "glow-spark" : ""}`}
+                          variant="outline"
+                        >
+                          <Link
+                            href={link.href}
+                            target="_self"
+                            aria-label={`${project.title} — Learn More`}
+                          >
+                            <Send className="h-4 w-4 mr-1" /> {link.name}
+                          </Link>
+                        </Button>
+                      );
+                    }
+
                     return (
                       <Link
                         key={linkIndex}

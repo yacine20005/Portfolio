@@ -36,6 +36,41 @@
   }
 }
 
+/* Animated glow for CTA buttons (Orbit Market & Spark Love) */
+@keyframes glowPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 10px hsl(var(--glowA, var(--primary)) / 0.45),
+      0 0 16px hsl(var(--glowC, var(--secondary)) / 0.35),
+      0 0 28px hsl(var(--glowB, var(--secondary)) / 0.35);
+    filter: saturate(1);
+  }
+  50% {
+    box-shadow: 0 0 20px hsl(var(--glowA, var(--primary)) / 0.7),
+      0 0 28px hsl(var(--glowC, var(--secondary)) / 0.55),
+      0 0 44px hsl(var(--glowB, var(--secondary)) / 0.6);
+    filter: saturate(1.1);
+  }
+}
+
+.glow-animated {
+  position: relative;
+  animation: glowPulse 2.8s ease-in-out infinite;
+}
+
+.glow-animated:hover {
+  animation-duration: 1.8s;
+}
+
+/* Spark Love color mapping (matches hero title gradient: pink -> fuchsia) */
+.glow-spark {
+  /* Tailwind approx: pink-500 and fuchsia-500 */
+  --glowA: 330 81% 60%;
+  /* via color (rose-500 approx) */
+  --glowC: 343 80% 62%;
+  --glowB: 292 84% 61%;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
