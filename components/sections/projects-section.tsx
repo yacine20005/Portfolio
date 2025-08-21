@@ -50,7 +50,7 @@ export function ProjectsSection() {
               data-reveal
             >
               <div className="h-48 bg-muted relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/15 via-cyan-500/10 to-teal-500/15"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   {Icon && <Icon className="h-16 w-16 text-primary/50" />}
                 </div>

@@ -127,7 +127,7 @@ export default function OrbitMarketPage() {
             <div className="flex flex-col items-center text-center gap-10">
               <div className="flex flex-col items-center gap-8 max-w-5xl">
                 <div className="flex items-center gap-4">
-                  <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-primary to-secondary shadow-lg shadow-primary/30 flex items-center justify-center">
+                  <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-blue-500/90 via-cyan-500/90 to-teal-500/90 shadow-lg shadow-blue-500/25 flex items-center justify-center">
                     <Image
                       src="/orbit-market-icon.png"
                       alt="Orbit Market Icon"
@@ -138,7 +138,7 @@ export default function OrbitMarketPage() {
                   </div>
                   <h1
                     data-hero="title"
-                    className="font-bold tracking-tight leading-none bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_100%] animate-[pulse_8s_linear_infinite] bg-clip-text text-transparent select-none text-[3rem] sm:text-[4.5rem] md:text-[6rem] lg:text-[6.75rem] xl:text-[7.5rem]"
+                    className="font-bold tracking-tight leading-none bg-gradient-to-r from-blue-500/90 via-cyan-500/90 to-blue-500/90 bg-[length:200%_100%] animate-[pulse_12s_linear_infinite] bg-clip-text text-transparent select-none text-[3rem] sm:text-[4.5rem] md:text-[6rem] lg:text-[6.75rem] xl:text-[7.5rem]"
                     style={{ textShadow: "0 4px 24px rgba(59,130,246,0.25)" }}
                   >
                     Orbit Market
@@ -417,7 +417,7 @@ export default function OrbitMarketPage() {
         {/* Download Section */}
         <section className="container mx-auto py-20 relative" data-animate>
           <SectionBackground />
-          <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl border border-border p-8 md:p-12">
+          <div className="bg-gradient-to-br from-blue-500/8 via-cyan-500/5 to-teal-500/8 rounded-2xl border border-border p-8 md:p-12">
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="flex-shrink-0">
                 <Image

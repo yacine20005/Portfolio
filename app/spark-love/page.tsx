@@ -43,13 +43,13 @@ export default function SparkLovePage() {
             <div className="max-w-5xl px-6">
               <div className="flex flex-col items-center gap-8">
                 <div className="flex items-center gap-4">
-                  <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-pink-500 to-fuchsia-600 shadow-lg shadow-pink-500/30 flex items-center justify-center animate-[fadeIn_1s_ease_0.1s_backwards]">
+                  <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-pink-400/90 via-rose-500/90 to-fuchsia-500/90 shadow-lg shadow-pink-500/25 flex items-center justify-center animate-[fadeIn_1s_ease_0.1s_backwards]">
                     <Heart className="h-7 w-7 text-white" aria-hidden="true" />
                   </div>
                   <h1
                     id="spark-love-hero-heading"
                     ref={titleRef}
-                    className="font-bold tracking-tighter leading-none bg-gradient-to-r from-pink-500 via-rose-500 to-fuchsia-500 bg-[length:200%_100%] animate-[pulse_8s_linear_infinite] bg-clip-text text-transparent select-none text-[3.2rem] sm:text-[5rem] md:text-[6.5rem] lg:text-[8rem] will-change-transform"
+                    className="font-bold tracking-tighter leading-none bg-gradient-to-r from-pink-400/90 via-rose-500/90 to-fuchsia-500/90 bg-[length:200%_100%] animate-[pulse_12s_linear_infinite] bg-clip-text text-transparent select-none text-[3.2rem] sm:text-[5rem] md:text-[6.5rem] lg:text-[8rem] will-change-transform"
                     style={{ textShadow: "0 4px 24px rgba(236,72,153,0.25)" }}
                   >
                     Spark Love
@@ -614,7 +614,7 @@ export default function SparkLovePage() {
             <SectionBackground />
             <div className="relative max-w-4xl mx-auto px-4 md:px-6 text-center">
               <div className="flex flex-col items-center mb-10">
-                <div className="h-16 w-16 rounded-full ring-2 ring-pink-500/30 bg-gradient-to-br from-pink-500 to-fuchsia-500 flex items-center justify-center shadow-lg shadow-pink-500/30 mb-6">
+                <div className="h-16 w-16 rounded-full ring-2 ring-pink-500/25 bg-gradient-to-br from-pink-400/90 via-rose-500/90 to-fuchsia-500/90 flex items-center justify-center shadow-lg shadow-pink-500/20 mb-6">
                   <ShieldCheck
                     className="h-8 w-8 text-white"
                     aria-hidden="true"
@@ -624,8 +624,8 @@ export default function SparkLovePage() {
                   id="privacy-heading"
                   className="text-3xl md:text-5xl font-semibold tracking-tight leading-tight max-w-3xl"
                 >
-                  <span className="bg-gradient-to-r from-pink-500 via-rose-500 to-fuchsia-500 bg-clip-text text-transparent">
-                    Privacy Isn’t an Option. It’s a Promise.
+                  <span className="bg-gradient-to-r from-pink-400/90 via-rose-500/90 to-fuchsia-500/90 bg-clip-text text-transparent">
+                    Privacy Isn't an Option. It's a Promise.
                   </span>
                 </h2>
               </div>
@@ -645,7 +645,7 @@ export default function SparkLovePage() {
           >
             <SectionBackground />
             <div
-              className="bg-gradient-to-r from-pink-500/10 to-fuchsia-500/10 rounded-2xl border border-border p-8 md:p-12"
+              className="bg-gradient-to-br from-pink-500/8 via-rose-500/5 to-fuchsia-500/8 rounded-2xl border border-border p-8 md:p-12"
               data-spark-card
             >
               <div className="flex flex-col md:flex-row items-center gap-8">
