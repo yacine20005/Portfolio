@@ -1,5 +1,6 @@
 import type React from "react"
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import "@/app/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { FloatingElements } from "@/components/floating-elements"
