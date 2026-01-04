@@ -1,5 +1,5 @@
 import { NavLink, HeroData, AboutData, SkillsData, ProjectsData, ExperienceData, ContactData, FooterData, FeaturedProjectsData } from './types';
-import { Heart, Globe } from 'lucide-react';
+import { Heart, Globe, Cloud } from 'lucide-react';
 import { GiMoonOrbit } from "react-icons/gi";
 import { RiHeartsFill } from "react-icons/ri";
 import React from 'react';
@@ -231,6 +231,31 @@ export const featuredProjectsData: FeaturedProjectsData = {
                 tagBorder: 'rgba(96, 165, 250, 0.3)',
                 buttonFrom: 'rgba(59, 130, 246, 0.9)',
                 buttonTo: 'rgba(34, 211, 238, 0.9)',
+            },
+        },
+        {
+            title: 'Nuage',
+            tagline: 'Your digital game library in the cloud.',
+            tags: ['Python', 'Flask', 'PostgreSQL', 'HTML', 'CSS'],
+            icon: React.createElement(Cloud, { className: 'h-7 w-7 text-white' }),
+            link: '/nuage',
+            cta: 'Explore Nuage',
+            theme: {
+                gradientFrom: 'rgba(192, 132, 252, 0.1)',
+                gradientVia: 'rgba(167, 139, 250, 0.05)',
+                gradientTo: 'rgba(147, 197, 253, 0.1)',
+                textColor: 'rgb(168, 85, 247)',
+                descriptionColor: 'rgb(216, 180, 254)',
+                accentColor: 'rgba(168, 85, 247, 0.5)',
+                border: 'rgba(168, 85, 247, 0.3)',
+                iconFrom: 'rgba(139, 92, 246, 0.9)',
+                iconTo: 'rgba(99, 102, 241, 0.9)',
+                shadowColor: 'rgba(139, 92, 246, 0.4)',
+                tagBackground: 'rgba(168, 85, 247, 0.15)',
+                tagColor: 'rgb(216, 180, 254)',
+                tagBorder: 'rgba(168, 85, 247, 0.3)',
+                buttonFrom: 'rgba(139, 92, 246, 0.9)',
+                buttonTo: 'rgba(99, 102, 241, 0.9)',
             },
         },
     ],
