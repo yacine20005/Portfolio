@@ -1,5 +1,5 @@
 import { NavLink, HeroData, AboutData, SkillsData, ProjectsData, ExperienceData, ContactData, FooterData, FeaturedProjectsData } from './types';
-import { Heart, Globe, Cloud } from 'lucide-react';
+import { Heart, Globe, Cloud, Backpack } from 'lucide-react';
 import { GiMoonOrbit } from "react-icons/gi";
 import { RiHeartsFill } from "react-icons/ri";
 import React from 'react';
@@ -195,7 +195,7 @@ export const featuredProjectsData: FeaturedProjectsData = {
             tags: ['React Native', 'Expo', 'FastAPI', 'Python', 'Docker'],
             icon: React.createElement(GiMoonOrbit, { className: 'h-7 w-7 text-white' }),
             link: '/orbit-market',
-            cta: 'Explore Orbit Market',
+            cta: 'Discover Orbit Market',
             theme: {
                 gradientFrom: 'rgba(147, 197, 253, 0.1)',
                 gradientVia: 'rgba(147, 197, 253, 0.05)',
@@ -237,6 +237,31 @@ export const featuredProjectsData: FeaturedProjectsData = {
                 tagBorder: 'rgba(168, 85, 247, 0.3)',
                 buttonFrom: 'rgba(139, 92, 246, 0.9)',
                 buttonTo: 'rgba(99, 102, 241, 0.9)',
+            },
+        },
+        {
+            title: 'Backpack Hero',
+            tagline: 'How far can you go with just a backpack ?',
+            tags: ['Java', 'Zen'],
+            icon: React.createElement(Backpack, { className: 'h-7 w-7 text-white' }),
+            link: '#',
+            cta: 'Coming Soon',
+            theme: {
+                gradientFrom: 'rgba(254, 202, 202, 0.1)',
+                gradientVia: 'rgba(252, 165, 165, 0.05)',
+                gradientTo: 'rgba(248, 113, 113, 0.1)',
+                textColor: 'rgb(239, 68, 68)',
+                descriptionColor: 'rgb(254, 202, 202)',
+                accentColor: 'rgba(239, 68, 68, 0.5)',
+                border: 'rgba(239, 68, 68, 0.3)',
+                iconFrom: 'rgba(220, 38, 38, 0.9)',
+                iconTo: 'rgba(239, 68, 68, 0.9)',
+                shadowColor: 'rgba(220, 38, 38, 0.4)',
+                tagBackground: 'rgba(239, 68, 68, 0.15)',
+                tagColor: 'rgb(254, 202, 202)',
+                tagBorder: 'rgba(239, 68, 68, 0.3)',
+                buttonFrom: 'rgba(220, 38, 38, 0.9)',
+                buttonTo: 'rgba(239, 68, 68, 0.9)',
             },
         },
     ],
