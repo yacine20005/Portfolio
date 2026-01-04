@@ -1,5 +1,5 @@
 import { NavLink, HeroData, AboutData, SkillsData, ProjectsData, ExperienceData, ContactData, FooterData, FeaturedProjectsData } from './types';
-import { Heart, Globe } from 'lucide-react';
+import { Heart, Globe, Cloud } from 'lucide-react';
 import { GiMoonOrbit } from "react-icons/gi";
 import { RiHeartsFill } from "react-icons/ri";
 import React from 'react';
@@ -214,8 +214,6 @@ export const featuredProjectsData: FeaturedProjectsData = {
                 buttonTo: 'rgba(34, 211, 238, 0.9)',
             },
         },
-<<<<<<< Updated upstream
-=======
         {
             title: 'Nuage',
             tagline: 'Like Steam, but better (obviously).',
@@ -241,6 +239,5 @@ export const featuredProjectsData: FeaturedProjectsData = {
                 buttonTo: 'rgba(99, 102, 241, 0.9)',
             },
         },
->>>>>>> Stashed changes
     ],
 };

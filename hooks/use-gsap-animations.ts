@@ -445,8 +445,6 @@ export function useSparkLoveContentAnimations() {
     }, []);
     return scope;
 }
-<<<<<<< Updated upstream
-=======
 
 // Nuage title animation (hero title reveal)
 export function useNuageTitleAnimation() {
@@ -512,4 +510,3 @@ export function useNuageContentAnimations() {
     }, []);
     return scope;
 }
->>>>>>> Stashed changes
