@@ -12,6 +12,7 @@ import {
     FaDocker,
     FaTerminal,
     FaCode,
+    FaJava
 } from "react-icons/fa";
 import React from "react";
 import {
@@ -31,7 +32,7 @@ import {
     SiJavascript,
     SiTypescript,
     SiNumpy,
-    SiSanity,
+    SiSanity
 } from "react-icons/si";
 import { cn } from "@/lib/utils";
 
@@ -62,6 +63,7 @@ const skillIcons: Record<string, React.ReactNode> = {
     Ncurses: <FaTerminal aria-hidden="true" className="w-4 h-4" />,
     "MLV Library": <FaCode aria-hidden="true" className="w-4 h-4" />,
     "Sanity CMS": <SiSanity aria-hidden="true" className="w-4 h-4" />,
+    Java: <FaJava aria-hidden="true" className="w-4 h-4" />,
 };
 
 // Reusable Skill Pill component

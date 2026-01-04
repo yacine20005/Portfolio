@@ -28,10 +28,10 @@ export const aboutData: AboutData = {
     title: '// about 👨‍💻',
     subtitle: 'A bit more about who I am and what I\'m looking for.',
     paragraphs: [
-        'My passion for computer science is about turning coffee ☕ into functional and creative code 💻.',
-        'Whether developing a strategy game in C or designing websites for clients, I love exploring every facet of development 👀.',
-        'My projects allow me to combine technical rigor and creativity to bring ideas to life ✨.',
-        'I am now looking to bring this energy to a company as a work-study (apprenticeship) developer 👨‍💻, where I can continue to learn, collaborate, and build applications that have a real impact 🚀.',
+        'What started with curiosity quickly became an obsession. I genuinely enjoy the problem-solving aspect and that ultimate satisfaction when everything works as intended after hours of work (more when it\'s on the first try).',
+        'From building strategy games in C to crafting websites for real clients, I\'ve tried a bit of everything. Each project taught me something new, whether it was wrestling with memory allocation or figuring out how to make a design look good on mobile.',
+        'Right now, I\'m looking for an apprenticeship where I can learn from experienced developers, contribute to meaningful projects, and keep growing my skills. I work well in teams, I\'m not afraid to ask questions, and I actually read documentation !!!.',
+        'If you\'re looking for someone motivated, curious, and ready to dive into new challenges, i\'m your guy.',
     ],
 };
 
@@ -41,7 +41,7 @@ export const skillsData: SkillsData = {
     categories: [
         {
             name: 'Programming Languages and Frameworks',
-            skills: ['Python', 'Flask', 'FastAPI', 'C', 'HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Next.js', 'Expo', 'Bash', 'LaTeX'],
+            skills: ['Python', 'Flask', 'FastAPI', 'C', 'HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Next.js', 'Expo', 'Bash', 'LaTeX', 'Java'],
         },
         {
             name: 'Cloud & Infrastructure',
