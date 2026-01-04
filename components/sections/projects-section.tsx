@@ -30,7 +30,7 @@ export function ProjectsSection() {
       <SectionBackground />
       <div className="space-y-4 mb-12" data-animate>
         <div className="flex items-center" data-animate>
-          <span className="text-primary text-sm mr-2">03</span>
+          <span className="text-primary text-sm mr-2">04</span>
           <h2 className="text-2xl md:text-3xl font-bold">
             {projectsData.title}
           </h2>

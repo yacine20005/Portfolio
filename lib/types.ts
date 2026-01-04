@@ -94,3 +94,39 @@ export interface FooterData {
     socials: SocialLink[];
     copyright: string;
 }
+
+export interface FeaturedProjectTheme {
+    gradientFrom: string;
+    gradientVia: string;
+    gradientTo: string;
+    textColor: string;
+    descriptionColor: string;
+    accentColor: string;
+    border: string;
+    iconFrom: string;
+    iconTo: string;
+    shadowColor: string;
+    badgeGradient?: string;
+    tagBackground: string;
+    tagColor: string;
+    tagBorder: string;
+    buttonFrom: string;
+    buttonTo: string;
+}
+
+export interface FeaturedProject {
+    title: string;
+    tagline: string;
+    tags: string[];
+    icon: React.ReactNode;
+    link: string;
+    cta: string;
+    badge?: string;
+    theme: FeaturedProjectTheme;
+}
+
+export interface FeaturedProjectsData {
+    title: string;
+    subtitle: string;
+    projects: FeaturedProject[];
+}

@@ -8,6 +8,7 @@ import { Header } from "@/components/sections/header";
 import { HeroSection } from "@/components/sections/hero-section";
 import { ProjectsSection } from "@/components/sections/projects-section";
 import { SkillsSection } from "@/components/sections/skills-section";
+import { FeaturedProjectsCarousel } from "@/components/sections/featured-projects-carousel";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         <HeroSection />
         <AboutSection />
         <SkillsSection />
+        <FeaturedProjectsCarousel />
         <ProjectsSection />
         <ExperienceSection />
         <ContactSection />

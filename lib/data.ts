@@ -1,9 +1,13 @@
-import { NavLink, HeroData, AboutData, SkillsData, ProjectsData, ExperienceData, ContactData, FooterData } from './types';
+import { NavLink, HeroData, AboutData, SkillsData, ProjectsData, ExperienceData, ContactData, FooterData, FeaturedProjectsData } from './types';
+import { Heart, Globe } from 'lucide-react';
+import { GiMoonOrbit } from "react-icons/gi";
+import { RiHeartsFill } from "react-icons/ri";
+import React from 'react';
 
 export const navLinks: NavLink[] = [
-    { name: '// home 🏠', href: '#home', id: 'home' },
     { name: '// about 👨‍💻', href: '#about', id: 'about' },
     { name: '// skills 🛠️', href: '#skills', id: 'skills' },
+    { name: '// featured ⭐', href: '#featured', id: 'featured' },
     { name: '// projects 📁', href: '#projects', id: 'projects' },
     { name: '// experience 👨‍💼', href: '#experience', id: 'experience' },
     { name: '// contact 📞', href: '#contact', id: 'contact' },
@@ -109,26 +113,6 @@ export const projectsData: ProjectsData = {
                 { name: 'View Code', href: 'https://github.com/yacine20005/racetrack' },
             ],
         },
-        {
-            title: 'Orbit Market',
-            description: 'Orbit Market is a mobile application built with Expo (React Native) and FastAPI (Python), this application provides real-time access to vendor inventories, world states, and essential game information across games.',
-            tags: ['React Native', 'Expo', 'FastAPI', 'Python', 'SQLite', 'TypeScript', 'Docker', 'DigitalOcean'],
-            icon: 'GiMoonOrbit',
-            links: [
-                { name: 'View Code', href: 'https://github.com/yacine20005/Orbit-Market' },
-                { name: 'Learn More', href: '/orbit-market' },
-            ],
-        },
-        {
-            title: 'Spark Love',
-            description: 'Spark Love is a cross-platform mobile application that helps couples connect through private quizzes, a shared journal, movie & date swipes, and meaningful prompts — More than an app. Your next conversation.',
-            tags: ['React Native', 'Expo', 'TypeScript', 'Supabase'],
-            icon: 'RiHeartsFill',
-            links: [
-                { name: 'View Code', href: 'https://github.com/yacine20005/Spark-Love' },
-                { name: 'Learn More', href: '/spark-love' },
-            ],
-        }
     ],
     viewAllLink: 'https://github.com/yacine20005',
 };
@@ -192,4 +176,62 @@ export const footerData: FooterData = {
         { name: 'LinkedIn', href: 'https://linkedin.com/in/yacine-hamadouche' },
     ],
     copyright: '© {new Date().getFullYear()} Yacine. All rights reserved.',
+};
+
+export const featuredProjectsData: FeaturedProjectsData = {
+    title: '// featured ⭐',
+    subtitle: 'Discover my flagship projects, each with its own dedicated showcase.',
+    projects: [
+        {
+            title: 'Spark Love',
+            tagline: 'More than an app. Your next conversation.',
+            tags: ['React Native', 'Expo', 'TypeScript', 'Supabase'],
+            icon: React.createElement(Heart, { className: 'h-7 w-7 text-white' }),
+            link: '/spark-love',
+            cta: 'Discover Spark Love',
+            theme: {
+                gradientFrom: 'rgba(251, 207, 232, 0.1)',
+                gradientVia: 'rgba(251, 207, 232, 0.05)',
+                gradientTo: 'rgba(217, 70, 239, 0.1)',
+                textColor: 'rgb(244, 114, 182)',
+                descriptionColor: 'rgb(251, 207, 232)',
+                accentColor: 'rgba(244, 114, 182, 0.5)',
+                border: 'rgba(244, 114, 182, 0.3)',
+                iconFrom: 'rgba(244, 114, 182, 0.9)',
+                iconTo: 'rgba(217, 70, 239, 0.9)',
+                shadowColor: 'rgba(244, 114, 182, 0.4)',
+                badgeGradient: 'linear-gradient(135deg, rgb(236, 72, 153), rgb(217, 70, 239))',
+                tagBackground: 'rgba(244, 114, 182, 0.15)',
+                tagColor: 'rgb(251, 207, 232)',
+                tagBorder: 'rgba(244, 114, 182, 0.3)',
+                buttonFrom: 'rgba(244, 114, 182, 0.9)',
+                buttonTo: 'rgba(217, 70, 239, 0.9)',
+            },
+        },
+        {
+            title: 'Orbit Market',
+            tagline: 'Check what your favorite vendors have in stock on the go.',
+            tags: ['React Native', 'Expo', 'FastAPI', 'Python', 'Docker'],
+            icon: React.createElement(GiMoonOrbit, { className: 'h-7 w-7 text-white' }),
+            link: '/orbit-market',
+            cta: 'Explore Orbit Market',
+            theme: {
+                gradientFrom: 'rgba(147, 197, 253, 0.1)',
+                gradientVia: 'rgba(147, 197, 253, 0.05)',
+                gradientTo: 'rgba(34, 211, 238, 0.1)',
+                textColor: 'rgb(96, 165, 250)',
+                descriptionColor: 'rgb(191, 219, 254)',
+                accentColor: 'rgba(96, 165, 250, 0.5)',
+                border: 'rgba(96, 165, 250, 0.3)',
+                iconFrom: 'rgba(59, 130, 246, 0.9)',
+                iconTo: 'rgba(34, 211, 238, 0.9)',
+                shadowColor: 'rgba(59, 130, 246, 0.4)',
+                tagBackground: 'rgba(96, 165, 250, 0.15)',
+                tagColor: 'rgb(191, 219, 254)',
+                tagBorder: 'rgba(96, 165, 250, 0.3)',
+                buttonFrom: 'rgba(59, 130, 246, 0.9)',
+                buttonTo: 'rgba(34, 211, 238, 0.9)',
+            },
+        },
+    ],
 };

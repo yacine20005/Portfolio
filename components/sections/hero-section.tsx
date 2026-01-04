@@ -50,7 +50,6 @@ export function HeroSection() {
             <p className="text-muted-foreground">{heroData.description}</p>
           </div>
           <div data-hero="cta" className="mt-8 will-change-transform">
-            {/* First row: 3 main CTAs */}
             <div className="flex flex-wrap gap-4 justify-center">
               <a
                 href={heroData.cta.projects.href}
@@ -72,23 +71,6 @@ export function HeroSection() {
                   className="rounded-full h-10 px-4 py-2 text-sm font-medium"
                 >
                   {heroData.cta.cv.text} <MdDownload className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-            </div>
-
-            {/* Second row: Spark Love + Orbit Market */}
-            <div className="flex flex-wrap gap-4 justify-center mt-4">
-              <Link href="/spark-love" className="relative">
-                <Button className="rounded-full h-10 px-4 py-2 text-sm font-medium bg-gradient-to-br from-pink-400/90 via-rose-400/90 to-fuchsia-500/90 hover:from-pink-300/95 hover:via-rose-300/95 hover:to-fuchsia-400/95 text-white shadow-lg shadow-pink-500/20 hover:shadow-xl hover:shadow-pink-500/30 transition-all duration-300">
-                  Spark Love
-                </Button>
-                <span className="absolute -top-2 -right-2 bg-gradient-to-r from-pink-500 to-fuchsia-600 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse shadow-lg">
-                  NEW
-                </span>
-              </Link>
-              <Link href="/orbit-market">
-                <Button className="rounded-full h-10 px-4 py-2 text-sm font-medium bg-gradient-to-br from-blue-500/90 via-cyan-500/90 to-teal-500/90 hover:from-blue-400/95 hover:via-cyan-400/95 hover:to-teal-400/95 text-white shadow-lg shadow-blue-500/20 hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300">
-                  Orbit Market
                 </Button>
               </Link>
             </div>
