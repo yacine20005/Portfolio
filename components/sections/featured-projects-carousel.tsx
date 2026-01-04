@@ -101,12 +101,12 @@ export function FeaturedProjectsCarousel() {
                                             />
                                         </div>
 
-                                        <div className="relative p-8 lg:p-10 min-h-[480px] flex flex-col items-center text-center h-full">
+                                        <div className="relative p-6 lg:p-7 min-h-[380px] flex flex-col items-center text-center h-full">
                                             {/* Content */}
                                             <div className="flex-1 flex flex-col items-center justify-center w-full">
                                                 {/* Icon */}
                                                 <div
-                                                    className="h-16 w-16 lg:h-20 lg:w-20 rounded-2xl flex items-center justify-center shadow-lg transition-transform group-hover:scale-110 duration-300 mb-8"
+                                                    className="h-14 w-14 lg:h-16 lg:w-16 rounded-2xl flex items-center justify-center shadow-lg transition-transform group-hover:scale-110 duration-300 mb-5"
                                                     style={{
                                                         background: `linear-gradient(135deg, ${project.theme.iconFrom}, ${project.theme.iconTo})`,
                                                         boxShadow: `0 10px 40px -10px ${project.theme.shadowColor}`,
@@ -116,9 +116,9 @@ export function FeaturedProjectsCarousel() {
                                                 </div>
 
                                                 {/* Title */}
-                                                <div className="mb-8">
+                                                <div className="mb-5">
                                                     <h3
-                                                        className="text-3xl lg:text-4xl font-bold mb-3"
+                                                        className="text-2xl lg:text-3xl font-bold mb-2"
                                                         style={{ color: project.theme.textColor }}
                                                     >
                                                         {project.title}
@@ -138,14 +138,14 @@ export function FeaturedProjectsCarousel() {
 
                                                 {/* Description */}
                                                 <p
-                                                    className="text-base lg:text-lg font-medium mb-8 leading-relaxed max-w-sm"
+                                                    className="text-sm lg:text-base font-medium mb-5 leading-relaxed max-w-sm"
                                                     style={{ color: project.theme.descriptionColor }}
                                                 >
                                                     {project.tagline}
                                                 </p>
 
                                                 {/* Tags */}
-                                                <div className="flex flex-wrap gap-2 justify-center mb-8">
+                                                <div className="flex flex-wrap gap-2 justify-center mb-5">
                                                     {project.tags.map((tag, tagIndex) => (
                                                         <span
                                                             key={tagIndex}
@@ -217,12 +217,12 @@ export function FeaturedProjectsCarousel() {
                                             />
                                         </div>
 
-                                        <div className="relative p-6 min-h-[450px] flex flex-col items-center text-center h-full">
+                                        <div className="relative p-5 min-h-[380px] flex flex-col items-center text-center h-full">
                                             {/* Content */}
                                             <div className="flex-1 flex flex-col items-center justify-center w-full">
                                                 {/* Icon */}
                                                 <div
-                                                    className="h-16 w-16 rounded-2xl flex items-center justify-center shadow-lg transition-transform group-hover:scale-110 duration-300 mb-8"
+                                                    className="h-14 w-14 rounded-2xl flex items-center justify-center shadow-lg transition-transform group-hover:scale-110 duration-300 mb-5"
                                                     style={{
                                                         background: `linear-gradient(135deg, ${project.theme.iconFrom}, ${project.theme.iconTo})`,
                                                         boxShadow: `0 10px 40px -10px ${project.theme.shadowColor}`,
@@ -232,9 +232,9 @@ export function FeaturedProjectsCarousel() {
                                                 </div>
 
                                                 {/* Title */}
-                                                <div className="mb-8">
+                                                <div className="mb-5">
                                                     <h3
-                                                        className="text-3xl font-bold mb-3"
+                                                        className="text-2xl font-bold mb-2"
                                                         style={{ color: project.theme.textColor }}
                                                     >
                                                         {project.title}
@@ -254,14 +254,14 @@ export function FeaturedProjectsCarousel() {
 
                                                 {/* Description */}
                                                 <p
-                                                    className="text-base font-medium mb-8 leading-relaxed"
+                                                    className="text-sm font-medium mb-5 leading-relaxed"
                                                     style={{ color: project.theme.descriptionColor }}
                                                 >
                                                     {project.tagline}
                                                 </p>
 
                                                 {/* Tags */}
-                                                <div className="flex flex-wrap gap-2 justify-center mb-8">
+                                                <div className="flex flex-wrap gap-2 justify-center mb-5">
                                                     {project.tags.map((tag, tagIndex) => (
                                                         <span
                                                             key={tagIndex}
