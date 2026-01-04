@@ -59,25 +59,6 @@ export const projectsData: ProjectsData = {
     subtitle: 'A selection of projects I\'ve worked on during my academic journey and in my free time.',
     projects: [
         {
-            title: 'Personal Portfolio Website',
-            description: 'A fully responsive and modern portfolio website designed to showcase my projects, skills, and professional journey. Built with Next.js and Tailwind CSS, it features smooth navigation, and a clean professional aesthetic.',
-            tags: ['Next.js', 'Tailwind CSS', 'TypeScript'],
-            icon: 'FaFolder',
-            links: [
-                { name: 'View Code', href: 'https://github.com/yacine20005/Portfolio' }
-            ],
-        },
-        {
-            title: 'Nuage',
-            description: 'Nuage is a full-stack web-based video game management application. It enables users to view, buy, share and comment on video games. Users can also manage their profile, add friends and track their successes.',
-            tags: ['HTML', 'CSS', 'Python', 'Flask', 'PostgreSQL'],
-            icon: 'FaCloud',
-            links: [
-                { name: 'View Code', href: 'https://github.com/yacine20005/Nuage' },
-                { name: 'Live Demo', href: 'https://nuage-sigma.vercel.app/boutique' },
-            ],
-        },
-        {
             title: 'Aogiri Website',
             description: 'A responsive website built with Next.js and Tailwind CSS to present the Aogiri association, its activities and its contributions to the community of multiple video games.',
             tags: ['Next.js', 'Tailwind CSS', 'TypeScript'],
@@ -233,5 +214,33 @@ export const featuredProjectsData: FeaturedProjectsData = {
                 buttonTo: 'rgba(34, 211, 238, 0.9)',
             },
         },
+<<<<<<< Updated upstream
+=======
+        {
+            title: 'Nuage',
+            tagline: 'Like Steam, but better (obviously).',
+            tags: ['Python', 'Flask', 'PostgreSQL', 'HTML', 'CSS'],
+            icon: React.createElement(Cloud, { className: 'h-7 w-7 text-white' }),
+            link: '/nuage',
+            cta: 'Explore Nuage',
+            theme: {
+                gradientFrom: 'rgba(192, 132, 252, 0.1)',
+                gradientVia: 'rgba(167, 139, 250, 0.05)',
+                gradientTo: 'rgba(147, 197, 253, 0.1)',
+                textColor: 'rgb(168, 85, 247)',
+                descriptionColor: 'rgb(216, 180, 254)',
+                accentColor: 'rgba(168, 85, 247, 0.5)',
+                border: 'rgba(168, 85, 247, 0.3)',
+                iconFrom: 'rgba(139, 92, 246, 0.9)',
+                iconTo: 'rgba(99, 102, 241, 0.9)',
+                shadowColor: 'rgba(139, 92, 246, 0.4)',
+                tagBackground: 'rgba(168, 85, 247, 0.15)',
+                tagColor: 'rgb(216, 180, 254)',
+                tagBorder: 'rgba(168, 85, 247, 0.3)',
+                buttonFrom: 'rgba(139, 92, 246, 0.9)',
+                buttonTo: 'rgba(99, 102, 241, 0.9)',
+            },
+        },
+>>>>>>> Stashed changes
     ],
 };

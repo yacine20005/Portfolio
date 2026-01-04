@@ -445,3 +445,71 @@ export function useSparkLoveContentAnimations() {
     }, []);
     return scope;
 }
+<<<<<<< Updated upstream
+=======
+
+// Nuage title animation (hero title reveal)
+export function useNuageTitleAnimation() {
+    const ref = useRef<HTMLHeadingElement | null>(null);
+    useLayoutEffect(() => {
+        const el = ref.current;
+        if (!el) return;
+        if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            return; // Accessibility: no motion
+        }
+        const ctx = gsap.context(() => {
+            gsap.set(el, { opacity: 0, y: 60, scale: 1.08 });
+            const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+            tl.to(el, { opacity: 1, y: 0, scale: 1, duration: 1.1 });
+        }, ref);
+        return () => ctx.revert();
+    }, []);
+    return ref;
+}
+
+// Nuage content animations (sections, cards, feature cards)
+export function useNuageContentAnimations() {
+    const scope = useRef<HTMLDivElement | null>(null);
+    useLayoutEffect(() => {
+        const root = scope.current;
+        if (!root) return;
+        if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            return; // Respect reduced motion
+        }
+        const ctx = gsap.context(() => {
+            // Feature headers (section titles)
+            const headers = gsap.utils.toArray<HTMLElement>('.feature-header');
+            headers.forEach(header => {
+                gsap.set(header, { autoAlpha: 0, y: 40 });
+                ScrollTrigger.create({
+                    trigger: header,
+                    start: 'top 80%',
+                    once: true,
+                    onEnter: () => gsap.to(header, { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power3.out' })
+                });
+            });
+
+            // Feature cards stagger
+            const cards = gsap.utils.toArray<HTMLElement>('.feature-card');
+            if (cards.length) {
+                gsap.set(cards, { autoAlpha: 0, y: 30 });
+                ScrollTrigger.batch(cards, {
+                    start: 'top 85%',
+                    once: true,
+                    onEnter: (batch) => {
+                        gsap.to(batch, {
+                            autoAlpha: 1,
+                            y: 0,
+                            duration: 0.7,
+                            ease: 'power3.out',
+                            stagger: { each: 0.1 }
+                        });
+                    }
+                });
+            }
+        }, scope);
+        return () => ctx.revert();
+    }, []);
+    return scope;
+}
+>>>>>>> Stashed changes
