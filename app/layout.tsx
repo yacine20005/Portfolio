@@ -95,6 +95,7 @@ export default function RootLayout({
           <FloatingElements />
           {children}
           <Analytics />
+          <SpeedInsights />
         </ThemeProvider>
         <script
           type="application/ld+json"
