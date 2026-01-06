@@ -5,7 +5,7 @@ import clarity from '@microsoft/clarity'
 
 export function MicrosoftClarity() {
     useEffect(() => {
-        const clarityProjectId = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID
+        const clarityProjectId = "uwg4gyxs3p"
         if (clarityProjectId) {
             console.log('Initializing Microsoft Clarity')
             clarity.init(clarityProjectId)
