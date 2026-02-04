@@ -5,6 +5,7 @@ import { Footer } from "@/components/sections/footer";
 import { SectionBackground } from "@/components/section-background";
 import { OrbitMarketScreenshots } from "@/components/orbit-market-screenshots";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { useGsapIntro, useGsapStaggerOnView } from "@/hooks/use-gsap-animations";
 import {
   Globe,
@@ -220,9 +221,9 @@ export default function OrbitMarketPage() {
                         {feature.title}
                       </h3>
                       {feature.status === "live" && (
-                        <span className="px-2 py-1 bg-green-500/20 text-green-400 text-xs font-medium rounded-full">
+                        <Badge variant="outline" className="bg-green-500/20 text-green-400 border-green-500/30">
                           LIVE
-                        </span>
+                        </Badge>
                       )}
                     </div>
                     <p className="text-muted-foreground leading-relaxed">

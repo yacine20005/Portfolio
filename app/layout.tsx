@@ -3,7 +3,6 @@ import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import "@/app/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { FloatingElements } from "@/components/floating-elements"
 import { MicrosoftClarity } from "@/components/microsoft-clarity"
 import { Inter } from "next/font/google"
 import type { Metadata } from "next"
@@ -93,7 +92,6 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} antialiased relative`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
-          <FloatingElements />
           {children}
           <Analytics />
           <SpeedInsights />

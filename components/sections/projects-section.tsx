@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Code, Send } from "lucide-react";
 import { FaFolder, FaCloud, FaGamepad, FaChessBoard } from "react-icons/fa";
 import { MdMemory } from "react-icons/md";
@@ -42,35 +44,43 @@ export function ProjectsSection() {
         {projectsData.projects.map((project, index) => {
           const Icon = iconMap[project.icon];
           return (
-            <div
+            <Card
               key={index}
-              className="group border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-colors will-change-transform"
+              className="group border border-border hover:border-primary/50 transition-all duration-300 hover:scale-[1.02]"
               data-reveal
             >
-              <div className="h-48 bg-muted relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/15 via-cyan-500/10 to-teal-500/15"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  {Icon && <Icon className="h-16 w-16 text-primary/50" />}
+              <CardHeader className="p-0">
+                <div className="h-48 bg-muted relative overflow-hidden rounded-t-lg">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/15 via-cyan-500/10 to-teal-500/15"></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    {Icon && <Icon className="h-16 w-16 text-primary/50" />}
+                  </div>
                 </div>
-              </div>
-              <div className="p-6">
+              </CardHeader>
+
+              <CardContent className="p-6">
                 <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-muted-foreground mb-4">
+                <p className="text-muted-foreground mb-4 leading-relaxed">
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-2 mb-4">
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 mb-6">
                   {project.tags.map((tag, tagIndex) => (
-                    <span
+                    <Badge
                       key={tagIndex}
-                      className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full"
+                      variant="outline"
+                      className="text-xs bg-primary/10 text-primary border-primary/20"
                     >
                       {tag}
-                    </span>
+                    </Badge>
                   ))}
                 </div>
-                <div className="flex items-center gap-4">
+
+                {/* Links */}
+                <div className="flex flex-wrap items-center gap-4">
                   {project.links.map((link, linkIndex) => {
                     const isInternalLink = link.href.startsWith("/");
                     const isHighlightProject =
@@ -90,7 +100,8 @@ export function ProjectsSection() {
                             target="_self"
                             aria-label={`${project.title} — Learn More`}
                           >
-                            <Send className="h-4 w-4 mr-1" /> {link.name}
+                            <Send className="h-4 w-4 mr-2" />
+                            {link.name}
                           </Link>
                         </Button>
                       );
@@ -100,22 +111,22 @@ export function ProjectsSection() {
                       <Link
                         key={linkIndex}
                         href={link.href}
-                        className="text-sm text-primary hover:underline flex items-center"
+                        className="text-sm text-primary hover:underline flex items-center transition-colors"
                         target={isInternalLink ? "_self" : "_blank"}
                         rel={isInternalLink ? "" : "noopener noreferrer"}
                       >
                         {link.name === "View Code" ? (
-                          <Code className="h-4 w-4 mr-1" />
+                          <Code className="h-4 w-4 mr-2" />
                         ) : (
-                          <Send className="h-4 w-4 mr-1" />
-                        )}{" "}
+                          <Send className="h-4 w-4 mr-2" />
+                        )}
                         {link.name}
                       </Link>
                     );
                   })}
                 </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           );
         })}
       </div>
@@ -126,8 +137,9 @@ export function ProjectsSection() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Button variant="outline">
-            View All Projects <Code className="ml-2 h-4 w-4" />
+          <Button variant="outline" size="lg">
+            View All Projects
+            <Code className="ml-2 h-4 w-4" />
           </Button>
         </Link>
       </div>

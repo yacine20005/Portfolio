@@ -6,18 +6,18 @@ A fully responsive and dynamic personal portfolio website built with the latest 
 
 ***
 
-### ▶️ [Live Demo](https://yacine-hamadouche.me/)
+### [Live Demo](https://yacine-hamadouche.me/)
 
 ***
 
-## 🚀 Features
+## Features
 
 - **Dynamic Content**: Portfolio data (projects, experience, skills) is managed centrally in `lib/data.ts` for easy updates.
 - **Interactive UI**: Smooth scrolling, engaging animations, and a clean, component-based structure using Shadcn/UI.
 - **Responsive Design**: Looks great on all devices, from mobile phones to desktops.
 - **Developer-Friendly**: Clean, typed, and well-structured code using TypeScript.
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Framework**: [Next.js](https://nextjs.org/) 14 (with App Router)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
@@ -25,7 +25,7 @@ A fully responsive and dynamic personal portfolio website built with the latest 
 - **UI Components**: [Shadcn/UI](https://ui.shadcn.com/)
 - **Deployment**: [Vercel](https://vercel.com/)
 
-## ⚙️ Getting Started
+## Getting Started
 
 To get a local copy up and running, follow these simple steps.
 
@@ -56,12 +56,11 @@ Make sure you have Node.js and pnpm installed on your machine.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 📁 Project Structure
+## Project Structure
 
 The project follows a standard Next.js App Router structure:
 
 ```
-/
 ├── app/                # Main application folder (pages, layout)
 ├── components/         # Reusable components
 │   ├── sections/       # Page sections (Hero, About, etc.)
@@ -71,10 +70,9 @@ The project follows a standard Next.js App Router structure:
 │   ├── data.ts         # Centralized portfolio content
 │   └── utils.ts        # Helper functions
 ├── public/             # Static assets (images, documents)
-└── styles/             # Global styles
 ```
 
-## ✏️ Customization
+## Customization
 
 To make this portfolio your own, you'll primarily need to modify the content file:
 
@@ -82,8 +80,6 @@ To make this portfolio your own, you'll primarily need to modify the content fil
 -   **`public/`**: Replace the placeholder images and documents (`CV.pdf`) with your own.
 -   **`app/globals.css`**: You can tweak the base styling and color variables here to change the overall look and feel.
 
-## 🤝 Contact
+## Contact
 
 Yacine - [ya.hamadouche@gmail.com](mailto:ya.hamadouche@gmail.com)
-
-Project Link: [https://github.com/yacine20005/Portfolio](https://github.com/yacine20005/Portfolio)
