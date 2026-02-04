@@ -4,15 +4,13 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Code, Send } from "lucide-react";
 import { MdDownload } from "react-icons/md";
-import { AnimatedCanvas } from "@/components/animated-canvas";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
-import { useGsapIntro, useHeroTitleElegantReveal } from "@/hooks/use-gsap-animations";
+import { useGsapIntro } from "@/hooks/use-gsap-animations";
 import { heroData } from "@/lib/data";
 
 export function HeroSection() {
   const { scrollToSection } = useSmoothScroll();
   const introScope = useGsapIntro();
-  useHeroTitleElegantReveal(introScope);
 
   return (
     <section
@@ -20,7 +18,6 @@ export function HeroSection() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       ref={introScope}
     >
-      <AnimatedCanvas />
 
       <div className="container mx-auto relative z-10 pt-20">
         <div className="flex flex-col items-center justify-center text-center">

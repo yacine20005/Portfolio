@@ -1,7 +1,6 @@
 import { NavLink, HeroData, AboutData, SkillsData, ProjectsData, ExperienceData, ContactData, FooterData, FeaturedProjectsData } from './types';
-import { Heart, Globe, Cloud, Backpack } from 'lucide-react';
+import { Heart, Cloud, Backpack } from 'lucide-react';
 import { GiMoonOrbit } from "react-icons/gi";
-import { RiHeartsFill } from "react-icons/ri";
 import React from 'react';
 
 export const navLinks: NavLink[] = [

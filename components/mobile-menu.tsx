@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
+import { navLinks } from "@/lib/data";
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
@@ -19,10 +20,8 @@ export function MobileMenu() {
     href: string
   ) => {
     if (!isHomePage) {
-      // If we're not on the home page, redirect to home page with anchor
       window.location.href = `/${href}`;
     } else {
-      // If we're on the home page, use normal scroll
       scrollToSection(e, href);
     }
     setOpen(false);
@@ -45,61 +44,36 @@ export function MobileMenu() {
               onClick={() => setOpen(false)}
             >
               <span className="text-primary text-sm">←</span>
-              <span className="inline-flex items-center">
-                // back to portfolio
-              </span>
+              <span className="inline-flex items-center">// back to portfolio</span>
             </Link>
           )}
           {!isHomePage && <div className="border-t border-border" />}
+          
+          {/* Home link */}
           <a
             href={!isHomePage ? "/#home" : "#home"}
             className="text-lg flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
             onClick={(e) => handleLinkClick(e, "#home")}
           >
-            <span className="text-primary text-sm">01</span>
-            <span className="inline-flex items-center">// home</span>
+            <span className="text-primary text-sm">00</span>
+            <span className="inline-flex items-center">// home 🏠</span>
           </a>
-          <a
-            href={!isHomePage ? "/#about" : "#about"}
-            className="text-lg flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
-            onClick={(e) => handleLinkClick(e, "#about")}
-          >
-            <span className="text-primary text-sm">02</span>
-            <span className="inline-flex items-center">// about</span>
-          </a>
-          <a
-            href={!isHomePage ? "/#skills" : "#skills"}
-            className="text-lg flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
-            onClick={(e) => handleLinkClick(e, "#skills")}
-          >
-            <span className="text-primary text-sm">03</span>
-            <span className="inline-flex items-center">// skills</span>
-          </a>
-          <a
-            href={!isHomePage ? "/#projects" : "#projects"}
-            className="text-lg flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
-            onClick={(e) => handleLinkClick(e, "#projects")}
-          >
-            <span className="text-primary text-sm">04</span>
-            <span className="inline-flex items-center">// projects</span>
-          </a>
-          <a
-            href={!isHomePage ? "/#experience" : "#experience"}
-            className="text-lg flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
-            onClick={(e) => handleLinkClick(e, "#experience")}
-          >
-            <span className="text-primary text-sm">05</span>
-            <span className="inline-flex items-center">// experience</span>
-          </a>
-          <a
-            href={!isHomePage ? "/#contact" : "#contact"}
-            className="text-lg flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
-            onClick={(e) => handleLinkClick(e, "#contact")}
-          >
-            <span className="text-primary text-sm">06</span>
-            <span className="inline-flex items-center">// contact</span>
-          </a>
-          <div className="border-t border-border pt-6">
+          
+          {/* Dynamic nav links */}
+          {navLinks.map((link, index) => (
+            <a
+              key={link.id}
+              href={!isHomePage ? `/${link.href}` : link.href}
+              className="text-lg flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
+              onClick={(e) => handleLinkClick(e, link.href)}
+            >
+              <span className="text-primary text-sm">{String(index + 1).padStart(2, '0')}</span>
+              <span className="inline-flex items-center">{link.name}</span>
+            </a>
+          ))}
+          
+          {/* Featured projects */}
+          <div className="border-t border-border pt-6 space-y-4">
             <Link
               href="/spark-love"
               className="text-lg flex items-center space-x-2 text-muted-foreground hover:text-pink-500 transition-colors"
@@ -110,10 +84,10 @@ export function MobileMenu() {
             </Link>
             <Link
               href="/orbit-market"
-              className="text-lg flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
+              className="text-lg flex items-center space-x-2 text-muted-foreground hover:text-blue-400 transition-colors"
               onClick={() => setOpen(false)}
             >
-              <span className="text-secondary text-sm">★</span>
+              <span className="text-blue-400 text-sm">◉</span>
               <span className="inline-flex items-center">// orbit market</span>
             </Link>
           </div>

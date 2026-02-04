@@ -6,7 +6,6 @@ import { Code, Send } from "lucide-react";
 import { FaFolder, FaCloud, FaGamepad, FaChessBoard } from "react-icons/fa";
 import { MdMemory } from "react-icons/md";
 import { GiF1Car, GiMoonOrbit } from "react-icons/gi";
-import { RiHeartsFill } from "react-icons/ri";
 import { SectionBackground } from "@/components/section-background";
 import { projectsData } from "@/lib/data";
 import { useHorizontalReveal, useGsapStaggerOnView } from "@/hooks/use-gsap-animations";
@@ -19,7 +18,6 @@ const iconMap: { [key: string]: React.ElementType } = {
   MdMemory,
   GiF1Car,
   GiMoonOrbit,
-  RiHeartsFill,
 };
 
 export function ProjectsSection() {
