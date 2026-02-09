@@ -25,37 +25,6 @@ A fully responsive and dynamic personal portfolio website built with the latest 
 - **UI Components**: [Shadcn/UI](https://ui.shadcn.com/)
 - **Deployment**: [Vercel](https://vercel.com/)
 
-## Getting Started
-
-To get a local copy up and running, follow these simple steps.
-
-### Prerequisites
-
-Make sure you have Node.js and pnpm installed on your machine.
-- [Node.js](https://nodejs.org/) (v18 or later recommended)
-- [pnpm](https://pnpm.io/installation)
-  ```sh
-  npm install -g pnpm
-  ```
-
-### Installation
-
-1.  **Clone the repository:**
-    ```sh
-    git clone https://github.com/your-username/your-repo-name.git
-    cd your-repo-name
-    ```
-2.  **Install dependencies:**
-    ```sh
-    pnpm install
-    ```
-3.  **Run the development server:**
-    ```sh
-    pnpm dev
-    ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
 ## Project Structure
 
 The project follows a standard Next.js App Router structure:

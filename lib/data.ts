@@ -40,7 +40,7 @@ export const skillsData: SkillsData = {
     categories: [
         {
             name: 'Programming Languages and Frameworks',
-            skills: ['Python', 'Flask', 'FastAPI', 'C', 'HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Next.js', 'Expo', 'Bash', 'LaTeX', 'Java'],
+            skills: ['Python', 'Flask', 'FastAPI', 'C', 'HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Next.js', 'Expo', 'Bash', 'LaTeX', 'Java', 'Angular'],
         },
         {
             name: 'Cloud & Infrastructure',
@@ -48,7 +48,7 @@ export const skillsData: SkillsData = {
         },
         {
             name: 'Tools & Libraries',
-            skills: ['Git / GitHub', 'Docker', 'Matplotlib', 'NumPy', 'Ncurses', 'MLV Library', 'Sanity CMS'],
+            skills: ['Git / GitHub', 'Docker', 'Matplotlib', 'NumPy', 'Ncurses', 'MLV Library', 'Sanity CMS', 'FLTK', 'Pillow', 'Zen'],
         },
     ],
 };

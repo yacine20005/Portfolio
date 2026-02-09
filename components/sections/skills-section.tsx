@@ -12,7 +12,8 @@ import {
     FaDocker,
     FaTerminal,
     FaCode,
-    FaJava
+    FaJava,
+    FaAngular
 } from "react-icons/fa";
 import React from "react";
 import {
@@ -64,6 +65,10 @@ const skillIcons: Record<string, React.ReactNode> = {
     "MLV Library": <FaCode aria-hidden="true" className="w-4 h-4" />,
     "Sanity CMS": <SiSanity aria-hidden="true" className="w-4 h-4" />,
     Java: <FaJava aria-hidden="true" className="w-4 h-4" />,
+    Angular: <FaAngular aria-hidden="true" className="w-4 h-4" />,
+    FLTK: <FaCode aria-hidden="true" className="w-4 h-4" />,
+    Pillow: <FaCode aria-hidden="true" className="w-4 h-4" />,
+    Zen: <FaCode aria-hidden="true" className="w-4 h-4" />
 };
 
 // Reusable Skill Pill component
