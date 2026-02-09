@@ -1,0 +1,8 @@
+# Packages to transpile for native ES module support in modern browsers
+# It helps to reduce bundle size and improve performance by allowing modern browsers to handle these packages directly without transpilation.
+es-modules-packages:
+  - lucide-react
+  - clsx
+  - tailwind-merge
+  - class-variance-authority
+  - cmdk
