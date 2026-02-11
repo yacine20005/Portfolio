@@ -17,11 +17,11 @@ A fully responsive and dynamic personal portfolio website built with the latest 
 
 ## Tech Stack
 
-- **Framework**: [Next.js](https://nextjs.org/) 14 (with App Router)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **UI Components**: [Shadcn/UI](https://ui.shadcn.com/)
-- **Deployment**: [Vercel](https://vercel.com/)
+- **Framework**: Next.js 14 (with App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **UI Components**: Shadcn/UI
+- **Deployment**: Vercel
 
 ## Project Structure
 
@@ -51,3 +51,4 @@ To make this portfolio your own, you'll primarily need to modify the content fil
 
 
 Yacine - [ya.hamadouche@gmail.com](mailto:ya.hamadouche@gmail.com)
+
