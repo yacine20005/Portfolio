@@ -21,6 +21,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/cobble-coach`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
     }
   ]
 }

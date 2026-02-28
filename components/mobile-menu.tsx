@@ -90,6 +90,14 @@ export function MobileMenu() {
               <span className="text-blue-400 text-sm">◉</span>
               <span className="inline-flex items-center">// orbit market</span>
             </Link>
+            <Link
+              href="/cobble-coach"
+              className="text-lg flex items-center space-x-2 text-muted-foreground hover:text-indigo-400 transition-colors"
+              onClick={() => setOpen(false)}
+            >
+              <span className="text-indigo-400 text-sm">⬡</span>
+              <span className="inline-flex items-center">// cobble coach</span>
+            </Link>
           </div>
         </nav>
       </SheetContent>
