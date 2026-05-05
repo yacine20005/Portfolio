@@ -41,11 +41,11 @@ export function ProjectsSection() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8" ref={listScope as unknown as React.RefObject<HTMLDivElement>}>
-        {projectsData.projects.map((project, index) => {
+        {projectsData.projects.map((project) => {
           const Icon = iconMap[project.icon];
           return (
             <Card
-              key={index}
+              key={project.title}
               className="group border border-border hover:border-primary/50 transition-all duration-300 hover:scale-[1.02]"
               data-reveal
             >
@@ -81,7 +81,7 @@ export function ProjectsSection() {
 
                 {/* Links */}
                 <div className="flex flex-wrap items-center gap-4">
-                  {project.links.map((link, linkIndex) => {
+                  {project.links.map((link) => {
                     const isInternalLink = link.href.startsWith("/");
                     const isHighlightProject =
                       (project.title === "Orbit Market" || project.title === "Spark Love") &&
@@ -90,7 +90,7 @@ export function ProjectsSection() {
                     if (isHighlightProject) {
                       return (
                         <Button
-                          key={linkIndex}
+                          key={`${project.title}-${link.href}`}
                           asChild
                           className={`glow-animated ${project.title === "Spark Love" ? "glow-spark" : ""}`}
                           variant="outline"
@@ -109,11 +109,11 @@ export function ProjectsSection() {
 
                     return (
                       <Link
-                        key={linkIndex}
+                        key={`${project.title}-${link.href}`}
                         href={link.href}
                         className="text-sm text-primary hover:underline flex items-center transition-colors"
                         target={isInternalLink ? "_self" : "_blank"}
-                        rel={isInternalLink ? "" : "noopener noreferrer"}
+                        rel={isInternalLink ? undefined : "noopener noreferrer"}
                       >
                         {link.name === "View Code" ? (
                           <Code className="h-4 w-4 mr-2" />

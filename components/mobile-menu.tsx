@@ -19,9 +19,7 @@ export function MobileMenu() {
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
-    if (!isHomePage) {
-      window.location.href = `/${href}`;
-    } else {
+    if (isHomePage) {
       scrollToSection(e, href);
     }
     setOpen(false);
