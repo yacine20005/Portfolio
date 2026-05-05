@@ -57,15 +57,7 @@ export function Header() {
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
-    if (!isHomePage) {
-      // Use sessionStorage signal then navigate to homepage for smooth scroll
-      if (href.startsWith('#')) {
-        sessionStorage.setItem('scrollTarget', href.substring(1));
-        window.location.href = '/';
-      } else {
-        window.location.href = href;
-      }
-    } else {
+    if (isHomePage) {
       scrollToSection(e, href);
     }
   };
@@ -95,7 +87,7 @@ export function Header() {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <NavigationMenuLink
-                          href={link.href}
+                          href={isHomePage ? link.href : `/${link.href}`}
                           onClick={(e) => handleLinkClick(e, link.href)}
                           className="group flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors px-2 py-1 rounded-md hover:bg-accent/20"
                         >
