@@ -8,79 +8,69 @@ const config = {
   ],
   prefix: "",
   theme: {
-  	container: {
-  		center: true,
-  		padding: '2rem',
-  		screens: {
-  			'2xl': '1400px'
-  		}
-  	},
-  	extend: {
-  		colors: {
-  			border: 'hsl(var(--border))',
-  			input: 'hsl(var(--input))',
-  			ring: 'hsl(var(--ring))',
-  			background: 'hsl(var(--background))',
-  			foreground: 'hsl(var(--foreground))',
-  			primary: {
-  				DEFAULT: 'hsl(var(--primary))',
-  				foreground: 'hsl(var(--primary-foreground))'
-  			},
-  			secondary: {
-  				DEFAULT: 'hsl(var(--secondary))',
-  				foreground: 'hsl(var(--secondary-foreground))'
-  			},
-  			destructive: {
-  				DEFAULT: 'hsl(var(--destructive))',
-  				foreground: 'hsl(var(--destructive-foreground))'
-  			},
-  			muted: {
-  				DEFAULT: 'hsl(var(--muted))',
-  				foreground: 'hsl(var(--muted-foreground))'
-  			},
-  			accent: {
-  				DEFAULT: 'hsl(var(--accent))',
-  				foreground: 'hsl(var(--accent-foreground))'
-  			},
-  			popover: {
-  				DEFAULT: 'hsl(var(--popover))',
-  				foreground: 'hsl(var(--popover-foreground))'
-  			},
-  			card: {
-  				DEFAULT: 'hsl(var(--card))',
-  				foreground: 'hsl(var(--card-foreground))'
-  			}
-  		},
-  		borderRadius: {
-  			lg: 'var(--radius)',
-  			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)'
-  		},
-  		keyframes: {
-  			'accordion-down': {
-  				from: {
-  					height: '0'
-  				},
-  				to: {
-  					height: 'var(--radix-accordion-content-height)'
-  				}
-  			},
-  			'accordion-up': {
-  				from: {
-  					height: 'var(--radix-accordion-content-height)'
-  				},
-  				to: {
-  					height: '0'
-  				}
-  			}
-  		},
-  		animation: {
-  			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
-  		}
-  	}
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: "1.25rem",
+        md: "2.5rem",
+      },
+      screens: {
+        "2xl": "1078px",
+      },
+    },
+    extend: {
+      colors: {
+        obsidian: "#000000",
+        paper: "#ffffff",
+        inkstone: "#181818",
+        "felt-gray": "#6d6d6d",
+        "slate-pill": "#636363",
+        "ash-mist": "#9a9a9a",
+        pewter: "#808080",
+        "iridescent-fade": "#a02d25",
+      },
+      fontFamily: {
+        inter: ["Inter", "ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
+        raleway: ["Raleway", "ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
+      },
+      fontSize: {
+        caption: ["12px", { lineHeight: "1.19" }],
+        "body-sm": ["16px", { lineHeight: "1.15" }],
+        body: ["18px", { lineHeight: "1.21" }],
+        subheading: ["39px", { lineHeight: "1.19" }],
+        "subheading-lg": ["45px", { lineHeight: "1.15" }],
+        "heading-sm": ["54px", { lineHeight: "1.39" }],
+        heading: ["78px", { lineHeight: "1.1" }],
+        "heading-lg": ["94px", { lineHeight: "0.76" }],
+        display: ["130px", { lineHeight: "0.85", letterSpacing: "-0.01em" }],
+      },
+      borderRadius: {
+        none: "0px",
+        pill: "75px",
+      },
+      borderWidth: {
+        hairline: "1px",
+      },
+      keyframes: {
+        "rotate-slow": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+        "fade-up": {
+          "0%": { opacity: "0", transform: "translateY(40px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+      },
+      animation: {
+        "rotate-slow": "rotate-slow 12s linear infinite",
+        "fade-up": "fade-up 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards",
+      },
+      transitionTimingFunction: {
+        signature: "cubic-bezier(0.19, 1, 0.22, 1)",
+      },
+    },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [],
 } satisfies Config
 
 export default config

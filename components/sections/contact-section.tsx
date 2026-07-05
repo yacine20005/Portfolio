@@ -1,73 +1,84 @@
-"use client";
+"use client"
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { MdMail } from "react-icons/md";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { SectionBackground } from "@/components/section-background";
-import { contactData } from "@/lib/data";
-import { useGsapStaggerOnView } from "@/hooks/use-gsap-animations";
+import React, { useEffect, useRef } from "react"
+import { contactData } from "@/lib/data"
+import { TextReveal } from "@/components/ui/text-reveal"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 
-const iconMap: { [key: string]: React.ElementType } = {
-    Email: MdMail,
-    GitHub: FaGithub,
-    LinkedIn: FaLinkedin,
-};
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger)
+}
 
 export function ContactSection() {
-    const scope = useGsapStaggerOnView();
-    return (
-        <section id="contact" className="container mx-auto py-20 relative" ref={scope}>
-            <SectionBackground />
-            <div className="space-y-4 mb-12" data-animate>
-                <div className="flex items-center" data-animate>
-                    <span className="text-primary text-sm mr-2">06</span>
-                    <h2 className="text-2xl md:text-3xl font-bold">{contactData.title}</h2>
-                </div>
-                <p className="text-muted-foreground max-w-2xl" data-animate>
-                    {contactData.subtitle}
-                </p>
-            </div>
+  const containerRef = useRef<HTMLDivElement>(null)
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {contactData.contacts.map((contact, index) => {
-                    const Icon = iconMap[contact.name];
-                    return (
-                        <Card
-                            key={index}
-                            className="group border border-border hover:border-primary/50 transition-all duration-300 hover:scale-[1.02]"
-                            data-animate
-                        >
-                            <CardHeader className="text-center">
-                                <div className="w-16 h-16 mx-auto rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                                    {Icon && <Icon className="h-7 w-7 text-primary" />}
-                                </div>
-                            </CardHeader>
-                            
-                            <CardContent className="text-center">
-                                <h3 className="text-lg font-semibold mb-2">{contact.name}</h3>
-                                <p className="text-muted-foreground mb-6">
-                                    {contact.value}
-                                </p>
-                                <Button
-                                    asChild
-                                    variant="default"
-                                    className="w-full bg-gradient-to-r from-primary/90 to-primary hover:from-primary hover:to-primary/90 transition-all duration-300 shadow-md hover:shadow-lg"
-                                >
-                                    <a
-                                        href={contact.href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        {Icon && <Icon className="mr-2 h-4 w-4" />} 
-                                        {contact.buttonText}
-                                    </a>
-                                </Button>
-                            </CardContent>
-                        </Card>
-                    );
-                })}
-            </div>
-        </section>
-    );
+  useEffect(() => {
+    if (typeof window === "undefined" || !containerRef.current) return
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      gsap.set(containerRef.current, { opacity: 1, y: 0 })
+      return
+    }
+
+    const anim = gsap.fromTo(
+      containerRef.current,
+      { opacity: 0, y: 25 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 92%",
+          toggleActions: "play none none none",
+        },
+      }
+    )
+
+    return () => {
+      if (anim.scrollTrigger) anim.scrollTrigger.kill()
+      anim.kill()
+    }
+  }, [])
+
+  return (
+    <section
+      id="contact"
+      className="py-[46px] md:py-[92px]"
+    >
+      <div className="container mx-auto max-w-[1078px] px-5 md:px-10">
+        <TextReveal
+          text="Contact"
+          type="chars"
+          className="font-inter font-light text-[2.5rem] md:text-[3.5rem] leading-[0.9] md:leading-[0.95] tracking-tight text-paper"
+        />
+
+        <TextReveal
+          text={contactData.subtitle}
+          type="words"
+          delay={0.1}
+          className="text-base md:text-lg leading-[1.6] text-felt-gray mt-6 max-w-[600px]"
+          as="p"
+        />
+
+        <div
+          ref={containerRef}
+          className="mt-8 flex flex-wrap gap-4 opacity-0"
+        >
+          {contactData.contacts.map((contact, i) => (
+            <a
+              key={i}
+              href={contact.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ghost-pill"
+            >
+              {contact.buttonText}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
 }

@@ -1,148 +1,139 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Code, Send } from "lucide-react";
-import { FaFolder, FaCloud, FaGamepad, FaChessBoard } from "react-icons/fa";
-import { MdMemory } from "react-icons/md";
-import { GiF1Car, GiMoonOrbit } from "react-icons/gi";
-import { SectionBackground } from "@/components/section-background";
-import { projectsData } from "@/lib/data";
-import { useHorizontalReveal, useGsapStaggerOnView } from "@/hooks/use-gsap-animations";
+import React, { useEffect, useRef } from "react"
+import { projectsData } from "@/lib/data"
+import { TextReveal } from "@/components/ui/text-reveal"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 
-const iconMap: { [key: string]: React.ElementType } = {
-  FaFolder,
-  FaCloud,
-  FaGamepad,
-  FaChessBoard,
-  MdMemory,
-  GiF1Car,
-  GiMoonOrbit,
-};
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger)
+}
 
 export function ProjectsSection() {
-  const scope = useGsapStaggerOnView({ y: 40 });
-  const listScope = useHorizontalReveal();
+  const sectionRef = useRef<HTMLElement>(null)
+  const buttonRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !sectionRef.current) return
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      gsap.set(".project-item-block", { opacity: 1, y: 0 })
+      if (buttonRef.current) gsap.set(buttonRef.current, { opacity: 1, y: 0 })
+      return
+    }
+
+    const items = sectionRef.current.querySelectorAll(".project-item-block")
+    const animItems = gsap.fromTo(
+      items,
+      { opacity: 0, y: 35 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      }
+    )
+
+    let animButton: gsap.core.Tween | null = null
+    if (buttonRef.current) {
+      animButton = gsap.fromTo(
+        buttonRef.current,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: buttonRef.current,
+            start: "top 92%",
+            toggleActions: "play none none none",
+          },
+        }
+      )
+    }
+
+    return () => {
+      if (animItems.scrollTrigger) animItems.scrollTrigger.kill()
+      animItems.kill()
+      if (animButton) {
+        if (animButton.scrollTrigger) animButton.scrollTrigger.kill()
+        animButton.kill()
+      }
+    }
+  }, [])
+
   return (
-    <section id="projects" className="container mx-auto py-20 relative" ref={scope}>
-      <SectionBackground />
-      <div className="space-y-4 mb-12" data-animate>
-        <div className="flex items-center" data-animate>
-          <span className="text-primary text-sm mr-2">04</span>
-          <h2 className="text-2xl md:text-3xl font-bold">
-            {projectsData.title}
-          </h2>
-        </div>
-        <p className="text-muted-foreground max-w-2xl" data-animate>
-          {projectsData.subtitle}
-        </p>
-      </div>
+    <section
+      id="projects"
+      ref={sectionRef}
+      className="py-[46px] md:py-[92px]"
+    >
+      <div className="container mx-auto max-w-[1078px] px-5 md:px-10">
+        <TextReveal
+          text="Projects"
+          type="chars"
+          className="font-inter font-light text-[2.5rem] md:text-[3.5rem] leading-[0.9] md:leading-[0.95] tracking-tight text-paper"
+        />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8" ref={listScope as unknown as React.RefObject<HTMLDivElement>}>
-        {projectsData.projects.map((project) => {
-          const Icon = iconMap[project.icon];
-          return (
-            <Card
-              key={project.title}
-              className="group border border-border hover:border-primary/50 transition-all duration-300 hover:scale-[1.02]"
-              data-reveal
+        <div className="mt-10 md:mt-14 space-y-10">
+          {projectsData.projects.map((project, i) => (
+            <div
+              key={i}
+              className="project-item-block border-l-[1px] border-white/10 pl-5 md:pl-8 opacity-0"
             >
-              <CardHeader className="p-0">
-                <div className="h-48 bg-muted relative overflow-hidden rounded-t-lg">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/15 via-cyan-500/10 to-teal-500/15"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    {Icon && <Icon className="h-16 w-16 text-primary/50" />}
-                  </div>
-                </div>
-              </CardHeader>
+              <h3 className="text-lg md:text-xl font-inter font-normal text-paper tracking-tight">
+                {project.title}
+              </h3>
+              <p className="text-base leading-[1.6] text-felt-gray mt-2 max-w-[600px]">
+                {project.description}
+              </p>
 
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-muted-foreground mb-4 leading-relaxed">
-                  {project.description}
-                </p>
+              <div className="flex flex-wrap gap-2 mt-4">
+                {project.tags.map((tag, ti) => (
+                  <span
+                    key={ti}
+                    className="inline-block px-3 py-1 text-caption font-inter font-normal text-felt-gray border border-white/10 rounded-pill"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
 
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tags.map((tag, tagIndex) => (
-                    <Badge
-                      key={tagIndex}
-                      variant="outline"
-                      className="text-xs bg-primary/10 text-primary border-primary/20"
-                    >
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
+              <div className="flex flex-wrap gap-4 mt-4">
+                {project.links.map((link, li) => (
+                  <a
+                    key={li}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-body-sm font-inter font-normal text-felt-gray hover:text-paper transition-colors duration-[0.4s] ease"
+                  >
+                    {link.name} →
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
 
-                {/* Links */}
-                <div className="flex flex-wrap items-center gap-4">
-                  {project.links.map((link) => {
-                    const isInternalLink = link.href.startsWith("/");
-                    const isHighlightProject =
-                      (project.title === "Orbit Market" || project.title === "Spark Love") &&
-                      link.name === "Learn More";
-
-                    if (isHighlightProject) {
-                      return (
-                        <Button
-                          key={`${project.title}-${link.href}`}
-                          asChild
-                          className={`glow-animated ${project.title === "Spark Love" ? "glow-spark" : ""}`}
-                          variant="outline"
-                        >
-                          <Link
-                            href={link.href}
-                            target="_self"
-                            aria-label={`${project.title} — Learn More`}
-                          >
-                            <Send className="h-4 w-4 mr-2" />
-                            {link.name}
-                          </Link>
-                        </Button>
-                      );
-                    }
-
-                    return (
-                      <Link
-                        key={`${project.title}-${link.href}`}
-                        href={link.href}
-                        className="text-sm text-primary hover:underline flex items-center transition-colors"
-                        target={isInternalLink ? "_self" : "_blank"}
-                        rel={isInternalLink ? undefined : "noopener noreferrer"}
-                      >
-                        {link.name === "View Code" ? (
-                          <Code className="h-4 w-4 mr-2" />
-                        ) : (
-                          <Send className="h-4 w-4 mr-2" />
-                        )}
-                        {link.name}
-                      </Link>
-                    );
-                  })}
-                </div>
-              </CardContent>
-            </Card>
-          );
-        })}
-      </div>
-
-      <div className="mt-10 text-center" data-animate>
-        <Link
-          href={projectsData.viewAllLink}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Button variant="outline" size="lg">
+        <div ref={buttonRef} className="mt-12 opacity-0">
+          <a
+            href={projectsData.viewAllLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ghost-pill"
+          >
             View All Projects
-            <Code className="ml-2 h-4 w-4" />
-          </Button>
-        </Link>
+          </a>
+        </div>
       </div>
     </section>
-  );
+  )
 }

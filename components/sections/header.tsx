@@ -1,170 +1,157 @@
-"use client";
+"use client"
 
-import { useEffect, useState, useRef } from "react";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuLink,
-} from "@/components/ui/navigation-menu";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { MdMail } from "react-icons/md";
-import { MobileMenu } from "@/components/mobile-menu";
-import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
-import { navLinks } from "@/lib/data";
-import { useHeaderScrollAnimation } from "@/hooks/use-gsap-animations";
+import { useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
+import Link from "next/link"
+import { useSmoothScroll } from "@/hooks/use-smooth-scroll"
+import { navLinks } from "@/lib/data"
 
 export function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  const { scrollToSection } = useSmoothScroll();
-  const pathname = usePathname();
-  const isHomePage = pathname === "/";
-  const headerRef = useRef<HTMLElement | null>(null);
-  useHeaderScrollAnimation(headerRef);
-
-  // Function to extract emoji from link name
-  const getEmojiFromName = (name: string) => {
-    const emojiMap: Record<string, string> = {
-      'home': '🏠',
-      'about': '👨‍💻',
-      'skills': '🛠️',
-      'projects': '📁',
-      'experience': '👨‍💼',
-      'contact': '📞'
-    };
-    return emojiMap[name.toLowerCase().split(' ')[1]] || '•';
-  };
+  const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const { scrollToSection } = useSmoothScroll()
+  const pathname = usePathname()
+  const isHomePage = pathname === "/"
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+      setScrolled(window.scrollY > 50)
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [menuOpen])
+
+  useEffect(() => {
+    setMenuOpen(false)
+  }, [pathname])
 
   const handleLinkClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
+    href: string,
   ) => {
+    setMenuOpen(false)
     if (isHomePage) {
-      scrollToSection(e, href);
+      scrollToSection(e, href)
     }
-  };
+  }
+
+  const linkClass =
+    "text-caption font-inter font-normal text-felt-gray hover:text-paper transition-colors duration-[0.4s] ease"
+
   return (
-    <header
-      ref={headerRef}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-        ? "bg-background/90 backdrop-blur-md py-4 shadow-md"
-        : "bg-transparent py-6"
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-[0.8s] ease-signature ${
+          scrolled
+            ? "bg-obsidian/95 backdrop-blur-md py-3"
+            : "bg-transparent py-5"
         }`}
-    >
-      {isHomePage ? (
-        <div className="container mx-auto flex items-center justify-between">
-          <a
-            href="#home"
-            onClick={(e) => handleLinkClick(e, "#home")}
-            className="text-xl font-mono text-primary hover:text-primary/80 transition-colors will-change-transform"
-            data-header="logo"
+      >
+        <div className="mx-auto flex items-center justify-between px-5 md:px-10 max-w-[1078px]">
+          {/* Logo */}
+          <Link
+            href="/"
+            className="text-base font-inter font-normal text-paper hover:text-felt-gray transition-colors duration-[0.4s] ease tracking-tight"
           >
             Yacine._
-          </a>
-          <NavigationMenu className="hidden md:flex">
-            <NavigationMenuList className="space-x-6">
-              {navLinks.map((link, index) => (
-                <NavigationMenuItem key={link.id}>
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <NavigationMenuLink
-                          href={isHomePage ? link.href : `/${link.href}`}
-                          onClick={(e) => handleLinkClick(e, link.href)}
-                          className="group flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors px-2 py-1 rounded-md hover:bg-accent/20"
-                        >
-                          <span className="text-primary text-xs">{`0${index + 1}`}</span>
-                          <span className="inline-flex items-center">
-                            {/* Full text on large screens */}
-                            <span className="hidden xl:inline">{link.name}</span>
-                            {/* Emoji only on medium-large screens */}
-                            <span className="xl:hidden">
-                              {getEmojiFromName(link.name)}
-                            </span>
-                          </span>
-                        </NavigationMenuLink>
-                      </TooltipTrigger>
-                      <TooltipContent className="xl:hidden">
-                        <p>{link.name.replace(/\/\/ /g, '').trim()}</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                </NavigationMenuItem>
-              ))}
-            </NavigationMenuList>
-          </NavigationMenu>
-          <div className="hidden md:flex items-center space-x-4">
-            <Link href="mailto:ya.hamadouche@gmail.com">
-              <Button variant="outline" size="sm">
-                <MdMail className="mr-2 h-4 w-4" />
-                {/* Full text on large screens */}
-                <span className="hidden lg:inline">Contact</span>
-              </Button>
-            </Link>
-          </div>
-          <MobileMenu />
-        </div>
-      ) : (
-        <div className="container mx-auto">
-          {/* Desktop layout */}
-          <div className="hidden md:grid grid-cols-3 items-center">
-            <div className="justify-self-start">
-              <Link
-                href="/"
-                className="text-sm text-muted-foreground hover:text-primary transition-colors border border-border rounded-md px-3 py-1 hover:border-primary/50"
-              >
-                ← Back to Portfolio
-              </Link>
-            </div>
-            <div className="justify-self-center">
-              <Link
-                href="/"
-                className="text-xl font-mono text-primary hover:text-primary/80 transition-colors will-change-transform"
-                data-header="logo"
-              >
-                Yacine._
-              </Link>
-            </div>
-            <div className="justify-self-end" />
-          </div>
+          </Link>
 
-          {/* Mobile layout */}
-          <div className="md:hidden flex items-center justify-between">
-            <Link
-              href="/"
-              className="text-sm text-muted-foreground hover:text-primary transition-colors border border-border rounded-md px-3 py-1 hover:border-primary/50"
-            >
-              ← Back
-            </Link>
-            <Link
-              href="/"
-              className="text-xl font-mono text-primary hover:text-primary/80 transition-colors will-change-transform"
-              data-header="logo"
-            >
-              Yacine._
-            </Link>
-            <MobileMenu />
-          </div>
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center gap-8">
+            {isHomePage ? (
+              navLinks.map((link) => (
+                <a
+                  key={link.id}
+                  href={link.href}
+                  onClick={(e) => handleLinkClick(e, link.href)}
+                  className={linkClass}
+                >
+                  {link.name}
+                </a>
+              ))
+            ) : (
+              <Link href="/" className={linkClass}>
+                ← Back
+              </Link>
+            )}
+          </nav>
+
+          {/* Hamburger */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden flex flex-col gap-[5px] p-2 -mr-2"
+            aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+          >
+            <span
+              className={`block w-5 h-px bg-felt-gray transition-all duration-[0.4s] ease-signature ${
+                menuOpen ? "rotate-45 translate-y-[3px]" : ""
+              }`}
+            />
+            <span
+              className={`block w-5 h-px bg-felt-gray transition-all duration-[0.4s] ease-signature ${
+                menuOpen ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`block w-5 h-px bg-felt-gray transition-all duration-[0.4s] ease-signature ${
+                menuOpen ? "-rotate-45 -translate-y-[3px]" : ""
+              }`}
+            />
+          </button>
         </div>
-      )}
-    </header>
-  );
+      </header>
+
+      {/* Mobile overlay */}
+      <div
+        className={`fixed inset-0 z-30 bg-obsidian/98 backdrop-blur-sm flex flex-col items-center justify-center gap-8 transition-all duration-[0.6s] ease-signature md:hidden ${
+          menuOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+      >
+        {isHomePage ? (
+          navLinks.map((link, i) => (
+            <a
+              key={link.id}
+              href={link.href}
+              onClick={(e) => handleLinkClick(e, link.href)}
+              className="text-2xl font-inter font-light text-felt-gray hover:text-paper transition-colors duration-[0.4s] ease"
+              style={{
+                transitionDelay: menuOpen ? `${i * 0.05}s` : "0s",
+              }}
+            >
+              {link.name}
+            </a>
+          ))
+        ) : (
+          <Link
+            href="/"
+            className="text-2xl font-inter font-light text-felt-gray hover:text-paper transition-colors duration-[0.4s] ease"
+          >
+            ← Back to Portfolio
+          </Link>
+        )}
+
+        {/* Mobile contact link */}
+        <a
+          href="mailto:ya.hamadouche@gmail.com"
+          className="ghost-pill mt-4"
+        >
+          Get in touch
+        </a>
+      </div>
+    </>
+  )
 }

@@ -2,79 +2,73 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 196 80% 60%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 270 80% 60%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 196 80% 60%;
-    --radius: 0.5rem;
-  }
+/* ── Design Tokens ─────────────────────────────────────────────── */
+
+:root {
+  /* Colors */
+  --color-obsidian: #000000;
+  --color-paper: #ffffff;
+  --color-inkstone: #181818;
+  --color-felt-gray: #6d6d6d;
+  --color-slate-pill: #636363;
+  --color-ash-mist: #9a9a9a;
+  --color-pewter: #808080;
+  --gradient-iridescent: linear-gradient(
+    135deg,
+    rgb(160, 224, 171) 0%,
+    rgb(255, 172, 46) 45%,
+    rgb(165, 45, 37) 100%
+  );
+
+  /* Spacing */
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-28: 28px;
+  --spacing-40: 40px;
+  --spacing-46: 46px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-68: 68px;
+
+  /* Layout */
+  --max-width: 1078px;
+  --header-height: 66px;
 }
+
+/* ── Base ──────────────────────────────────────────────────────── */
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: rgba(255, 255, 255, 0.1);
   }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-obsidian);
+  }
+
   body {
-    @apply text-foreground;
+    background-color: var(--color-obsidian);
+    color: var(--color-paper);
+    font-family: "Inter", ui-sans-serif, system-ui, -apple-system,
+      BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--color-paper);
   }
 }
 
-/* Animated glow for CTA buttons (Orbit Market & Spark Love) */
-@keyframes glowPulse {
-  0%,
-  100% {
-    box-shadow: 0 0 10px hsl(var(--glowA, var(--primary)) / 0.45),
-      0 0 16px hsl(var(--glowC, var(--secondary)) / 0.35),
-      0 0 28px hsl(var(--glowB, var(--secondary)) / 0.35);
-    filter: saturate(1);
-  }
-  50% {
-    box-shadow: 0 0 20px hsl(var(--glowA, var(--primary)) / 0.7),
-      0 0 28px hsl(var(--glowC, var(--secondary)) / 0.55),
-      0 0 44px hsl(var(--glowB, var(--secondary)) / 0.6);
-    filter: saturate(1.1);
-  }
-}
+/* ── Animations ────────────────────────────────────────────────── */
 
-.glow-animated {
-  position: relative;
-  animation: glowPulse 2.8s ease-in-out infinite;
-}
-
-.glow-animated:hover {
-  animation-duration: 1.8s;
-}
-
-/* Spark Love color mapping (matches hero title gradient: pink -> fuchsia) */
-.glow-spark {
-  /* Tailwind approx: pink-500 and fuchsia-500 */
-  --glowA: 330 81% 60%;
-  /* via color (rose-500 approx) */
-  --glowC: 343 80% 62%;
-  --glowB: 292 84% 61%;
-}
-
-@keyframes fadeIn {
+@keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(40px);
   }
   to {
     opacity: 1;
@@ -82,51 +76,213 @@
   }
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.8s ease-out forwards;
-}
-
-.animate-fade-in-delay {
-  opacity: 0;
-  animation: fadeIn 0.8s ease-out 0.3s forwards;
-}
-
-.animate-fade-in-delay-2 {
-  opacity: 0;
-  animation: fadeIn 0.8s ease-out 0.6s forwards;
-}
-
-.animate-fade-in-delay-3 {
-  opacity: 0;
-  animation: fadeIn 0.8s ease-out 0.9s forwards;
-}
-
-@keyframes float {
-  0% {
-    transform: translateY(0px);
+@keyframes rotate-slow {
+  from {
+    transform: rotate(0deg);
   }
-  50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0px);
+  to {
+    transform: rotate(360deg);
   }
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes pulse {
+@keyframes iridescent-shift {
   0%,
   100% {
-    opacity: 1;
+    background-position: 0% 50%;
   }
   50% {
-    opacity: 0.7;
+    background-position: 100% 50%;
   }
 }
 
-.animate-pulse-slow {
-  animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+.animate-fade-up {
+  animation: fade-up 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.animate-fade-up-delay {
+  animation: fade-up 0.8s cubic-bezier(0.19, 1, 0.22, 1) 0.15s forwards;
+  opacity: 0;
+}
+
+.animate-fade-up-delay-2 {
+  animation: fade-up 0.8s cubic-bezier(0.19, 1, 0.22, 1) 0.3s forwards;
+  opacity: 0;
+}
+
+.animate-fade-up-delay-3 {
+  animation: fade-up 0.8s cubic-bezier(0.19, 1, 0.22, 1) 0.45s forwards;
+  opacity: 0;
+}
+
+/* ── Ghost Pill Button ─────────────────────────────────────────── */
+
+@layer components {
+  .ghost-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 75px;
+    padding: 11px 33px;
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 0.8s cubic-bezier(0.19, 1, 0.22, 1),
+      letter-spacing 0.8s cubic-bezier(0.19, 1, 0.22, 1),
+      color 0.4s ease;
+  }
+
+  .ghost-pill:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.02em;
+  }
+
+  .ghost-pill-sm {
+    font-size: 14px;
+    padding: 8px 24px;
+  }
+}
+
+/* ── Iridescent Hero Backdrop ──────────────────────────────────── */
+
+.iridescent-backdrop {
+  background: var(--gradient-iridescent);
+  background-size: 200% 200%;
+  animation: iridescent-shift 8s ease-in-out infinite;
+}
+
+/* ── Section defaults ──────────────────────────────────────────── */
+
+.section-gap {
+  padding-top: 46px;
+  padding-bottom: 46px;
+}
+
+/* ── Reduced motion ────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .iridescent-backdrop {
+    animation: none;
+  }
+}
+
+/* ── Custom Cursor & Cinematic Additions ──────────────────────── */
+
+.no-cursor,
+.no-cursor *,
+.no-cursor a,
+.no-cursor button {
+  cursor: none !important;
+}
+
+/* Lenis Smooth Scroll Recommended Styles */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Text Reveal helpers */
+.reveal-wrapper {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+/* Hide Unicorn Studio text layers/watermarks/credits overlay */
+.unicorn-container div:not(:has(canvas)) {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.unicorn-container a,
+.unicorn-container span,
+.unicorn-container p,
+.unicorn-container h1,
+.unicorn-container h2,
+.unicorn-container h3 {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* ── Theme Accents ─────────────────────────────────────────────── */
+
+.theme-spark-love {
+  --color-accent: #f472b6; /* pink */
+  --color-accent-rgb: 244, 114, 182;
+}
+
+.theme-orbit-market {
+  --color-accent: #60a5fa; /* blue */
+  --color-accent-rgb: 96, 165, 250;
+}
+
+.theme-cobble-coach {
+  --color-accent: #ef4444; /* red */
+  --color-accent-rgb: 239, 68, 68;
+}
+
+/* Apply accent colors to links/hover */
+.theme-spark-love a:hover,
+.theme-orbit-market a:hover,
+.theme-cobble-coach a:hover {
+  color: var(--color-accent) !important;
+}
+
+/* Style the ghost pill CTAs on hover to glow with the theme color */
+.theme-spark-love .ghost-pill:hover,
+.theme-orbit-market .ghost-pill:hover,
+.theme-cobble-coach .ghost-pill:hover {
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 0 20px rgba(var(--color-accent-rgb), 0.15) !important;
+}
+
+/* Style headings with a subtle gradient text-fill using the accent color */
+.theme-spark-love h2,
+.theme-orbit-market h2,
+.theme-cobble-coach h2 {
+  background: linear-gradient(to right, #ffffff 65%, var(--color-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* Tint the scroll indicator SVG text to match the theme */
+.theme-spark-love svg text,
+.theme-orbit-market svg text,
+.theme-cobble-coach svg text {
+  fill: var(--color-accent) !important;
+  opacity: 0.8;
 }

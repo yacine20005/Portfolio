@@ -4,12 +4,12 @@ import { GiMoonOrbit } from "react-icons/gi";
 import React from 'react';
 
 export const navLinks: NavLink[] = [
-    { name: '// about 👨‍💻', href: '#about', id: 'about' },
-    { name: '// skills 🛠️', href: '#skills', id: 'skills' },
-    { name: '// featured ⭐', href: '#featured', id: 'featured' },
-    { name: '// projects 📁', href: '#projects', id: 'projects' },
-    { name: '// experience 👨‍💼', href: '#experience', id: 'experience' },
-    { name: '// contact 📞', href: '#contact', id: 'contact' },
+    { name: 'About', href: '#about', id: 'about' },
+    { name: 'Skills', href: '#skills', id: 'skills' },
+    { name: 'Featured', href: '#featured', id: 'featured' },
+    { name: 'Projects', href: '#projects', id: 'projects' },
+    { name: 'Experience', href: '#experience', id: 'experience' },
+    { name: 'Contact', href: '#contact', id: 'contact' },
 ];
 
 export const heroData: HeroData = {
@@ -19,7 +19,7 @@ export const heroData: HeroData = {
     cta: {
         projects: { text: 'View Projects', href: '#projects' },
         contact: { text: 'Get in Touch', href: '#contact' },
-        cv: { text: 'Download CV', href: '/documents/CV.pdf' },
+        cv: { text: 'Download CV', href: 'https://rxresu.me/yacine20005/project-a' },
     },
 };
 

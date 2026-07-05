@@ -1,131 +1,78 @@
-"use client";
+"use client"
 
-import { SectionBackground } from "@/components/section-background";
-import { skillsData } from "@/lib/data";
-import { useGsapStaggerOnView } from "@/hooks/use-gsap-animations";
-import {
-    FaPython,
-    FaReact,
-    FaHtml5,
-    FaCss3Alt,
-    FaGithub,
-    FaDocker,
-    FaTerminal,
-    FaCode,
-    FaJava,
-    FaAngular
-} from "react-icons/fa";
-import React from "react";
-import {
-    SiFlask,
-    SiFastapi,
-    SiC,
-    SiNextdotjs,
-    SiExpo,
-    SiGnubash,
-    SiLatex,
-    SiGooglecloud,
-    SiPostgresql,
-    SiSqlite,
-    SiVercel,
-    SiDigitalocean,
-    SiSupabase,
-    SiJavascript,
-    SiTypescript,
-    SiNumpy,
-    SiSanity
-} from "react-icons/si";
-import { cn } from "@/lib/utils";
+import React, { useEffect, useRef } from "react"
+import { skillsData } from "@/lib/data"
+import { TextReveal } from "@/components/ui/text-reveal"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 
-// Mapping from skill string to icon component
-const skillIcons: Record<string, React.ReactNode> = {
-    Python: <FaPython aria-hidden="true" className="w-4 h-4" />,
-    Flask: <SiFlask aria-hidden="true" className="w-4 h-4" />,
-    FastAPI: <SiFastapi aria-hidden="true" className="w-4 h-4" />,
-    C: <SiC aria-hidden="true" className="w-4 h-4" />,
-    HTML: <FaHtml5 aria-hidden="true" className="w-4 h-4" />,
-    CSS: <FaCss3Alt aria-hidden="true" className="w-4 h-4" />,
-    JavaScript: <SiJavascript aria-hidden="true" className="w-4 h-4" />,
-    TypeScript: <SiTypescript aria-hidden="true" className="w-4 h-4" />,
-    React: <FaReact aria-hidden="true" className="w-4 h-4" />,
-    "Next.js": <SiNextdotjs aria-hidden="true" className="w-4 h-4" />,
-    Expo: <SiExpo aria-hidden="true" className="w-4 h-4" />,
-    Bash: <SiGnubash aria-hidden="true" className="w-4 h-4" />,
-    LaTeX: <SiLatex aria-hidden="true" className="w-4 h-4" />,
-    "Google Cloud": <SiGooglecloud aria-hidden="true" className="w-4 h-4" />,
-    PostgreSQL: <SiPostgresql aria-hidden="true" className="w-4 h-4" />,
-    SQLite: <SiSqlite aria-hidden="true" className="w-4 h-4" />,
-    Vercel: <SiVercel aria-hidden="true" className="w-4 h-4" />,
-    DigitalOcean: <SiDigitalocean aria-hidden="true" className="w-4 h-4" />,
-    Supabase: <SiSupabase aria-hidden="true" className="w-4 h-4" />,
-    "Git / GitHub": <FaGithub aria-hidden="true" className="w-4 h-4" />,
-    Docker: <FaDocker aria-hidden="true" className="w-4 h-4" />,
-    NumPy: <SiNumpy aria-hidden="true" className="w-4 h-4" />,
-    Ncurses: <FaTerminal aria-hidden="true" className="w-4 h-4" />,
-    "MLV Library": <FaCode aria-hidden="true" className="w-4 h-4" />,
-    "Sanity CMS": <SiSanity aria-hidden="true" className="w-4 h-4" />,
-    Java: <FaJava aria-hidden="true" className="w-4 h-4" />,
-    Angular: <FaAngular aria-hidden="true" className="w-4 h-4" />,
-    FLTK: <FaCode aria-hidden="true" className="w-4 h-4" />,
-    Pillow: <FaCode aria-hidden="true" className="w-4 h-4" />,
-    Zen: <FaCode aria-hidden="true" className="w-4 h-4" />
-};
-
-// Reusable Skill Pill component
-function SkillPill({ label }: { label: string }) {
-    const icon = skillIcons[label];
-    return (
-        <li
-            className={cn(
-                "group flex items-center gap-2 rounded-full border border-border/60 bg-card/60 px-3 py-1.5 text-sm",
-                "hover:border-primary/50 hover:bg-primary/10 transition-colors"
-            )}
-        >
-            <span className="flex h-5 w-5 items-center justify-center text-primary" aria-hidden="true">
-                {icon ?? <span className="inline-block h-2 w-2 rounded-full bg-primary" />}
-            </span>
-            <span className="whitespace-nowrap text-muted-foreground group-hover:text-foreground transition-colors">
-                {label}
-            </span>
-        </li>
-    );
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger)
 }
 
 export function SkillsSection() {
-    const scope = useGsapStaggerOnView({ y: 50 });
-    return (
-        <section id="skills" className="container mx-auto py-20 relative" ref={scope}>
-            <SectionBackground />
-            <div className="space-y-4 mb-12" data-animate>
-                <div className="flex items-center" data-animate>
-                    <span className="text-primary text-sm mr-2">02</span>
-                    <h2 className="text-2xl md:text-3xl font-bold">{skillsData.title}</h2>
-                </div>
-                <p className="text-muted-foreground max-w-2xl" data-animate>
-                    {skillsData.subtitle}
-                </p>
-            </div>
+  const sectionRef = useRef<HTMLElement>(null)
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {skillsData.categories.map((category, index) => (
-                    <div
-                        key={index}
-                        className="relative overflow-hidden rounded-xl border border-border bg-card/40 backdrop-blur-sm p-6 transition-colors hover:border-primary/50"
-                        data-animate
-                    >
-                        <div className="mb-4 flex items-center gap-2">
-                            <h3 className="text-lg font-semibold leading-tight">
-                                {category.name}
-                            </h3>
-                        </div>
-                        <ul className="flex flex-wrap gap-2" data-animate>
-                            {category.skills.map((skill) => (
-                                <SkillPill key={skill} label={skill} />
-                            ))}
-                        </ul>
-                    </div>
-                ))}
+  useEffect(() => {
+    if (typeof window === "undefined" || !sectionRef.current) return
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      gsap.set(".skill-category-card", { opacity: 1, y: 0 })
+      return
+    }
+
+    const cards = sectionRef.current.querySelectorAll(".skill-category-card")
+    const anim = gsap.fromTo(
+      cards,
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      }
+    )
+
+    return () => {
+      if (anim.scrollTrigger) anim.scrollTrigger.kill()
+      anim.kill()
+    }
+  }, [])
+
+  return (
+    <section
+      id="skills"
+      ref={sectionRef}
+      className="py-[46px] md:py-[92px]"
+    >
+      <div className="container mx-auto max-w-[1078px] px-5 md:px-10">
+        <TextReveal
+          text="Skills"
+          type="chars"
+          className="font-inter font-light text-[2.5rem] md:text-[3.5rem] leading-[0.9] md:leading-[0.95] tracking-tight text-paper"
+        />
+
+        <div className="mt-10 md:mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-8">
+          {skillsData.categories.map((category, catIndex) => (
+            <div
+              key={catIndex}
+              className="skill-category-card opacity-0"
+            >
+              <h3 className="text-body-sm font-inter font-semibold text-paper mb-3 tracking-tight">
+                {category.name}
+              </h3>
+              <p className="text-base md:text-[16px] leading-[1.6] text-felt-gray">
+                {category.skills.join(" · ")}
+              </p>
             </div>
-        </section>
-    );
+          ))}
+        </div>
+      </div>
+    </section>
+  )
 }
