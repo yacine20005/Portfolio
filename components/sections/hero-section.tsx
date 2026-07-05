@@ -5,35 +5,32 @@ import { gsap } from "gsap"
 import { ScrollIndicator } from "@/components/scroll-indicator"
 import { ShaderAnimation } from "@/components/ui/shader-lines"
 
-export function HeroSection() {
+export function HeroSection({ startAnimation = true }: { startAnimation?: boolean }) {
   const heroRef = useRef<HTMLHeadingElement>(null)
 
   useEffect(() => {
+    if (!startAnimation) return
+
     if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return
     }
     const ctx = gsap.context(() => {
       if (!heroRef.current) return
       const letters = heroRef.current.querySelectorAll("[data-hero-letter]")
+      
+      // Set letters directly in final position (y: 0) to match preloader perfectly
       gsap.set(heroRef.current, { autoAlpha: 0 })
-      gsap.set(letters, { autoAlpha: 0, y: 60 })
+      gsap.set(letters, { autoAlpha: 1, y: 0 })
+      
+      // Rapid, seamless fade-in of the text container to handle the handoff
       gsap.to(heroRef.current, {
         autoAlpha: 1,
-        duration: 0.3,
-        delay: 0.2,
-        ease: "power3.out",
-      })
-      gsap.to(letters, {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.9,
-        stagger: { each: 0.05, from: "start" },
-        ease: "power3.out",
-        delay: 0.4,
+        duration: 0.15,
+        ease: "none",
       })
     }, heroRef)
     return () => ctx.revert()
-  }, [])
+  }, [startAnimation])
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -47,7 +44,9 @@ export function HeroSection() {
       <div className="relative z-10 text-center px-5">
         <h1
           ref={heroRef}
-          className="font-inter font-normal text-[4.5rem] sm:text-[6rem] md:text-[7.5rem] lg:text-[8.125rem] leading-[0.85] tracking-tight text-paper select-none"
+          className={`font-inter font-normal text-[4.5rem] sm:text-[6rem] md:text-[7.5rem] lg:text-[8.125rem] leading-[0.85] tracking-tight text-paper select-none ${
+            !startAnimation ? "opacity-0" : ""
+          }`}
         >
           {["Y", "A", "C", "I", "N", "E"].map((letter, i) => (
             <span

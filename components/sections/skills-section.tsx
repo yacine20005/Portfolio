@@ -6,6 +6,8 @@ import { TextReveal } from "@/components/ui/text-reveal"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
+import { TiltCard } from "@/components/ui/tilt-card"
+
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger)
 }
@@ -57,19 +59,27 @@ export function SkillsSection() {
           className="font-inter font-light text-[2.5rem] md:text-[3.5rem] leading-[0.9] md:leading-[0.95] tracking-tight text-paper"
         />
 
-        <div className="mt-10 md:mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-8">
+        <div className="mt-10 md:mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillsData.categories.map((category, catIndex) => (
-            <div
+            <TiltCard
               key={catIndex}
-              className="skill-category-card opacity-0"
+              className="skill-category-card opacity-0 h-full"
+              glowColor="rgba(255, 255, 255, 0.05)"
             >
-              <h3 className="text-body-sm font-inter font-semibold text-paper mb-3 tracking-tight">
+              <h3 className="text-body-sm font-inter font-semibold text-paper mb-4 tracking-tight">
                 {category.name}
               </h3>
-              <p className="text-base md:text-[16px] leading-[1.6] text-felt-gray">
-                {category.skills.join(" · ")}
-              </p>
-            </div>
+              <div className="flex flex-wrap gap-2">
+                {category.skills.map((skill, si) => (
+                  <span
+                    key={si}
+                    className="inline-block px-3 py-1 text-[13px] font-inter font-normal text-felt-gray border border-white/5 bg-white/[0.01] rounded-full group-hover/card:text-paper group-hover/card:border-white/15 group-hover/card:bg-white/[0.04] transition-all duration-300"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </TiltCard>
           ))}
         </div>
       </div>

@@ -7,6 +7,8 @@ import { TextReveal } from "@/components/ui/text-reveal"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
+import { TiltCard } from "@/components/ui/tilt-card"
+
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger)
 }
@@ -60,39 +62,58 @@ export function FeaturedProjectsCarousel() {
 
         <div className="mt-10 md:mt-14 space-y-6">
           {featuredProjectsData.projects.map((project, i) => (
-            <Link
+            <TiltCard
               key={i}
-              href={project.link}
-              data-magnetic
-              className="featured-project-item group block border-l-[1px] border-white/10 hover:border-white/30 pl-5 md:pl-8 py-6 md:py-8 transition-all duration-[0.8s] ease-signature opacity-0"
+              className="featured-project-item opacity-0 p-0 border border-white/5"
+              glowColor={project.theme.accentColor || "rgba(255, 255, 255, 0.08)"}
+              style={{
+                background: `linear-gradient(135deg, ${project.theme.gradientFrom} 0%, ${project.theme.gradientVia} 50%, ${project.theme.gradientTo} 100%)`,
+                borderColor: project.theme.border
+              }}
             >
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4 pointer-events-none">
-                <div>
-                  <div className="flex items-center gap-3 mb-1">
-                    <span className="flex-shrink-0 text-paper/70">
-                      {project.icon}
-                    </span>
-                    <h3 className="text-xl md:text-2xl font-inter font-normal text-paper group-hover:text-paper/80 transition-colors duration-[0.4s] ease tracking-tight">
-                      {project.title}
-                    </h3>
+              <Link
+                href={project.link}
+                className="block w-full h-full px-6 py-6 md:px-8 md:py-8"
+              >
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4 pointer-events-none">
+                  <div>
+                    <div className="flex items-center gap-3 mb-1">
+                      <span 
+                        className="flex-shrink-0 transition-transform duration-500 group-hover/card:scale-110"
+                        style={{ color: project.theme.textColor }}
+                      >
+                        {project.icon}
+                      </span>
+                      <h3 
+                        className="text-xl md:text-2xl font-inter font-normal transition-colors duration-[0.4s] ease tracking-tight"
+                        style={{ color: project.theme.textColor }}
+                      >
+                        {project.title}
+                      </h3>
+                    </div>
+                    <p className="text-base text-felt-gray leading-[1.5] mt-1">
+                      {project.tagline}
+                    </p>
                   </div>
-                  <p className="text-base text-felt-gray leading-[1.5] mt-1">
-                    {project.tagline}
-                  </p>
-                </div>
 
-                <div className="flex flex-wrap gap-2 mt-2 md:mt-0 shrink-0">
-                  {project.tags.slice(0, 3).map((tag, ti) => (
-                    <span
-                      key={ti}
-                      className="inline-block px-3 py-1 text-caption font-inter font-normal text-felt-gray border border-white/10 rounded-pill group-hover:border-white/20 transition-colors duration-[0.4s] ease"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                  <div className="flex flex-wrap gap-2 mt-2 md:mt-0 shrink-0">
+                    {project.tags.slice(0, 3).map((tag, ti) => (
+                      <span
+                        key={ti}
+                        className="inline-block px-3 py-1 text-caption font-inter font-normal border rounded-pill transition-colors duration-[0.4s] ease"
+                        style={{
+                          backgroundColor: project.theme.tagBackground,
+                          color: project.theme.tagColor,
+                          borderColor: project.theme.tagBorder
+                        }}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </TiltCard>
           ))}
         </div>
       </div>
