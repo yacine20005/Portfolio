@@ -29,8 +29,7 @@ export const aboutData: AboutData = {
     paragraphs: [
         'What started with curiosity quickly became an obsession. I genuinely enjoy the problem-solving aspect and that ultimate satisfaction when everything works as intended after hours of work (more when it\'s on the first try).',
         'From building strategy games in C to crafting websites for real clients, I\'ve tried a bit of everything. Each project taught me something new, whether it was wrestling with memory allocation or figuring out how to make a design look good on mobile.',
-        'Right now, I\'m looking for an apprenticeship where I can learn from experienced developers, contribute to meaningful projects, and keep growing my skills. I work well in teams, I\'m not afraid to ask questions, and I actually read documentation !!!.',
-        'If you\'re looking for someone motivated, curious, and ready to dive into new challenges, i\'m your guy.',
+        'If you\'re looking for someone motivated, curious, and have coffee for me, i\'m your guy.',
     ],
 };
 
