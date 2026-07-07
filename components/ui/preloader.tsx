@@ -24,14 +24,33 @@ export function Preloader({ onComplete }: PreloaderProps) {
 
   const words = [
     "HELLO",
-    "DESIGN",
-    "CODE",
-    "DEVELOP",
     "STUDENT",
-    "FASTAPI",
-    "EXPO",
-    "NEXT.JS",
+    "DEVELOPER",
+    "WEB",
+    "FULLSTACK",
+    "AI",
+    "GAME",
+    "FREELANCE",
+    "PASSIONATE",
     "YACINE",
+  ]
+
+  const technologies_words = [
+    "PYTHON",
+    "FLASK",
+    "FAST API",
+    "C",
+    "TYPESCRIPT",
+    "REACT",
+    "NEXT JS",
+    "EXPO",
+    "BASH",
+    "JAVA",
+    "ANGULAR",
+    "POSTGRESQL",
+    "SQLITE",
+    "SUPABASE",
+    "DOCKER"
   ]
 
   useEffect(() => {
@@ -43,7 +62,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
 
     // Add lenis-stopped to html element to disable scrolling while loading
     document.documentElement.classList.add("lenis-stopped")
-    
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         onComplete: () => {
@@ -57,19 +76,16 @@ export function Preloader({ onComplete }: PreloaderProps) {
       gsap.set(gridRef.current, { yPercent: 0 })
       gsap.set(cornersRef.current, { yPercent: 0 })
       gsap.set(progressRef.current, { yPercent: 0 })
-      
-      // Animate word sequence
-      words.forEach((word, idx) => {
-        const isLast = idx === words.length - 1
-        
-        // Add a step in timeline to change the word content
+
+      // 1. Animate introductory words (excluding the final "YACINE")
+      const introWords = words.filter((w) => w !== "YACINE")
+      introWords.forEach((word) => {
         tl.add(() => {
           if (wordRef.current) {
             wordRef.current.textContent = word
           }
         })
 
-        // Animate the word in (arriving from bottom)
         tl.fromTo(
           wordRef.current,
           { y: 60, opacity: 0, filter: "blur(8px)" },
@@ -77,33 +93,79 @@ export function Preloader({ onComplete }: PreloaderProps) {
             y: 0,
             opacity: 1,
             filter: "blur(0px)",
-            duration: 0.25,
+            duration: 0.18,
             ease: "power3.out",
           }
         )
 
-        if (isLast) {
-          // Special effects for the final word
-          tl.to(wordRef.current, {
-            textShadow: "0 0 25px rgba(255, 255, 255, 0.4)",
-            duration: 0.6,
-            ease: "power2.out",
-          })
-          // Hold the final name longer
-          tl.to({}, { duration: 0.6 })
-        } else {
-          // Hold the intermediate words briefly
-          tl.to({}, { duration: 0.15 })
-          // Animate the intermediate words out (disappearing to top)
-          tl.to(wordRef.current, {
-            y: -60,
-            opacity: 0,
-            filter: "blur(8px)",
-            duration: 0.2,
-            ease: "power3.in",
-          })
+        tl.to({}, { duration: 0.08 })
+
+        tl.to(wordRef.current, {
+          y: -60,
+          opacity: 0,
+          filter: "blur(8px)",
+          duration: 0.12,
+          ease: "power3.in",
+        })
+      })
+
+      // 2. Animate technologies list very quickly
+      technologies_words.forEach((tech) => {
+        tl.add(() => {
+          if (wordRef.current) {
+            wordRef.current.textContent = tech
+          }
+        })
+
+        tl.fromTo(
+          wordRef.current,
+          { y: 40, opacity: 0, filter: "blur(4px)" },
+          {
+            y: 0,
+            opacity: 1,
+            filter: "blur(0px)",
+            duration: 0.06,
+            ease: "power3.out",
+          }
+        )
+
+        tl.to({}, { duration: 0.02 })
+
+        tl.to(wordRef.current, {
+          y: -40,
+          opacity: 0,
+          filter: "blur(4px)",
+          duration: 0.05,
+          ease: "power3.in",
+        })
+      })
+
+      // 3. Animate the final word "YACINE"
+      tl.add(() => {
+        if (wordRef.current) {
+          wordRef.current.textContent = "YACINE"
         }
       })
+
+      tl.fromTo(
+        wordRef.current,
+        { y: 60, opacity: 0, filter: "blur(8px)" },
+        {
+          y: 0,
+          opacity: 1,
+          filter: "blur(0px)",
+          duration: 0.25,
+          ease: "power3.out",
+        }
+      )
+
+      tl.to(wordRef.current, {
+        textShadow: "0 0 25px rgba(255, 255, 255, 0.4)",
+        duration: 0.6,
+        ease: "power2.out",
+      })
+
+      tl.to({}, { duration: 0.6 })
 
       // Slide up transition for only the background panel and overlays
       tl.to([backdropRef.current, gridRef.current, cornersRef.current, progressRef.current], {
@@ -141,7 +203,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
       />
 
       {/* Dynamic line background for a cinematic tech vibe */}
-      <div 
+      <div
         ref={gridRef}
         className="absolute inset-0 opacity-5 pointer-events-none"
       >
@@ -173,7 +235,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
       </div>
 
       {/* Tiny progress hint */}
-      <div 
+      <div
         ref={progressRef}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-2 pointer-events-none"
       >
