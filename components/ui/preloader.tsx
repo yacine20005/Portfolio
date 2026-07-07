@@ -31,6 +31,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
     "AI",
     "GAME",
     "FREELANCE",
+    "COFFEE",
     "PASSIONATE",
     "YACINE",
   ]
@@ -59,6 +60,24 @@ export function Preloader({ onComplete }: PreloaderProps) {
 
   useEffect(() => {
     if (!mounted) return
+
+    // Disable browser scroll restoration
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual"
+    }
+
+    // Force scroll to top immediately
+    window.scrollTo(0, 0)
+    document.documentElement.scrollTop = 0
+    document.body.scrollTop = 0
+
+    // Override any delayed browser scroll restoration
+    const scrollInterval = setInterval(() => {
+      window.scrollTo(0, 0)
+    }, 10)
+    const scrollTimeout = setTimeout(() => {
+      clearInterval(scrollInterval)
+    }, 200)
 
     // Add lenis-stopped to html element to disable scrolling while loading
     document.documentElement.classList.add("lenis-stopped")
@@ -185,6 +204,8 @@ export function Preloader({ onComplete }: PreloaderProps) {
 
     return () => {
       ctx.revert()
+      clearInterval(scrollInterval)
+      clearTimeout(scrollTimeout)
       document.documentElement.classList.remove("lenis-stopped")
     }
   }, [mounted])
