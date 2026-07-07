@@ -1,7 +1,6 @@
 "use client"
 
 import { useRef } from "react"
-import { ScrollIndicator } from "@/components/scroll-indicator"
 import { ShaderAnimation } from "@/components/ui/shader-lines"
 
 export function HeroSection({ startAnimation = true }: { startAnimation?: boolean }) {
@@ -29,9 +28,6 @@ export function HeroSection({ startAnimation = true }: { startAnimation?: boolea
           </span>
         </h1>
       </div>
-
-      {/* Scroll indicator */}
-      <ScrollIndicator />
     </section>
   )
 }

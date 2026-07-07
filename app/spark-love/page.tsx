@@ -1,18 +1,33 @@
 "use client"
 
+import { useState } from "react"
 import { Header } from "@/components/sections/header"
 import { Footer } from "@/components/sections/footer"
 import { Heart, ShieldCheck, Sparkles, Check } from "lucide-react"
 import Link from "next/link"
 import { FaGithub } from "react-icons/fa"
 import { ShaderAnimation } from "@/components/ui/shader-lines"
+import { ProjectPreloader } from "@/components/ui/project-preloader"
 
 export default function SparkLovePage() {
+  const [loading, setLoading] = useState(true)
+  const [contentVisible, setContentVisible] = useState(false)
+
   return (
     <div className="min-h-screen bg-obsidian text-paper overflow-hidden theme-spark-love">
-      <Header />
-      {/* Ambient Background Glow */}
-      <div className="fixed top-0 right-0 w-[50vw] h-[50vw] bg-[radial-gradient(ellipse_at_top_right,rgba(var(--color-accent-rgb),0.08),transparent_70%)] pointer-events-none z-0" />
+      {loading && (
+        <ProjectPreloader
+          icon={<Heart />}
+          accentColor="rgb(244, 114, 182)"
+          title="Spark Love"
+          onReveal={() => setContentVisible(true)}
+          onComplete={() => setLoading(false)}
+        />
+      )}
+      <div className={`transition-all duration-300 ${contentVisible ? "opacity-100 visible" : "opacity-0 invisible"}`}>
+        <Header />
+        {/* Ambient Background Glow */}
+        <div className="fixed top-0 right-0 w-[50vw] h-[50vw] bg-[radial-gradient(ellipse_at_top_right,rgba(var(--color-accent-rgb),0.08),transparent_70%)] pointer-events-none z-0" />
       <main>
         {/* Hero */}
         <section className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -140,6 +155,7 @@ export default function SparkLovePage() {
         </section>
       </main>
       <Footer />
+      </div>
     </div>
   )
 }

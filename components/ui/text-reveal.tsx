@@ -92,7 +92,7 @@ export function TextReveal({
   }, [text, delay, type])
 
   return (
-    <Component ref={containerRef} className={className}>
+    <Component ref={containerRef as React.RefObject<any>} className={className}>
       {text}
     </Component>
   )

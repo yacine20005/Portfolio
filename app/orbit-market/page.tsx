@@ -1,17 +1,33 @@
 "use client"
 
+import { useState } from "react"
 import { Header } from "@/components/sections/header"
 import { Footer } from "@/components/sections/footer"
 import { Zap, Clock, Shield, Target, Database, Globe } from "lucide-react"
+import { GiMoonOrbit } from "react-icons/gi"
 import { FaGithub } from "react-icons/fa"
 import { ShaderAnimation } from "@/components/ui/shader-lines"
+import { ProjectPreloader } from "@/components/ui/project-preloader"
 
 export default function OrbitMarketPage() {
+  const [loading, setLoading] = useState(true)
+  const [contentVisible, setContentVisible] = useState(false)
+
   return (
     <div className="min-h-screen bg-obsidian text-paper overflow-hidden theme-orbit-market">
-      <Header />
-      {/* Ambient Background Glow */}
-      <div className="fixed top-0 right-0 w-[50vw] h-[50vw] bg-[radial-gradient(ellipse_at_top_right,rgba(var(--color-accent-rgb),0.08),transparent_70%)] pointer-events-none z-0" />
+      {loading && (
+        <ProjectPreloader
+          icon={<GiMoonOrbit />}
+          accentColor="rgb(96, 165, 250)"
+          title="Orbit Market"
+          onReveal={() => setContentVisible(true)}
+          onComplete={() => setLoading(false)}
+        />
+      )}
+      <div className={`transition-all duration-300 ${contentVisible ? "opacity-100 visible" : "opacity-0 invisible"}`}>
+        <Header />
+        {/* Ambient Background Glow */}
+        <div className="fixed top-0 right-0 w-[50vw] h-[50vw] bg-[radial-gradient(ellipse_at_top_right,rgba(var(--color-accent-rgb),0.08),transparent_70%)] pointer-events-none z-0" />
       <main>
         {/* Hero */}
         <section className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -88,6 +104,7 @@ export default function OrbitMarketPage() {
         </section>
       </main>
       <Footer />
+      </div>
     </div>
   )
 }
