@@ -1,39 +1,15 @@
 "use client"
 
-import { useEffect, useRef } from "react"
-import { gsap } from "gsap"
+import { useRef } from "react"
 import { ScrollIndicator } from "@/components/scroll-indicator"
 import { ShaderAnimation } from "@/components/ui/shader-lines"
 
 export function HeroSection({ startAnimation = true }: { startAnimation?: boolean }) {
   const heroRef = useRef<HTMLHeadingElement>(null)
 
-  useEffect(() => {
-    if (!startAnimation) return
-
-    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return
-    }
-    const ctx = gsap.context(() => {
-      if (!heroRef.current) return
-      const letters = heroRef.current.querySelectorAll("[data-hero-letter]")
-      
-      // Set letters directly in final position (y: 0) to match preloader perfectly
-      gsap.set(heroRef.current, { autoAlpha: 0 })
-      gsap.set(letters, { autoAlpha: 1, y: 0 })
-      
-      // Rapid, seamless fade-in of the text container to handle the handoff
-      gsap.to(heroRef.current, {
-        autoAlpha: 1,
-        duration: 0.15,
-        ease: "none",
-      })
-    }, heroRef)
-    return () => ctx.revert()
-  }, [startAnimation])
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative h-[100dvh] flex items-center justify-center overflow-hidden">
       {/* Iridescent backdrop */}
       <div className="absolute inset-0 opacity-60">
         <ShaderAnimation />
@@ -48,15 +24,9 @@ export function HeroSection({ startAnimation = true }: { startAnimation?: boolea
             !startAnimation ? "opacity-0" : ""
           }`}
         >
-          {["Y", "A", "C", "I", "N", "E"].map((letter, i) => (
-            <span
-              key={i}
-              data-hero-letter
-              className="inline-block"
-            >
-              {letter}
-            </span>
-          ))}
+          <span className="inline-block will-change-transform">
+            YACINE
+          </span>
         </h1>
       </div>
 

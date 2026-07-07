@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { AboutSection } from "@/components/sections/about-section"
 import { ContactSection } from "@/components/sections/contact-section"
 import { ExperienceSection } from "@/components/sections/experience-section"
@@ -11,13 +11,27 @@ import { ProjectsSection } from "@/components/sections/projects-section"
 import { SkillsSection } from "@/components/sections/skills-section"
 import { FeaturedProjectsCarousel } from "@/components/sections/featured-projects-carousel"
 import { Preloader } from "@/components/ui/preloader"
+import { hasPreloaderRun, setPreloaderHasRun } from "@/lib/preloader-state"
 
 export default function Home() {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(() => !hasPreloaderRun())
+
+  useEffect(() => {
+    if (loading && typeof window !== "undefined") {
+      window.scrollTo(0, 0)
+    }
+  }, [loading])
 
   return (
     <div className="min-h-screen bg-obsidian text-paper overflow-hidden">
-      {loading && <Preloader onComplete={() => setLoading(false)} />}
+      {loading && (
+        <Preloader
+          onComplete={() => {
+            setLoading(false)
+            setPreloaderHasRun(true)
+          }}
+        />
+      )}
       <Header />
       <main>
         <HeroSection startAnimation={!loading} />

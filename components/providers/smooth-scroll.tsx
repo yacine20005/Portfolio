@@ -2,11 +2,15 @@
 
 import React, { useEffect, useRef } from "react"
 import Lenis from "lenis"
+import { setPreloaderHasRun } from "@/lib/preloader-state"
 
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null)
 
   useEffect(() => {
+    // Mark preloader as run because layout has mounted (indicating session has started)
+    setPreloaderHasRun(true)
+
     if (typeof window === "undefined") return
 
     // Disable on reduced motion
@@ -43,7 +47,32 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
 
     lenis.on("scroll", handleScroll)
 
+    // Observe 'lenis-stopped' class on HTML to stop/start Lenis scroll handlers
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === "class") {
+          const isStopped = document.documentElement.classList.contains("lenis-stopped")
+          if (isStopped) {
+            lenis.stop()
+          } else {
+            lenis.start()
+          }
+        }
+      })
+    })
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    })
+
+    // Initial check on mount
+    if (document.documentElement.classList.contains("lenis-stopped")) {
+      lenis.stop()
+    }
+
     return () => {
+      observer.disconnect()
       lenis.off("scroll", handleScroll)
       cancelAnimationFrame(rafId)
       lenis.destroy()

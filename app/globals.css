@@ -45,6 +45,7 @@
   html {
     scroll-behavior: smooth;
     background-color: var(--color-obsidian);
+    scrollbar-gutter: stable;
   }
 
   body {

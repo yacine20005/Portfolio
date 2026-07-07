@@ -132,7 +132,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-[9999] flex items-center justify-center select-none overflow-hidden pointer-events-none"
+      className="fixed top-0 left-0 w-full h-[100dvh] z-[9999] flex items-center justify-center select-none overflow-hidden pointer-events-none"
     >
       {/* Black backdrop curtain */}
       <div
