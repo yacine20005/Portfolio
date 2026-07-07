@@ -1,4 +1,4 @@
-import { NavLink, HeroData, AboutData, SkillsData, ProjectsData, ExperienceData, ContactData, FooterData, FeaturedProjectsData } from './types';
+import { NavLink, HeroData, AboutData, SkillsData, ProjectsData, ExperienceData, ContactData, FooterData, FeaturedProjectsData, WebsitesData } from './types';
 import { Heart, Cloud, Backpack, Bot } from 'lucide-react';
 import { GiMoonOrbit } from "react-icons/gi";
 import React from 'react';
@@ -8,6 +8,7 @@ export const navLinks: NavLink[] = [
     { name: 'Skills', href: '#skills', id: 'skills' },
     { name: 'Featured', href: '#featured', id: 'featured' },
     { name: 'Projects', href: '#projects', id: 'projects' },
+    { name: 'Websites', href: '#websites', id: 'websites' },
     { name: 'Experience', href: '#experience', id: 'experience' },
     { name: 'Contact', href: '#contact', id: 'contact' },
 ];
@@ -24,7 +25,7 @@ export const heroData: HeroData = {
 };
 
 export const aboutData: AboutData = {
-    title: '// about 👨‍💻',
+    title: 'about',
     subtitle: 'A bit more about who I am and what I\'m looking for.',
     paragraphs: [
         'What started with curiosity quickly became an obsession. I genuinely enjoy the problem-solving aspect and that ultimate satisfaction when everything works as intended after hours of work (more when it\'s on the first try).',
@@ -34,7 +35,7 @@ export const aboutData: AboutData = {
 };
 
 export const skillsData: SkillsData = {
-    title: '// skills 🛠️',
+    title: 'skills',
     subtitle: 'Here are some of the technologies and tools I\'ve been working with during my studies and personal projects.',
     categories: [
         {
@@ -53,7 +54,7 @@ export const skillsData: SkillsData = {
 };
 
 export const projectsData: ProjectsData = {
-    title: '// projects 📁',
+    title: 'projects',
     subtitle: 'A selection of projects I\'ve worked on during my academic journey and in my free time.',
     projects: [
         {
@@ -97,7 +98,7 @@ export const projectsData: ProjectsData = {
 };
 
 export const experienceData: ExperienceData = {
-    title: '// experience 👨‍💼',
+    title: 'experience',
     subtitle: 'My academic journey and professional experiences.',
     experiences: [
         {
@@ -122,7 +123,7 @@ export const experienceData: ExperienceData = {
 };
 
 export const contactData: ContactData = {
-    title: '// contact 📞',
+    title: 'contact',
     subtitle: 'Feel free to reach out if you want to collaborate on a project, have a question, or just want to connect.',
     contacts: [
         {
@@ -158,7 +159,7 @@ export const footerData: FooterData = {
 };
 
 export const featuredProjectsData: FeaturedProjectsData = {
-    title: '// featured ⭐',
+    title: 'featured',
     subtitle: 'Discover my flagship projects, each with its own dedicated showcase.',
     projects: [
         {
@@ -239,4 +240,25 @@ export const featuredProjectsData: FeaturedProjectsData = {
             },
         },
     ],
+};
+
+export const websitesData: WebsitesData = {
+    title: '// websites 💻',
+    subtitle: 'Production websites designed and developed for clients.',
+    projects: [
+        {
+            title: 'Georges Geneyne',
+            description: 'High-end showcase website built for Georges Geneyne, a specialist in premium aluminum joinery (windows, doors, bioclimatic pergolas) and concrete pools in Guadeloupe. Features clean typography, service catalogs, and direct WhatsApp contact support.',
+            tags: ['Next.js', 'Tailwind CSS', 'SEO Optimization', 'Direct WhatsApp'],
+            imagePath: '/websites/georgesgeneyne.png',
+            link: 'https://georgesgeneyne.com/'
+        },
+        {
+            title: 'Kreyol Wakanda',
+            description: "An immersive digital universe and movement designed for Lionel Coezy's Kreyol Wakanda. Serving as a 'Noosphere' showcasing personal/professional coaching, digital portals, and cultural artifacts, it features custom animations and premium typographic styling.",
+            tags: ['Next.js', 'Tailwind CSS', 'Immersive Design', 'Interactive Canvas'],
+            imagePath: '/websites/kreyolwakanda.png',
+            link: 'https://palevioletred-lobster-286010.hostingersite.com/'
+        }
+    ]
 };

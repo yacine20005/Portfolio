@@ -8,6 +8,7 @@ import { Footer } from "@/components/sections/footer"
 import { Header } from "@/components/sections/header"
 import { HeroSection } from "@/components/sections/hero-section"
 import { ProjectsSection } from "@/components/sections/projects-section"
+import { WebsitesSection } from "@/components/sections/websites-section"
 import { SkillsSection } from "@/components/sections/skills-section"
 import { FeaturedProjectsCarousel } from "@/components/sections/featured-projects-carousel"
 import { Preloader } from "@/components/ui/preloader"
@@ -53,6 +54,7 @@ export default function Home() {
         <AboutSection />
         <SkillsSection />
         <FeaturedProjectsCarousel />
+        <WebsitesSection />
         <ProjectsSection />
         <ExperienceSection />
         <ContactSection />

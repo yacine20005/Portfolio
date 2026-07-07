@@ -130,3 +130,18 @@ export interface FeaturedProjectsData {
     subtitle: string;
     projects: FeaturedProject[];
 }
+
+export interface WebsitesProject {
+    title: string;
+    description: string;
+    tags: string[];
+    imagePath: string;
+    link: string;
+}
+
+export interface WebsitesData {
+    title: string;
+    subtitle: string;
+    projects: WebsitesProject[];
+}
+
