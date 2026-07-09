@@ -20,6 +20,14 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     const saved = localStorage.getItem("portfolio-lang") as Language
     if (saved === "fr" || saved === "en") {
       setLanguageState(saved)
+      return
+    }
+    // Detect device/browser language for first-time visitors
+    const browserLang = navigator.language?.slice(0, 2).toLowerCase()
+    if (browserLang === "en") {
+      setLanguageState("en")
+    } else {
+      setLanguageState("fr") // Default to French for all other languages
     }
   }, [])
 
