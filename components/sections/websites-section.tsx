@@ -84,18 +84,6 @@ export function WebsitesSection() {
                   {project.description}
                 </p>
 
-                {/* Tech Tags */}
-                <div className="flex flex-wrap gap-2 mt-5">
-                  {project.tags.map((tag, ti) => (
-                    <span
-                      key={ti}
-                      className="inline-block px-3 py-1 text-caption font-inter font-normal text-felt-gray border border-white/10 rounded-pill"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
                 {/* Action Link Button */}
                 <a
                   href={project.link}

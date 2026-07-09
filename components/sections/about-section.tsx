@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger)
+  ScrollTrigger.config({ ignoreMobileResize: true })
 }
 
 export function AboutSection() {
@@ -112,7 +113,7 @@ export function AboutSection() {
     >
       <div
         ref={pinContainerRef}
-        className="w-full min-h-screen md:h-screen flex items-center justify-center py-[92px] md:py-0"
+        className="w-full min-h-lvh md:h-screen flex items-center justify-center py-[92px] md:py-0"
       >
         <div
           ref={contentRef}
