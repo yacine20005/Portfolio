@@ -1,13 +1,19 @@
+"use client"
+
 import Link from "next/link"
 import { FaGithub, FaLinkedin } from "react-icons/fa"
 import { MdMail } from "react-icons/md"
-import { footerData } from "@/lib/data"
+import { useLanguage } from "@/components/providers/language-context"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
+  const { dictionary } = useLanguage()
+  const { footerData } = dictionary
+
+  const copyrightText = footerData.copyright.replace("{year}", currentYear.toString())
 
   return (
-    <footer className="border-t border-hairline border-white/10 py-12">
+    <footer className="border-t border-hairline border-white/10 py-12 relative z-10 bg-obsidian">
       <div className="container mx-auto max-w-[1078px] px-5 md:px-10">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           {/* Name */}
@@ -56,7 +62,7 @@ export function Footer() {
         {/* Copyright */}
         <div className="mt-10 pt-6">
           <p className="text-caption text-felt-gray text-center md:text-left leading-[1.36]">
-            © {currentYear} Yacine. All rights reserved.
+            {copyrightText}
           </p>
         </div>
       </div>

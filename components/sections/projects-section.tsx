@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useRef } from "react"
-import { projectsData } from "@/lib/data"
+import { useLanguage } from "@/components/providers/language-context"
 import { TextReveal } from "@/components/ui/text-reveal"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
@@ -22,6 +22,8 @@ if (typeof window !== "undefined") {
 export function ProjectsSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const buttonRef = useRef<HTMLDivElement>(null)
+  const { dictionary, language } = useLanguage()
+  const { projectsData } = dictionary
 
   useEffect(() => {
     if (typeof window === "undefined" || !sectionRef.current) return
@@ -76,7 +78,7 @@ export function ProjectsSection() {
         animButton.kill()
       }
     }
-  }, [])
+  }, [projectsData]) // Re-run if projectsData content changes
 
   return (
     <section
@@ -86,9 +88,9 @@ export function ProjectsSection() {
     >
       <div className="container mx-auto max-w-[1078px] px-5 md:px-10">
         <TextReveal
-          text="Projects"
+          text={projectsData.title}
           type="chars"
-          className="font-inter font-light text-[2.5rem] md:text-[3.5rem] leading-[0.9] md:leading-[0.95] tracking-tight text-paper"
+          className="font-inter font-light text-[2.5rem] md:text-[3.5rem] leading-[0.9] md:leading-[0.95] tracking-tight text-paper capitalize"
         />
 
         <div className="mt-10 md:mt-14 space-y-10">
@@ -105,43 +107,44 @@ export function ProjectsSection() {
                     aria-hidden="true"
                   />
                 )}
-              <h3 className="text-lg md:text-xl font-inter font-normal text-paper tracking-tight">
-                {project.title}
-              </h3>
-              <p className="text-base leading-[1.6] text-felt-gray mt-2 max-w-[600px]">
-                {project.description}
-              </p>
+                <h3 className="text-lg md:text-xl font-inter font-normal text-paper tracking-tight">
+                  {project.title}
+                </h3>
+                <p className="text-base leading-[1.6] text-felt-gray mt-2 max-w-[600px]">
+                  {project.description}
+                </p>
 
-              <div className="flex flex-wrap gap-2 mt-4">
-                {project.tags.map((tag, ti) => (
-                  <span
-                    key={ti}
-                    className="inline-block px-3 py-1 text-caption font-inter font-normal text-felt-gray border border-white/10 rounded-pill"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap gap-4 mt-5">
-                {project.links.map((link, li) => {
-                  const isGithubLink = link.href.includes("github.com")
-                  return (
-                    <a
-                      key={li}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="ghost-pill ghost-pill-sm hover:border-paper inline-flex items-center gap-2"
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {project.tags.map((tag, ti) => (
+                    <span
+                      key={ti}
+                      className="inline-block px-3 py-1 text-caption font-inter font-normal text-felt-gray border border-white/10 rounded-pill"
                     >
-                      {isGithubLink && <FaGithub className="h-4 w-4" />}
-                      {link.name}
-                    </a>
-                  )
-                })}
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap gap-4 mt-5">
+                  {project.links.map((link, li) => {
+                    const isGithubLink = link.href.includes("github.com")
+                    return (
+                      <a
+                        key={li}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ghost-pill ghost-pill-sm hover:border-paper inline-flex items-center gap-2"
+                      >
+                        {isGithubLink && <FaGithub className="h-4 w-4" />}
+                        {link.name}
+                      </a>
+                    )
+                  })}
+                </div>
               </div>
-            </div>
-          )})}
+            )
+          })}
         </div>
 
         <div ref={buttonRef} className="mt-12 opacity-0">
@@ -151,7 +154,7 @@ export function ProjectsSection() {
             rel="noopener noreferrer"
             className="ghost-pill"
           >
-            View All Projects
+            {language === "fr" ? "Voir tous les projets" : "View All Projects"}
           </a>
         </div>
       </div>

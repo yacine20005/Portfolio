@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useRef } from "react"
-import { websitesData } from "@/lib/data"
+import { useLanguage } from "@/components/providers/language-context"
 import { TextReveal } from "@/components/ui/text-reveal"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
@@ -12,6 +12,8 @@ if (typeof window !== "undefined") {
 
 export function WebsitesSection() {
   const sectionRef = useRef<HTMLElement>(null)
+  const { dictionary, language } = useLanguage()
+  const { websitesData } = dictionary
 
   useEffect(() => {
     if (typeof window === "undefined" || !sectionRef.current) return
@@ -42,7 +44,7 @@ export function WebsitesSection() {
       if (anim.scrollTrigger) anim.scrollTrigger.kill()
       anim.kill()
     }
-  }, [])
+  }, [websitesData]) // Re-run if websitesData changes
 
   return (
     <section
@@ -52,9 +54,9 @@ export function WebsitesSection() {
     >
       <div className="container mx-auto max-w-[1078px] px-5 md:px-10">
         <TextReveal
-          text="Websites"
+          text={websitesData.title}
           type="chars"
-          className="font-inter font-light text-[2.5rem] md:text-[3.5rem] leading-[0.9] md:leading-[0.95] tracking-tight text-paper"
+          className="font-inter font-light text-[2.5rem] md:text-[3.5rem] leading-[0.9] md:leading-[0.95] tracking-tight text-paper capitalize"
         />
 
         <div className="mt-10 md:mt-16 space-y-16 md:space-y-24">
@@ -91,7 +93,7 @@ export function WebsitesSection() {
                   rel="noopener noreferrer"
                   className="ghost-pill mt-8 ghost-pill-sm hover:border-paper"
                 >
-                  Visit Website →
+                  {language === "fr" ? "Visiter le site →" : "Visit Website →"}
                 </a>
               </div>
             </div>

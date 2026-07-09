@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useRef } from "react"
-import { aboutData } from "@/lib/data"
+import { useLanguage } from "@/components/providers/language-context"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
@@ -15,6 +15,8 @@ export function AboutSection() {
   const pinContainerRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLDivElement>(null)
+  const { dictionary } = useLanguage()
+  const { aboutData, heroData } = dictionary
 
   useEffect(() => {
     if (typeof window === "undefined" || !containerRef.current || !pinContainerRef.current || !contentRef.current) return
@@ -103,7 +105,7 @@ export function AboutSection() {
     return () => {
       ctx.revert()
     }
-  }, [])
+  }, [aboutData]) // Re-run when dictionary/paragraphs content changes
 
   return (
     <section
@@ -120,8 +122,8 @@ export function AboutSection() {
           className="container mx-auto max-w-[850px] px-5 md:px-10 flex flex-col items-center justify-center text-center"
         >
           {/* Section Title */}
-          <h2 className="font-inter font-light text-[2.5rem] md:text-[3.5rem] leading-[0.9] md:leading-[0.95] tracking-tight text-paper mb-10 md:mb-14">
-            About
+          <h2 className="font-inter font-light text-[2.5rem] md:text-[3.5rem] leading-[0.9] md:leading-[0.95] tracking-tight text-paper mb-10 md:mb-14 capitalize">
+            {aboutData.title}
           </h2>
 
           {/* Centered paragraphs split into words */}
@@ -152,12 +154,12 @@ export function AboutSection() {
             className="mt-10 md:mt-14 opacity-0 transform translate-y-5"
           >
             <a
-              href="https://rxresu.me/yacine20005/project-a"
+              href={heroData.cta.cv.href}
               target="_blank"
               rel="noopener noreferrer"
               className="ghost-pill"
             >
-              Download CV
+              {heroData.cta.cv.text}
             </a>
           </div>
         </div>

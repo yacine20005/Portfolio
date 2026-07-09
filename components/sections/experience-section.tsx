@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useRef } from "react"
-import { experienceData } from "@/lib/data"
+import { useLanguage } from "@/components/providers/language-context"
 import { TextReveal } from "@/components/ui/text-reveal"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
@@ -12,6 +12,8 @@ if (typeof window !== "undefined") {
 
 export function ExperienceSection() {
   const sectionRef = useRef<HTMLElement>(null)
+  const { dictionary } = useLanguage()
+  const { experienceData } = dictionary
 
   useEffect(() => {
     if (typeof window === "undefined" || !sectionRef.current) return
@@ -42,7 +44,7 @@ export function ExperienceSection() {
       if (anim.scrollTrigger) anim.scrollTrigger.kill()
       anim.kill()
     }
-  }, [])
+  }, [experienceData]) // Re-run if experienceData changes
 
   return (
     <section
@@ -52,9 +54,9 @@ export function ExperienceSection() {
     >
       <div className="container mx-auto max-w-[1078px] px-5 md:px-10">
         <TextReveal
-          text="Experience"
+          text={experienceData.title}
           type="chars"
-          className="font-inter font-light text-[2.5rem] md:text-[3.5rem] leading-[0.9] md:leading-[0.95] tracking-tight text-paper"
+          className="font-inter font-light text-[2.5rem] md:text-[3.5rem] leading-[0.9] md:leading-[0.95] tracking-tight text-paper capitalize"
         />
 
         <div className="mt-10 md:mt-14 space-y-8 max-w-[700px]">
@@ -69,10 +71,10 @@ export function ExperienceSection() {
               <h3 className="text-lg md:text-xl font-inter font-normal text-paper tracking-tight">
                 {exp.title}
               </h3>
-              <p className="text-body-sm text-felt-gray mt-1">
+              <p className="text-body-sm text-felt-gray mt-1 font-semibold">
                 {exp.role}
               </p>
-              <p className="text-base leading-[1.6] text-felt-gray mt-3">
+              <p className="text-base leading-[1.6] text-felt-gray mt-3 font-light">
                 {exp.description}
               </p>
               {exp.link && (

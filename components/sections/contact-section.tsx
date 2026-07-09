@@ -1,11 +1,10 @@
 "use client"
 
 import React, { useEffect, useRef } from "react"
-import { contactData } from "@/lib/data"
+import { useLanguage } from "@/components/providers/language-context"
 import { TextReveal } from "@/components/ui/text-reveal"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-
 import { FaGithub, FaLinkedin } from "react-icons/fa"
 import { MdMail } from "react-icons/md"
 
@@ -21,6 +20,8 @@ if (typeof window !== "undefined") {
 
 export function ContactSection() {
   const containerRef = useRef<HTMLDivElement>(null)
+  const { dictionary } = useLanguage()
+  const { contactData } = dictionary
 
   useEffect(() => {
     if (typeof window === "undefined" || !containerRef.current) return
@@ -49,7 +50,7 @@ export function ContactSection() {
       if (anim.scrollTrigger) anim.scrollTrigger.kill()
       anim.kill()
     }
-  }, [])
+  }, [contactData]) // Re-run if contactData content changes
 
   return (
     <section
@@ -58,9 +59,9 @@ export function ContactSection() {
     >
       <div className="container mx-auto max-w-[1078px] px-5 md:px-10">
         <TextReveal
-          text="Contact"
+          text={contactData.title}
           type="chars"
-          className="font-inter font-light text-[2.5rem] md:text-[3.5rem] leading-[0.9] md:leading-[0.95] tracking-tight text-paper"
+          className="font-inter font-light text-[2.5rem] md:text-[3.5rem] leading-[0.9] md:leading-[0.95] tracking-tight text-paper capitalize"
         />
 
         <TextReveal

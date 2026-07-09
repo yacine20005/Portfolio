@@ -1,11 +1,10 @@
 "use client"
 
 import React, { useEffect, useRef } from "react"
-import { skillsData } from "@/lib/data"
+import { useLanguage } from "@/components/providers/language-context"
 import { TextReveal } from "@/components/ui/text-reveal"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-
 import { TiltCard } from "@/components/ui/tilt-card"
 
 if (typeof window !== "undefined") {
@@ -14,6 +13,8 @@ if (typeof window !== "undefined") {
 
 export function SkillsSection() {
   const sectionRef = useRef<HTMLElement>(null)
+  const { dictionary } = useLanguage()
+  const { skillsData } = dictionary
 
   useEffect(() => {
     if (typeof window === "undefined" || !sectionRef.current) return
@@ -44,7 +45,7 @@ export function SkillsSection() {
       if (anim.scrollTrigger) anim.scrollTrigger.kill()
       anim.kill()
     }
-  }, [])
+  }, [skillsData]) // Re-run if skillsData content changes
 
   return (
     <section
@@ -54,9 +55,9 @@ export function SkillsSection() {
     >
       <div className="container mx-auto max-w-[1078px] px-5 md:px-10">
         <TextReveal
-          text="Skills"
+          text={skillsData.title}
           type="chars"
-          className="font-inter font-light text-[2.5rem] md:text-[3.5rem] leading-[0.9] md:leading-[0.95] tracking-tight text-paper"
+          className="font-inter font-light text-[2.5rem] md:text-[3.5rem] leading-[0.9] md:leading-[0.95] tracking-tight text-paper capitalize"
         />
 
         <div className="mt-10 md:mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

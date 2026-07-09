@@ -252,7 +252,7 @@ export const featuredProjectsData: FeaturedProjectsData = {
         {
             title: 'Backpack Hero',
             tagline: 'Inventory management meets strategic roguelike dungeon crawling.',
-            tags: ['Java', 'Zen5 Graphics', 'MVC', 'OOP Design'],
+            tags: ['Java', 'Zen Graphics', 'MVC', 'OOP Design'],
             icon: React.createElement(Backpack, { className: 'h-7 w-7 text-white' }),
             link: '/backpack-hero',
             cta: 'Discover Backpack Hero',

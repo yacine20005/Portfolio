@@ -22,10 +22,150 @@ import { GiMoonOrbit } from "react-icons/gi"
 import { FaGithub } from "react-icons/fa"
 import { ShaderAnimation } from "@/components/ui/shader-lines"
 import { ProjectPreloader } from "@/components/ui/project-preloader"
+import { useLanguage } from "@/components/providers/language-context"
+
+const content = {
+  fr: {
+    preloader: "Orbit Market",
+    hero: {
+      subtitle: "Traqueur de marchands et d'état du monde multi-jeux",
+      desc: "Une élégante application compagnon mobile pour Destiny 2 et Warframe. Suivez les inventaires des marchands actifs, surveillez l'état du monde en temps réel et analysez les statistiques d'armes via un tableau de bord unifié.",
+      ctaSource: "Code Source",
+      ctaView: "Voir les fonctionnalités"
+    },
+    specs: {
+      frontend: { label: "STACK FRONTEND", val: "React Native / Expo" },
+      backend: { label: "STACK BACKEND", val: "FastAPI (Python)" },
+      apis: { label: "APIS EXTERNES", val: "API Bungie.net & Warframe" },
+      db: { label: "BASE DE DONNÉES", val: "Cache SQLite local" }
+    },
+    features: {
+      title: "Fonctionnalités en Action",
+      xur: {
+        title: "Traqueur de Xûr en temps réel",
+        desc: "Xûr, l'Agent des Neuf, arrive chaque week-end avec des équipements exotiques. Orbit Market suit son inventaire précis dès son apparition, offrant une transparence totale sur les objets et leurs coûts.",
+        bullet1: "Décryptage des statistiques : décortiquez la répartition des statistiques et les perks d'armes/armures pour repérer instantanément les god-rolls.",
+        bullet2: "Détail des coûts en matériaux : consultez les monnaies requises (Éclats légendaires, Lumen, Cryptages exotiques) pour vos achats.",
+        bullet3: "Mise à jour automatique : rafraîchissements automatiques dès que les serveurs Bungie basculent sur le planning hebdomadaire de Xûr.",
+        metricsTitle: "Métriques de Xûr en direct",
+        locLabel: "Localisation",
+        locVal: "Crique sinueuse, ZME",
+        exoticLabel: "Arme active",
+        exoticVal: "Coup de soleil (Revolver)",
+        hunterLabel: "Exotique Chasseur",
+        hunterVal: "Rapière céleste (Casque)",
+        titanLabel: "Exotique Titan",
+        titanVal: "Cœur de la Lumière intime (Torse)",
+        warlockLabel: "Exotique Arcaniste",
+        warlockVal: "Aspect ophidien (Gantelets)"
+      },
+      vendors: {
+        title: "Roster des marchands Destiny 2",
+        desc: "En plus de Xûr, l'application héberge l'état des inventaires d'autres marchands majeurs de la Tour et des destinations. Gardez un œil sur les contrats hebdomadaires, les armes en rotation et les matériaux directement depuis l'application.",
+        bullet1: "Support des marchands de la Tour : consultez les inventaires d'Ada-1 (mods d'armure), Banshee-44 (armes), Saint-14 (Jugement d'Osiris) et du Seigneur Shaxx.",
+        bullet2: "Génération de Manifest automatique : le backend analyse le Manifest de Bungie pour mapper efficacement les coordonnées, noms et images des marchands.",
+        statusTitle: "Statut du pipeline de données",
+        adaStatus: "Généré et Validé",
+        bansheeStatus: "Généré et Validé",
+        saintStatus: "Actif le week-end"
+      },
+      warframe: {
+        title: "État du monde Warframe",
+        desc: "Surveillez l'univers dynamique de Warframe. Suivez les alertes actives, les cycles de monde ouvert, la progression des invasions et les prix du marché communautaire sur un seul et unique tableau de bord.",
+        bullet1: "Cycles terrestres dynamiques : suivi en temps réel du cycle jour/nuit de la Terre et de Cetus/Orb Vallis.",
+        bullet2: "Alertes & Invasions : listes instantanées des alertes spéciales (Réacteurs, Catalyseurs Orokin) et de la progression des factions.",
+        bullet3: "Prix du marché : connexion aux API communautaires pour afficher la valeur d'échange en Platines des ensembles Prime et mods.",
+        mockTitle: "Widget d'état du monde",
+        cetusLabel: "Cetus (Terre)",
+        cetusVal: "Jour (1h 14m restants)",
+        vallisLabel: "Orb Vallis (Vénus)",
+        vallisVal: "Chaud (4m restants)",
+        invasionLabel: "Invasions de factions",
+        invasionVal: "Grineer vs Corpus actif",
+        lotusLabel: "Cadeaux de Lotus",
+        lotusVal: "Alerte Catalyseur Orokin"
+      }
+    },
+    cta: {
+      title: "Contribuer au Projet",
+      desc: "Orbit Market est un outil open-source. Explorez le code sur GitHub ou mettez une étoile pour soutenir son développement actif.",
+      star: "Étoiler sur GitHub"
+    }
+  },
+  en: {
+    preloader: "Orbit Market",
+    hero: {
+      subtitle: "Multi-Game Vendor & World State Tracker",
+      desc: "An elegant mobile companion application for Destiny 2 and Warframe. Track active vendor inventories, monitor real-time world states, and analyze weapon rolls through a fast and consolidated dashboard.",
+      ctaSource: "View Source",
+      ctaView: "View Features"
+    },
+    specs: {
+      frontend: { label: "FRONTEND STACK", val: "React Native / Expo" },
+      backend: { label: "BACKEND STACK", val: "FastAPI (Python)" },
+      apis: { label: "EXTERNAL APIS", val: "Bungie.net & Warframe API" },
+      db: { label: "LOCAL DATABASE", val: "SQLite Manifest Cache" }
+    },
+    features: {
+      title: "Companion Features in Action",
+      xur: {
+        title: "Real‑Time Xûr Inventory Tracker",
+        desc: "Xûr, the Agent of the Nine, arrives every weekend with a rotating selection of exotic gear. Orbit Market tracks his exact inventory details the moment he enters the game world, providing full transparency on item availability and costs.",
+        bullet1: "Perk & Roll Decryption: Break down specific stat distributions and perk descriptions on weapons and armor, helping players spot god-rolls instantly.",
+        bullet2: "Material Cost Breakdown: Easily see required materials (Legendary Shards, Glimmer, Exotic Ciphers) needed for weekly purchases.",
+        bullet3: "Automatic Weekly Sync: Seamless inventory refreshes occur immediately as the Bungie servers transition into Xûr's weekly schedule.",
+        metricsTitle: "Live Tracking Metrics",
+        locLabel: "Weekly Location",
+        locVal: "Winding Cove, EDZ",
+        exoticLabel: "Active Weapon",
+        exoticVal: "Sunshot (Hand Cannon)",
+        hunterLabel: "Hunter Exotic",
+        hunterVal: "Celestial Nighthawk (Helmet)",
+        titanLabel: "Titan Exotic",
+        titanVal: "Heart of Inmost Light (Chest)",
+        warlockLabel: "Warlock Exotic",
+        warlockVal: "Ophidian Aspect (Gauntlets)"
+      },
+      vendors: {
+        title: "Destiny 2 Vendor Roster",
+        desc: "Beyond Xûr, the application will host inventory states for other key Tower and destinations vendors. Keep tabs on weekly bounties, rotating weapon rolls, and crafting materials directly from the app.",
+        bullet1: "Tower Vendor Support: Read active inventories for Ada-1 (armor mods), Banshee-44 (weapons), Saint-14 (Trials), and Lord Shaxx.",
+        bullet2: "Automatic Manifest Seeding: Backend parses Bungie's massive Manifest database to map vendor coordinates, names, and images efficiently.",
+        statusTitle: "Vendor Pipeline Status",
+        adaStatus: "Seeded & Validated",
+        bansheeStatus: "Seeded & Validated",
+        saintStatus: "Active on Weekends"
+      },
+      warframe: {
+        title: "Warframe World State Dashboard",
+        desc: "Monitor Warframe's dynamic universe. Track active alerts, open-world cycles, invasion milestones, and community market pricing lists in a consolidated, cross-game workspace.",
+        bullet1: "Dynamic Earth Cycles: Real-time track of Earth's Day/Night cycles and Cetus/Vallis open-world timer offsets.",
+        bullet2: "Alerts & Invasions: Instant listings of active alerts (Orkin Reactors, Catalysts) and faction invasion progress.",
+        bullet3: "Market Price Tracking: Connects to Warframe's ecosystem APIs to display current trade values for prime sets and mods.",
+        mockTitle: "World State Mock",
+        cetusLabel: "Cetus (Earth)",
+        cetusVal: "Day (1h 14m left)",
+        vallisLabel: "Orb Vallis (Venus)",
+        vallisVal: "Warm (4m left)",
+        invasionLabel: "Faction Invasions",
+        invasionVal: "Grineer vs Corpus Active",
+        lotusLabel: "Lotus Gifts",
+        lotusVal: "Orokin Catalyst Alert"
+      }
+    },
+    cta: {
+      title: "Get Involved",
+      desc: "Orbit Market is an open-source companion tracker. Explore the codebase on GitHub or star the project to support its active development.",
+      star: "Star on GitHub"
+    }
+  }
+}
 
 export default function OrbitMarketPage() {
   const [loading, setLoading] = useState(true)
   const [contentVisible, setContentVisible] = useState(false)
+  const { language } = useLanguage()
+  const t = content[language]
 
   return (
     <div className="min-h-screen bg-obsidian text-paper overflow-hidden theme-orbit-market">
@@ -33,7 +173,7 @@ export default function OrbitMarketPage() {
         <ProjectPreloader
           icon={<GiMoonOrbit />}
           accentColor="rgb(96, 165, 250)"
-          title="Orbit Market"
+          title={t.preloader}
           onReveal={() => setContentVisible(true)}
           onComplete={() => setLoading(false)}
         />
@@ -57,16 +197,16 @@ export default function OrbitMarketPage() {
                 Orbit Market
               </h1>
               <h2 className="text-lg md:text-2xl text-blue-300/80 font-inter font-normal max-w-2xl mx-auto">
-                Multi-Game Vendor & World State Tracker
+                {t.hero.subtitle}
               </h2>
               <p className="text-base md:text-lg text-felt-gray max-w-xl mx-auto mt-6 leading-[1.6]">
-                An elegant mobile companion application for Destiny 2 and Warframe. Track active vendor inventories, monitor real-time world states, and analyze weapon rolls through a fast and consolidated dashboard.
+                {t.hero.desc}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
                 <a href="https://github.com/yacine20005/Orbit-Market" target="_blank" rel="noopener noreferrer" className="ghost-pill">
-                  <FaGithub className="h-4 w-4" /> View Source
+                  <FaGithub className="h-4 w-4" /> {t.hero.ctaSource}
                 </a>
-                <a href="#features" className="ghost-pill">View Features</a>
+                <a href="#features" className="ghost-pill">{t.hero.ctaView}</a>
               </div>
             </div>
           </section>
@@ -76,10 +216,10 @@ export default function OrbitMarketPage() {
             <div className="container mx-auto max-w-[1078px] px-5 md:px-10">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-left">
                 {[
-                  { label: "FRONTEND STACK", value: "React Native / Expo", icon: Smartphone },
-                  { label: "BACKEND STACK", value: "FastAPI (Python)", icon: Server },
-                  { label: "EXTERNAL APIS", value: "Bungie.net & Warframe API", icon: Globe },
-                  { label: "LOCAL DATABASE", value: "SQLite Manifest Cache", icon: Database },
+                  { label: t.specs.frontend.label, value: t.specs.frontend.val, icon: Smartphone },
+                  { label: t.specs.backend.label, value: t.specs.backend.val, icon: Server },
+                  { label: t.specs.apis.label, value: t.specs.apis.val, icon: Globe },
+                  { label: t.specs.db.label, value: t.specs.db.val, icon: Database },
                 ].map((spec, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <spec.icon className="h-5 w-5 text-blue-400/60 mt-0.5 shrink-0" />
@@ -99,7 +239,7 @@ export default function OrbitMarketPage() {
               
               <div className="text-center max-w-2xl mx-auto mb-20">
                 <h2 className="font-inter font-light text-[2.5rem] md:text-[3.5rem] leading-[0.9] tracking-tight text-paper">
-                  Companion Features in Action
+                  {t.features.title}
                 </h2>
               </div>
 
@@ -109,39 +249,41 @@ export default function OrbitMarketPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                   <div className="lg:col-span-7 space-y-4">
                     <h3 className="font-inter font-light text-[1.8rem] md:text-[2.2rem] text-paper leading-[1.1]">
-                      Real‑Time Xûr Inventory Tracker
+                      {t.features.xur.title}
                     </h3>
                     <p className="text-base text-felt-gray leading-[1.6]">
-                      Xûr, the Agent of the Nine, arrives every weekend with a rotating selection of exotic gear. Orbit Market tracks his exact inventory details the moment he enters the game world, providing full transparency on item availability and costs.
+                      {t.features.xur.desc}
                     </p>
                     <div className="pt-2">
                       <ul className="space-y-2.5 text-sm text-felt-gray">
                         <li className="flex items-start gap-2.5">
                           <Check className="h-4.5 w-4.5 text-blue-400 shrink-0 mt-0.5" />
-                          <span><strong>Perk & Roll Decryption:</strong> Break down specific stat distributions and perk descriptions on weapons and armor, helping players spot god-rolls instantly.</span>
+                          <span>{t.features.xur.bullet1}</span>
                         </li>
                         <li className="flex items-start gap-2.5">
                           <Check className="h-4.5 w-4.5 text-blue-400 shrink-0 mt-0.5" />
-                          <span><strong>Material Cost Breakdown:</strong> Easily see required materials (Legendary Shards, Glimmer, Exotic Ciphers) needed for weekly purchases.</span>
+                          <span>{t.features.xur.bullet2}</span>
                         </li>
                         <li className="flex items-start gap-2.5">
                           <Check className="h-4.5 w-4.5 text-blue-400 shrink-0 mt-0.5" />
-                          <span><strong>Automatic Weekly Sync:</strong> Seamless inventory refreshes occur immediately as the Bungie servers transition into Xûr's weekly schedule.</span>
+                          <span>{t.features.xur.bullet3}</span>
                         </li>
                       </ul>
                     </div>
                   </div>
                   <div className="lg:col-span-5 bg-white/[0.01] border border-white/5 rounded-2xl p-6 lg:p-8">
-                    <span className="text-[10px] font-mono text-white/40 block tracking-widest uppercase mb-4">Live Tracking Metrics</span>
+                    <span className="text-[10px] font-mono text-white/40 block tracking-widest uppercase mb-4">{t.features.xur.metricsTitle}</span>
                     <div className="space-y-3 font-mono text-xs">
                       {[
-                        { title: "Weekly Location", value: "Winding Cove, EDZ" },
-                        { title: "Active Exotic Weapon", value: "Gjallarhorn (Rocket Launcher)" },
-                        { title: "Armor Inventory", value: "Hunter, Titan, and Warlock Sets Loaded" },
+                        { title: t.features.xur.locLabel, value: t.features.xur.locVal },
+                        { title: t.features.xur.exoticLabel, value: t.features.xur.exoticVal },
+                        { title: t.features.xur.hunterLabel, value: t.features.xur.hunterVal },
+                        { title: t.features.xur.titanLabel, value: t.features.xur.titanVal },
+                        { title: t.features.xur.warlockLabel, value: t.features.xur.warlockVal },
                       ].map((item, idx) => (
-                        <div key={idx} className="bg-[#141417] p-3 rounded-lg border border-white/5 flex justify-between items-center">
-                          <span className="text-white/60">{item.title}</span>
-                          <span className="text-blue-300 font-semibold text-[10px]">{item.value}</span>
+                        <div key={idx} className="bg-[#141417] p-3 rounded-lg border border-white/5 flex justify-between items-center gap-4">
+                          <span className="text-white/60 shrink-0">{item.title}</span>
+                          <span className="text-blue-300 font-semibold text-[10px] text-right truncate">{item.value}</span>
                         </div>
                       ))}
                     </div>
@@ -152,31 +294,31 @@ export default function OrbitMarketPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                   <div className="lg:col-span-5 lg:order-2 space-y-4">
                     <h3 className="font-inter font-light text-[1.8rem] md:text-[2.2rem] text-paper leading-[1.1]">
-                      Destiny 2 Vendor Roster
+                      {t.features.vendors.title}
                     </h3>
                     <p className="text-base text-felt-gray leading-[1.6]">
-                      Beyond Xûr, the application will host inventory states for other key Tower and destinations vendors. Keep tabs on weekly bounties, rotating weapon rolls, and crafting materials directly from the app.
+                      {t.features.vendors.desc}
                     </p>
                     <div className="pt-2">
                       <ul className="space-y-2.5 text-sm text-felt-gray">
                         <li className="flex items-start gap-2.5">
                           <Check className="h-4.5 w-4.5 text-blue-400 shrink-0 mt-0.5" />
-                          <span><strong>Tower Vendor Support:</strong> Read active inventories for Ada-1 (armor mods), Banshee-44 (weapons), Saint-14 (Trials), and Lord Shaxx.</span>
+                          <span>{t.features.vendors.bullet1}</span>
                         </li>
                         <li className="flex items-start gap-2.5">
                           <Check className="h-4.5 w-4.5 text-blue-400 shrink-0 mt-0.5" />
-                          <span><strong>Automatic Manifest Seeding:</strong> Backend parses Bungie's massive Manifest database to map vendor coordinates, names, and images efficiently.</span>
+                          <span>{t.features.vendors.bullet2}</span>
                         </li>
                       </ul>
                     </div>
                   </div>
                   <div className="lg:col-span-5 lg:order-1 bg-white/[0.01] border border-white/5 rounded-2xl p-6 lg:p-8">
-                    <span className="text-[10px] font-mono text-white/40 block tracking-widest uppercase mb-4">Vendor Pipeline Status</span>
+                    <span className="text-[10px] font-mono text-white/40 block tracking-widest uppercase mb-4">{t.features.vendors.statusTitle}</span>
                     <div className="space-y-3 font-mono text-xs">
                       {[
-                        { name: "Ada-1 (Armor Mods)", status: "Seeded & Validated" },
-                        { name: "Banshee-44 (Weapons)", status: "Seeded & Validated" },
-                        { name: "Saint-14 (Trials Gear)", status: "Active on Weekends" },
+                        { name: "Ada-1 (Armor Mods)", status: t.features.vendors.adaStatus },
+                        { name: "Banshee-44 (Weapons)", status: t.features.vendors.bansheeStatus },
+                        { name: "Saint-14 (Trials Gear)", status: t.features.vendors.saintStatus },
                       ].map((item, idx) => (
                         <div key={idx} className="bg-[#141417] p-3 rounded-lg border border-white/5 flex justify-between items-center">
                           <span className="text-white/60">{item.name}</span>
@@ -191,46 +333,46 @@ export default function OrbitMarketPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                   <div className="lg:col-span-7 space-y-4">
                     <h3 className="font-inter font-light text-[1.8rem] md:text-[2.2rem] text-paper leading-[1.1]">
-                      Warframe World State Dashboard
+                      {t.features.warframe.title}
                     </h3>
                     <p className="text-base text-felt-gray leading-[1.6]">
-                      Monitor Warframe's dynamic universe. Track active alerts, open-world cycles, invasion milestones, and community market pricing lists in a consolidated, cross-game workspace.
+                      {t.features.warframe.desc}
                     </p>
                     <div className="pt-2">
                       <ul className="space-y-2.5 text-sm text-felt-gray">
                         <li className="flex items-start gap-2.5">
                           <Check className="h-4.5 w-4.5 text-blue-400 shrink-0 mt-0.5" />
-                          <span><strong>Dynamic Earth Cycles:</strong> Real-time track of Earth's Day/Night cycles and Cetus/Vallis open-world timer offsets.</span>
+                          <span>{t.features.warframe.bullet1}</span>
                         </li>
                         <li className="flex items-start gap-2.5">
                           <Check className="h-4.5 w-4.5 text-blue-400 shrink-0 mt-0.5" />
-                          <span><strong>Alerts & Invasions:</strong> Instant listings of active alerts (Orkin Reactors, Catalysts) and faction invasion progress.</span>
+                          <span>{t.features.warframe.bullet2}</span>
                         </li>
                         <li className="flex items-start gap-2.5">
                           <Check className="h-4.5 w-4.5 text-blue-400 shrink-0 mt-0.5" />
-                          <span><strong>Market Price Tracking:</strong> Connects to Warframe's ecosystem APIs to display current trade values for prime sets and mods.</span>
+                          <span>{t.features.warframe.bullet3}</span>
                         </li>
                       </ul>
                     </div>
                   </div>
                   <div className="lg:col-span-5 bg-white/[0.01] border border-white/5 rounded-2xl p-6 lg:p-8">
-                    <span className="text-[10px] font-mono text-white/40 block tracking-widest uppercase mb-4">World State Mock</span>
+                    <span className="text-[10px] font-mono text-white/40 block tracking-widest uppercase mb-4">{t.features.warframe.mockTitle}</span>
                     <div className="grid grid-cols-2 gap-3 text-center text-xs font-mono text-white/60">
                       <div className="p-3 bg-[#141417] border border-white/5 rounded-xl flex flex-col items-center gap-1">
-                        <span>🌅 Cetus (Earth)</span>
-                        <span className="text-[9px] text-blue-300 font-semibold">Day (1h 14m left)</span>
+                        <span>🌅 {t.features.warframe.cetusLabel}</span>
+                        <span className="text-[9px] text-blue-300 font-semibold">{t.features.warframe.cetusVal}</span>
                       </div>
                       <div className="p-3 bg-[#141417] border border-white/5 rounded-xl flex flex-col items-center gap-1">
-                        <span>🌌 Orb Vallis (Venus)</span>
-                        <span className="text-[9px] text-blue-300 font-semibold">Warm (4m left)</span>
+                        <span>🌌 {t.features.warframe.vallisLabel}</span>
+                        <span className="text-[9px] text-blue-300 font-semibold">{t.features.warframe.vallisVal}</span>
                       </div>
                       <div className="p-3 bg-[#141417] border border-white/5 rounded-xl flex flex-col items-center gap-1">
-                        <span>🛡️ Faction Invasions</span>
-                        <span className="text-[9px] text-blue-300 font-semibold">Grineer vs Corpus Active</span>
+                        <span>🛡️ {t.features.warframe.invasionLabel}</span>
+                        <span className="text-[9px] text-blue-300 font-semibold">{t.features.warframe.invasionVal}</span>
                       </div>
                       <div className="p-3 bg-[#141417] border border-white/5 rounded-xl flex flex-col items-center gap-1">
-                        <span>🎁 Lotus Gifts</span>
-                        <span className="text-[9px] text-blue-300 font-semibold">Orokin Catalyst Alert</span>
+                        <span>🎁 {t.features.warframe.lotusLabel}</span>
+                        <span className="text-[9px] text-blue-300 font-semibold">{t.features.warframe.lotusVal}</span>
                       </div>
                     </div>
                   </div>
@@ -249,17 +391,34 @@ export default function OrbitMarketPage() {
                 {/* Tech Stack Details */}
                 <div className="lg:col-span-5 space-y-6">
                   <h2 className="font-inter font-light text-[2.5rem] md:text-[3rem] leading-[0.95] tracking-tight text-paper">
-                    Under the hood: multi-game engine
+                    {language === "fr" ? "Sous le capot : moteur multi-jeux" : "Under the hood: multi-game engine"}
                   </h2>
                   <p className="text-base text-felt-gray leading-[1.6]">
-                    Building a cross-game tracker presents a unique scaling challenge due to the massive volume of game metadata. Orbit Market resolves this by caching data intelligently at the api level.
+                    {language === "fr" 
+                      ? "Construire un traqueur multi-jeux présente un défi d'évolutivité unique en raison du volume massif de métadonnées de jeu. Orbit Market résout ce problème en mettant en cache les données intelligemment au niveau de l'API."
+                      : "Building a cross-game tracker presents a unique scaling challenge due to the massive volume of game metadata. Orbit Market resolves this by caching data intelligently at the api level."}
                   </p>
                   
                   <div className="space-y-4">
                     {[
-                      { title: "FastAPI Backend API (Python)", desc: "Handles high-performance data operations. Connects to Bungie and Warframe endpoints concurrently, parses large JSON arrays, and caches responses to avoid API throttling." },
-                      { title: "Bungie Manifest (SQLite Cache)", desc: "Instead of requesting Bungie server assets on every single click, our backend caches the massive static Destiny 2 Manifest inside a local SQLite database for instantaneous queries." },
-                      { title: "Modular Expo Navigation", desc: "Designed with React Navigation to handle multiple deep stack states, enabling fluid transitions between the Destiny 2 vendor sheets and Warframe dashboards." }
+                      { 
+                        title: language === "fr" ? "Backend FastAPI (Python)" : "FastAPI Backend API (Python)", 
+                        desc: language === "fr"
+                          ? "Gère les opérations de données haute performance. Se connecte simultanément aux points de terminaison Bungie et Warframe, analyse les réponses et met en cache pour éviter le bridage de l'API."
+                          : "Handles high-performance data operations. Connects to Bungie and Warframe endpoints concurrently, parses large JSON arrays, and caches responses to avoid API throttling." 
+                      },
+                      { 
+                        title: language === "fr" ? "Manifest Bungie (Cache SQLite)" : "Bungie Manifest (SQLite Cache)", 
+                        desc: language === "fr"
+                          ? "Au lieu de charger les assets de Bungie à chaque clic, notre backend stocke le Manifest de Destiny 2 dans une base SQLite locale pour exécuter des requêtes instantanées."
+                          : "Instead of requesting Bungie server assets on every single click, our backend caches the massive static Destiny 2 Manifest inside a local SQLite database for instantaneous queries." 
+                      },
+                      { 
+                        title: language === "fr" ? "Navigation Expo modulaire" : "Modular Expo Navigation", 
+                        desc: language === "fr"
+                          ? "Conçu avec React Navigation pour gérer de multiples états d'écrans imbriqués, permettant une transition fluide entre les marchands Destiny 2 et l'état Warframe."
+                          : "Designed with React Navigation to handle multiple deep stack states, enabling fluid transitions between the Destiny 2 vendor sheets and Warframe dashboards." 
+                      }
                     ].map((detail, idx) => (
                       <div key={idx} className="border-l border-white/10 pl-4 py-1">
                         <div className="text-sm font-semibold text-paper">{detail.title}</div>
@@ -309,7 +468,7 @@ export default function OrbitMarketPage() {
 
                       {/* Bridge */}
                       <div className="flex justify-center text-white/30">
-                        <span>▼ Periodically synced against</span>
+                        <span>▼ Automatically pushes to</span>
                       </div>
 
                       {/* External APIs */}
@@ -335,14 +494,14 @@ export default function OrbitMarketPage() {
             <div className="container mx-auto max-w-[1078px] px-5 md:px-10 text-center">
               <Sparkles className="h-8 w-8 mx-auto text-blue-400 mb-6 animate-pulse" />
               <h2 className="font-inter font-light text-[2.5rem] md:text-[3.5rem] leading-[0.9] tracking-tight text-paper">
-                Get Involved
+                {t.cta.title}
               </h2>
               <p className="text-base md:text-lg text-felt-gray max-w-2xl mx-auto mt-6 leading-[1.6]">
-                Orbit Market is an open-source companion tracker. Explore the codebase on GitHub, suggest new features, or star the project to support its active development.
+                {t.cta.desc}
               </p>
               <div className="flex flex-wrap justify-center gap-4 mt-8">
                 <a href="https://github.com/yacine20005/Orbit-Market" target="_blank" rel="noopener noreferrer" className="ghost-pill">
-                  <FaGithub className="h-4 w-4" /> Star on GitHub
+                  <FaGithub className="h-4 w-4" /> {t.cta.star}
                 </a>
               </div>
             </div>

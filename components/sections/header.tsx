@@ -4,12 +4,15 @@ import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll"
-import { navLinks } from "@/lib/data"
+import { useLanguage } from "@/components/providers/language-context"
+import { LanguageToggle } from "@/components/ui/language-toggle"
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const { scrollToSection } = useSmoothScroll()
+  const { dictionary, language } = useLanguage()
+  const { navLinks } = dictionary
   const pathname = usePathname()
   const isHomePage = pathname === "/"
 
@@ -82,9 +85,10 @@ export function Header() {
               ))
             ) : (
               <Link href="/" className={linkClass}>
-                ← Back
+                {language === "fr" ? "← Retour" : "← Back"}
               </Link>
             )}
+            <LanguageToggle />
           </nav>
 
           {/* Hamburger */}
@@ -140,17 +144,20 @@ export function Header() {
             href="/"
             className="text-2xl font-inter font-light text-felt-gray hover:text-paper transition-colors duration-[0.4s] ease"
           >
-            ← Back to Portfolio
+            {language === "fr" ? "← Retour au Portfolio" : "← Back to Portfolio"}
           </Link>
         )}
 
-        {/* Mobile contact link */}
-        <a
-          href="mailto:ya.hamadouche@gmail.com"
-          className="ghost-pill mt-4"
-        >
-          Get in touch
-        </a>
+        {/* Mobile contact link & toggle */}
+        <div className="flex flex-col items-center gap-6 mt-4">
+          <a
+            href="mailto:ya.hamadouche@gmail.com"
+            className="ghost-pill"
+          >
+            {language === "fr" ? "Me contacter" : "Get in touch"}
+          </a>
+          <LanguageToggle />
+        </div>
       </div>
     </>
   )

@@ -2,11 +2,10 @@
 
 import React, { useEffect, useRef } from "react"
 import Link from "next/link"
-import { featuredProjectsData } from "@/lib/data"
+import { useLanguage } from "@/components/providers/language-context"
 import { TextReveal } from "@/components/ui/text-reveal"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-
 import { TiltCard } from "@/components/ui/tilt-card"
 
 if (typeof window !== "undefined") {
@@ -15,6 +14,8 @@ if (typeof window !== "undefined") {
 
 export function FeaturedProjectsCarousel() {
   const sectionRef = useRef<HTMLElement>(null)
+  const { dictionary } = useLanguage()
+  const { featuredProjectsData } = dictionary
 
   useEffect(() => {
     if (typeof window === "undefined" || !sectionRef.current) return
@@ -45,7 +46,7 @@ export function FeaturedProjectsCarousel() {
       if (anim.scrollTrigger) anim.scrollTrigger.kill()
       anim.kill()
     }
-  }, [])
+  }, [featuredProjectsData]) // Re-run if featuredProjectsData content changes
 
   return (
     <section
@@ -55,9 +56,9 @@ export function FeaturedProjectsCarousel() {
     >
       <div className="container mx-auto max-w-[1078px] px-5 md:px-10">
         <TextReveal
-          text="Featured"
+          text={featuredProjectsData.title}
           type="chars"
-          className="font-inter font-light text-[2.5rem] md:text-[3.5rem] leading-[0.9] md:leading-[0.95] tracking-tight text-paper"
+          className="font-inter font-light text-[2.5rem] md:text-[3.5rem] leading-[0.9] md:leading-[0.95] tracking-tight text-paper capitalize"
         />
 
         <div className="mt-10 md:mt-14 space-y-6">
@@ -97,7 +98,7 @@ export function FeaturedProjectsCarousel() {
                   </div>
 
                   <div className="flex flex-wrap gap-2 mt-2 md:mt-0 shrink-0">
-                    {project.tags.slice(0, 3).map((tag, ti) => (
+                    {project.tags.slice(0, 4).map((tag, ti) => (
                       <span
                         key={ti}
                         className="inline-block px-3 py-1 text-caption font-inter font-normal border rounded-pill transition-colors duration-[0.4s] ease"
