@@ -7,8 +7,8 @@ export const navLinks: NavLink[] = [
     { name: 'About', href: '#about', id: 'about' },
     { name: 'Skills', href: '#skills', id: 'skills' },
     { name: 'Featured', href: '#featured', id: 'featured' },
-    { name: 'Projects', href: '#projects', id: 'projects' },
     { name: 'Websites', href: '#websites', id: 'websites' },
+    { name: 'Projects', href: '#projects', id: 'projects' },
     { name: 'Experience', href: '#experience', id: 'experience' },
     { name: 'Contact', href: '#contact', id: 'contact' },
 ];
@@ -102,13 +102,23 @@ export const experienceData: ExperienceData = {
     subtitle: 'My academic journey and professional experiences.',
     experiences: [
         {
-            date: 'Since June 2023',
-            title: 'Self-employed',
-            role: 'Freelancer',
-            description: 'Development and deployment of websites for associations and businesses, including \'Aogiri\' - a website for an esports association using Next.js, TypeScript, Tailwind CSS and Sanity CMS. Client needs analysis, proposal of technical solutions and client prospecting management.',
+            date: 'September 2026 - August 2028',
+            title: 'Orange',
+            role: 'DevOps & Cloud Automation Engineer (Apprenticeship)',
+            description: 'Joined the Technical Directorate (DTOF) in the Cloud Platforms division. Focuses on exploring, integrating, and deploying observability (Prometheus, ELK, OpenTelemetry) and Infrastructure-as-Code solutions for on-premise cloud infrastructure. Responsible for developing automation services in Python/Go, improving GitLab CI/CD pipelines, and integrating AI chatbots to streamline development workflows.',
         },
         {
-            date: 'Since September 2023',
+            date: 'Since June 2023',
+            title: 'Freelance & Partner',
+            role: 'Freelance Web Engineer & AI Lead (Lunis Consulting)',
+            description: 'Full-stack web development specializing in Next.js, React, TypeScript, and Tailwind CSS. Partnered with Lunis Consulting for web development initiatives and leading their AI solutions offer: designing and deploying custom RAG systems, LLM integrations, and intelligent AI agents for enterprise clients.',
+            link: {
+                text: 'Lunis Consulting',
+                href: 'https://lunis.io/'
+            }
+        },
+        {
+            date: 'September 2023 - July 2026',
             title: 'Bachelor\'s Degree in Mathematics/Computer Science',
             role: 'Gustave Eiffel University - Champs-sur-Marne',
             description: 'Academic training focused on mathematics and computer science, including projects such as \'Nuage\' - a video game management platform developed with Python/Flask, PostgreSQL and HTML/CSS, as well as \'TPC\' - a compiler for a C-like language targeting x86-64 assembly in C/Flex/Bison.',

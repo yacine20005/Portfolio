@@ -6,6 +6,15 @@ import { TextReveal } from "@/components/ui/text-reveal"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
+import { FaGithub, FaLinkedin } from "react-icons/fa"
+import { MdMail } from "react-icons/md"
+
+const iconMap: Record<string, React.ComponentType<any>> = {
+  Email: MdMail,
+  GitHub: FaGithub,
+  LinkedIn: FaLinkedin,
+}
+
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger)
 }
@@ -66,17 +75,21 @@ export function ContactSection() {
           ref={containerRef}
           className="mt-8 flex flex-wrap gap-4 opacity-0"
         >
-          {contactData.contacts.map((contact, i) => (
-            <a
-              key={i}
-              href={contact.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ghost-pill"
-            >
-              {contact.buttonText}
-            </a>
-          ))}
+          {contactData.contacts.map((contact, i) => {
+            const IconComponent = iconMap[contact.name]
+            return (
+              <a
+                key={i}
+                href={contact.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ghost-pill inline-flex items-center gap-2"
+              >
+                {IconComponent && <IconComponent className="h-4 w-4" />}
+                {contact.buttonText}
+              </a>
+            )
+          })}
         </div>
       </div>
     </section>

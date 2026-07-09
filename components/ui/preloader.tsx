@@ -79,8 +79,10 @@ export function Preloader({ onComplete }: PreloaderProps) {
       clearInterval(scrollInterval)
     }, 200)
 
-    // Add lenis-stopped to html element to disable scrolling while loading
-    document.documentElement.classList.add("lenis-stopped")
+    // Add lenis-stopped to html element after a small delay to avoid Next.js hydration overwriting it
+    const timer = setTimeout(() => {
+      document.documentElement.classList.add("lenis-stopped")
+    }, 50)
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
@@ -206,6 +208,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
       ctx.revert()
       clearInterval(scrollInterval)
       clearTimeout(scrollTimeout)
+      clearTimeout(timer)
       document.documentElement.classList.remove("lenis-stopped")
     }
   }, [mounted])

@@ -75,6 +75,16 @@ export function ExperienceSection() {
               <p className="text-base leading-[1.6] text-felt-gray mt-3">
                 {exp.description}
               </p>
+              {exp.link && (
+                <a
+                  href={exp.link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-[13px] font-inter font-normal text-felt-gray hover:text-paper transition-colors duration-[0.4s] ease mt-2 underline decoration-white/20 hover:decoration-white/60"
+                >
+                  {exp.link.text} →
+                </a>
+              )}
             </div>
           ))}
         </div>

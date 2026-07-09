@@ -62,6 +62,10 @@ export interface Experience {
     title: string;
     role: string;
     description: string;
+    link?: {
+        text: string;
+        href: string;
+    };
 }
 
 export interface ExperienceData {

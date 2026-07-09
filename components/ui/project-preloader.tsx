@@ -36,8 +36,10 @@ export function ProjectPreloader({ icon, accentColor, title, onComplete, onRevea
   useEffect(() => {
     if (!mounted) return
 
-    // Disable page scrolling while animating
-    document.documentElement.classList.add("lenis-stopped")
+    // Add lenis-stopped to html element after a small delay to avoid Next.js hydration overwriting it
+    const timer = setTimeout(() => {
+      document.documentElement.classList.add("lenis-stopped")
+    }, 50)
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
@@ -104,6 +106,7 @@ export function ProjectPreloader({ icon, accentColor, title, onComplete, onRevea
 
     return () => {
       ctx.revert()
+      clearTimeout(timer)
       document.documentElement.classList.remove("lenis-stopped")
     }
   }, [mounted, accentColor])
