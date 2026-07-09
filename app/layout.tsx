@@ -82,8 +82,22 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="fr" className="dark">
+    <html lang="fr" className="dark" suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function () {
+                if (window.location.pathname !== "/") return;
+                document.documentElement.classList.add("preloader-lock", "lenis-stopped");
+                if ("scrollRestoration" in window.history) {
+                  window.history.scrollRestoration = "manual";
+                }
+                window.scrollTo(0, 0);
+              })();
+            `,
+          }}
+        />
         <link rel="canonical" href="https://yacine-hamadouche.me" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/placeholder-logo.png" />

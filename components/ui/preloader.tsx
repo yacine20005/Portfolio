@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
 
 interface PreloaderProps {
@@ -58,6 +58,55 @@ export function Preloader({ onComplete }: PreloaderProps) {
     setMounted(true)
   }, [])
 
+  useLayoutEffect(() => {
+    const scrollToTop = () => {
+      window.scrollTo(0, 0)
+      document.documentElement.scrollTop = 0
+      document.body.scrollTop = 0
+    }
+
+    const preventScroll = (event: Event) => {
+      event.preventDefault()
+      scrollToTop()
+    }
+
+    const preventScrollKeys = (event: KeyboardEvent) => {
+      const scrollKeys = [
+        " ",
+        "ArrowDown",
+        "ArrowUp",
+        "ArrowLeft",
+        "ArrowRight",
+        "End",
+        "Home",
+        "PageDown",
+        "PageUp",
+      ]
+
+      if (scrollKeys.includes(event.key)) {
+        event.preventDefault()
+        scrollToTop()
+      }
+    }
+
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual"
+    }
+
+    document.documentElement.classList.add("preloader-lock", "lenis-stopped")
+    scrollToTop()
+
+    window.addEventListener("wheel", preventScroll, { passive: false, capture: true })
+    window.addEventListener("touchmove", preventScroll, { passive: false, capture: true })
+    window.addEventListener("keydown", preventScrollKeys, { capture: true })
+
+    return () => {
+      window.removeEventListener("wheel", preventScroll, { capture: true })
+      window.removeEventListener("touchmove", preventScroll, { capture: true })
+      window.removeEventListener("keydown", preventScrollKeys, { capture: true })
+    }
+  }, [])
+
   useEffect(() => {
     if (!mounted) return
 
@@ -79,15 +128,15 @@ export function Preloader({ onComplete }: PreloaderProps) {
       clearInterval(scrollInterval)
     }, 200)
 
-    // Add lenis-stopped to html element after a small delay to avoid Next.js hydration overwriting it
-    const timer = setTimeout(() => {
-      document.documentElement.classList.add("lenis-stopped")
-    }, 50)
+    document.documentElement.classList.add("preloader-lock", "lenis-stopped")
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         onComplete: () => {
-          document.documentElement.classList.remove("lenis-stopped")
+          window.scrollTo(0, 0)
+          document.documentElement.scrollTop = 0
+          document.body.scrollTop = 0
+          document.documentElement.classList.remove("preloader-lock", "lenis-stopped")
           onCompleteRef.current()
         }
       })
@@ -208,8 +257,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
       ctx.revert()
       clearInterval(scrollInterval)
       clearTimeout(scrollTimeout)
-      clearTimeout(timer)
-      document.documentElement.classList.remove("lenis-stopped")
+      document.documentElement.classList.remove("preloader-lock", "lenis-stopped")
     }
   }, [mounted])
 

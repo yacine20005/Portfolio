@@ -3,16 +3,12 @@
 import React, { useEffect, useRef } from "react"
 import { usePathname } from "next/navigation"
 import Lenis from "lenis"
-import { setPreloaderHasRun } from "@/lib/preloader-state"
 
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null)
   const pathname = usePathname()
 
   useEffect(() => {
-    // Mark preloader as run because layout has mounted (indicating session has started)
-    setPreloaderHasRun(true)
-
     if (typeof window === "undefined") return
 
     // Disable on reduced motion

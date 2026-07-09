@@ -203,11 +203,14 @@ html.lenis body {
   overscroll-behavior: contain;
 }
 
+.preloader-lock,
+.preloader-lock body,
 .lenis-stopped,
 .lenis-stopped body {
   overflow: hidden !important;
   height: 100dvh !important;
   touch-action: none;
+  overscroll-behavior: none;
 }
 
 .lenis-scrolling iframe {
