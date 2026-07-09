@@ -5,6 +5,7 @@ import { projectsData } from "@/lib/data"
 import { TextReveal } from "@/components/ui/text-reveal"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { FaGithub } from "react-icons/fa"
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger)
@@ -106,18 +107,22 @@ export function ProjectsSection() {
                 ))}
               </div>
 
-              <div className="flex flex-wrap gap-4 mt-4">
-                {project.links.map((link, li) => (
-                  <a
-                    key={li}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-body-sm font-inter font-normal text-felt-gray hover:text-paper transition-colors duration-[0.4s] ease"
-                  >
-                    {link.name} →
-                  </a>
-                ))}
+              <div className="flex flex-wrap gap-4 mt-5">
+                {project.links.map((link, li) => {
+                  const isGithubLink = link.href.includes("github.com")
+                  return (
+                    <a
+                      key={li}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ghost-pill ghost-pill-sm hover:border-paper inline-flex items-center gap-2"
+                    >
+                      {isGithubLink && <FaGithub className="h-4 w-4" />}
+                      {link.name}
+                    </a>
+                  )
+                })}
               </div>
             </div>
           ))}

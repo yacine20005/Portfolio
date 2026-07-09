@@ -58,21 +58,21 @@ export const projectsData: ProjectsData = {
     subtitle: 'A selection of projects I\'ve worked on during my academic journey and in my free time.',
     projects: [
         {
-            title: 'Aogiri Website',
-            description: 'A responsive website built with Next.js and Tailwind CSS to present the Aogiri association, its activities and its contributions to the community of multiple video games.',
-            tags: ['Next.js', 'Tailwind CSS', 'TypeScript'],
-            icon: 'FaGamepad',
+            title: 'Nuage',
+            description: 'A video game management platform that allows users to browse, purchase, share, and comment on games, manage user profiles, add friends, and track game achievements.',
+            tags: ['Python', 'Flask', 'PostgreSQL', 'HTML/CSS'],
+            icon: 'FaCloud',
             links: [
-                { name: 'Live Demo', href: 'https://aogirihouse-yacine20005s.vercel.app/' },
+                { name: 'View Code', href: 'https://github.com/yacine20005/Nuage' },
             ],
         },
         {
-            title: 'Chomp',
-            description: 'Chomp is a strategy game for two players. The game is played on a rectangular bar made up of chocolate squares. The aim of the game is to avoid taking the poisoned chocolate square at the top left of the bar.',
-            tags: ['C', 'Ncurses', 'Makefile'],
-            icon: 'FaChessBoard',
+            title: 'TPC Compiler',
+            description: 'A compiler for TPC, a small C-like language targeting x86-64 NASM assembly. Implements lexical analysis, parsing, syntax tree generation, semantic checking, and code generation.',
+            tags: ['C', 'Flex', 'Bison', 'NASM'],
+            icon: 'FaTerminal',
             links: [
-                { name: 'View Code', href: 'https://github.com/yacine20005/Chomp' },
+                { name: 'View Code', href: 'https://github.com/yacine20005/TPC' },
             ],
         },
         {
@@ -85,12 +85,12 @@ export const projectsData: ProjectsData = {
             ],
         },
         {
-            title: 'Racetrack',
-            description: 'Racetrack is a Python-based game where players navigate a pawn across a board, avoiding obstacles to reach the finish line. This project showcases various play modes and includes a sophisticated solver.',
-            tags: ['Python', 'FLTK', 'Pillow'],
-            icon: 'GiF1Car',
+            title: 'JS Deobfuscation',
+            description: 'A reverse engineering case study and workflow analyzing a self-defending browser extension. Implements dynamic string dictionary extraction, AST manipulation in Node.js, and semantic code reconstruction for security audits.',
+            tags: ['JavaScript', 'Node.js', 'AST', 'Security'],
+            icon: 'FaShieldAlt',
             links: [
-                { name: 'View Code', href: 'https://github.com/yacine20005/racetrack' },
+                { name: 'View Code', href: 'https://github.com/yacine20005/JavaScript-Deobfuscation' },
             ],
         },
     ],
@@ -111,7 +111,7 @@ export const experienceData: ExperienceData = {
             date: 'Since September 2023',
             title: 'Bachelor\'s Degree in Mathematics/Computer Science',
             role: 'Gustave Eiffel University - Champs-sur-Marne',
-            description: 'Academic training focused on mathematics and computer science, including projects such as \'Nuage\' - a video game management platform developed with Python/Flask, PostgreSQL and HTML/CSS, as well as \'Chomp\' - a strategy game in C using the Ncurses library.',
+            description: 'Academic training focused on mathematics and computer science, including projects such as \'Nuage\' - a video game management platform developed with Python/Flask, PostgreSQL and HTML/CSS, as well as \'TPC\' - a compiler for a C-like language targeting x86-64 assembly in C/Flex/Bison.',
         },
         {
             date: 'September 2020 - July 2023',
