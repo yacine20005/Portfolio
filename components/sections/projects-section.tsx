@@ -5,7 +5,15 @@ import { projectsData } from "@/lib/data"
 import { TextReveal } from "@/components/ui/text-reveal"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { FaGithub } from "react-icons/fa"
+import { FaGithub, FaCloud, FaTerminal, FaShieldAlt } from "react-icons/fa"
+import { MdMemory } from "react-icons/md"
+
+const iconMap: Record<string, React.ComponentType<any>> = {
+  FaCloud: FaCloud,
+  FaTerminal: FaTerminal,
+  MdMemory: MdMemory,
+  FaShieldAlt: FaShieldAlt,
+}
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger)
@@ -84,11 +92,19 @@ export function ProjectsSection() {
         />
 
         <div className="mt-10 md:mt-14 space-y-10">
-          {projectsData.projects.map((project, i) => (
-            <div
-              key={i}
-              className="project-item-block border-l-[1px] border-white/10 pl-5 md:pl-8 opacity-0"
-            >
+          {projectsData.projects.map((project, i) => {
+            const IconComponent = project.icon ? iconMap[project.icon] : null
+            return (
+              <div
+                key={i}
+                className="project-item-block relative overflow-hidden border-l-[1px] border-white/10 pl-5 md:pl-8 pr-12 md:pr-32 py-2 opacity-0"
+              >
+                {IconComponent && (
+                  <IconComponent
+                    className="absolute right-0 md:right-8 top-1/2 -translate-y-1/2 text-[90px] md:text-[140px] text-white/[0.02] pointer-events-none select-none -z-10"
+                    aria-hidden="true"
+                  />
+                )}
               <h3 className="text-lg md:text-xl font-inter font-normal text-paper tracking-tight">
                 {project.title}
               </h3>
@@ -125,7 +141,7 @@ export function ProjectsSection() {
                 })}
               </div>
             </div>
-          ))}
+          )})}
         </div>
 
         <div ref={buttonRef} className="mt-12 opacity-0">
