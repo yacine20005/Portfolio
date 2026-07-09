@@ -122,7 +122,6 @@ export default function CobbleCoachPage() {
             <p className="text-lg text-felt-gray max-w-2xl mx-auto mt-6 leading-[1.6]">The source code is open — browse the pipeline, fork the project, or add it to your Discord server.</p>
             <div className="flex flex-wrap justify-center gap-4 mt-8">
               <a href="https://github.com/yacine20005/Cobble-Coach" target="_blank" rel="noopener noreferrer" className="ghost-pill"><FaGithub className="h-4 w-4" /> Star on GitHub</a>
-              <a href="https://github.com/yacine20005/Cobble-Coach/issues" target="_blank" rel="noopener noreferrer" className="ghost-pill">Report Issues</a>
             </div>
           </div>
         </section>
