@@ -258,17 +258,24 @@ html.lenis body {
   --color-accent-rgb: 239, 68, 68;
 }
 
+.theme-backpack-hero {
+  --color-accent: #f59e0b; /* amber/gold */
+  --color-accent-rgb: 245, 158, 11;
+}
+
 /* Apply accent colors to links/hover */
 .theme-spark-love a:hover,
 .theme-orbit-market a:hover,
-.theme-cobble-coach a:hover {
+.theme-cobble-coach a:hover,
+.theme-backpack-hero a:hover {
   color: var(--color-accent) !important;
 }
 
 /* Style the ghost pill CTAs on hover to glow with the theme color */
 .theme-spark-love .ghost-pill:hover,
 .theme-orbit-market .ghost-pill:hover,
-.theme-cobble-coach .ghost-pill:hover {
+.theme-cobble-coach .ghost-pill:hover,
+.theme-backpack-hero .ghost-pill:hover {
   border-color: var(--color-accent) !important;
   box-shadow: 0 0 20px rgba(var(--color-accent-rgb), 0.15) !important;
 }
@@ -276,7 +283,8 @@ html.lenis body {
 /* Style headings with a subtle gradient text-fill using the accent color */
 .theme-spark-love h2,
 .theme-orbit-market h2,
-.theme-cobble-coach h2 {
+.theme-cobble-coach h2,
+.theme-backpack-hero h2 {
   background: linear-gradient(to right, #ffffff 65%, var(--color-accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -286,7 +294,8 @@ html.lenis body {
 /* Tint the scroll indicator SVG text to match the theme */
 .theme-spark-love svg text,
 .theme-orbit-market svg text,
-.theme-cobble-coach svg text {
+.theme-cobble-coach svg text,
+.theme-backpack-hero svg text {
   fill: var(--color-accent) !important;
   opacity: 0.8;
 }
