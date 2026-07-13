@@ -87,14 +87,14 @@ export function WebsitesSection() {
                 </p>
 
                 {/* Action Link Button */}
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="ghost-pill mt-8 ghost-pill-sm hover:border-paper"
+                <button
+                  type="button"
+                  onClick={(e) => e.preventDefault()}
+                  className="ghost-pill mt-8 ghost-pill-sm opacity-50 cursor-not-allowed hover:border-white/30"
+                  title={language === "fr" ? "Site indisponible" : "Website unavailable"}
                 >
-                  {language === "fr" ? "Visiter le site →" : "Visit Website →"}
-                </a>
+                  {language === "fr" ? "Site indisponible" : "Website unavailable"}
+                </button>
               </div>
             </div>
           ))}
