@@ -290,8 +290,8 @@ export const websitesData: WebsitesData = {
             description: "An immersive digital universe and movement designed for Lionel Coezy's Kreyol Wakanda. Serving as a 'Noosphere' showcasing personal/professional coaching, digital portals, and cultural artifacts, it features custom animations and premium typographic styling.",
             tags: ['Next.js', 'Tailwind CSS', 'Immersive Design', 'Interactive Canvas'],
             imagePath: '/websites/kreyolwakanda.png',
-            link: 'https://palevioletred-lobster-286010.hostingersite.com/',
-            available: false
+            link: 'https://kreyol-wakanda.vercel.app',
+            available: true
         }
     ]
 };
