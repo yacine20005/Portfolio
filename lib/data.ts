@@ -110,12 +110,8 @@ export const experienceData: ExperienceData = {
         {
             date: 'Since June 2023',
             title: 'Freelance & Partner',
-            role: 'Freelance Web Engineer & AI Lead (Lunis Consulting)',
-            description: 'Full-stack web development specializing in Next.js, React, TypeScript, and Tailwind CSS. Partnered with Lunis Consulting for web development initiatives and leading their AI solutions offer: designing and deploying custom RAG systems, LLM integrations, and intelligent AI agents for enterprise clients.',
-            link: {
-                text: 'Lunis Consulting',
-                href: 'https://lunis.io/'
-            }
+            role: 'Freelance Web Engineer',
+            description: 'Full-stack web development specializing in Next.js, React, TypeScript, and Tailwind CSS. Designed and built websites for clients.',
         },
         {
             date: 'September 2023 - July 2026',
@@ -286,14 +282,16 @@ export const websitesData: WebsitesData = {
             description: 'High-end showcase website built for Georges Geneyne, a specialist in premium aluminum joinery (windows, doors, bioclimatic pergolas) and concrete pools in Guadeloupe. Features clean typography, service catalogs, and direct WhatsApp contact support.',
             tags: ['Next.js', 'Tailwind CSS', 'SEO Optimization', 'Direct WhatsApp'],
             imagePath: '/websites/georgesgeneyne.png',
-            link: 'https://georgesgeneyne.com/'
+            link: 'https://georgesgeneyne.com/',
+            available: true
         },
         {
             title: 'Kreyol Wakanda',
             description: "An immersive digital universe and movement designed for Lionel Coezy's Kreyol Wakanda. Serving as a 'Noosphere' showcasing personal/professional coaching, digital portals, and cultural artifacts, it features custom animations and premium typographic styling.",
             tags: ['Next.js', 'Tailwind CSS', 'Immersive Design', 'Interactive Canvas'],
             imagePath: '/websites/kreyolwakanda.png',
-            link: 'https://palevioletred-lobster-286010.hostingersite.com/'
+            link: 'https://palevioletred-lobster-286010.hostingersite.com/',
+            available: false
         }
     ]
 };

@@ -141,6 +141,7 @@ export interface WebsitesProject {
     tags: string[];
     imagePath: string;
     link: string;
+    available?: boolean;
 }
 
 export interface WebsitesData {

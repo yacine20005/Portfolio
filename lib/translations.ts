@@ -112,9 +112,8 @@ export const translations: Record<'fr' | 'en', TranslationDictionary> = {
         {
           date: 'Depuis Juin 2023',
           title: 'Freelance & Partenaire',
-          role: 'Freelance Web Engineer & Lead IA (Lunis Consulting)',
-          description: 'Développement web full-stack spécialisé en Next.js, React, TypeScript et Tailwind CSS. Partenariat avec Lunis Consulting pour des initiatives de développement web et direction de leur offre de solutions IA : conception et déploiement de systèmes RAG personnalisés, intégrations de LLM et agents IA intelligents pour des clients entreprises.',
-          link: { text: 'Lunis Consulting', href: 'https://lunis.io/' },
+          role: 'Freelance Web Engineer',
+          description: 'Développement web full-stack spécialisé en Next.js, React, TypeScript et Tailwind CSS. Conception et réalisation de sites internet pour des clients.',
         },
         {
           date: 'Septembre 2023 - Juillet 2026',
@@ -267,6 +266,7 @@ export const translations: Record<'fr' | 'en', TranslationDictionary> = {
           tags: ['Next.js', 'Tailwind CSS', 'Optimisation SEO', 'WhatsApp Direct'],
           imagePath: '/websites/georgesgeneyne.png',
           link: 'https://georgesgeneyne.com/',
+          available: true,
         },
         {
           title: 'Kreyol Wakanda',
@@ -274,6 +274,7 @@ export const translations: Record<'fr' | 'en', TranslationDictionary> = {
           tags: ['Next.js', 'Tailwind CSS', 'Design Immersif', 'Canevas Interactif'],
           imagePath: '/websites/kreyolwakanda.png',
           link: 'https://palevioletred-lobster-286010.hostingersite.com/',
+          available: false,
         },
       ],
     },
@@ -373,9 +374,8 @@ export const translations: Record<'fr' | 'en', TranslationDictionary> = {
         {
           date: 'Since June 2023',
           title: 'Freelance & Partner',
-          role: 'Freelance Web Engineer & AI Lead (Lunis Consulting)',
-          description: 'Full-stack web development specializing in Next.js, React, TypeScript, and Tailwind CSS. Partnered with Lunis Consulting for web development initiatives and leading their AI solutions offer: designing and deploying custom RAG systems, LLM integrations, and intelligent AI agents for enterprise clients.',
-          link: { text: 'Lunis Consulting', href: 'https://lunis.io/' },
+          role: 'Freelance Web Engineer',
+          description: 'Full-stack web development specializing in Next.js, React, TypeScript, and Tailwind CSS. Designed and built websites for clients.',
         },
         {
           date: 'September 2023 - July 2026',
@@ -528,6 +528,7 @@ export const translations: Record<'fr' | 'en', TranslationDictionary> = {
           tags: ['Next.js', 'Tailwind CSS', 'SEO Optimization', 'Direct WhatsApp'],
           imagePath: '/websites/georgesgeneyne.png',
           link: 'https://georgesgeneyne.com/',
+          available: true,
         },
         {
           title: 'Kreyol Wakanda',
@@ -535,6 +536,7 @@ export const translations: Record<'fr' | 'en', TranslationDictionary> = {
           tags: ['Next.js', 'Tailwind CSS', 'Immersive Design', 'Interactive Canvas'],
           imagePath: '/websites/kreyolwakanda.png',
           link: 'https://palevioletred-lobster-286010.hostingersite.com/',
+          available: false,
         },
       ],
     },
