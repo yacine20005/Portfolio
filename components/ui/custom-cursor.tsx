@@ -19,6 +19,8 @@ export function CustomCursor() {
   const ringCoords = useRef({ x: 0, y: 0 })
   // Active hovered magnetic element
   const magneticElRef = useRef<HTMLElement | null>(null)
+  // Any hovered interactive element (magnetic or not)
+  const hoveredElRef = useRef<HTMLElement | null>(null)
 
   const defaultRingStyle = {
     width: 40,
@@ -102,6 +104,37 @@ export function CustomCursor() {
       setIsVisible(false)
     }
 
+    // On scroll: check if the cursor is still over the hovered element
+    const handleScroll = () => {
+      const el = hoveredElRef.current
+      if (!el) return
+      const rect = el.getBoundingClientRect()
+      const { x, y } = mouseRef.current
+      const inside =
+        x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom
+      if (!inside) {
+        // Reset magnetic element if any
+        if (magneticElRef.current) {
+          gsap.to(magneticElRef.current, {
+            x: 0,
+            y: 0,
+            duration: 0.5,
+            ease: "elastic.out(1, 0.3)",
+          })
+          magneticElRef.current = null
+        }
+        hoveredElRef.current = null
+        setIsHovered(false)
+        setRingStyle({
+          width: 40,
+          height: 40,
+          borderRadius: "50%",
+          borderColor: "var(--color-accent, rgba(255, 255, 255, 0.3))",
+          backgroundColor: "transparent",
+        })
+      }
+    }
+
     // Event delegation for hover states and magnetic pull
     const handleMouseOver = (e: MouseEvent) => {
       const target = (e.target as HTMLElement).closest<HTMLElement>(
@@ -109,6 +142,7 @@ export function CustomCursor() {
       )
 
       if (target) {
+        hoveredElRef.current = target
         setIsHovered(true)
         
         // Check if magnetic
@@ -149,6 +183,7 @@ export function CustomCursor() {
       )
 
       if (target) {
+        hoveredElRef.current = null
         setIsHovered(false)
         
         if (magneticElRef.current === target) {
@@ -177,6 +212,7 @@ export function CustomCursor() {
     window.addEventListener("mousedown", handleMouseDown)
     window.addEventListener("mouseup", handleMouseUp)
     window.addEventListener("pointerleave", handleMouseLeaveWindow)
+    window.addEventListener("scroll", handleScroll, { passive: true, capture: true })
     document.addEventListener("mouseover", handleMouseOver)
     document.addEventListener("mouseout", handleMouseOut)
 
@@ -229,6 +265,7 @@ export function CustomCursor() {
       window.removeEventListener("mousedown", handleMouseDown)
       window.removeEventListener("mouseup", handleMouseUp)
       window.removeEventListener("pointerleave", handleMouseLeaveWindow)
+      window.removeEventListener("scroll", handleScroll, { capture: true })
       document.removeEventListener("mouseover", handleMouseOver)
       document.removeEventListener("mouseout", handleMouseOut)
       cancelAnimationFrame(rafId)
