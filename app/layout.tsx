@@ -128,7 +128,7 @@ export default function RootLayout({
           src="https://xur-d449315b4f63.herokuapp.com/static/widget.js"
           strategy="afterInteractive"
           data-api-key="portfolio-key"
-          data-forceddisplaytype="sticky-bar"
+          data-forceddisplaytype="inline"
         />
         <script
           type="application/ld+json"

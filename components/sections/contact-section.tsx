@@ -92,6 +92,19 @@ export function ContactSection() {
             )
           })}
         </div>
+
+        {/* Chatbot Inline Container */}
+        <div className="mt-14 pt-10 border-t border-white/10 flex flex-col items-center">
+          <div className="text-center mb-6 max-w-[600px]">
+            <h3 className="font-inter font-light text-2xl md:text-3xl text-paper">
+              Discutez avec mon assistant IA
+            </h3>
+            <p className="text-sm text-felt-gray mt-2">
+              Posez vos questions en temps réel sur mon parcours, mes compétences et mes projets.
+            </p>
+          </div>
+          <div id="xur-inline-target" className="w-full flex justify-center" />
+        </div>
       </div>
     </section>
   )
