@@ -2,7 +2,7 @@
  * Données statiques non-traduisibles : thèmes visuels, icônes, URLs, tags techniques.
  * Les strings traduites vivent dans translations.ts.
  */
-import { Heart, Cloud, Backpack, Bot } from 'lucide-react';
+import { Heart, Cloud, Backpack, Bot, Sparkles } from 'lucide-react';
 import { GiMoonOrbit } from 'react-icons/gi';
 import React from 'react';
 import type { FeaturedProjectTheme } from './types';
@@ -64,6 +64,30 @@ export type FeaturedProjectStatic = {
 };
 
 export const FEATURED_PROJECTS_STATIC: FeaturedProjectStatic[] = [
+  {
+    title: 'Xur',
+    tags: ['FastAPI', 'Google Gemini', 'SSE Streaming', 'Vanilla JS', 'esbuild'],
+    icon: React.createElement(Sparkles, { className: 'h-7 w-7 text-white' }),
+    link: '/xur',
+    theme: {
+      gradientFrom: 'rgba(16, 185, 129, 0.12)',
+      gradientVia: 'rgba(16, 185, 129, 0.05)',
+      gradientTo: 'rgba(6, 182, 212, 0.12)',
+      textColor: 'rgb(52, 211, 153)',
+      descriptionColor: 'rgb(167, 243, 208)',
+      accentColor: 'rgba(16, 185, 129, 0.5)',
+      border: 'rgba(16, 185, 129, 0.3)',
+      iconFrom: 'rgba(16, 185, 129, 0.9)',
+      iconTo: 'rgba(6, 182, 212, 0.9)',
+      shadowColor: 'rgba(16, 185, 129, 0.4)',
+      badgeGradient: 'linear-gradient(135deg, rgb(16, 185, 129), rgb(6, 182, 212))',
+      tagBackground: 'rgba(16, 185, 129, 0.15)',
+      tagColor: 'rgb(167, 243, 208)',
+      tagBorder: 'rgba(16, 185, 129, 0.3)',
+      buttonFrom: 'rgba(16, 185, 129, 0.9)',
+      buttonTo: 'rgba(6, 182, 212, 0.9)',
+    },
+  },
   {
     title: 'Spark Love',
     tags: ['React Native', 'Expo', 'TypeScript', 'Supabase'],

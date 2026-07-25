@@ -147,10 +147,11 @@ export const translations: Record<'fr' | 'en', TranslationDictionary> = {
       title: 'sélection',
       subtitle: 'Découvrez mes projets phares, chacun ayant sa propre page de présentation dédiée.',
       projects: [
-        { ...FEATURED_PROJECTS_STATIC[0], tagline: "Bien plus qu'une application. Votre prochaine conversation.", cta: 'Découvrir Spark Love' },
-        { ...FEATURED_PROJECTS_STATIC[1], tagline: "Consultez l'inventaire de vos marchands préférés en déplacement.", cta: 'Découvrir Orbit Market' },
-        { ...FEATURED_PROJECTS_STATIC[2], tagline: "Votre coach LoL personnel, propulsé par l'IA dans Discord.", cta: 'Découvrir Cobble Coach' },
-        { ...FEATURED_PROJECTS_STATIC[3], tagline: "Rangement d'inventaire stratégique et roguelike d'exploration de donjons.", cta: 'Découvrir Backpack Hero' },
+        { ...FEATURED_PROJECTS_STATIC[0], tagline: "Intégrez un chatbot RAG temps réel sur n'importe quel site web en une seule ligne de code.", cta: 'Découvrir Xur' },
+        { ...FEATURED_PROJECTS_STATIC[1], tagline: "Bien plus qu'une application. Votre prochaine conversation.", cta: 'Découvrir Spark Love' },
+        { ...FEATURED_PROJECTS_STATIC[2], tagline: "Consultez l'inventaire de vos marchands préférés en déplacement.", cta: 'Découvrir Orbit Market' },
+        { ...FEATURED_PROJECTS_STATIC[3], tagline: "Votre coach LoL personnel, propulsé par l'IA dans Discord.", cta: 'Découvrir Cobble Coach' },
+        { ...FEATURED_PROJECTS_STATIC[4], tagline: "Rangement d'inventaire stratégique et roguelike d'exploration de donjons.", cta: 'Découvrir Backpack Hero' },
       ],
     },
     websitesData: {
@@ -295,10 +296,11 @@ export const translations: Record<'fr' | 'en', TranslationDictionary> = {
       title: 'featured',
       subtitle: 'Discover my flagship projects, each with its own dedicated showcase.',
       projects: [
-        { ...FEATURED_PROJECTS_STATIC[0], tagline: 'More than an app. Your next conversation.',                    cta: 'Discover Spark Love' },
-        { ...FEATURED_PROJECTS_STATIC[1], tagline: 'Check what your favorite vendors have in stock on the go.',    cta: 'Discover Orbit Market' },
-        { ...FEATURED_PROJECTS_STATIC[2], tagline: 'Your personal LoL coach, powered by AI inside Discord.',       cta: 'Discover Cobble Coach' },
-        { ...FEATURED_PROJECTS_STATIC[3], tagline: 'Inventory management meets strategic roguelike dungeon crawling.', cta: 'Discover Backpack Hero' },
+        { ...FEATURED_PROJECTS_STATIC[0], tagline: 'Integrate a real-time RAG chatbot on any website with a single line of code.', cta: 'Discover Xur' },
+        { ...FEATURED_PROJECTS_STATIC[1], tagline: 'More than an app. Your next conversation.',                    cta: 'Discover Spark Love' },
+        { ...FEATURED_PROJECTS_STATIC[2], tagline: 'Check what your favorite vendors have in stock on the go.',    cta: 'Discover Orbit Market' },
+        { ...FEATURED_PROJECTS_STATIC[3], tagline: 'Your personal LoL coach, powered by AI inside Discord.',       cta: 'Discover Cobble Coach' },
+        { ...FEATURED_PROJECTS_STATIC[4], tagline: 'Inventory management meets strategic roguelike dungeon crawling.', cta: 'Discover Backpack Hero' },
       ],
     },
     websitesData: {
