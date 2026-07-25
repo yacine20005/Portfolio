@@ -19,22 +19,7 @@ export default function Home() {
 
   useEffect(() => {
     if (loading && typeof window !== "undefined" && !window.location.hash) {
-      if ("scrollRestoration" in window.history) {
-        window.history.scrollRestoration = "manual"
-      }
       window.scrollTo(0, 0)
-      
-      const scrollInterval = setInterval(() => {
-        window.scrollTo(0, 0)
-      }, 10)
-      const scrollTimeout = setTimeout(() => {
-        clearInterval(scrollInterval)
-      }, 200)
-
-      return () => {
-        clearInterval(scrollInterval)
-        clearTimeout(scrollTimeout)
-      }
     }
   }, [loading])
 

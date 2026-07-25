@@ -24,7 +24,10 @@ export function useSmoothScroll() {
             top: offsetPosition,
             behavior: "smooth",
           })
-          router.replace(href, { scroll: false })
+          
+          if (typeof window !== "undefined") {
+            window.history.replaceState(null, "", window.location.pathname)
+          }
         }
       }
     },

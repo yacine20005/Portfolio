@@ -91,9 +91,8 @@ export default function RootLayout({
                 if (window.location.pathname !== "/") return;
                 document.documentElement.classList.add("preloader-lock", "lenis-stopped");
                 if ("scrollRestoration" in window.history) {
-                  window.history.scrollRestoration = "manual";
+                  window.history.scrollRestoration = "auto";
                 }
-                window.scrollTo(0, 0);
               })();
             `,
           }}

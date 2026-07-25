@@ -113,10 +113,7 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
       const hash = window.location.hash || (typeof window !== "undefined" && window.location.href.includes("#") ? "#" + window.location.href.split("#")[1] : "")
       
       if (!hash) {
-        window.scrollTo(0, 0)
-        if (lenisRef.current) {
-          lenisRef.current.scrollTo(0, { immediate: true })
-        }
+        // No hash present: allow natural browser scrollRestoration to work
         return
       }
 
@@ -140,6 +137,11 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
               behavior: "smooth",
             })
           }
+
+          // Clean URL hash so stale hash is never saved in browser history
+          if (typeof window !== "undefined") {
+            window.history.replaceState(null, "", window.location.pathname)
+          }
           return true
         }
         return false
@@ -156,7 +158,6 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
       } else {
         // Run a delayed check to ensure layout shifts (e.g. image loads) don't throw off final scroll
         setTimeout(performScroll, 300)
-        setTimeout(performScroll, 600)
       }
     }
 
