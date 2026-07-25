@@ -1,4 +1,5 @@
 import type React from "react"
+import Script from "next/script"
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import "@fontsource/raleway/400.css"
@@ -123,6 +124,12 @@ export default function RootLayout({
         <Analytics />
         <SpeedInsights />
         <MicrosoftClarity />
+        <Script
+          src="https://xur-d449315b4f63.herokuapp.com/static/widget.js"
+          strategy="afterInteractive"
+          data-api-key="portfolio-key"
+          data-forceddisplaytype="sticky-bar"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
