@@ -109,46 +109,64 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
   }, [])
 
   useEffect(() => {
-    // 1. Reset native scroll position synchronously to prevent capping at the bottom of the page
-    window.scrollTo(0, 0)
-    
-    // 2. Reset Lenis scroll position synchronously if it exists
-    if (lenisRef.current) {
-      lenisRef.current.scrollTo(0, { immediate: true })
-    }
-
-    const hash = window.location.hash
-    if (hash) {
-      const targetId = hash.substring(1)
+    const scrollToHashTarget = () => {
+      const hash = window.location.hash || (typeof window !== "undefined" && window.location.href.includes("#") ? "#" + window.location.href.split("#")[1] : "")
       
+      if (!hash) {
+        window.scrollTo(0, 0)
+        if (lenisRef.current) {
+          lenisRef.current.scrollTo(0, { immediate: true })
+        }
+        return
+      }
+
+      const targetId = hash.substring(1)
       let attempts = 0
-      const checkAndScroll = () => {
+
+      const performScroll = () => {
         const targetElement = document.getElementById(targetId)
-        if (targetElement && lenisRef.current) {
+        if (targetElement) {
           const headerHeight = document.querySelector("header")?.offsetHeight || 0
-          requestAnimationFrame(() => {
-            if (lenisRef.current) {
-              lenisRef.current.scrollTo(targetElement, {
-                offset: -headerHeight - 16,
-                immediate: true, // Scroll instantly on navigation back to avoid dynamic content shift glitches
-              })
-            }
-          })
+          if (lenisRef.current) {
+            lenisRef.current.scrollTo(targetElement, {
+              offset: -headerHeight - 16,
+              immediate: false,
+            })
+          } else {
+            const elementPosition = targetElement.getBoundingClientRect().top
+            const offsetPosition = elementPosition + window.pageYOffset - headerHeight - 16
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            })
+          }
           return true
         }
         return false
       }
 
-      // Try immediately
-      if (!checkAndScroll()) {
+      // Try scrolling immediately, then retry periodically if DOM/components are mounting
+      if (!performScroll()) {
         const interval = setInterval(() => {
           attempts++
-          if (checkAndScroll() || attempts > 20) {
+          if (performScroll() || attempts > 30) {
             clearInterval(interval)
           }
         }, 50)
-        return () => clearInterval(interval)
+      } else {
+        // Run a delayed check to ensure layout shifts (e.g. image loads) don't throw off final scroll
+        setTimeout(performScroll, 300)
+        setTimeout(performScroll, 600)
       }
+    }
+
+    // Delay slightly to let Next.js update window.location and DOM
+    const timeoutId = setTimeout(scrollToHashTarget, 100)
+
+    window.addEventListener("hashchange", scrollToHashTarget)
+    return () => {
+      clearTimeout(timeoutId)
+      window.removeEventListener("hashchange", scrollToHashTarget)
     }
   }, [pathname])
 

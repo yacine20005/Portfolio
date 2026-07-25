@@ -18,7 +18,7 @@ export default function Home() {
   const [loading, setLoading] = useState(() => !hasPreloaderRun())
 
   useEffect(() => {
-    if (loading && typeof window !== "undefined") {
+    if (loading && typeof window !== "undefined" && !window.location.hash) {
       if ("scrollRestoration" in window.history) {
         window.history.scrollRestoration = "manual"
       }
