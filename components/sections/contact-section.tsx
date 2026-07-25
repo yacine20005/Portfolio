@@ -62,6 +62,35 @@ export function ContactSection() {
     }
   }, [contactData]) // Re-run if contactData content changes
 
+  useEffect(() => {
+    if (typeof window === "undefined") return
+
+    const loadXurWidget = () => {
+      const target = document.getElementById("xur-inline-target")
+      if (!target) return
+
+      if (document.getElementById("xur-inline-card-mounted")) return
+
+      const oldScript =
+        document.getElementById("xur-widget-script") ||
+        document.querySelector('script[src*="widget.js"]')
+      if (oldScript) {
+        oldScript.remove()
+      }
+
+      const script = document.createElement("script")
+      script.id = "xur-widget-script"
+      script.src = "https://xur-d449315b4f63.herokuapp.com/static/widget.js"
+      script.setAttribute("data-api-key", "portfolio-key")
+      script.setAttribute("data-forceddisplaytype", "inline")
+      script.async = true
+
+      document.body.appendChild(script)
+    }
+
+    loadXurWidget()
+  }, [])
+
   return (
     <section
       id="contact"
