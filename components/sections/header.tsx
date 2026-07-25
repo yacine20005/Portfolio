@@ -7,6 +7,8 @@ import { useSmoothScroll } from "@/hooks/use-smooth-scroll"
 import { useLanguage } from "@/components/providers/language-context"
 import { LanguageToggle } from "@/components/ui/language-toggle"
 
+import { ArrowLeft } from "lucide-react"
+
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -50,7 +52,7 @@ export function Header() {
   }
 
   const linkClass =
-    "text-caption font-inter font-normal text-felt-gray hover:text-paper transition-colors duration-[0.4s] ease"
+    "text-caption font-inter font-normal text-felt-gray hover:text-paper transition-colors duration-[0.4s] ease py-2 min-h-[44px] inline-flex items-center"
 
   return (
     <>
@@ -65,7 +67,7 @@ export function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="text-base font-inter font-normal text-paper hover:text-felt-gray transition-colors duration-[0.4s] ease tracking-tight"
+            className="text-base font-inter font-normal text-paper hover:text-felt-gray transition-colors duration-[0.4s] ease tracking-tight py-2 min-h-[44px] inline-flex items-center"
           >
             Yacine._
           </Link>
@@ -84,8 +86,12 @@ export function Header() {
                 </a>
               ))
             ) : (
-              <Link href="/" className={linkClass}>
-                {language === "fr" ? "← Retour" : "← Back"}
+              <Link
+                href="/"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-caption font-inter font-medium text-paper bg-white/[0.06] border border-white/15 hover:bg-white/12 hover:border-white/30 transition-all duration-300 shadow-sm min-h-[44px]"
+              >
+                <ArrowLeft className="h-4 w-4" />
+                <span>{language === "fr" ? "Retour au Portfolio" : "Back to Portfolio"}</span>
               </Link>
             )}
             <LanguageToggle />
@@ -94,7 +100,7 @@ export function Header() {
           {/* Hamburger */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden flex flex-col gap-[5px] p-2 -mr-2"
+            className="md:hidden flex flex-col items-center justify-center gap-[5px] p-3 -mr-3 min-h-[44px] min-w-[44px]"
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
           >

@@ -107,9 +107,16 @@ export function ProjectsSection() {
                     aria-hidden="true"
                   />
                 )}
-                <h3 className="text-lg md:text-xl font-inter font-normal text-paper tracking-tight">
-                  {project.title}
-                </h3>
+                <div className="flex items-center gap-3">
+                  <h3 className="text-lg md:text-xl font-inter font-normal text-paper tracking-tight">
+                    {project.title}
+                  </h3>
+                  {i === 0 && (
+                    <span className="inline-flex items-center gap-1 text-[10px] font-mono tracking-wider uppercase px-2.5 py-0.5 rounded-full bg-white/10 text-paper border border-white/20">
+                      ★ {language === "fr" ? "Projet Phare" : "Highlight"}
+                    </span>
+                  )}
+                </div>
                 <p className="text-base leading-[1.6] text-felt-gray mt-2 max-w-[600px]">
                   {project.description}
                 </p>

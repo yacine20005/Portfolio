@@ -1,11 +1,11 @@
 "use client"
 
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useLanguage } from "@/components/providers/language-context"
 import { TextReveal } from "@/components/ui/text-reveal"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { FaGithub, FaLinkedin } from "react-icons/fa"
+import { FaGithub, FaLinkedin, FaCheck, FaRegCopy } from "react-icons/fa"
 import { MdMail } from "react-icons/md"
 
 const iconMap: Record<string, React.ComponentType<any>> = {
@@ -20,8 +20,18 @@ if (typeof window !== "undefined") {
 
 export function ContactSection() {
   const containerRef = useRef<HTMLDivElement>(null)
-  const { dictionary } = useLanguage()
+  const { dictionary, language } = useLanguage()
   const { contactData } = dictionary
+  const [copied, setCopied] = useState(false)
+
+  const handleCopyEmail = (e: React.MouseEvent, href: string) => {
+    if (href.startsWith("mailto:")) {
+      const email = href.replace("mailto:", "")
+      navigator.clipboard.writeText(email)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    }
+  }
 
   useEffect(() => {
     if (typeof window === "undefined" || !containerRef.current) return
@@ -74,20 +84,33 @@ export function ContactSection() {
 
         <div
           ref={containerRef}
-          className="mt-8 flex flex-wrap gap-4 opacity-0"
+          className="mt-8 flex flex-wrap gap-4 opacity-0 items-center"
         >
           {contactData.contacts.map((contact, i) => {
             const IconComponent = iconMap[contact.name]
+            const isEmail = contact.href.startsWith("mailto:")
             return (
               <a
                 key={i}
                 href={contact.href}
-                target="_blank"
+                target={isEmail ? "_self" : "_blank"}
                 rel="noopener noreferrer"
-                className="ghost-pill inline-flex items-center gap-2"
+                onClick={(e) => isEmail && handleCopyEmail(e, contact.href)}
+                className="ghost-pill inline-flex items-center gap-2 group transition-all duration-300"
               >
                 {IconComponent && <IconComponent className="h-4 w-4" />}
-                {contact.buttonText}
+                <span>
+                  {isEmail && copied
+                    ? language === "fr"
+                      ? "Copié dans le presse-papier !"
+                      : "Copied to clipboard!"
+                    : contact.buttonText}
+                </span>
+                {isEmail && (
+                  <span className="ml-1 opacity-60 group-hover:opacity-100 transition-opacity">
+                    {copied ? <FaCheck className="h-3 w-3 text-emerald-400" /> : <FaRegCopy className="h-3 w-3" />}
+                  </span>
+                )}
               </a>
             )
           })}
