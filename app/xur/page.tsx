@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Link from "next/link"
 import { Header } from "@/components/sections/header"
 import { Footer } from "@/components/sections/footer"
 import { 
@@ -35,7 +36,8 @@ const content = {
       subtitle: "Assistant IA conversationnel RAG temps réel & Widget Web autonome",
       desc: "Un chatbot IA ultra-léger et hautement personnalisable intégrable en une ligne de code. Propulsé par FastAPI, Google Gemini 2.5 Flash, du streaming Server-Sent Events (SSE) et un bundle JS Vanilla optimisé sous esbuild.",
       ctaSource: "Code Source GitHub",
-      ctaPowers: "Découvrir les 3 Pouvoirs"
+      ctaPowers: "Découvrir les 3 Pouvoirs",
+      ctaTestBot: "Tester le chatbot en direct"
     },
     specs: {
       backend: { label: "BACKEND & IA", val: "FastAPI & Gemini 2.5 Flash" },
@@ -82,6 +84,11 @@ const content = {
         widgetActiveText: "Widget Xur Actif & Connecté !",
         widgetInactiveText: "Cliquez sur le bouton ci-dessus pour intégrer Xur sur le site fictif.",
         codeTag: '<script src="https://xur-bot.vercel.app/widget.js" api-key="demo-key"></script>'
+      },
+      liveBanner: {
+        title: "Testez le chatbot en direct sur ce portfolio !",
+        desc: "L'assistant IA Xur est directement déployé sur la landing page, juste sous la section contact. Venez lui poser vos questions !",
+        btn: "Tester le chatbot en direct"
       }
     },
     features: {
@@ -113,8 +120,9 @@ const content = {
     },
     cta: {
       title: "Explorer le Projet Xur",
-      desc: "Xur est open-source. Consultez l'architecture FastAPI, étudiez le bundler esbuild ou contribuez au projet sur GitHub.",
-      star: "Étoiler sur GitHub"
+      desc: "Xur est open-source. Consultez l'architecture FastAPI, étudiez le bundler esbuild ou testez directement le chatbot en direct sur la landing page.",
+      star: "Étoiler sur GitHub",
+      testBot: "Tester le chatbot en direct"
     }
   },
   en: {
@@ -122,7 +130,8 @@ const content = {
       subtitle: "Real-Time RAG AI Conversational Assistant & Standalone Web Widget",
       desc: "An ultra-lightweight, highly customizable AI chatbot integrable with a single line of code. Powered by FastAPI, Google Gemini 2.5 Flash, Server-Sent Events (SSE) streaming, and an optimized Vanilla JS bundle compiled with esbuild.",
       ctaSource: "GitHub Source Code",
-      ctaPowers: "Discover the 3 Powers"
+      ctaPowers: "Discover the 3 Powers",
+      ctaTestBot: "Test live Chatbot"
     },
     specs: {
       backend: { label: "BACKEND & AI", val: "FastAPI & Gemini 2.5 Flash" },
@@ -169,6 +178,11 @@ const content = {
         widgetActiveText: "Xur Widget Active & Connected!",
         widgetInactiveText: "Click the button above to mount Xur onto the mockup website.",
         codeTag: '<script src="https://xur-bot.vercel.app/widget.js" api-key="demo-key"></script>'
+      },
+      liveBanner: {
+        title: "Test the chatbot live on this portfolio!",
+        desc: "The Xur AI assistant is deployed live on the landing page right below the contact section. Come test it out!",
+        btn: "Test live Chatbot"
       }
     },
     features: {
@@ -200,8 +214,9 @@ const content = {
     },
     cta: {
       title: "Explore Xur Project",
-      desc: "Xur is open-source. Inspect the FastAPI backend, study the esbuild bundler setup, or contribute on GitHub.",
-      star: "Star on GitHub"
+      desc: "Xur is open-source. Inspect the FastAPI backend, study the esbuild bundler setup, or test the live chatbot directly on the landing page.",
+      star: "Star on GitHub",
+      testBot: "Test live Chatbot"
     }
   }
 }
@@ -296,6 +311,9 @@ export default function XurProjectPage() {
                 {t.hero.desc}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+                <Link href="/#chatbot" className="ghost-pill inline-flex items-center gap-2 bg-emerald-500 text-obsidian font-semibold border-emerald-400 hover:bg-emerald-400 shadow-lg shadow-emerald-500/20">
+                  <Bot className="h-4 w-4 text-obsidian" /> {t.hero.ctaTestBot}
+                </Link>
                 <a href="https://github.com/yacine20005/Xur" target="_blank" rel="noopener noreferrer" className="ghost-pill inline-flex items-center gap-2">
                   <FaGithub className="h-4 w-4" /> {t.hero.ctaSource}
                 </a>
@@ -572,6 +590,30 @@ export default function XurProjectPage() {
                 </div>
               )}
 
+              {/* Live Banner to test Chatbot */}
+              <div className="mt-10 bg-gradient-to-r from-emerald-950/40 via-emerald-900/20 to-obsidian border border-emerald-500/30 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+                <div className="flex items-center gap-4 text-left">
+                  <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center shrink-0">
+                    <Bot className="w-6 h-6 text-emerald-400" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg md:text-xl font-inter font-medium text-paper">
+                      {t.powers.liveBanner.title}
+                    </h4>
+                    <p className="text-xs md:text-sm text-felt-gray mt-1">
+                      {t.powers.liveBanner.desc}
+                    </p>
+                  </div>
+                </div>
+                <Link
+                  href="/#chatbot"
+                  className="ghost-pill inline-flex items-center gap-2 bg-emerald-500 text-obsidian font-semibold border-emerald-400 hover:bg-emerald-400 shrink-0 shadow-lg shadow-emerald-500/20"
+                >
+                  <Bot className="h-4 w-4 text-obsidian" />
+                  <span>{t.powers.liveBanner.btn}</span>
+                </Link>
+              </div>
+
             </div>
           </section>
 
@@ -640,6 +682,9 @@ export default function XurProjectPage() {
                 {t.cta.desc}
               </p>
               <div className="flex flex-wrap justify-center gap-4 mt-8">
+                <Link href="/#chatbot" className="ghost-pill inline-flex items-center gap-2 bg-emerald-500 text-obsidian font-semibold border-emerald-400 hover:bg-emerald-400 shadow-lg shadow-emerald-500/20">
+                  <Bot className="h-4 w-4 text-obsidian" /> {t.cta.testBot}
+                </Link>
                 <a href="https://github.com/yacine20005/Xur" target="_blank" rel="noopener noreferrer" className="ghost-pill inline-flex items-center gap-2 border-emerald-500/30 hover:border-emerald-400">
                   <FaGithub className="h-4 w-4" /> {t.cta.star}
                 </a>

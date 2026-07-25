@@ -146,7 +146,7 @@ export function ContactSection() {
         </div>
 
         {/* Chatbot Inline Container */}
-        <div className="mt-14 pt-10 border-t border-white/10 flex flex-col items-center">
+        <div id="chatbot" className="mt-14 pt-10 border-t border-white/10 flex flex-col items-center scroll-mt-24">
           <div className="text-center mb-6 max-w-[600px]">
             <h3 className="font-inter font-light text-2xl md:text-3xl text-paper">
               Discutez avec mon assistant IA
