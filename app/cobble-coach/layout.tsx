@@ -22,21 +22,12 @@ export const metadata: Metadata = {
         type: "website",
         url: "https://yacine-hamadouche.me/cobble-coach",
         siteName: "Yacine Hamadouche - Portfolio",
-        images: [
-            {
-                url: "/placeholder.jpg",
-                width: 1200,
-                height: 630,
-                alt: "Cobble Coach preview",
-            },
-        ],
     },
     twitter: {
-        card: "summary_large_image",
+        card: "summary",
         title: "Cobble Coach | AI-Powered LoL Discord Bot",
         description:
             "Advanced Discord bot analysing recent matches with the Riot Games API and Gemini Pro to deliver personalised coaching reports.",
-        images: ["/placeholder.jpg"],
     },
 };
 

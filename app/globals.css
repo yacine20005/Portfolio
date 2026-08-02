@@ -225,26 +225,6 @@ html.lenis body {
   vertical-align: bottom;
 }
 
-/* Hide Unicorn Studio text layers/watermarks/credits overlay */
-.unicorn-container div:not(:has(canvas)) {
-  display: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-}
-
-.unicorn-container a,
-.unicorn-container span,
-.unicorn-container p,
-.unicorn-container h1,
-.unicorn-container h2,
-.unicorn-container h3 {
-  display: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-}
-
 /* ── Theme Accents ─────────────────────────────────────────────── */
 
 .theme-spark-love {

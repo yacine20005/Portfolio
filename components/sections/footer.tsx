@@ -99,7 +99,7 @@ export function Footer() {
               Yacine._
             </Link>
             <p className="text-sm text-felt-gray leading-relaxed max-w-sm">
-              {footerData.title} — {language === "fr" ? "Passionné par la création de solutions modernes et performantes." : "Passionate about crafting modern and efficient solutions."}
+              {footerData.title} — {language === "fr" ? "Je conçois des applications web et mobiles, du prototype au déploiement." : "I build web and mobile applications, from prototype to deployment."}
             </p>
           </div>
 

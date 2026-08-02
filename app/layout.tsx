@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s | Yacine Hamadouche - Portfolio",
   },
   description:
-    "Portfolio of Yacine Hamadouche, a computer science student and passionate developer focused on full-stack web and mobile applications.",
+    "Portfolio of Yacine Hamadouche featuring full-stack, mobile, and developer-tool projects.",
   keywords: [
     "Yacine Hamadouche",
     "full-stack developer",
@@ -58,20 +58,11 @@ export const metadata: Metadata = {
     title: "Yacine Hamadouche | Computer Science Student & Developer",
     description:
       "Portfolio of Yacine Hamadouche, a computer science student and developer building full-stack web and mobile projects.",
-    images: [
-      {
-        url: "/placeholder-user.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Yacine Hamadouche - Developer",
-      },
-    ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Yacine Hamadouche | Computer Science Student & Developer",
     description: "Full-stack web & mobile development projects and experience.",
-    images: ["/placeholder-user.jpg"],
   },
   category: "technology",
 }
