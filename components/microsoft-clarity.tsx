@@ -7,7 +7,6 @@ export function MicrosoftClarity() {
     useEffect(() => {
         const clarityProjectId = "uwg4gyxs3p"
         if (clarityProjectId) {
-            console.log('Initializing Microsoft Clarity')
             clarity.init(clarityProjectId)
             clarity.consent()
         }

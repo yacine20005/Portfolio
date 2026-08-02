@@ -170,14 +170,21 @@ export function Footer() {
         {/* Bottom Bar & Copyright */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-white/40">
           <p>{copyrightText}</p>
-          
-          <button
-            onClick={handleScrollTop}
-            className="inline-flex items-center gap-2 text-white/50 hover:text-paper transition-colors py-2 px-3 rounded-full border border-white/5 hover:border-white/20 bg-white/[0.01]"
-          >
-            <span>{language === "fr" ? "Retour en haut" : "Back to top"}</span>
-            <ArrowUp className="w-3.5 h-3.5" />
-          </button>
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+            <Link href="/mentions-legales" className="hover:text-paper transition-colors">
+              {language === "fr" ? "Mentions légales" : "Legal notice"}
+            </Link>
+            <Link href="/politique-de-confidentialite" className="hover:text-paper transition-colors">
+              {language === "fr" ? "Confidentialité" : "Privacy policy"}
+            </Link>
+            <button
+              onClick={handleScrollTop}
+              className="inline-flex items-center gap-2 text-white/50 hover:text-paper transition-colors py-2 px-3 rounded-full border border-white/5 hover:border-white/20 bg-white/[0.01]"
+            >
+              <span>{language === "fr" ? "Retour en haut" : "Back to top"}</span>
+              <ArrowUp className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
 
       </div>
