@@ -42,7 +42,7 @@ export const translations: Record<'fr' | 'en', TranslationDictionary> = {
     heroData: {
       name: 'YACINE',
       title: 'ÉTUDIANT EN INFORMATIQUE & DÉVELOPPEUR.',
-      description: "Salut ! Je suis Yacine, actuellement étudiant en informatique à l'Université Gustave Eiffel 🎓 où je transforme le café ☕ en code (et parfois en bugs).",
+      description: "Étudiant en Master d'Informatique à l'Université Gustave Eiffel et ingénieur DevOps & Cloud en alternance chez Orange.",
       cta: {
         projects: { text: 'Voir les projets', href: HERO_CTA_HREFS.projects },
         contact:  { text: 'Me contacter',     href: HERO_CTA_HREFS.contact },
@@ -147,7 +147,7 @@ export const translations: Record<'fr' | 'en', TranslationDictionary> = {
       subtitle: 'Découvrez mes projets phares, chacun ayant sa propre page de présentation dédiée.',
       projects: [
         { ...FEATURED_PROJECTS_STATIC[0], tagline: "Intégrez un chatbot RAG temps réel sur n'importe quel site web en une seule ligne de code.", cta: 'Découvrir Xur' },
-        { ...FEATURED_PROJECTS_STATIC[1], tagline: "Bien plus qu'une application. Votre prochaine conversation.", cta: 'Découvrir Spark Love' },
+        { ...FEATURED_PROJECTS_STATIC[1], tagline: "L'application mobile pour les couples : une question par jour, 100 quiz et des idées de sorties à matcher à deux.", cta: 'Découvrir Spark Love' },
         { ...FEATURED_PROJECTS_STATIC[2], tagline: "Consultez l'inventaire de vos marchands préférés en déplacement.", cta: 'Découvrir Orbit Market' },
         { ...FEATURED_PROJECTS_STATIC[3], tagline: "Votre coach LoL personnel, propulsé par l'IA dans Discord.", cta: 'Découvrir Cobble Coach' },
         { ...FEATURED_PROJECTS_STATIC[4], tagline: "Rangement d'inventaire stratégique et roguelike d'exploration de donjons.", cta: 'Découvrir Backpack Hero' },
@@ -190,7 +190,7 @@ export const translations: Record<'fr' | 'en', TranslationDictionary> = {
     heroData: {
       name: 'YACINE',
       title: 'COMPUTER SCIENCE STUDENT & DEVELOPER.',
-      description: "Hi! I'm Yacine, currently studying Computer Science at Gustave Eiffel University 🎓 where I turn coffee ☕ into code (and sometimes into bugs).",
+      description: "Master's student in Computer Science at Gustave Eiffel University and DevOps & Cloud engineer at Orange.",
       cta: {
         projects: { text: 'View Projects', href: HERO_CTA_HREFS.projects },
         contact:  { text: 'Get in Touch',  href: HERO_CTA_HREFS.contact },
@@ -295,7 +295,7 @@ export const translations: Record<'fr' | 'en', TranslationDictionary> = {
       subtitle: 'Discover my flagship projects, each with its own dedicated showcase.',
       projects: [
         { ...FEATURED_PROJECTS_STATIC[0], tagline: 'Integrate a real-time RAG chatbot on any website with a single line of code.', cta: 'Discover Xur' },
-        { ...FEATURED_PROJECTS_STATIC[1], tagline: 'More than an app. Your next conversation.',                    cta: 'Discover Spark Love' },
+        { ...FEATURED_PROJECTS_STATIC[1], tagline: 'The mobile app for couples: a daily question, 100 quizzes, and date or movie ideas to match together.', cta: 'Discover Spark Love' },
         { ...FEATURED_PROJECTS_STATIC[2], tagline: 'Check what your favorite vendors have in stock on the go.',    cta: 'Discover Orbit Market' },
         { ...FEATURED_PROJECTS_STATIC[3], tagline: 'Your personal LoL coach, powered by AI inside Discord.',       cta: 'Discover Cobble Coach' },
         { ...FEATURED_PROJECTS_STATIC[4], tagline: 'Inventory management meets strategic roguelike dungeon crawling.', cta: 'Discover Backpack Hero' },

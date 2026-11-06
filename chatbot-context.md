@@ -85,10 +85,11 @@
 - **Concept :** Solution de Chatbot IA conversationnel embarquable via une simple balise `<script>`, propulsée par FastAPI, Gemini SSE et un widget Vanilla JS réactif.
 - **Code source :** [github.com/yacine20005/Xur](https://github.com/yacine20005/Xur)
 
-### 2. ❤️ Spark Love (Mobile App - iOS & Android)
-- **Concept :** Application mobile compagnon cross-platform conçue pour aider les couples à renforcer leur complicité dans un espace privé et sécurisé.
-- **Stack :** React Native, Expo, TypeScript, Supabase (Auth & DB), SQLite (cache hors-ligne).
-- **Code source :** [github.com/yacine20005/Spark-Love](https://github.com/yacine20005/Spark-Love)
+### 2. ❤️ Spark Love V1 (Mobile & Web App - iOS, Android & Web)
+- **Concept :** Application privée pour deux (« Side A / Side B »), pensée comme une cassette audio. Chaque partenaire répond de son côté ; la réponse de l'autre ne se dévoile qu'une fois que les deux ont joué.
+- **Fonctionnalités V1 :** Appairage par code à 6 caractères, question quotidienne (**Daily Spark**), **100 questions de quiz** réparties en 10 catégories (QCM, échelle 0-10, Oui/Non, texte libre) avec score d'accord, **60 cartes à swiper** (30 films & 30 idées de dates) avec tampons d'état (`MATCH`, `YES PLEASE`), journal partagé avec photos privées (URLs signées) et compteur de jours (`DAY 0001`).
+- **Stack & Sécurité :** React Native 0.88, Expo SDK 58, TypeScript, Supabase (Auth OTP 6 chiffres + Google OAuth PKCE, PostgreSQL RLS strict + fonctions `security definer` `compare_category`, `swipe`, `swipe_matches` qui garantissent le double-insu directement en base de données, tests SQL `pgTAP` + `bun test`, CI/CD GitHub Actions générant l'APK Android signé v1.0.0).
+- **Code source & Release APK :** [github.com/yacine20005/Spark-Love](https://github.com/yacine20005/Spark-Love)
 
 ### 3. 🪐 Orbit Market (Mobile App & API)
 - **Concept :** Application compagnon multi-jeux ("Vendor Checker" & World State Tracker) pour Destiny 2 et Warframe.

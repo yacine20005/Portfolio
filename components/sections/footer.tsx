@@ -30,17 +30,16 @@ export function Footer() {
   const copyrightText = footerData.copyright.replace("{year}", currentYear.toString())
 
   return (
-    <footer className="relative bg-obsidian border-t border-white/10 pt-20 pb-12 overflow-hidden z-10">
-      
+    <footer className="relative bg-obsidian border-t border-white/10 pt-16 pb-12 overflow-hidden z-10">
       {/* Ambient Glow Aura */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80vw] h-[35vw] bg-[radial-gradient(ellipse_at_bottom,rgba(255,255,255,0.05),transparent_70%)] pointer-events-none z-0" />
 
       {/* Massive Brand Watermark Backdrop ("YACINE") */}
-      <div 
+      <div
         aria-hidden="true"
         className="absolute bottom-[-1vw] sm:bottom-[-2vw] md:bottom-[-3vw] left-1/2 -translate-x-1/2 w-full text-center pointer-events-none select-none z-0 overflow-hidden leading-none"
       >
-        <span 
+        <span
           className="font-inter font-black text-[25vw] sm:text-[21vw] md:text-[22vw] tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/25 via-white/8 to-transparent uppercase block"
           style={{
             WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%)",
@@ -53,44 +52,9 @@ export function Footer() {
 
       {/* Main Content Layer */}
       <div className="container mx-auto max-w-[1078px] px-5 md:px-10 relative z-10">
-        
-        {/* Top Call To Action Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-16 border-b border-white/10">
-          <div className="max-w-xl">
-            <h2 className="font-inter font-light text-3xl md:text-5xl leading-[1.05] text-paper tracking-tight">
-              {language === "fr"
-                ? "Prêt à lancer votre prochain projet ?"
-                : "Ready to bring your next project to life?"}
-            </h2>
-            <p className="text-felt-gray text-base mt-4 leading-relaxed">
-              {language === "fr"
-                ? "Développement web full-stack, intégration d'IA conversationnelle ou projets sur-mesure. Discutons de vos idées."
-                : "Full-stack web development, AI integration, or custom software projects. Let's discuss your ideas."}
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-3 shrink-0">
-            <a
-              href="mailto:ya.hamadouche@gmail.com"
-              className="ghost-pill inline-flex items-center gap-2 bg-white/10 hover:bg-white text-paper hover:text-obsidian border-white/20 transition-all duration-300 shadow-lg text-sm font-medium"
-            >
-              <Mail className="w-4 h-4" />
-              <span>ya.hamadouche@gmail.com</span>
-            </a>
-            <button
-              onClick={handleCopyEmail}
-              className="p-3 rounded-full border border-white/15 text-white/60 hover:text-paper hover:border-white/30 bg-white/[0.02] transition-colors"
-              title={language === "fr" ? "Copier l'email" : "Copy email"}
-            >
-              {copiedEmail ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
-            </button>
-          </div>
-        </div>
-
         {/* Navigation & Social Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 py-16 border-b border-white/10">
-          
-          {/* Brand Info */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-14 border-b border-white/10">
+          {/* Brand Info & Direct Email */}
           <div className="md:col-span-5 space-y-4">
             <Link
               href="/"
@@ -99,15 +63,28 @@ export function Footer() {
               Yacine._
             </Link>
             <p className="text-sm text-felt-gray leading-relaxed max-w-sm">
-              {footerData.title} — {language === "fr" ? "Je conçois des applications web et mobiles, du prototype au déploiement." : "I build web and mobile applications, from prototype to deployment."}
+              {footerData.title}
             </p>
+            <div className="flex flex-wrap items-center gap-2.5 pt-1">
+              <a
+                href="mailto:ya.hamadouche@gmail.com"
+                className="inline-flex items-center gap-2 text-sm text-paper hover:text-felt-gray transition-colors"
+              >
+                <Mail className="w-4 h-4 text-felt-gray" />
+                <span>ya.hamadouche@gmail.com</span>
+              </a>
+              <button
+                onClick={handleCopyEmail}
+                className="p-2 rounded-full border border-white/15 text-white/60 hover:text-paper hover:border-white/30 bg-white/[0.02] transition-colors"
+                title={language === "fr" ? "Copier l'email" : "Copy email"}
+              >
+                {copiedEmail ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+              </button>
+            </div>
           </div>
 
           {/* Quick Links */}
-          <div className="md:col-span-4 space-y-3">
-            <span className="text-[11px] font-mono tracking-widest text-white/40 uppercase block mb-4">
-              {language === "fr" ? "Navigation" : "Navigation"}
-            </span>
+          <div className="md:col-span-4">
             <div className="grid grid-cols-2 gap-2 text-sm">
               {isHomePage ? (
                 navLinks.map((link) => (
@@ -125,17 +102,14 @@ export function Footer() {
                   href="/"
                   className="text-felt-gray hover:text-paper transition-colors duration-300 py-1 col-span-2"
                 >
-                  {language === "fr" ? "← Retour au Portfolio" : "← Back to Portfolio"}
+                  {language === "fr" ? "Retour au Portfolio" : "Back to Portfolio"}
                 </Link>
               )}
             </div>
           </div>
 
-          {/* Socials & Connect */}
-          <div className="md:col-span-3 space-y-4">
-            <span className="text-[11px] font-mono tracking-widest text-white/40 uppercase block mb-4">
-              {language === "fr" ? "Réseaux" : "Socials"}
-            </span>
+          {/* Socials */}
+          <div className="md:col-span-3">
             <div className="flex flex-col gap-2 text-sm">
               <a
                 href="https://github.com/yacine20005"
@@ -155,20 +129,12 @@ export function Footer() {
                 <Linkedin className="w-4 h-4" />
                 <span>LinkedIn</span>
               </a>
-              <a
-                href="mailto:ya.hamadouche@gmail.com"
-                className="inline-flex items-center gap-2.5 text-felt-gray hover:text-paper transition-colors duration-300 py-1"
-              >
-                <Mail className="w-4 h-4" />
-                <span>Email</span>
-              </a>
             </div>
           </div>
-
         </div>
 
         {/* Bottom Bar & Copyright */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-white/40">
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/40">
           <p>{copyrightText}</p>
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
             <Link href="/mentions-legales" className="hover:text-paper transition-colors">
@@ -186,7 +152,6 @@ export function Footer() {
             </button>
           </div>
         </div>
-
       </div>
     </footer>
   )

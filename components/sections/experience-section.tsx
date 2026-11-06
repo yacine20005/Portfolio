@@ -84,7 +84,7 @@ export function ExperienceSection() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center text-[13px] font-inter font-normal text-felt-gray hover:text-paper transition-colors duration-[0.4s] ease mt-2 underline decoration-white/20 hover:decoration-white/60"
                 >
-                  {exp.link.text} →
+                  {exp.link.text}
                 </a>
               )}
             </div>

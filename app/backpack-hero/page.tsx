@@ -3,18 +3,9 @@
 import { useState } from "react"
 import { Header } from "@/components/sections/header"
 import { Footer } from "@/components/sections/footer"
-import { 
-  Backpack, 
-  RotateCw, 
-  Target, 
-  Database, 
-  Globe, 
-  BookOpen, 
-  Sliders, 
-  Layers, 
-  Check, 
-  Sparkles,
-  Zap,
+import {
+  Backpack,
+  Check,
   Sword,
   ShieldAlert
 } from "lucide-react"
@@ -26,114 +17,100 @@ import { useLanguage } from "@/components/providers/language-context"
 const content = {
   fr: {
     hero: {
-      subtitle: "Gestion d'inventaire stratégique & Roguelike d'exploration de donjons",
-      desc: "Une implémentation Java du célèbre roguelike d'organisation de sac à dos. Conçu avec une architecture MVC rigoureuse, des principes de programmation orientée objet (OOP) propres et un rendu 2D personnalisé via la bibliothèque graphique Zen.",
+      subtitle: "Gestion d'inventaire spatiale et exploration de donjons en Java",
+      desc: "Une implémentation Java du roguelike d'organisation de sac à dos, structurée autour d'une architecture Modèle-Vue-Contrôleur (MVC) stricte et d'un moteur d'affichage 2D personnalisé avec la bibliothèque Zen.",
       ctaSource: "Code Source",
-      ctaView: "Voir les fonctionnalités"
-    },
-    specs: {
-      lang: { label: "LANGAGE / SDK", val: "Java / JDK 25+" },
-      gui: { label: "RENDU GRAPHIQUE", val: "Utilitaire graphique Zen" },
-      arch: { label: "MOTIF ARCHITECTURAL", val: "Modèle-Vue-Contrôleur (MVC)" },
-      patterns: { label: "PATRONS DE CONCEPTION", val: "Observer, Strategy, Factory" }
+      ctaView: "Découvrir le projet"
     },
     features: {
-      title: "Mécaniques de Gameplay Roguelike",
+      title: "Mécaniques de jeu et architecture",
       f1: {
-        title: "Puzzle d'inventaire spatial",
-        desc: "L'organisation de votre sac à dos est votre principale source de puissance. Les objets ne sont pas de simples lignes dans un menu ; ils ont des dimensions physiques (type Tetromino) et doivent être pivotés, placés et alignés sur une grille pour maximiser les bonus d'adjacence.",
-        b1: "Bonus d'adjacence : placez une pierre de mana à côté d'une baguette magique pour augmenter ses dégâts de sort, ce qui impose une planification spatiale tactique.",
-        b2: "Expansion de la grille : monter de niveau octroie des points pour débloquer des cases supplémentaires de votre choix, modifiant ainsi la forme de votre sac.",
-        simTitle: "Simulation de grille d'inventaire",
-        simCaption: "Épée [2x1] placée à côté d'un booster de mana [1x1]"
+        title: "Grille d'inventaire spatiale et bonus d'adjacence",
+        desc: "Dans Backpack Hero, la puissance du personnage dépend directement de l'agencement physique de son sac. Chaque objet occupe une forme géométrique sur la grille et interagit avec ses voisins.",
+        b1: "Placer une pierre de mana à côté d'une arme ou d'une baguette amplifie ses dégâts, ce qui demande de réorganiser son sac à chaque nouveau butin.",
+        b2: "Chaque montée de niveau permet de débloquer de nouvelles cases pour agrandir la grille selon sa stratégie.",
+        swordLabel: "Épée (2×1)",
+        manaLabel: "Mana (1×1)",
+        simCaption: "Adjacence active : la pierre de mana amplifie l'épée adjacente"
       },
       f2: {
-        title: "Combat tactique au tour par tour",
-        desc: "Le combat est une négociation stratégique des ressources de votre inventaire. Chaque tour, vous recevez un nombre fixe de points d'énergie. Activer des objets dans votre sac à dos consomme de l'énergie pour attaquer avec des armes, bloquer avec des boucliers ou boire des potions de soin.",
-        b1: "Actions ennemies prévisibles : les monstres affichent leurs intentions au-dessus de leur tête (attaque de 12, blocage, soin), vous permettant d'anticiper vos boucliers de défense.",
-        b2: "Rareté des ressources : gérer des points de vie et d'énergie limités vous oblige à équilibrer l'usage d'armes offensives et d'objets protecteurs.",
-        mockTitle: "Maquette des actions de combat",
-        slimeAction: "Attaque de Slime",
-        slimePlanned: "Prévu: 10 DEG",
-        shieldAction: "Bloquer (Bouclier)",
-        shieldCost: "Coût énergie: 1"
+        title: "Combat au tour par tour et gestion d'énergie",
+        desc: "Chaque tour accorde un budget d'énergie limité. Utiliser une arme, lever un bouclier ou consommer une potion puise dans cette réserve.",
+        b1: "Les ennemis annoncent leur prochaine action avant votre tour (attaque, défense ou soin), permettant de calculer exactement la défense nécessaire.",
+        b2: "L'architecture MVC découple intégralement la résolution mathématique des combats et le rendu graphique 2D.",
+        slimeAction: "Intention ennemie : Slime",
+        slimePlanned: "Attaque · 10 dégâts",
+        shieldAction: "Action joueur : Bouclier",
+        shieldCost: "Coût : 1 énergie"
       },
       f3: {
-        title: "Progression de Dungeon Crawler",
-        desc: "Explorez des configurations de donjons générées de manière procédurale. Progressez de salle en salle en affrontant des monstres, en pillant des coffres au trésor, en commerçant avec des marchands avides d'or et en prenant des décisions sous une règle stricte de mort permanente (permadeath).",
-        b1: "Rencontres procédurales : les niveaux sont générés dynamiquement, garantissant une disposition fraîche des salles, monstres et butins à chaque partie.",
-        b2: "Marchands d'or : vendez vos objets inutiles pour libérer de l'espace d'inventaire ou dépensez vos pièces d'or pour acquérir de précieux modificateurs de reliques.",
-        statsTitle: "Résumé des statistiques de la run",
+        title: "Génération procédurale des étages",
+        desc: "Les étages du donjon sont générés dynamiquement à chaque partie : salles de combat, coffres, marchands et événements s'enchaînent avec une règle de mort permanente.",
+        b1: "Création procédurale des étages garantissant une disposition différente des salles et du butin à chaque session.",
+        b2: "Utilisation des patrons de conception Factory et Strategy pour instancier les familles d'objets et leurs effets passifs.",
         permaLabel: "Mort permanente",
         permaVal: "Active",
-        floorLabel: "Profondeur atteinte",
-        floorVal: "B3 Profondeurs",
-        goldLabel: "Or du marchand",
+        floorLabel: "Étage",
+        floorVal: "Sous-sol 3",
+        goldLabel: "Or en poche",
         goldVal: "145 pièces",
-        xpLabel: "Niveau d'XP",
-        xpVal: "Nv. 4 (Grille: 5x5)"
+        xpLabel: "Taille du sac",
+        xpVal: "Niveau 4 · Grille 5×5"
       }
     },
     cta: {
-      title: "Explorer le Code",
-      desc: "Backpack Hero est open-source. Parcourez le code source Java, étudiez l'intégration des patrons de conception MVC ou lisez les instructions de compilation sur GitHub.",
-      star: "Étoiler sur GitHub"
+      title: "Explorer le code Java",
+      desc: "Parcourez le code source, l'implémentation MVC et les instructions de compilation sur GitHub.",
+      star: "Voir sur GitHub"
     }
   },
   en: {
     hero: {
-      subtitle: "Strategic Inventory Management & Roguelike Dungeon Crawler",
-      desc: "A desktop Java implementation of the popular backpack organization roguelike. Engineered with clean Object-Oriented Design, a strict MVC architecture, and custom 2D rendering through the Zen graphics library.",
+      subtitle: "Spatial inventory management and roguelike dungeon crawler in Java",
+      desc: "A desktop Java implementation of the backpack-organization roguelike, built with a strict Model-View-Controller (MVC) architecture, clean object-oriented design patterns, and custom 2D rendering via the Zen graphics library.",
       ctaSource: "View Source",
-      ctaView: "View Features"
-    },
-    specs: {
-      lang: { label: "LANGUAGE / SDK", val: "Java / JDK 25+" },
-      gui: { label: "GUI RENDERING", val: "Zen Graphics Utility" },
-      arch: { label: "ARCH PATTERN", val: "Model-View-Controller (MVC)" },
-      patterns: { label: "DESIGN PATTERNS", val: "Design Patterns (Observer, Strategy, Factory)" }
+      ctaView: "Explore the project"
     },
     features: {
-      title: "Roguelike Gameplay Mechanics",
+      title: "Gameplay mechanics and architecture",
       f1: {
-        title: "Spatial Inventory Puzzle",
-        desc: "Organizing your backpack is your greatest source of power. Items are not just slots in a menu; they have physical dimensions (Tetromino-like shapes) and must be rotated, placed, and aligned on a grid to maximize adjacency bonuses.",
-        b1: "Adjacency Buffs: Placing a mana stone next to a magic wand increases its spell damage, requiring tactical spatial planning.",
-        b2: "Grid Expansion: Leveling up grants points to unlock additional cells of your choosing, altering your backpack shape dynamically.",
-        simTitle: "Inventory Grid Simulation",
-        simCaption: "Sword [2x1] placed next to Mana Booster [1x1]"
+        title: "Spatial inventory grid and adjacency bonuses",
+        desc: "In Backpack Hero, character strength comes directly from how items are arranged inside the bag. Every item occupies a physical shape on the grid and interacts with neighboring cells.",
+        b1: "Placing a mana stone next to a weapon or wand boosts its output, turning every loot drop into a spatial puzzle.",
+        b2: "Leveling up lets players unlock new cells to reshape and expand the backpack grid.",
+        swordLabel: "Sword (2×1)",
+        manaLabel: "Mana (1×1)",
+        simCaption: "Active adjacency: the mana stone buffs the neighboring sword"
       },
       f2: {
-        title: "Tactical Turn-Based Combat",
-        desc: "Combat is a strategic negotiation of your inventory resources. Each turn, you receive a fixed amount of energy points. Clicking items in your backpack spends energy to activate weapons for attacks, shields for armor blocks, or potions for healing.",
-        b1: "Telegraphed Intentions: Enemies display their planned actions above their heads (attacking for 12, blocking, healing), letting you budget defense shields beforehand.",
-        b2: "Resource Scarcity: Managing finite health pools and energy counts forces you to balance high-damage weapons with protective items.",
-        mockTitle: "Combat Action Mockup",
-        slimeAction: "Slime Attacking",
-        slimePlanned: "Planned: 10 DMG",
-        shieldAction: "Shield Block",
-        shieldCost: "Energy Cost: 1"
+        title: "Turn-based combat and energy budgeting",
+        desc: "Each turn grants a fixed energy pool. Swinging weapons, raising shields, or drinking potions consumes energy directly from the backpack.",
+        b1: "Enemies telegraph their next move beforehand (attacking, blocking, or healing), allowing precise defensive planning.",
+        b2: "The MVC architecture cleanly separates combat state resolution from the 2D Zen rendering loop.",
+        slimeAction: "Enemy intent: Slime",
+        slimePlanned: "Attack · 10 DMG",
+        shieldAction: "Player action: Shield",
+        shieldCost: "Cost: 1 Energy"
       },
       f3: {
-        title: "Dungeon Crawler Progression",
-        desc: "Explore a procedurally generated dungeon layouts. Move from room to room facing enemy encounters, looting treasure chests, trading with gold-hungry merchants, and deciding paths under strict permadeath rules.",
-        b1: "Procedural Encounters: Levels are dynamically generated, guaranteeing a fresh distribution of rooms, monsters, and loot on every run.",
-        b2: "Gold Merchants: Sell unwanted loot items to clear inventory space or spend gold to acquire high-rarity relic modifiers.",
-        statsTitle: "Run Stats Summary",
+        title: "Procedural dungeon generation",
+        desc: "Dungeon floors are generated dynamically on every run: combat encounters, treasure rooms, and merchants unfold under permadeath rules.",
+        b1: "Procedural floor layouts ensure a fresh distribution of rooms, enemies, and loot on every playthrough.",
+        b2: "Uses Factory and Strategy design patterns to instantiate item families and passive adjacency effects.",
         permaLabel: "Permadeath",
         permaVal: "Active",
-        floorLabel: "Floor Reach",
-        floorVal: "B3 Deep Caves",
-        goldLabel: "Merchant Gold",
+        floorLabel: "Current floor",
+        floorVal: "Depth B3",
+        goldLabel: "Gold carried",
         goldVal: "145 coins",
-        xpLabel: "XP Level",
-        xpVal: "Lv. 4 (Grid: 5x5)"
+        xpLabel: "Backpack size",
+        xpVal: "Level 4 · 5×5 Grid"
       }
     },
     cta: {
-      title: "Explore the Source",
-      desc: "Backpack Hero is open-source. Browse the Java codebase, study the MVC and design pattern integrations, or check out compilation instructions on GitHub.",
-      star: "Star on GitHub"
+      title: "Explore the Java codebase",
+      desc: "Browse the Java source code, MVC architecture, and build instructions on GitHub.",
+      star: "View on GitHub"
     }
   }
 }
@@ -157,12 +134,8 @@ export default function BackpackHeroPage() {
       )}
       <div className={`transition-all duration-300 ${contentVisible ? "opacity-100 visible" : "opacity-0 invisible"}`}>
         <Header />
-        
-        {/* Ambient Background Glow */}
-        <div className="fixed top-0 right-0 w-[50vw] h-[50vw] bg-[radial-gradient(ellipse_at_top_right,rgba(var(--color-accent-rgb),0.08),transparent_70%)] pointer-events-none z-0" />
-        
+
         <main className="relative z-10">
-          
           {/* Hero Section */}
           <section className="relative h-screen flex items-center justify-center overflow-hidden border-b border-white/5">
             <div className="absolute inset-0 opacity-[0.25] pointer-events-none">
@@ -188,41 +161,17 @@ export default function BackpackHeroPage() {
             </div>
           </section>
 
-          {/* Quick Specifications Dashboard */}
-          <section className="py-8 bg-white/[0.01] border-b border-white/5">
+          {/* Features Walkthrough */}
+          <section id="features" className="py-[56px] md:py-[92px] border-b border-white/5">
             <div className="container mx-auto max-w-[1078px] px-5 md:px-10">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-left">
-                {[
-                  { label: t.specs.lang.label, value: t.specs.lang.val, icon: BookOpen },
-                  { label: t.specs.gui.label, value: t.specs.gui.val, icon: Layers },
-                  { label: t.specs.arch.label, value: t.specs.arch.val, icon: Sliders },
-                  { label: t.specs.patterns.label, value: t.specs.patterns.val, icon: Database },
-                ].map((spec, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <spec.icon className="h-5 w-5 text-amber-400/60 mt-0.5 shrink-0" />
-                    <div>
-                      <div className="text-[10px] tracking-[0.15em] text-white/40 uppercase font-mono">{spec.label}</div>
-                      <div className="text-sm font-inter text-paper font-normal mt-0.5">{spec.value}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Features Walkthrough (Alternating Layout) */}
-          <section id="features" className="py-[46px] md:py-[92px] border-b border-white/5">
-            <div className="container mx-auto max-w-[1078px] px-5 md:px-10">
-              
-              <div className="text-center max-w-2xl mx-auto mb-20">
-                <h2 className="font-inter font-light text-[2.5rem] md:text-[3.5rem] leading-[0.9] tracking-tight text-paper">
+              <div className="max-w-2xl mb-20">
+                <h2 className="font-inter font-light text-[2.4rem] md:text-[3.4rem] leading-[0.95] tracking-tight text-paper">
                   {t.features.title}
                 </h2>
               </div>
 
               <div className="space-y-24">
-                
-                {/* Feature 1 */}
+                {/* Feature 1: Spatial Grid */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                   <div className="lg:col-span-7 space-y-4">
                     <h3 className="font-inter font-light text-[1.8rem] md:text-[2.2rem] text-paper leading-[1.1]">
@@ -231,92 +180,77 @@ export default function BackpackHeroPage() {
                     <p className="text-base text-felt-gray leading-[1.6]">
                       {t.features.f1.desc}
                     </p>
-                    <div className="pt-2">
-                      <ul className="space-y-2.5 text-sm text-felt-gray">
-                        <li className="flex items-start gap-2.5">
-                          <Check className="h-4.5 w-4.5 text-amber-400 shrink-0 mt-0.5" />
-                          <span>{t.features.f1.b1}</span>
-                        </li>
-                        <li className="flex items-start gap-2.5">
-                          <Check className="h-4.5 w-4.5 text-amber-400 shrink-0 mt-0.5" />
-                          <span>{t.features.f1.b2}</span>
-                        </li>
-                      </ul>
-                    </div>
+                    <ul className="space-y-2.5 pt-2 text-sm text-felt-gray">
+                      <li className="flex items-start gap-2.5">
+                        <Check className="h-4.5 w-4.5 text-amber-400 shrink-0 mt-0.5" />
+                        <span>{t.features.f1.b1}</span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <Check className="h-4.5 w-4.5 text-amber-400 shrink-0 mt-0.5" />
+                        <span>{t.features.f1.b2}</span>
+                      </li>
+                    </ul>
                   </div>
-                  <div className="lg:col-span-5 bg-white/[0.01] border border-white/5 rounded-2xl p-6 lg:p-8">
-                    <span className="text-[10px] font-mono text-white/40 block tracking-widest uppercase mb-4">{t.features.f1.simTitle}</span>
-                    <div className="border border-white/10 bg-black/40 rounded-xl p-4 font-mono text-[10px] text-white/40 space-y-3">
-                      <div className="grid grid-cols-5 gap-1.5 max-w-[200px] mx-auto text-center font-bold">
-                        <div className="aspect-square bg-amber-500/35 border border-amber-400/50 rounded flex items-center justify-center text-amber-300">⚔️</div>
-                        <div className="aspect-square bg-amber-500/35 border border-amber-400/50 rounded flex items-center justify-center text-amber-300">⚔️</div>
-                        <div className="aspect-square bg-white/[0.02] border border-white/5 rounded" />
-                        <div className="aspect-square bg-white/[0.02] border border-white/5 rounded" />
-                        <div className="aspect-square bg-white/[0.02] border border-white/5 rounded" />
-                        
-                        <div className="aspect-square bg-white/[0.02] border border-white/5 rounded" />
-                        <div className="aspect-square bg-amber-500/20 border border-amber-400/25 rounded flex items-center justify-center text-amber-300/60">🔮</div>
-                        <div className="aspect-square bg-white/[0.02] border border-white/5 rounded" />
-                        <div className="aspect-square bg-white/[0.02] border border-white/5 rounded" />
-                        <div className="aspect-square bg-white/[0.02] border border-white/5 rounded" />
+                  <div className="lg:col-span-5 bg-white/[0.01] border border-white/10 rounded-2xl p-6 space-y-4">
+                    <div className="grid grid-cols-4 gap-2 max-w-[240px] mx-auto text-center text-xs">
+                      <div className="col-span-2 h-12 bg-amber-500/25 border border-amber-400/50 rounded-lg flex items-center justify-center text-amber-200 font-medium">
+                        {t.features.f1.swordLabel}
+                      </div>
+                      <div className="h-12 bg-white/[0.02] border border-white/5 rounded-lg" />
+                      <div className="h-12 bg-white/[0.02] border border-white/5 rounded-lg" />
 
-                        <div className="aspect-square bg-white/[0.02] border border-white/5 rounded" />
-                        <div className="aspect-square bg-white/[0.02] border border-white/5 rounded" />
-                        <div className="aspect-square bg-white/[0.02] border border-white/5 rounded" />
-                        <div className="aspect-square bg-white/[0.02] border border-white/5 rounded" />
-                        <div className="aspect-square bg-white/[0.02] border border-white/5 rounded" />
+                      <div className="h-12 bg-white/[0.02] border border-white/5 rounded-lg" />
+                      <div className="h-12 bg-sky-500/20 border border-sky-400/40 rounded-lg flex items-center justify-center text-sky-200 font-medium text-[11px]">
+                        {t.features.f1.manaLabel}
                       </div>
-                      <div className="text-center text-[9px] text-white/30 pt-1">
-                        {t.features.f1.simCaption}
-                      </div>
+                      <div className="h-12 bg-white/[0.02] border border-white/5 rounded-lg" />
+                      <div className="h-12 bg-white/[0.02] border border-white/5 rounded-lg" />
+                    </div>
+                    <div className="text-center text-xs text-white/50 pt-1">
+                      {t.features.f1.simCaption}
                     </div>
                   </div>
                 </div>
 
-                {/* Feature 2 */}
+                {/* Feature 2: Turn-Based Combat */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-                  <div className="lg:col-span-5 lg:order-2 space-y-4">
+                  <div className="lg:col-span-7 lg:order-2 space-y-4">
                     <h3 className="font-inter font-light text-[1.8rem] md:text-[2.2rem] text-paper leading-[1.1]">
                       {t.features.f2.title}
                     </h3>
                     <p className="text-base text-felt-gray leading-[1.6]">
                       {t.features.f2.desc}
                     </p>
-                    <div className="pt-2">
-                      <ul className="space-y-2.5 text-sm text-felt-gray">
-                        <li className="flex items-start gap-2.5">
-                          <Check className="h-4.5 w-4.5 text-amber-400 shrink-0 mt-0.5" />
-                          <span>{t.features.f2.b1}</span>
-                        </li>
-                        <li className="flex items-start gap-2.5">
-                          <Check className="h-4.5 w-4.5 text-amber-400 shrink-0 mt-0.5" />
-                          <span>{t.features.f2.b2}</span>
-                        </li>
-                      </ul>
-                    </div>
+                    <ul className="space-y-2.5 pt-2 text-sm text-felt-gray">
+                      <li className="flex items-start gap-2.5">
+                        <Check className="h-4.5 w-4.5 text-amber-400 shrink-0 mt-0.5" />
+                        <span>{t.features.f2.b1}</span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <Check className="h-4.5 w-4.5 text-amber-400 shrink-0 mt-0.5" />
+                        <span>{t.features.f2.b2}</span>
+                      </li>
+                    </ul>
                   </div>
-                  <div className="lg:col-span-5 lg:order-1 bg-white/[0.01] border border-white/5 rounded-2xl p-6 lg:p-8">
-                    <span className="text-[10px] font-mono text-white/40 block tracking-widest uppercase mb-4">{t.features.f2.mockTitle}</span>
-                    <div className="space-y-3 font-mono text-xs">
-                      <div className="bg-[#141417] p-3 rounded-lg border border-white/5 flex justify-between items-center">
-                        <div className="flex items-center gap-2">
-                          <Sword className="h-4 w-4 text-amber-400" />
-                          <span>{t.features.f2.slimeAction}</span>
-                        </div>
-                        <span className="text-red-400 font-bold">{t.features.f2.slimePlanned}</span>
+                  <div className="lg:col-span-5 lg:order-1 bg-white/[0.01] border border-white/10 rounded-2xl p-6 space-y-3 text-xs">
+                    <div className="bg-[#141417] p-4 rounded-xl border border-white/5 flex justify-between items-center">
+                      <div className="flex items-center gap-2.5">
+                        <Sword className="h-4 w-4 text-amber-400" />
+                        <span className="text-paper">{t.features.f2.slimeAction}</span>
                       </div>
-                      <div className="bg-[#141417] p-3 rounded-lg border border-white/5 flex justify-between items-center">
-                        <div className="flex items-center gap-2">
-                          <ShieldAlert className="h-4 w-4 text-amber-400" />
-                          <span>{t.features.f2.shieldAction}</span>
-                        </div>
-                        <span className="text-amber-300 font-bold">{t.features.f2.shieldCost}</span>
+                      <span className="text-red-400 font-medium">{t.features.f2.slimePlanned}</span>
+                    </div>
+                    <div className="bg-[#141417] p-4 rounded-xl border border-white/5 flex justify-between items-center">
+                      <div className="flex items-center gap-2.5">
+                        <ShieldAlert className="h-4 w-4 text-amber-400" />
+                        <span className="text-paper">{t.features.f2.shieldAction}</span>
                       </div>
+                      <span className="text-amber-300 font-medium">{t.features.f2.shieldCost}</span>
                     </div>
                   </div>
                 </div>
 
-                {/* Feature 3 */}
+                {/* Feature 3: Dungeon Progression */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                   <div className="lg:col-span-7 space-y-4">
                     <h3 className="font-inter font-light text-[1.8rem] md:text-[2.2rem] text-paper leading-[1.1]">
@@ -325,52 +259,39 @@ export default function BackpackHeroPage() {
                     <p className="text-base text-felt-gray leading-[1.6]">
                       {t.features.f3.desc}
                     </p>
-                    <div className="pt-2">
-                      <ul className="space-y-2.5 text-sm text-felt-gray">
-                        <li className="flex items-start gap-2.5">
-                          <Check className="h-4.5 w-4.5 text-amber-400 shrink-0 mt-0.5" />
-                          <span>{t.features.f3.b1}</span>
-                        </li>
-                        <li className="flex items-start gap-2.5">
-                          <Check className="h-4.5 w-4.5 text-amber-400 shrink-0 mt-0.5" />
-                          <span>{t.features.f3.b2}</span>
-                        </li>
-                      </ul>
-                    </div>
+                    <ul className="space-y-2.5 pt-2 text-sm text-felt-gray">
+                      <li className="flex items-start gap-2.5">
+                        <Check className="h-4.5 w-4.5 text-amber-400 shrink-0 mt-0.5" />
+                        <span>{t.features.f3.b1}</span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <Check className="h-4.5 w-4.5 text-amber-400 shrink-0 mt-0.5" />
+                        <span>{t.features.f3.b2}</span>
+                      </li>
+                    </ul>
                   </div>
-                  <div className="lg:col-span-5 bg-white/[0.01] border border-white/5 rounded-2xl p-6 lg:p-8">
-                    <span className="text-[10px] font-mono text-white/40 block tracking-widest uppercase mb-4">{t.features.f3.statsTitle}</span>
-                    <div className="grid grid-cols-2 gap-3 text-center text-xs font-mono text-white/60">
-                      <div className="p-3 bg-[#141417] border border-white/5 rounded-xl flex flex-col items-center gap-1">
-                        <span>💀 {t.features.f3.permaLabel}</span>
-                        <span className="text-[9px] text-amber-300 font-semibold">{t.features.f3.permaVal}</span>
+                  <div className="lg:col-span-5 bg-white/[0.01] border border-white/10 rounded-2xl p-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                    {[
+                      { label: t.features.f3.permaLabel, val: t.features.f3.permaVal },
+                      { label: t.features.f3.floorLabel, val: t.features.f3.floorVal },
+                      { label: t.features.f3.goldLabel, val: t.features.f3.goldVal },
+                      { label: t.features.f3.xpLabel, val: t.features.f3.xpVal },
+                    ].map((item, idx) => (
+                      <div key={idx} className="p-4 bg-[#141417] border border-white/5 rounded-xl space-y-1">
+                        <div className="text-white/60">{item.label}</div>
+                        <div className="text-amber-300 font-medium">{item.val}</div>
                       </div>
-                      <div className="p-3 bg-[#141417] border border-white/5 rounded-xl flex flex-col items-center gap-1">
-                        <span>🏰 {t.features.f3.floorLabel}</span>
-                        <span className="text-[9px] text-amber-300 font-semibold">{t.features.f3.floorVal}</span>
-                      </div>
-                      <div className="p-3 bg-[#141417] border border-white/5 rounded-xl flex flex-col items-center gap-1">
-                        <span>🪙 {t.features.f3.goldLabel}</span>
-                        <span className="text-[9px] text-amber-300 font-semibold">{t.features.f3.goldVal}</span>
-                      </div>
-                      <div className="p-3 bg-[#141417] border border-white/5 rounded-xl flex flex-col items-center gap-1">
-                        <span>🧪 {t.features.f3.xpLabel}</span>
-                        <span className="text-[9px] text-amber-300 font-semibold">{t.features.f3.xpVal}</span>
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
-
               </div>
-
             </div>
           </section>
 
           {/* CTA Section */}
-          <section className="py-[46px] md:py-[92px]">
+          <section className="py-[56px] md:py-[92px]">
             <div className="container mx-auto max-w-[1078px] px-5 md:px-10 text-center">
-              <Sparkles className="h-8 w-8 mx-auto text-amber-400 mb-6 animate-pulse" />
-              <h2 className="font-inter font-light text-[2.5rem] md:text-[3.5rem] leading-[0.9] tracking-tight text-paper">
+              <h2 className="font-inter font-light text-[2.4rem] md:text-[3.4rem] leading-[0.95] tracking-tight text-paper">
                 {t.cta.title}
               </h2>
               <p className="text-base md:text-lg text-felt-gray max-w-2xl mx-auto mt-6 leading-[1.6]">
@@ -383,9 +304,8 @@ export default function BackpackHeroPage() {
               </div>
             </div>
           </section>
-
         </main>
-        
+
         <Footer />
       </div>
     </div>

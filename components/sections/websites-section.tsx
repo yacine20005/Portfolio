@@ -94,7 +94,7 @@ export function WebsitesSection() {
                     rel="noopener noreferrer"
                     className="ghost-pill mt-8 ghost-pill-sm hover:border-paper"
                   >
-                    {language === "fr" ? "Visiter le site →" : "Visit Website →"}
+                    {language === "fr" ? "Visiter le site" : "Visit Website"}
                   </a>
                 ) : (
                   <button
