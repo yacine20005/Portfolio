@@ -34,7 +34,6 @@
   - **Email direct :** [ya.hamadouche@gmail.com](mailto:ya.hamadouche@gmail.com)
   - **GitHub :** [github.com/yacine20005](https://github.com/yacine20005)
   - **LinkedIn :** [linkedin.com/in/yacine-hamadouche](https://linkedin.com/in/yacine-hamadouche)
-  - **CV en ligne :** [Consulter / Télécharger le CV](https://rxresu.me/yacine20005/project-a)
   - **Sites Web Portfolio :** [yacine-hamadouche.tech](https://yacine-hamadouche.tech/) / [yacine-hamadouche.me](https://yacine-hamadouche.me/)
 
 ---
@@ -121,4 +120,4 @@
 3. **Langue :**  
    Bilingue automatique (Français par défaut, Anglais si la question est en Anglais).
 4. **Contact & Redirection :**  
-   Pour toute opportunité professionnelle ou prise de contact, donne directement son email ([ya.hamadouche@gmail.com](mailto:ya.hamadouche@gmail.com)), son [LinkedIn](https://linkedin.com/in/yacine-hamadouche) ou son [CV en ligne](https://rxresu.me/yacine20005/project-a).
+   Pour toute opportunité professionnelle ou prise de contact, donne directement son email ([ya.hamadouche@gmail.com](mailto:ya.hamadouche@gmail.com)) ou son [LinkedIn](https://linkedin.com/in/yacine-hamadouche).

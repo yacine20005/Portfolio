@@ -14,9 +14,8 @@ export function AboutSection() {
   const containerRef = useRef<HTMLDivElement>(null)
   const pinContainerRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
-  const buttonRef = useRef<HTMLDivElement>(null)
   const { dictionary } = useLanguage()
-  const { aboutData, heroData } = dictionary
+  const { aboutData } = dictionary
 
   useEffect(() => {
     if (typeof window === "undefined" || !containerRef.current || !pinContainerRef.current || !contentRef.current) return
@@ -33,7 +32,6 @@ export function AboutSection() {
       mm.add("(min-width: 768px)", () => {
         // Initial setup for desktop
         gsap.set(words, { opacity: 0.15 })
-        gsap.set(buttonRef.current, { opacity: 0, y: 20 })
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -53,25 +51,12 @@ export function AboutSection() {
           stagger: 0.1,
           ease: "none",
         })
-
-        // Reveal CV download button at the end
-        tl.to(
-          buttonRef.current,
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.4,
-            ease: "power2.out",
-          },
-          "-=0.1" // Slight anticipation before the end of word reveal
-        )
       })
 
       // Mobile layout (under 768px): natural scroll and scroll-driven highlight
       mm.add("(max-width: 767px)", () => {
         // Initial setup for mobile
         gsap.set(words, { opacity: 0.15 })
-        gsap.set(buttonRef.current, { opacity: 0, y: 15 })
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -88,17 +73,6 @@ export function AboutSection() {
           stagger: 0.1,
           ease: "none",
         })
-
-        tl.to(
-          buttonRef.current,
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.4,
-            ease: "power2.out",
-          },
-          "-=0.1"
-        )
       })
     }, containerRef)
 
@@ -146,21 +120,6 @@ export function AboutSection() {
                 </p>
               )
             })}
-          </div>
-
-          {/* CV Download Button */}
-          <div
-            ref={buttonRef}
-            className="mt-10 md:mt-14 opacity-0 transform translate-y-5"
-          >
-            <a
-              href={heroData.cta.cv.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ghost-pill"
-            >
-              {heroData.cta.cv.text}
-            </a>
           </div>
         </div>
       </div>

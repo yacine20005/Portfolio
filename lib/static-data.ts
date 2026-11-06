@@ -14,7 +14,6 @@ export const NAV_IDS = ['about', 'skills', 'featured', 'websites', 'projects', '
 export const HERO_CTA_HREFS = {
   projects: '#projects',
   contact: '#contact',
-  cv: 'https://rxresu.me/yacine20005/project-a',
 } as const;
 
 // ─── Skills (les noms de technos ne se traduisent pas) ────────────────────────

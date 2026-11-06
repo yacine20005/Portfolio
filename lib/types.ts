@@ -16,7 +16,6 @@ export interface HeroData {
     cta: {
         projects: Cta;
         contact: Cta;
-        cv: Cta;
     };
 }
 

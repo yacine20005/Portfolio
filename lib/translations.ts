@@ -46,7 +46,6 @@ export const translations: Record<'fr' | 'en', TranslationDictionary> = {
       cta: {
         projects: { text: 'Voir les projets', href: HERO_CTA_HREFS.projects },
         contact:  { text: 'Me contacter',     href: HERO_CTA_HREFS.contact },
-        cv:       { text: 'Télécharger CV',   href: HERO_CTA_HREFS.cv },
       },
     },
     aboutData: {
@@ -195,7 +194,6 @@ export const translations: Record<'fr' | 'en', TranslationDictionary> = {
       cta: {
         projects: { text: 'View Projects', href: HERO_CTA_HREFS.projects },
         contact:  { text: 'Get in Touch',  href: HERO_CTA_HREFS.contact },
-        cv:       { text: 'Download CV',   href: HERO_CTA_HREFS.cv },
       },
     },
     aboutData: {
