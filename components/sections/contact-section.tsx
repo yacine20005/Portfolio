@@ -149,10 +149,12 @@ export function ContactSection() {
         <div id="chatbot" className="mt-14 pt-10 border-t border-white/10 flex flex-col items-center scroll-mt-24">
           <div className="text-center mb-6 max-w-[600px]">
             <h3 className="font-inter font-light text-2xl md:text-3xl text-paper">
-              Discutez avec mon assistant IA
+              {language === "fr" ? "Discutez avec mon assistant IA" : "Chat with my AI assistant"}
             </h3>
             <p className="text-sm text-felt-gray mt-2">
-              Posez vos questions en temps réel sur mon parcours, mes compétences et mes projets.
+              {language === "fr"
+                ? "Posez vos questions en temps réel sur mon parcours, mes compétences et mes projets."
+                : "Ask questions in real time about my background, skills, and projects."}
             </p>
           </div>
           <div id="xur-inline-target" className="w-full flex justify-center" />

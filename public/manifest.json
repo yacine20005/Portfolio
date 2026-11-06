@@ -4,20 +4,20 @@
   "description": "Portfolio de Yacine Hamadouche, étudiant en informatique et développeur passionné qui transforme le café en code.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "background_color": "#000000",
+  "theme_color": "#000000",
   "lang": "fr-FR",
   "orientation": "portrait-primary",
   "categories": ["business", "education", "productivity"],
   "icons": [
     {
-      "src": "/placeholder-logo.png",
-      "sizes": "192x192",
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "/placeholder-logo.png",
+      "src": "/favicon.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"

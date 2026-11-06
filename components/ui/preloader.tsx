@@ -104,11 +104,18 @@ export function Preloader({ onComplete }: PreloaderProps) {
       window.removeEventListener("wheel", preventScroll, { capture: true })
       window.removeEventListener("touchmove", preventScroll, { capture: true })
       window.removeEventListener("keydown", preventScrollKeys, { capture: true })
+      document.documentElement.classList.remove("preloader-lock", "lenis-stopped")
     }
   }, [])
 
   useEffect(() => {
     if (!mounted) return
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.documentElement.classList.remove("preloader-lock", "lenis-stopped")
+      onCompleteRef.current()
+      return
+    }
 
     // Disable browser scroll restoration
     if ("scrollRestoration" in window.history) {

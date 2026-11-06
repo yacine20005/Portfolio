@@ -1,7 +1,6 @@
 import type React from "react"
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import "@fontsource/raleway/400.css"
 import "@/app/globals.css"
 import { MicrosoftClarity } from "@/components/microsoft-clarity"
 import { Inter } from "next/font/google"
@@ -80,6 +79,7 @@ export default function RootLayout({
             __html: `
               (function () {
                 if (window.location.pathname !== "/") return;
+                if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
                 document.documentElement.classList.add("preloader-lock", "lenis-stopped");
                 if ("scrollRestoration" in window.history) {
                   window.history.scrollRestoration = "auto";

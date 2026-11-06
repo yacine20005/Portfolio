@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { Header } from "@/components/sections/header"
 import { Footer } from "@/components/sections/footer"
@@ -58,10 +58,16 @@ const content = {
         desc: "Pourquoi attendre 4 à 5 secondes devant un spinner immobile ? Avec Xur, la réponse commence à s'afficher en moins de 200 millisecondes.",
         btnTest: "Lancer le comparatif de vitesse",
         traditionalLabel: "Chatbot FAQ Classique",
+        traditionalWaitingBadge: "Attente 4s...",
         traditionalStatusWaiting: "Attente de la réponse complète (API lente)...",
         traditionalStatusDone: "Réponse reçue d'un bloc après 4.2s !",
+        traditionalIdle: "Cliquez sur \"Lancer le comparatif\" pour tester la latence...",
+        traditionalLatencyLabel: "Latence perçue :",
+        traditionalLatencyDone: "4 200 ms (Bloc)",
         xurLabel: "Xur AI (Streaming SSE)",
         xurStatusStreaming: "Streaming continu Gemini 2.5 (200ms)...",
+        xurIdle: "Cliquez sur \"Lancer le comparatif\" pour voir le streaming mot-à-mot...",
+        xurFirstTokenLabel: "Premier token :",
         sampleText: "Les livraisons sont gratuites en France dès 50€ d'achat. Vos colis sont expédiés sous 24h et vous disposez de 14 jours pour effectuer un retour sans frais.",
       },
       ragTab: {
@@ -74,7 +80,8 @@ const content = {
           { key: "pricing", label: "💳 Tarifs & abonnements", text: "Pack Starter gratuit (15 RPM) / Pack Pro 49€ par mois." }
         ],
         promptLabel: "Question sélectionnée :",
-        xurAnswerLabel: "Réponse générée par Xur (Strictement basée sur le doc) :"
+        xurAnswerLabel: "Réponse générée par Xur (Strictement basée sur le doc) :",
+        verifiedNote: "Réponse 100% vérifiée et bornée. Aucune hallucination possible."
       },
       plugTab: {
         title: "Intégration instantanée sur n'importe quel site",
@@ -116,6 +123,7 @@ const content = {
       desc: "Voici la structure type du script HTML permettant d'intégrer Xur sur n'importe quel site web (Shopify, WordPress, Webflow ou HTML statique) :",
       code: '<script src="https://votre-serveur-xur.com/widget.js" api-key="VOTRE_CLE_DEMO"></script>',
       note: "💡 Snippet d'illustration : ce code est un exemple théorique démontrant la simplicité du format d'intégration (1 seule ligne). Il est donné à titre démonstratif.",
+      copyBtn: "Copier l'exemple",
       copySuccess: "Exemple copié !"
     },
     cta: {
@@ -152,10 +160,16 @@ const content = {
         desc: "Why wait 4 to 5 seconds staring at a frozen spinner? With Xur, tokens stream continuously in under 200 milliseconds.",
         btnTest: "Launch Speed Comparison Test",
         traditionalLabel: "Classic FAQ Chatbot",
+        traditionalWaitingBadge: "Waiting 4s...",
         traditionalStatusWaiting: "Waiting for full API response (slow)...",
         traditionalStatusDone: "Received all text at once after 4.2s!",
+        traditionalIdle: "Click \"Launch Speed Comparison Test\" to test latency...",
+        traditionalLatencyLabel: "Perceived latency:",
+        traditionalLatencyDone: "4,200 ms (Batch)",
         xurLabel: "Xur AI (SSE Streaming)",
         xurStatusStreaming: "Gemini 2.5 Continuous Streaming (200ms)...",
+        xurIdle: "Click \"Launch Speed Comparison Test\" to see word-by-word streaming...",
+        xurFirstTokenLabel: "First token:",
         sampleText: "Free shipping across France on orders over €50. Orders ship within 24h and you have 14 days for free returns.",
       },
       ragTab: {
@@ -168,7 +182,8 @@ const content = {
           { key: "pricing", label: "💳 Pricing & Plans", text: "Free Starter Pack (15 RPM) / Pro Pack €49/month." }
         ],
         promptLabel: "Selected Question:",
-        xurAnswerLabel: "Xur Answer (Strictly grounded in doc):"
+        xurAnswerLabel: "Xur Answer (Strictly grounded in doc):",
+        verifiedNote: "100% verified and bounded response. Zero hallucination possible."
       },
       plugTab: {
         title: "Instant Integration on Any Website",
@@ -210,6 +225,7 @@ const content = {
       desc: "Here is the standard HTML script tag format for embedding Xur on any website (Shopify, WordPress, Webflow, or static HTML):",
       code: '<script src="https://your-xur-server.com/widget.js" api-key="YOUR_DEMO_KEY"></script>',
       note: "💡 Illustrative snippet: this code is an example demonstrating the 1-line embedding format for showcase purposes.",
+      copyBtn: "Copy example",
       copySuccess: "Example copied!"
     },
     cta: {
@@ -234,6 +250,8 @@ export default function XurProjectPage() {
   const [speedTesting, setSpeedTesting] = useState(false)
   const [tradDone, setTradDone] = useState(false)
   const [xurStreamText, setXurStreamText] = useState("")
+  const streamIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const tradTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   // RAG Tab State
   const [selectedTopic, setSelectedTopic] = useState<number>(0)
@@ -242,8 +260,17 @@ export default function XurProjectPage() {
   const [isWidgetMounted, setIsWidgetMounted] = useState(true)
   const [copiedEmbed, setCopiedEmbed] = useState(false)
 
+  useEffect(() => {
+    return () => {
+      if (streamIntervalRef.current) clearInterval(streamIntervalRef.current)
+      if (tradTimeoutRef.current) clearTimeout(tradTimeoutRef.current)
+    }
+  }, [])
+
   const runSpeedTest = () => {
     if (speedTesting) return
+    if (streamIntervalRef.current) clearInterval(streamIntervalRef.current)
+    if (tradTimeoutRef.current) clearTimeout(tradTimeoutRef.current)
     setSpeedTesting(true)
     setTradDone(false)
     setXurStreamText("")
@@ -251,17 +278,17 @@ export default function XurProjectPage() {
     // Xur Streaming Starts Immediately (200ms)
     const text = t.powers.speedTab.sampleText
     let currentIdx = 0
-    const streamInterval = setInterval(() => {
+    streamIntervalRef.current = setInterval(() => {
       currentIdx += 2
       if (currentIdx >= text.length) {
         currentIdx = text.length
-        clearInterval(streamInterval)
+        if (streamIntervalRef.current) clearInterval(streamIntervalRef.current)
       }
       setXurStreamText(text.slice(0, currentIdx))
     }, 30)
 
     // Traditional Chatbot Waits 3.5s before showing all text at once
-    setTimeout(() => {
+    tradTimeoutRef.current = setTimeout(() => {
       setTradDone(true)
       setSpeedTesting(false)
     }, 3500)
@@ -412,7 +439,7 @@ export default function XurProjectPage() {
                         {speedTesting && !tradDone && (
                           <span className="inline-flex items-center gap-1.5 text-[11px] font-mono text-amber-400">
                             <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                            <span>Attente 4s...</span>
+                            <span>{t.powers.speedTab.traditionalWaitingBadge}</span>
                           </span>
                         )}
                       </div>
@@ -426,11 +453,11 @@ export default function XurProjectPage() {
                         ) : tradDone ? (
                           <span className="text-paper">{t.powers.speedTab.sampleText}</span>
                         ) : (
-                          <span className="text-white/30 italic">Cliquez sur "Lancer le comparatif" pour tester la latence...</span>
+                          <span className="text-white/30 italic">{t.powers.speedTab.traditionalIdle}</span>
                         )}
                       </div>
                       <div className="mt-3 text-[11px] font-mono text-white/40 text-right">
-                        Latence perçue : {tradDone ? "4 200 ms (Bloc)" : "--"}
+                        {t.powers.speedTab.traditionalLatencyLabel} {tradDone ? t.powers.speedTab.traditionalLatencyDone : "--"}
                       </div>
                     </div>
 
@@ -452,11 +479,11 @@ export default function XurProjectPage() {
                         {xurStreamText ? (
                           <span>{xurStreamText}<span className="inline-block w-1.5 h-4 bg-emerald-400 animate-pulse ml-0.5" /></span>
                         ) : (
-                          <span className="text-emerald-400/40 italic">Cliquez sur "Lancer le comparatif" pour voir le streaming mot-à-mot...</span>
+                          <span className="text-emerald-400/40 italic">{t.powers.speedTab.xurIdle}</span>
                         )}
                       </div>
                       <div className="mt-3 text-[11px] font-mono text-emerald-400 text-right">
-                        Premier token : <strong className="text-emerald-300">180 ms</strong>
+                        {t.powers.speedTab.xurFirstTokenLabel} <strong className="text-emerald-300">180 ms</strong>
                       </div>
                     </div>
                   </div>
@@ -522,7 +549,7 @@ export default function XurProjectPage() {
 
                       <div className="mt-6 pt-4 border-t border-emerald-500/20 flex items-center gap-2 text-xs font-mono text-emerald-400/80">
                         <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                        <span>Réponse 100% vérifiée et bornée. Aucune hallucination possible.</span>
+                        <span>{t.powers.ragTab.verifiedNote}</span>
                       </div>
                     </div>
                   </div>
@@ -664,7 +691,7 @@ export default function XurProjectPage() {
                     className="ghost-pill ghost-pill-sm inline-flex items-center gap-2 shrink-0 border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/20"
                   >
                     {copiedEmbed ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
-                    <span>{copiedEmbed ? t.embed.copySuccess : "Copier l'exemple"}</span>
+                    <span>{copiedEmbed ? t.embed.copySuccess : t.embed.copyBtn}</span>
                   </button>
                 </div>
               </div>

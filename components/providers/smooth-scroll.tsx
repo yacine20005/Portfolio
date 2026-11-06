@@ -17,14 +17,18 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
     }
 
     let lenis: Lenis | null = null
-    let rafId: number
+    let rafId: number | null = null
     let scrollTriggerInstance: any = null
+    let observer: MutationObserver | null = null
+    let hashTimeoutId: ReturnType<typeof setTimeout> | null = null
+    let cancelled = false
 
     // Load ScrollTrigger dynamically once on mount to avoid SSR issues
     Promise.all([
       import("lenis"),
       import("gsap/ScrollTrigger")
     ]).then(([{ default: LenisClass }, { ScrollTrigger }]) => {
+      if (cancelled) return
       scrollTriggerInstance = ScrollTrigger
 
       // Configure ScrollTrigger to avoid jumping when mobile address bar hides/shows
@@ -61,7 +65,7 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
       lenis.on("scroll", handleScroll)
 
       // Observe 'lenis-stopped' class on HTML to stop/start Lenis scroll handlers
-      const observer = new MutationObserver((mutations) => {
+      observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
           if (mutation.attributeName === "class") {
             const isStopped = document.documentElement.classList.contains("lenis-stopped")
@@ -89,7 +93,7 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
         const targetId = window.location.hash.substring(1)
         const targetElement = document.getElementById(targetId)
         if (targetElement) {
-          setTimeout(() => {
+          hashTimeoutId = setTimeout(() => {
             const headerHeight = document.querySelector("header")?.offsetHeight || 0
             lenis?.scrollTo(targetElement, {
               offset: -headerHeight - 16,
@@ -101,10 +105,16 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
     })
 
     return () => {
+      cancelled = true
+      observer?.disconnect()
+      if (hashTimeoutId) clearTimeout(hashTimeoutId)
       if (lenis) {
         lenis.destroy()
       }
-      cancelAnimationFrame(rafId)
+      lenisRef.current = null
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId)
+      }
     }
   }, [])
 

@@ -25,34 +25,53 @@ export function ShaderAnimation({ color = [1.0, 1.0, 1.0] }: { color?: [number, 
   })
 
   useEffect(() => {
-    // Load Three.js dynamically
-    const script = document.createElement("script")
-    script.src = "https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js"
-    script.onload = () => {
-      if (containerRef.current && window.THREE) {
-        initThreeJS(color)
+    let cancelled = false
+    let cleanupResize: (() => void) | null = null
+
+    const start = () => {
+      if (cancelled || !containerRef.current || !window.THREE) return
+      cleanupResize = initThreeJS(color)
+    }
+
+    if (window.THREE) {
+      start()
+    } else {
+      let script = document.querySelector<HTMLScriptElement>(
+        'script[src="https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js"]'
+      )
+      if (!script) {
+        script = document.createElement("script")
+        script.src = "https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js"
+        document.head.appendChild(script)
+      }
+      script.addEventListener("load", start)
+      return () => {
+        cancelled = true
+        script?.removeEventListener("load", start)
+        cleanupResize?.()
+        if (sceneRef.current.animationId) {
+          cancelAnimationFrame(sceneRef.current.animationId)
+        }
+        if (sceneRef.current.renderer) {
+          sceneRef.current.renderer.dispose()
+        }
       }
     }
-    document.head.appendChild(script)
 
     return () => {
-      // Cleanup
+      cancelled = true
+      cleanupResize?.()
       if (sceneRef.current.animationId) {
         cancelAnimationFrame(sceneRef.current.animationId)
       }
       if (sceneRef.current.renderer) {
         sceneRef.current.renderer.dispose()
       }
-      try {
-        document.head.removeChild(script)
-      } catch (e) {
-        // script might have already been removed or head not present
-      }
     }
   }, [])
 
-  const initThreeJS = (colorVal: [number, number, number]) => {
-    if (!containerRef.current || !window.THREE) return
+  const initThreeJS = (colorVal: [number, number, number]): (() => void) | null => {
+    if (!containerRef.current || !window.THREE) return null
 
     const THREE = window.THREE
     const container = containerRef.current
@@ -154,6 +173,7 @@ export function ShaderAnimation({ color = [1.0, 1.0, 1.0] }: { color?: [number, 
 
     // Handle resize
     const onWindowResize = () => {
+      if (!container.isConnected) return
       const rect = container.getBoundingClientRect()
       renderer.setSize(rect.width, rect.height)
       uniforms.resolution.value.x = renderer.domElement.width
@@ -171,6 +191,12 @@ export function ShaderAnimation({ color = [1.0, 1.0, 1.0] }: { color?: [number, 
     }
 
     animate()
+
+    return () => {
+      window.removeEventListener("resize", onWindowResize, false)
+      geometry.dispose()
+      material.dispose()
+    }
   }
 
   return (

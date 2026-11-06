@@ -8,6 +8,7 @@ export function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null)
   const ringRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
+  const isVisibleRef = useRef(false)
   const [isHovered, setIsHovered] = useState(false)
   const [isClicking, setIsClicking] = useState(false)
   const pathname = usePathname()
@@ -66,14 +67,18 @@ export function CustomCursor() {
     const handlePointerMove = (e: PointerEvent) => {
       // Hide custom cursor on touchscreen interactions and fall back to native cursor
       if (e.pointerType === "touch" || e.pointerType === "pen") {
-        setIsVisible(false)
+        if (isVisibleRef.current) {
+          isVisibleRef.current = false
+          setIsVisible(false)
+        }
         return
       }
 
       mouseRef.current.x = e.clientX
       mouseRef.current.y = e.clientY
       
-      if (!isVisible) {
+      if (!isVisibleRef.current) {
+        isVisibleRef.current = true
         setIsVisible(true)
       }
 
@@ -101,6 +106,7 @@ export function CustomCursor() {
     const handleMouseDown = () => setIsClicking(true)
     const handleMouseUp = () => setIsClicking(false)
     const handleMouseLeaveWindow = () => {
+      isVisibleRef.current = false
       setIsVisible(false)
     }
 
@@ -270,7 +276,7 @@ export function CustomCursor() {
       document.removeEventListener("mouseout", handleMouseOut)
       cancelAnimationFrame(rafId)
     }
-  }, [isVisible])
+  }, [])
 
   if (!isVisible) return null
 

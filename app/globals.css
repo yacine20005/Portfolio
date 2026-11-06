@@ -64,18 +64,7 @@
   }
 }
 
-/* ── Animations ────────────────────────────────────────────────── */
-
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* ──Animations ────────────────────────────────────────────────── */
 
 @keyframes rotate-slow {
   from {
@@ -84,35 +73,6 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-@keyframes iridescent-shift {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-.animate-fade-up {
-  animation: fade-up 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
-}
-
-.animate-fade-up-delay {
-  animation: fade-up 0.8s cubic-bezier(0.19, 1, 0.22, 1) 0.15s forwards;
-  opacity: 0;
-}
-
-.animate-fade-up-delay-2 {
-  animation: fade-up 0.8s cubic-bezier(0.19, 1, 0.22, 1) 0.3s forwards;
-  opacity: 0;
-}
-
-.animate-fade-up-delay-3 {
-  animation: fade-up 0.8s cubic-bezier(0.19, 1, 0.22, 1) 0.45s forwards;
-  opacity: 0;
 }
 
 /* ── Ghost Pill Button ─────────────────────────────────────────── */
@@ -150,21 +110,6 @@
   }
 }
 
-/* ── Iridescent Hero Backdrop ──────────────────────────────────── */
-
-.iridescent-backdrop {
-  background: var(--gradient-iridescent);
-  background-size: 200% 200%;
-  animation: iridescent-shift 8s ease-in-out infinite;
-}
-
-/* ── Section defaults ──────────────────────────────────────────── */
-
-.section-gap {
-  padding-top: 46px;
-  padding-bottom: 46px;
-}
-
 /* ── Reduced motion ────────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
@@ -174,10 +119,6 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-
-  .iridescent-backdrop {
-    animation: none;
   }
 }
 
@@ -218,14 +159,12 @@ html.lenis body {
   pointer-events: none;
 }
 
-/* Text Reveal helpers */
-.reveal-wrapper {
-  overflow: hidden;
-  display: inline-block;
-  vertical-align: bottom;
-}
-
 /* ── Theme Accents ─────────────────────────────────────────────── */
+
+.theme-xur {
+  --color-accent: #10b981; /* emerald */
+  --color-accent-rgb: 16, 185, 129;
+}
 
 .theme-spark-love {
   --color-accent: #f472b6; /* pink */
@@ -248,6 +187,7 @@ html.lenis body {
 }
 
 /* Apply accent colors to links/hover */
+.theme-xur a:hover,
 .theme-spark-love a:hover,
 .theme-orbit-market a:hover,
 .theme-cobble-coach a:hover,
@@ -256,6 +196,7 @@ html.lenis body {
 }
 
 /* Style the ghost pill CTAs on hover to glow with the theme color */
+.theme-xur .ghost-pill:hover,
 .theme-spark-love .ghost-pill:hover,
 .theme-orbit-market .ghost-pill:hover,
 .theme-cobble-coach .ghost-pill:hover,
@@ -265,6 +206,7 @@ html.lenis body {
 }
 
 /* Style headings with a subtle gradient text-fill using the accent color */
+.theme-xur h2,
 .theme-spark-love h2,
 .theme-orbit-market h2,
 .theme-cobble-coach h2,
@@ -276,6 +218,7 @@ html.lenis body {
 }
 
 /* Tint the scroll indicator SVG text to match the theme */
+.theme-xur svg text,
 .theme-spark-love svg text,
 .theme-orbit-market svg text,
 .theme-cobble-coach svg text,

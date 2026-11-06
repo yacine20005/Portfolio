@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   images: {
     unoptimized: true,
   },
@@ -10,14 +7,6 @@ const nextConfig = {
     optimizePackageImports: ["lucide-react", "react-icons"],
   },
   transpilePackages: [],
-  async rewrites() {
-    return [
-      {
-        source: "/robots.txt",
-        destination: "/app/robots.txt",
-      },
-    ];
-  },
   async headers() {
     return [
       {

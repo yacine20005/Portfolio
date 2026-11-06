@@ -1,12 +1,9 @@
 "use client"
 
 import type React from "react"
-import { useRouter } from "next/navigation"
 import { useCallback } from "react"
 
 export function useSmoothScroll() {
-  const router = useRouter()
-
   const scrollToSection = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
       const isAnchorLink = href.startsWith("#")
@@ -31,7 +28,7 @@ export function useSmoothScroll() {
         }
       }
     },
-    [router],
+    [],
   )
 
   return { scrollToSection }

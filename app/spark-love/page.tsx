@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Header } from "@/components/sections/header"
 import { Footer } from "@/components/sections/footer"
 import { 
@@ -339,6 +339,7 @@ export default function SparkLovePage() {
   // Movie Simulator State
   const [movieIndex, setMovieIndex] = useState(0)
   const [movieStatus, setMovieStatus] = useState<"idle" | "evaluating" | "matched" | "skipped">("idle")
+  const movieTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const currentMovie = SIMULATED_MOVIES[movieIndex % SIMULATED_MOVIES.length]
 
   // Quiz Simulator State
@@ -347,23 +348,35 @@ export default function SparkLovePage() {
   const [quizStatus, setQuizStatus] = useState<"idle" | "revealed">("idle")
   const currentQuiz = SIMULATED_QUIZ[quizIndex % SIMULATED_QUIZ.length]
 
+  const clearMovieTimeout = () => {
+    if (movieTimeoutRef.current) {
+      clearTimeout(movieTimeoutRef.current)
+      movieTimeoutRef.current = null
+    }
+  }
+
+  useEffect(() => {
+    return () => clearMovieTimeout()
+  }, [])
+
   const handleMovieAction = (action: "like" | "dislike") => {
     if (movieStatus !== "idle") return
+    clearMovieTimeout()
 
     if (action === "dislike") {
       setMovieStatus("skipped")
-      setTimeout(() => {
+      movieTimeoutRef.current = setTimeout(() => {
         setMovieIndex((prev) => prev + 1)
         setMovieStatus("idle")
       }, 800)
     } else {
       setMovieStatus("evaluating")
-      setTimeout(() => {
+      movieTimeoutRef.current = setTimeout(() => {
         if (currentMovie.isMatch) {
           setMovieStatus("matched")
         } else {
           setMovieStatus("skipped")
-          setTimeout(() => {
+          movieTimeoutRef.current = setTimeout(() => {
             setMovieIndex((prev) => prev + 1)
             setMovieStatus("idle")
           }, 800)
@@ -373,6 +386,7 @@ export default function SparkLovePage() {
   }
 
   const nextMovieMatch = () => {
+    clearMovieTimeout()
     setMovieIndex((prev) => prev + 1)
     setMovieStatus("idle")
   }
@@ -498,13 +512,13 @@ export default function SparkLovePage() {
                       {/* Tab Switcher inside App */}
                       <div className="grid grid-cols-2 bg-[#1C1C21] p-0.5 rounded-lg text-[10px] font-medium font-inter mt-1.5 text-center">
                         <button 
-                          onClick={() => { setActiveTab("swipe"); setMovieStatus("idle"); }}
+                          onClick={() => { clearMovieTimeout(); setActiveTab("swipe"); setMovieStatus("idle"); }}
                           className={`py-1.5 rounded-md transition-all ${activeTab === "swipe" ? "bg-pink-500 text-white shadow-sm" : "text-white/40 hover:text-white"}`}
                         >
                           {t.simulator.tabSwipe}
                         </button>
                         <button 
-                          onClick={() => { setActiveTab("quiz"); setQuizStatus("idle"); setQuizSelected(null); }}
+                          onClick={() => { clearMovieTimeout(); setActiveTab("quiz"); setQuizStatus("idle"); setQuizSelected(null); }}
                           className={`py-1.5 rounded-md transition-all ${activeTab === "quiz" ? "bg-pink-500 text-white shadow-sm" : "text-white/40 hover:text-white"}`}
                         >
                           {t.simulator.tabQuiz}
