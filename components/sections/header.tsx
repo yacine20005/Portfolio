@@ -3,16 +3,13 @@
 import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
-import { useSmoothScroll } from "@/hooks/use-smooth-scroll"
 import { useLanguage } from "@/components/providers/language-context"
 import { LanguageToggle } from "@/components/ui/language-toggle"
-
 import { ArrowLeft } from "lucide-react"
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const { scrollToSection } = useSmoothScroll()
   const { dictionary, language } = useLanguage()
   const { navLinks } = dictionary
   const pathname = usePathname()
@@ -27,11 +24,7 @@ export function Header() {
   }, [])
 
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = ""
-    }
+    document.body.style.overflow = menuOpen ? "hidden" : ""
     return () => {
       document.body.style.overflow = ""
     }
@@ -41,15 +34,7 @@ export function Header() {
     setMenuOpen(false)
   }, [pathname])
 
-  const handleLinkClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string,
-  ) => {
-    setMenuOpen(false)
-    if (isHomePage) {
-      scrollToSection(e, href)
-    }
-  }
+  const closeMenu = () => setMenuOpen(false)
 
   const linkClass =
     "text-caption font-inter font-normal text-felt-gray hover:text-paper transition-colors duration-[0.4s] ease py-2 min-h-[44px] inline-flex items-center"
@@ -64,22 +49,21 @@ export function Header() {
         }`}
       >
         <div className="mx-auto flex items-center justify-between px-5 md:px-10 max-w-[1078px]">
-          {/* Logo */}
           <Link
             href="/"
+            onClick={closeMenu}
             className="text-base font-inter font-normal text-paper hover:text-felt-gray transition-colors duration-[0.4s] ease tracking-tight py-2 min-h-[44px] inline-flex items-center"
           >
             Yacine._
           </Link>
 
-          {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-8">
             {isHomePage ? (
               navLinks.map((link) => (
                 <a
                   key={link.id}
                   href={link.href}
-                  onClick={(e) => handleLinkClick(e, link.href)}
+                  onClick={closeMenu}
                   className={linkClass}
                 >
                   {link.name}
@@ -97,7 +81,6 @@ export function Header() {
             <LanguageToggle />
           </nav>
 
-          {/* Hamburger */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="md:hidden flex flex-col items-center justify-center gap-[5px] p-3 -mr-3 min-h-[44px] min-w-[44px]"
@@ -123,7 +106,6 @@ export function Header() {
         </div>
       </header>
 
-      {/* Mobile overlay */}
       <div
         className={`fixed inset-0 z-30 bg-obsidian/98 backdrop-blur-sm flex flex-col items-center justify-center gap-8 transition-all duration-[0.6s] ease-signature md:hidden ${
           menuOpen
@@ -136,7 +118,7 @@ export function Header() {
             <a
               key={link.id}
               href={link.href}
-              onClick={(e) => handleLinkClick(e, link.href)}
+              onClick={closeMenu}
               className="text-2xl font-inter font-light text-felt-gray hover:text-paper transition-colors duration-[0.4s] ease"
               style={{
                 transitionDelay: menuOpen ? `${i * 0.05}s` : "0s",
@@ -148,16 +130,17 @@ export function Header() {
         ) : (
           <Link
             href="/"
+            onClick={closeMenu}
             className="text-2xl font-inter font-light text-felt-gray hover:text-paper transition-colors duration-[0.4s] ease"
           >
             {language === "fr" ? "← Retour au Portfolio" : "← Back to Portfolio"}
           </Link>
         )}
 
-        {/* Mobile contact link & toggle */}
         <div className="flex flex-col items-center gap-6 mt-4">
           <a
             href="mailto:ya.hamadouche@gmail.com"
+            onClick={closeMenu}
             className="ghost-pill"
           >
             {language === "fr" ? "Me contacter" : "Get in touch"}

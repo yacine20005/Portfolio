@@ -1,51 +1,17 @@
 "use client"
 
-import React, { useEffect, useRef } from "react"
+import React, { useRef } from "react"
 import { useLanguage } from "@/components/providers/language-context"
 import { TextReveal } from "@/components/ui/text-reveal"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { TiltCard } from "@/components/ui/tilt-card"
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger)
-}
+import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
 export function SkillsSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const { dictionary } = useLanguage()
   const { skillsData } = dictionary
 
-  useEffect(() => {
-    if (typeof window === "undefined" || !sectionRef.current) return
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      gsap.set(".skill-category-card", { opacity: 1, y: 0 })
-      return
-    }
-
-    const cards = sectionRef.current.querySelectorAll(".skill-category-card")
-    const anim = gsap.fromTo(
-      cards,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      }
-    )
-
-    return () => {
-      if (anim.scrollTrigger) anim.scrollTrigger.kill()
-      anim.kill()
-    }
-  }, [skillsData]) // Re-run if skillsData content changes
+  useScrollReveal(sectionRef, ".skill-category-card", skillsData, { y: 30 })
 
   return (
     <section

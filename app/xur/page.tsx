@@ -2,8 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
-import { Header } from "@/components/sections/header"
-import { Footer } from "@/components/sections/footer"
+import { ProjectPageShell } from "@/components/sections/project-page-shell"
 import {
   Sparkles,
   Zap,
@@ -13,11 +12,10 @@ import {
   FileText,
   MousePointerClick,
   CheckCircle2,
-  Loader2
+  Loader2,
+  Github
 } from "lucide-react"
-import { FaGithub } from "react-icons/fa"
 import { ShaderAnimation } from "@/components/ui/shader-lines"
-import { ProjectPreloader } from "@/components/ui/project-preloader"
 import { useLanguage } from "@/components/providers/language-context"
 
 const content = {
@@ -202,8 +200,6 @@ const content = {
 }
 
 export default function XurProjectPage() {
-  const [loading, setLoading] = useState(true)
-  const [contentVisible, setContentVisible] = useState(false)
   const { language } = useLanguage()
   const t = content[language]
 
@@ -257,21 +253,12 @@ export default function XurProjectPage() {
   }
 
   return (
-    <div className="min-h-screen bg-obsidian text-paper overflow-hidden theme-xur">
-      {loading && (
-        <ProjectPreloader
-          icon={<Sparkles />}
-          accentColor="rgb(16, 185, 129)"
-          title="Xur"
-          onReveal={() => setContentVisible(true)}
-          onComplete={() => setLoading(false)}
-        />
-      )}
-
-      <div className={`transition-all duration-300 ${contentVisible ? "opacity-100 visible" : "opacity-0 invisible"}`}>
-        <Header />
-
-        <main className="relative z-10">
+    <ProjectPageShell
+      themeClass="theme-xur"
+      icon={<Sparkles />}
+      accentColor="rgb(16, 185, 129)"
+      title="Xur"
+    >
           {/* Hero Section */}
           <section className="relative h-screen flex items-center justify-center overflow-hidden border-b border-white/5">
             <div className="absolute inset-0 opacity-[0.3] pointer-events-none">
@@ -293,7 +280,7 @@ export default function XurProjectPage() {
                   <Bot className="h-4 w-4 text-obsidian" /> {t.hero.ctaTestBot}
                 </Link>
                 <a href="https://github.com/yacine20005/Xur" target="_blank" rel="noopener noreferrer" className="ghost-pill inline-flex items-center gap-2">
-                  <FaGithub className="h-4 w-4" /> {t.hero.ctaSource}
+                  <Github className="h-4 w-4" /> {t.hero.ctaSource}
                 </a>
                 <a href="#powers" className="ghost-pill inline-flex items-center gap-2">
                   {t.hero.ctaPowers}
@@ -613,15 +600,11 @@ export default function XurProjectPage() {
                   <Bot className="h-4 w-4 text-obsidian" /> {t.cta.testBot}
                 </Link>
                 <a href="https://github.com/yacine20005/Xur" target="_blank" rel="noopener noreferrer" className="ghost-pill inline-flex items-center gap-2">
-                  <FaGithub className="h-4 w-4" /> {t.cta.star}
+                  <Github className="h-4 w-4" /> {t.cta.star}
                 </a>
               </div>
             </div>
           </section>
-        </main>
-
-        <Footer />
-      </div>
-    </div>
+    </ProjectPageShell>
   )
 }

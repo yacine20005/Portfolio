@@ -18,7 +18,12 @@ export default function Home() {
   const [loading, setLoading] = useState(() => !hasPreloaderRun())
 
   useEffect(() => {
-    if (loading && typeof window !== "undefined" && !window.location.hash) {
+    if (typeof window === "undefined") return
+    if (window.location.hash) {
+      document.documentElement.classList.remove("preloader-lock", "lenis-stopped")
+      setLoading(false)
+      setPreloaderHasRun(true)
+    } else if (loading) {
       window.scrollTo(0, 0)
     }
   }, [loading])

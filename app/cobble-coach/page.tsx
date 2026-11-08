@@ -1,12 +1,8 @@
 "use client"
 
-import { useState } from "react"
-import { Header } from "@/components/sections/header"
-import { Footer } from "@/components/sections/footer"
-import { Bot } from "lucide-react"
-import { FaGithub } from "react-icons/fa"
+import { ProjectPageShell } from "@/components/sections/project-page-shell"
+import { Bot, Github } from "lucide-react"
 import { ShaderAnimation } from "@/components/ui/shader-lines"
-import { ProjectPreloader } from "@/components/ui/project-preloader"
 import { useLanguage } from "@/components/providers/language-context"
 
 const content = {
@@ -93,26 +89,16 @@ const content = {
 }
 
 export default function CobbleCoachPage() {
-  const [loading, setLoading] = useState(true)
-  const [contentVisible, setContentVisible] = useState(false)
   const { language } = useLanguage()
   const t = content[language]
 
   return (
-    <div className="min-h-screen bg-obsidian text-paper overflow-hidden theme-cobble-coach">
-      {loading && (
-        <ProjectPreloader
-          icon={<Bot />}
-          accentColor="rgb(239, 68, 68)"
-          title="Cobble Coach"
-          onReveal={() => setContentVisible(true)}
-          onComplete={() => setLoading(false)}
-        />
-      )}
-      <div className={`transition-all duration-300 ${contentVisible ? "opacity-100 visible" : "opacity-0 invisible"}`}>
-        <Header />
-
-        <main className="relative z-10">
+    <ProjectPageShell
+      themeClass="theme-cobble-coach"
+      icon={<Bot />}
+      accentColor="rgb(239, 68, 68)"
+      title="Cobble Coach"
+    >
           {/* Hero */}
           <section className="relative h-screen flex items-center justify-center overflow-hidden border-b border-white/5">
             <div className="absolute inset-0 opacity-40">
@@ -131,7 +117,7 @@ export default function CobbleCoachPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
                 <a href="https://github.com/yacine20005/Cobble-Coach" target="_blank" rel="noopener noreferrer" className="ghost-pill">
-                  <FaGithub className="h-4 w-4" /> {t.hero.viewCode}
+                  <Github className="h-4 w-4" /> {t.hero.viewCode}
                 </a>
                 <a href="#features" className="ghost-pill">{t.hero.explore}</a>
               </div>
@@ -206,15 +192,11 @@ export default function CobbleCoachPage() {
               </p>
               <div className="flex flex-wrap justify-center gap-4 mt-8">
                 <a href="https://github.com/yacine20005/Cobble-Coach" target="_blank" rel="noopener noreferrer" className="ghost-pill">
-                  <FaGithub className="h-4 w-4" /> {t.cta.star}
+                  <Github className="h-4 w-4" /> {t.cta.star}
                 </a>
               </div>
             </div>
           </section>
-        </main>
-
-        <Footer />
-      </div>
-    </div>
+    </ProjectPageShell>
   )
 }

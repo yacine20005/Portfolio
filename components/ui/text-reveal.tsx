@@ -27,28 +27,23 @@ export function TextReveal({
 
   useEffect(() => {
     if (typeof window === "undefined" || !containerRef.current) return
-    
-    // Check reduced motion
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return
-    }
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
 
     const element = containerRef.current
     const words = text.split(" ")
-    
-    // Clear content to build the animation elements
+
     element.innerHTML = ""
-    
+
     words.forEach((word) => {
       const wordSpan = document.createElement("span")
+      wordSpan.setAttribute("aria-hidden", "true")
       wordSpan.style.display = "inline-block"
       wordSpan.style.overflow = "hidden"
       wordSpan.style.verticalAlign = "bottom"
       wordSpan.className = "mr-[0.25em] pb-[0.05em]"
 
       if (type === "chars") {
-        const letters = word.split("")
-        letters.forEach((char) => {
+        word.split("").forEach((char) => {
           const charSpan = document.createElement("span")
           charSpan.textContent = char
           charSpan.style.display = "inline-block"
@@ -62,7 +57,7 @@ export function TextReveal({
         innerSpan.className = "reveal-item transform translate-y-full opacity-0"
         wordSpan.appendChild(innerSpan)
       }
-      
+
       element.appendChild(wordSpan)
     })
 
@@ -82,17 +77,21 @@ export function TextReveal({
       duration: 0.8,
       stagger: type === "chars" ? 0.02 : 0.04,
       ease: "power3.out",
-      delay: delay,
+      delay,
     })
 
     return () => {
-      if (tl.scrollTrigger) tl.scrollTrigger.kill()
+      tl.scrollTrigger?.kill()
       tl.kill()
     }
   }, [text, delay, type])
 
   return (
-    <Component ref={containerRef as React.RefObject<any>} className={className}>
+    <Component
+      ref={containerRef as React.RefObject<any>}
+      aria-label={text}
+      className={className}
+    >
       {text}
     </Component>
   )

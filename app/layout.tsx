@@ -13,6 +13,9 @@ const inter = Inter({ subsets: ["latin"], display: "swap" })
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://yacine-hamadouche.me"),
+  alternates: {
+    canonical: "./",
+  },
   title: {
     default: "Yacine Hamadouche | Computer Science Student & Developer",
     template: "%s | Yacine Hamadouche - Portfolio",
@@ -78,7 +81,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               (function () {
-                if (window.location.pathname !== "/") return;
+                if (window.location.pathname !== "/" || window.location.hash) return;
                 if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
                 document.documentElement.classList.add("preloader-lock", "lenis-stopped");
                 if ("scrollRestoration" in window.history) {
@@ -88,7 +91,6 @@ export default function RootLayout({
             `,
           }}
         />
-        <link rel="canonical" href="https://yacine-hamadouche.me" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon.png" type="image/png" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -132,11 +134,21 @@ export default function RootLayout({
                   name: "Yacine Hamadouche",
                   url: "https://yacine-hamadouche.me",
                   jobTitle: "Computer Science Student & Developer",
-                  alumniOf: {
-                    "@type": "EducationalOrganization",
-                    name: "Gustave Eiffel University",
-                  },
+                  alumniOf: [
+                    {
+                      "@type": "EducationalOrganization",
+                      name: "Paris 8 University",
+                    },
+                    {
+                      "@type": "EducationalOrganization",
+                      name: "Gustave Eiffel University",
+                    },
+                  ],
                   knowsAbout: [
+                    "Cybersecurity",
+                    "Data Science",
+                    "DevOps",
+                    "Cloud Computing",
                     "Web Development",
                     "Mobile Development",
                     "React",

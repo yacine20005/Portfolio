@@ -1,13 +1,9 @@
 "use client"
 
-import { useState } from "react"
-import { Header } from "@/components/sections/header"
-import { Footer } from "@/components/sections/footer"
-import { Check } from "lucide-react"
-import { GiMoonOrbit } from "react-icons/gi"
-import { FaGithub } from "react-icons/fa"
+import { ProjectPageShell } from "@/components/sections/project-page-shell"
+import { Check, Github } from "lucide-react"
+import { MoonOrbitIcon } from "@/lib/static-data"
 import { ShaderAnimation } from "@/components/ui/shader-lines"
-import { ProjectPreloader } from "@/components/ui/project-preloader"
 import { useLanguage } from "@/components/providers/language-context"
 
 const content = {
@@ -166,26 +162,16 @@ const content = {
 }
 
 export default function OrbitMarketPage() {
-  const [loading, setLoading] = useState(true)
-  const [contentVisible, setContentVisible] = useState(false)
   const { language } = useLanguage()
   const t = content[language]
 
   return (
-    <div className="min-h-screen bg-obsidian text-paper overflow-hidden theme-orbit-market">
-      {loading && (
-        <ProjectPreloader
-          icon={<GiMoonOrbit />}
-          accentColor="rgb(96, 165, 250)"
-          title={t.preloader}
-          onReveal={() => setContentVisible(true)}
-          onComplete={() => setLoading(false)}
-        />
-      )}
-      <div className={`transition-all duration-300 ${contentVisible ? "opacity-100 visible" : "opacity-0 invisible"}`}>
-        <Header />
-
-        <main className="relative z-10">
+    <ProjectPageShell
+      themeClass="theme-orbit-market"
+      icon={<MoonOrbitIcon />}
+      accentColor="rgb(96, 165, 250)"
+      title={t.preloader}
+    >
           {/* Hero Section */}
           <section className="relative h-screen flex items-center justify-center overflow-hidden border-b border-white/5">
             <div className="absolute inset-0 opacity-[0.25] pointer-events-none">
@@ -204,7 +190,7 @@ export default function OrbitMarketPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
                 <a href="https://github.com/yacine20005/Orbit-Market" target="_blank" rel="noopener noreferrer" className="ghost-pill">
-                  <FaGithub className="h-4 w-4" /> {t.hero.ctaSource}
+                  <Github className="h-4 w-4" /> {t.hero.ctaSource}
                 </a>
                 <a href="#features" className="ghost-pill">{t.hero.ctaView}</a>
               </div>
@@ -357,15 +343,11 @@ export default function OrbitMarketPage() {
               </p>
               <div className="flex flex-wrap justify-center gap-4 mt-8">
                 <a href="https://github.com/yacine20005/Orbit-Market" target="_blank" rel="noopener noreferrer" className="ghost-pill">
-                  <FaGithub className="h-4 w-4" /> {t.cta.star}
+                  <Github className="h-4 w-4" /> {t.cta.star}
                 </a>
               </div>
             </div>
           </section>
-        </main>
-
-        <Footer />
-      </div>
-    </div>
+    </ProjectPageShell>
   )
 }

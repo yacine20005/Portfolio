@@ -1,50 +1,16 @@
 "use client"
 
-import React, { useEffect, useRef } from "react"
+import React, { useRef } from "react"
 import { useLanguage } from "@/components/providers/language-context"
 import { TextReveal } from "@/components/ui/text-reveal"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger)
-}
+import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
 export function ExperienceSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const { dictionary } = useLanguage()
   const { experienceData } = dictionary
 
-  useEffect(() => {
-    if (typeof window === "undefined" || !sectionRef.current) return
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      gsap.set(".experience-item-block", { opacity: 1, y: 0 })
-      return
-    }
-
-    const items = sectionRef.current.querySelectorAll(".experience-item-block")
-    const anim = gsap.fromTo(
-      items,
-      { opacity: 0, y: 35 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      }
-    )
-
-    return () => {
-      if (anim.scrollTrigger) anim.scrollTrigger.kill()
-      anim.kill()
-    }
-  }, [experienceData]) // Re-run if experienceData changes
+  useScrollReveal(sectionRef, ".experience-item-block", experienceData)
 
   return (
     <section

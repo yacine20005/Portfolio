@@ -4,14 +4,12 @@ import React, { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useLanguage } from "@/components/providers/language-context"
-import { useSmoothScroll } from "@/hooks/use-smooth-scroll"
 import { ArrowUp, Mail, Github, Linkedin, Check, Copy } from "lucide-react"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
   const { dictionary, language } = useLanguage()
   const { footerData, navLinks } = dictionary
-  const { scrollToSection } = useSmoothScroll()
   const pathname = usePathname()
   const isHomePage = pathname === "/"
 
@@ -31,10 +29,8 @@ export function Footer() {
 
   return (
     <footer className="relative bg-obsidian border-t border-white/10 pt-16 pb-12 overflow-hidden z-10">
-      {/* Ambient Glow Aura */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80vw] h-[35vw] bg-[radial-gradient(ellipse_at_bottom,rgba(255,255,255,0.05),transparent_70%)] pointer-events-none z-0" />
 
-      {/* Massive Brand Watermark Backdrop ("YACINE") */}
       <div
         aria-hidden="true"
         className="absolute bottom-[-1vw] sm:bottom-[-2vw] md:bottom-[-3vw] left-1/2 -translate-x-1/2 w-full text-center pointer-events-none select-none z-0 overflow-hidden leading-none"
@@ -50,11 +46,8 @@ export function Footer() {
         </span>
       </div>
 
-      {/* Main Content Layer */}
       <div className="container mx-auto max-w-[1078px] px-5 md:px-10 relative z-10">
-        {/* Navigation & Social Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-14 border-b border-white/10">
-          {/* Brand Info & Direct Email */}
           <div className="md:col-span-5 space-y-4">
             <Link
               href="/"
@@ -83,7 +76,6 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
           <div className="md:col-span-4">
             <div className="grid grid-cols-2 gap-2 text-sm">
               {isHomePage ? (
@@ -91,7 +83,6 @@ export function Footer() {
                   <a
                     key={link.id}
                     href={link.href}
-                    onClick={(e) => scrollToSection(e, link.href)}
                     className="text-felt-gray hover:text-paper transition-colors duration-300 py-1"
                   >
                     {link.name}
@@ -108,7 +99,6 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Socials */}
           <div className="md:col-span-3">
             <div className="flex flex-col gap-2 text-sm">
               <a
@@ -133,7 +123,6 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar & Copyright */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/40">
           <p>{copyrightText}</p>
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">

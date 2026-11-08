@@ -23,8 +23,8 @@
 - **Nom complet :** Yacine Hamadouche
 - **Titre principal :** Étudiant en Informatique & Développeur Full-Stack / Cloud Automation
 - **Statut actuel :** 
-  - 🎓 Étudiant en Licence d'Informatique & Mathématiques à l'Université Gustave Eiffel (Champs-sur-Marne).
-  - 🟠 Futur **Ingénieur DevOps & Cloud Automation en apprentissage chez Orange** (Direction Technique DTOF - Division Cloud Platforms, Septembre 2026 – Août 2028).
+  - 🎓 Étudiant en **Master Cybersécurité & Sciences des Données (CSSD)** à l'Université Paris 8 (Septembre 2026 – Août 2028), après l'obtention de sa Licence d'Informatique & Mathématiques à l'Université Gustave Eiffel (Champs-sur-Marne).
+  - 🟠 **Ingénieur DevOps & Cloud Automation en apprentissage chez Orange** (Direction Technique DTOF - Division Cloud Platforms, Septembre 2026 – Août 2028).
   - 💻 **Freelance Web Engineer** spécialisé en Next.js, React, TypeScript et Tailwind CSS (depuis Juin 2023).
 - **Philosophie & État d'esprit :**
   - "Transforme le café ☕ en code (et parfois en bugs)."
@@ -49,19 +49,23 @@
   - Amélioration et optimisation continue des pipelines **GitLab CI/CD**.
   - Intégration d'agents conversationnels IA pour fluidifier les workflows des équipes de développement.
 
-### 💻 2. Freelance & Partenaire — Freelance Web Engineer
+### 🎓 2. Master Cybersécurité & Sciences des Données (CSSD) — Université Paris 8
+- **Période :** Septembre 2026 – Août 2028
+- **Formation :** Diplôme national de Master en informatique combinant cybersécurité (sécurité des systèmes, cryptographie, analyse de vulnérabilités, sécurité réseau) et sciences des données (Machine Learning, Deep Learning, ingénierie des données), réalisé en alternance chez Orange.
+
+### 💻 3. Freelance & Partenaire — Freelance Web Engineer
 - **Période :** Depuis Juin 2023
 - **Activités :**
   - Conception et développement web Full-Stack sur-mesure spécialisé en **Next.js, React, TypeScript, Tailwind CSS, GSAP et Framer Motion**.
   - Réalisation de sites vitrines haut de gamme et d'applications immersives pour des professionnels (ex: *Georges Geneyne*, *Kreyol Wakanda*).
   - Optimisations SEO, intégration d'APIs et design responsive de haute qualité.
 
-### 🎓 3. Licence d'Informatique & Mathématiques — Université Gustave Eiffel
+### 🎓 4. Licence d'Informatique & Mathématiques — Université Gustave Eiffel
 - **Période :** Septembre 2023 – Juillet 2026 (Champs-sur-Marne)
 - **Formation :** Solide bagage scientifique et académique couvrant les mathématiques discrètes, l'algorithmique avancée, la compilation, les systèmes d'exploitation, l'allocation mémoire et le génie logiciel.
-- **Projets majeurs :** Compilateur *TPC* (C vers NASM x86-64), plateforme web *Nuage* (Python/Flask/PostgreSQL), allocateur mémoire custom *Malloc*, jeu roguelike *Backpack Hero* en Java.
+- **Projets majeurs :** Compilateur *TPC* (C vers NASM x86-64), plateforme web *Nuage* (Python/Flask/PostgreSQL), outil d'analyse mémoire *Mtrack* et allocateur *Malloc*, jeu roguelike *Backpack Hero* en Java.
 
-### 📜 4. Baccalauréat Général — Lycée Louis Armand (Nogent-sur-Marne)
+### 📜 5. Baccalauréat Général — Lycée Louis Armand (Nogent-sur-Marne)
 - **Période :** Septembre 2020 – Juillet 2023
 - **Spécialités :** Mathématiques & Numérique et Sciences Informatiques (NSI).
 - **Mention :** Très Bien (Notes remarquables : **20/20** en NSI, **15/20** en Mathématiques).

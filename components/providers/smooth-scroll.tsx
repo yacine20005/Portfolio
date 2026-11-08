@@ -4,160 +4,118 @@ import React, { useEffect, useRef } from "react"
 import { usePathname } from "next/navigation"
 import Lenis from "lenis"
 
+function scrollElementIntoView(targetElement: HTMLElement, lenis: Lenis | null, immediate = false) {
+  const headerHeight = document.querySelector("header")?.offsetHeight || 0
+  if (lenis) {
+    lenis.scrollTo(targetElement, {
+      offset: -headerHeight - 16,
+      immediate,
+    })
+  } else {
+    const offsetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight - 16
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: immediate ? "auto" : "smooth",
+    })
+  }
+}
+
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null)
   const pathname = usePathname()
 
   useEffect(() => {
     if (typeof window === "undefined") return
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
 
-    // Disable on reduced motion
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return
-    }
-
-    let lenis: Lenis | null = null
     let rafId: number | null = null
-    let scrollTriggerInstance: any = null
-    let observer: MutationObserver | null = null
-    let hashTimeoutId: ReturnType<typeof setTimeout> | null = null
+    let scrollTriggerInstance: { update: () => void } | null = null
     let cancelled = false
 
-    // Load ScrollTrigger dynamically once on mount to avoid SSR issues
-    Promise.all([
-      import("lenis"),
-      import("gsap/ScrollTrigger")
-    ]).then(([{ default: LenisClass }, { ScrollTrigger }]) => {
-      if (cancelled) return
-      scrollTriggerInstance = ScrollTrigger
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+      smoothWheel: true,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.5,
+    })
 
-      // Configure ScrollTrigger to avoid jumping when mobile address bar hides/shows
-      ScrollTrigger.config({ ignoreMobileResize: true })
+    lenisRef.current = lenis
 
-      lenis = new LenisClass({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // easeOutExpo
-        orientation: "vertical",
-        gestureOrientation: "vertical",
-        smoothWheel: true,
-        wheelMultiplier: 1.0,
-        touchMultiplier: 1.5,
-      })
-
-      lenisRef.current = lenis
-
-      function raf(time: number) {
-        if (lenis) {
-          lenis.raf(time)
-        }
-        rafId = requestAnimationFrame(raf)
-      }
-
+    function raf(time: number) {
+      lenis.raf(time)
       rafId = requestAnimationFrame(raf)
+    }
 
-      // Sync GSAP ScrollTrigger on scroll
-      const handleScroll = () => {
-        if (scrollTriggerInstance) {
-          scrollTriggerInstance.update()
-        }
-      }
+    rafId = requestAnimationFrame(raf)
 
-      lenis.on("scroll", handleScroll)
+    import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
+      if (cancelled) return
+      ScrollTrigger.config({ ignoreMobileResize: true })
+      scrollTriggerInstance = ScrollTrigger
+    })
 
-      // Observe 'lenis-stopped' class on HTML to stop/start Lenis scroll handlers
-      observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-          if (mutation.attributeName === "class") {
-            const isStopped = document.documentElement.classList.contains("lenis-stopped")
-            if (isStopped && lenis) {
-              lenis.stop()
-            } else if (lenis) {
-              lenis.start()
-            }
-          }
-        })
-      })
+    lenis.on("scroll", () => {
+      scrollTriggerInstance?.update()
+    })
 
-      observer.observe(document.documentElement, {
-        attributes: true,
-        attributeFilter: ["class"],
-      })
-
-      // Initial check on mount
-      if (document.documentElement.classList.contains("lenis-stopped") && lenis) {
+    const observer = new MutationObserver(() => {
+      if (document.documentElement.classList.contains("lenis-stopped")) {
         lenis.stop()
-      }
-
-      // Check if there is an initial hash on mount
-      if (window.location.hash) {
-        const targetId = window.location.hash.substring(1)
-        const targetElement = document.getElementById(targetId)
-        if (targetElement) {
-          hashTimeoutId = setTimeout(() => {
-            const headerHeight = document.querySelector("header")?.offsetHeight || 0
-            lenis?.scrollTo(targetElement, {
-              offset: -headerHeight - 16,
-              immediate: true,
-            })
-          }, 150)
-        }
+      } else {
+        lenis.start()
       }
     })
 
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    })
+
+    if (document.documentElement.classList.contains("lenis-stopped")) {
+      lenis.stop()
+    }
+
     return () => {
       cancelled = true
-      observer?.disconnect()
-      if (hashTimeoutId) clearTimeout(hashTimeoutId)
-      if (lenis) {
-        lenis.destroy()
-      }
+      observer.disconnect()
+      lenis.destroy()
       lenisRef.current = null
-      if (rafId !== null) {
-        cancelAnimationFrame(rafId)
-      }
+      if (rafId !== null) cancelAnimationFrame(rafId)
     }
   }, [])
 
   useEffect(() => {
-    const scrollToHashTarget = () => {
-      const hash = window.location.hash || (typeof window !== "undefined" && window.location.href.includes("#") ? "#" + window.location.href.split("#")[1] : "")
-      
-      if (!hash) {
-        // No hash present: allow natural browser scrollRestoration to work
-        return
-      }
+    const handleAnchorClick = (e: MouseEvent) => {
+      const anchor = (e.target as HTMLElement | null)?.closest<HTMLAnchorElement>('a[href^="#"]')
+      if (!anchor) return
+      const href = anchor.getAttribute("href")
+      if (!href || href === "#") return
+      const targetElement = document.getElementById(href.slice(1))
+      if (!targetElement) return
 
-      const targetId = hash.substring(1)
+      e.preventDefault()
+      scrollElementIntoView(targetElement, lenisRef.current, false)
+      window.history.replaceState(null, "", window.location.pathname)
+    }
+
+    const scrollToHashTarget = () => {
+      const hash = window.location.hash
+      if (!hash) return
+
+      const targetId = hash.slice(1)
       let attempts = 0
 
       const performScroll = () => {
         const targetElement = document.getElementById(targetId)
-        if (targetElement) {
-          const headerHeight = document.querySelector("header")?.offsetHeight || 0
-          if (lenisRef.current) {
-            lenisRef.current.scrollTo(targetElement, {
-              offset: -headerHeight - 16,
-              immediate: false,
-            })
-          } else {
-            const elementPosition = targetElement.getBoundingClientRect().top
-            const offsetPosition = elementPosition + window.pageYOffset - headerHeight - 16
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: "smooth",
-            })
-          }
-
-          // Clean URL hash so stale hash is never saved in browser history
-          if (typeof window !== "undefined") {
-            window.history.replaceState(null, "", window.location.pathname)
-          }
-          return true
-        }
-        return false
+        if (!targetElement) return false
+        scrollElementIntoView(targetElement, lenisRef.current, false)
+        window.history.replaceState(null, "", window.location.pathname)
+        return true
       }
 
-      // Try scrolling immediately, then retry periodically if DOM/components are mounting
       if (!performScroll()) {
         const interval = setInterval(() => {
           attempts++
@@ -166,17 +124,17 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
           }
         }, 50)
       } else {
-        // Run a delayed check to ensure layout shifts (e.g. image loads) don't throw off final scroll
         setTimeout(performScroll, 300)
       }
     }
 
-    // Delay slightly to let Next.js update window.location and DOM
     const timeoutId = setTimeout(scrollToHashTarget, 100)
-
+    document.addEventListener("click", handleAnchorClick)
     window.addEventListener("hashchange", scrollToHashTarget)
+
     return () => {
       clearTimeout(timeoutId)
+      document.removeEventListener("click", handleAnchorClick)
       window.removeEventListener("hashchange", scrollToHashTarget)
     }
   }, [pathname])

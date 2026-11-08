@@ -1,8 +1,6 @@
 "use client"
 
-import { useState } from "react"
-import { Header } from "@/components/sections/header"
-import { Footer } from "@/components/sections/footer"
+import { ProjectPageShell } from "@/components/sections/project-page-shell"
 import {
   Heart,
   Check,
@@ -10,12 +8,19 @@ import {
   Download,
   Film,
   Calendar,
-  Camera
+  Camera,
+  Github
 } from "lucide-react"
-import { FaGithub, FaAndroid } from "react-icons/fa"
 import { ShaderAnimation } from "@/components/ui/shader-lines"
-import { ProjectPreloader } from "@/components/ui/project-preloader"
 import { useLanguage } from "@/components/providers/language-context"
+
+function AndroidIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 576 512" fill="currentColor" className={className}>
+      <path d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55" />
+    </svg>
+  )
+}
 
 const content = {
   fr: {
@@ -311,27 +316,16 @@ const content = {
 }
 
 export default function SparkLovePage() {
-  const [loading, setLoading] = useState(true)
-  const [contentVisible, setContentVisible] = useState(false)
   const { language } = useLanguage()
   const t = content[language]
 
   return (
-    <div className="min-h-screen bg-obsidian text-paper overflow-hidden theme-spark-love">
-      {loading && (
-        <ProjectPreloader
-          icon={<Heart />}
-          accentColor="rgb(238, 100, 70)"
-          title={t.preloader}
-          onReveal={() => setContentVisible(true)}
-          onComplete={() => setLoading(false)}
-        />
-      )}
-
-      <div className={`transition-all duration-300 ${contentVisible ? "opacity-100 visible" : "opacity-0 invisible"}`}>
-        <Header />
-
-        <main className="relative z-10">
+    <ProjectPageShell
+      themeClass="theme-spark-love"
+      icon={<Heart />}
+      accentColor="rgb(238, 100, 70)"
+      title={t.preloader}
+    >
           {/* ── 1. HERO SECTION ─────────────────────────────────────────── */}
           <section className="relative min-h-screen flex items-center justify-center overflow-hidden border-b border-white/5 pt-28 pb-20">
             <div className="absolute inset-0 opacity-[0.22] pointer-events-none">
@@ -362,7 +356,7 @@ export default function SparkLovePage() {
                       rel="noopener noreferrer"
                       className="ghost-pill inline-flex items-center justify-center gap-2.5 bg-[#EE6446] text-[#15120E] font-semibold border-[#EE6446] hover:bg-[#f3775c]"
                     >
-                      <FaAndroid className="h-4.5 w-4.5" />
+                      <AndroidIcon className="h-4.5 w-4.5" />
                       <span>{t.hero.ctaDownload}</span>
                     </a>
                     <a
@@ -377,7 +371,7 @@ export default function SparkLovePage() {
                       rel="noopener noreferrer"
                       className="ghost-pill inline-flex items-center justify-center gap-2"
                     >
-                      <FaGithub className="h-4 w-4" />
+                      <Github className="h-4 w-4" />
                       <span>{t.hero.ctaGithub}</span>
                     </a>
                   </div>
@@ -840,16 +834,12 @@ export default function SparkLovePage() {
                   rel="noopener noreferrer"
                   className="ghost-pill inline-flex items-center gap-2"
                 >
-                  <FaGithub className="h-4 w-4" />
+                  <Github className="h-4 w-4" />
                   <span>{t.cta.githubBtn}</span>
                 </a>
               </div>
             </div>
           </section>
-        </main>
-
-        <Footer />
-      </div>
-    </div>
+    </ProjectPageShell>
   )
 }

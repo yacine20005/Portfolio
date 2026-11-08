@@ -1,53 +1,19 @@
 "use client"
 
-import React, { useEffect, useRef } from "react"
+import React, { useRef } from "react"
 import Link from "next/link"
 import { useLanguage } from "@/components/providers/language-context"
 import { TextReveal } from "@/components/ui/text-reveal"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { TiltCard } from "@/components/ui/tilt-card"
 import { ArrowUpRight } from "lucide-react"
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger)
-}
+import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
 export function FeaturedProjectsCarousel() {
   const sectionRef = useRef<HTMLElement>(null)
   const { dictionary, language } = useLanguage()
   const { featuredProjectsData } = dictionary
 
-  useEffect(() => {
-    if (typeof window === "undefined" || !sectionRef.current) return
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      gsap.set(".featured-project-item", { opacity: 1, y: 0 })
-      return
-    }
-
-    const items = sectionRef.current.querySelectorAll(".featured-project-item")
-    const anim = gsap.fromTo(
-      items,
-      { opacity: 0, y: 35 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      }
-    )
-
-    return () => {
-      if (anim.scrollTrigger) anim.scrollTrigger.kill()
-      anim.kill()
-    }
-  }, [featuredProjectsData]) // Re-run if featuredProjectsData content changes
+  useScrollReveal(sectionRef, ".featured-project-item", featuredProjectsData)
 
   return (
     <section
@@ -80,13 +46,13 @@ export function FeaturedProjectsCarousel() {
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pointer-events-none">
                   <div>
                     <div className="flex items-center gap-3 mb-1">
-                      <span 
+                      <span
                         className="flex-shrink-0 transition-transform duration-500 group-hover/card:scale-110"
                         style={{ color: project.theme.textColor }}
                       >
                         {project.icon}
                       </span>
-                      <h3 
+                      <h3
                         className="text-xl md:text-2xl font-inter font-normal transition-colors duration-[0.4s] ease tracking-tight"
                         style={{ color: project.theme.textColor }}
                       >
@@ -115,7 +81,6 @@ export function FeaturedProjectsCarousel() {
                       ))}
                     </div>
 
-                    {/* Affordance CTA Button */}
                     <div className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-inter font-medium transition-all duration-300 bg-white/10 text-paper border border-white/20 group-hover/card:bg-white group-hover/card:text-obsidian group-hover/card:border-white shadow-sm shrink-0">
                       <span>{language === "fr" ? "Découvrir" : "Explore"}</span>
                       <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/card:translate-x-0.5 group-hover/card:-translate-y-0.5" />

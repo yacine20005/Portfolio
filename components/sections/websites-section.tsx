@@ -1,50 +1,16 @@
 "use client"
 
-import React, { useEffect, useRef } from "react"
+import React, { useRef } from "react"
 import { useLanguage } from "@/components/providers/language-context"
 import { TextReveal } from "@/components/ui/text-reveal"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger)
-}
+import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
 export function WebsitesSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const { dictionary, language } = useLanguage()
   const { websitesData } = dictionary
 
-  useEffect(() => {
-    if (typeof window === "undefined" || !sectionRef.current) return
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      gsap.set(".website-item-block", { opacity: 1, y: 0 })
-      return
-    }
-
-    const items = sectionRef.current.querySelectorAll(".website-item-block")
-    const anim = gsap.fromTo(
-      items,
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      }
-    )
-
-    return () => {
-      if (anim.scrollTrigger) anim.scrollTrigger.kill()
-      anim.kill()
-    }
-  }, [websitesData]) // Re-run if websitesData changes
+  useScrollReveal(sectionRef, ".website-item-block", websitesData, { y: 40, stagger: 0.2 })
 
   return (
     <section
@@ -67,7 +33,6 @@ export function WebsitesSection() {
                 i % 2 === 1 ? "md:flex-row-reverse" : ""
               }`}
             >
-              {/* Image Container with Hover Zoom Effect */}
               <div className="w-full md:w-1/2 overflow-hidden border border-white/10 bg-white/[0.02] aspect-[16/10] relative group/img">
                 <img
                   src={project.imagePath}
@@ -77,7 +42,6 @@ export function WebsitesSection() {
                 />
               </div>
 
-              {/* Text / Details Container */}
               <div className="w-full md:w-1/2 flex flex-col items-start">
                 <h3 className="text-xl md:text-2xl font-inter font-normal text-paper tracking-tight">
                   {project.title}
@@ -86,7 +50,6 @@ export function WebsitesSection() {
                   {project.description}
                 </p>
 
-                {/* Action Link Button */}
                 {project.available !== false ? (
                   <a
                     href={project.link}
