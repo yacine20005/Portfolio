@@ -219,7 +219,7 @@ export default function OrbitMarketPage() {
                     <ul className="space-y-2.5 pt-2 text-sm text-felt-gray">
                       {[t.features.xur.bullet1, t.features.xur.bullet2, t.features.xur.bullet3].map((b, i) => (
                         <li key={i} className="flex items-start gap-2.5">
-                          <Check className="h-4.5 w-4.5 text-blue-400 shrink-0 mt-0.5" />
+                          <Check className="h-4 w-4 text-blue-400 shrink-0 mt-0.5" />
                           <span>{b}</span>
                         </li>
                       ))}
@@ -253,7 +253,7 @@ export default function OrbitMarketPage() {
                     <ul className="space-y-2.5 pt-2 text-sm text-felt-gray">
                       {[t.features.vendors.bullet1, t.features.vendors.bullet2].map((b, i) => (
                         <li key={i} className="flex items-start gap-2.5">
-                          <Check className="h-4.5 w-4.5 text-blue-400 shrink-0 mt-0.5" />
+                          <Check className="h-4 w-4 text-blue-400 shrink-0 mt-0.5" />
                           <span>{b}</span>
                         </li>
                       ))}
@@ -285,7 +285,7 @@ export default function OrbitMarketPage() {
                     <ul className="space-y-2.5 pt-2 text-sm text-felt-gray">
                       {[t.features.warframe.bullet1, t.features.warframe.bullet2, t.features.warframe.bullet3].map((b, i) => (
                         <li key={i} className="flex items-start gap-2.5">
-                          <Check className="h-4.5 w-4.5 text-blue-400 shrink-0 mt-0.5" />
+                          <Check className="h-4 w-4 text-blue-400 shrink-0 mt-0.5" />
                           <span>{b}</span>
                         </li>
                       ))}

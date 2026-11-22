@@ -1,11 +1,11 @@
 "use client"
 
+import { useState } from "react"
 import { ProjectPageShell } from "@/components/sections/project-page-shell"
 import {
   Heart,
   Check,
   BookOpen,
-  Download,
   Film,
   Calendar,
   Camera,
@@ -13,10 +13,22 @@ import {
 } from "lucide-react"
 import { ShaderAnimation } from "@/components/ui/shader-lines"
 import { useLanguage } from "@/components/providers/language-context"
+import { ApkOnboardingModal } from "@/components/spark-love/apk-onboarding-modal"
 
-function AndroidIcon({ className }: { className?: string }) {
+const APK_DOWNLOAD_URL =
+  "https://github.com/yacine20005/Spark-Love/releases/latest"
+
+function AndroidIcon({ className = "h-5 w-5 shrink-0" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 576 512" fill="currentColor" className={className}>
+    <svg
+      viewBox="0 0 576 512"
+      width={20}
+      height={20}
+      fill="currentColor"
+      aria-hidden="true"
+      focusable="false"
+      className={className}
+    >
       <path d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55" />
     </svg>
   )
@@ -317,9 +329,11 @@ const content = {
 
 export default function SparkLovePage() {
   const { language } = useLanguage()
+  const [isApkModalOpen, setIsApkModalOpen] = useState(false)
   const t = content[language]
 
   return (
+    <>
     <ProjectPageShell
       themeClass="theme-spark-love"
       icon={<Heart />}
@@ -337,7 +351,7 @@ export default function SparkLovePage() {
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 {/* Left Column: Pitch & Download CTAs */}
                 <div className="lg:col-span-7 text-left space-y-6">
-                  <h1 className="font-inter font-normal text-[3.5rem] sm:text-[5rem] md:text-[6.2rem] leading-[0.88] tracking-tight text-paper">
+                  <h1 className="font-inter font-normal text-[3.25rem] sm:text-[5rem] md:text-[6.2rem] leading-[0.88] tracking-tight text-paper">
                     Spark Love
                   </h1>
 
@@ -349,19 +363,19 @@ export default function SparkLovePage() {
                     {t.hero.desc}
                   </p>
 
-                  <div className="flex flex-col sm:flex-row flex-wrap gap-3.5 pt-2">
-                    <a
-                      href="https://github.com/yacine20005/Spark-Love/releases/latest"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="ghost-pill inline-flex items-center justify-center gap-2.5 bg-[#EE6446] text-[#15120E] font-semibold border-[#EE6446] hover:bg-[#f3775c]"
+                  <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 pt-2">
+                    <button
+                      type="button"
+                      onClick={() => setIsApkModalOpen(true)}
+                      aria-haspopup="dialog"
+                      className="ghost-pill w-full sm:w-auto max-w-full min-h-[46px] px-5 sm:px-7 py-3 text-[15px] sm:text-base whitespace-normal sm:whitespace-nowrap text-center inline-flex items-center justify-center gap-2.5 bg-[#EE6446] text-[#15120E] font-semibold border-[#EE6446] hover:bg-[#f3775c] hover:text-[#15120E] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EE6446] focus-visible:ring-offset-2 focus-visible:ring-offset-obsidian"
                     >
-                      <AndroidIcon className="h-4.5 w-4.5" />
+                      <AndroidIcon className="h-5 w-5 shrink-0" />
                       <span>{t.hero.ctaDownload}</span>
-                    </a>
+                    </button>
                     <a
                       href="#features"
-                      className="ghost-pill inline-flex items-center justify-center gap-2 border-white/15 text-paper"
+                      className="ghost-pill w-full sm:w-auto max-w-full min-h-[46px] px-5 sm:px-7 py-3 text-[15px] sm:text-base whitespace-normal sm:whitespace-nowrap text-center inline-flex items-center justify-center gap-2 border-white/15 text-paper"
                     >
                       <span>{t.hero.ctaDiscover}</span>
                     </a>
@@ -369,9 +383,9 @@ export default function SparkLovePage() {
                       href="https://github.com/yacine20005/Spark-Love"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="ghost-pill inline-flex items-center justify-center gap-2"
+                      className="ghost-pill w-full sm:w-auto max-w-full min-h-[46px] px-5 sm:px-7 py-3 text-[15px] sm:text-base whitespace-normal sm:whitespace-nowrap text-center inline-flex items-center justify-center gap-2"
                     >
-                      <Github className="h-4 w-4" />
+                      <Github className="h-4 w-4 shrink-0" />
                       <span>{t.hero.ctaGithub}</span>
                     </a>
                   </div>
@@ -390,12 +404,12 @@ export default function SparkLovePage() {
                       <div className="h-[3px] bg-[#2340A0]" />
                     </div>
 
-                    <div className="p-6 sm:p-7 space-y-5">
+                    <div className="p-5 sm:p-7 space-y-5">
                       <div className="flex items-center justify-between gap-2 border-b border-[#D3C8B2] pb-3">
                         <span className="text-xs font-medium text-[#4F483F]">
                           Spark Love
                         </span>
-                        <span className="text-xs font-medium px-2.5 py-0.5 rounded bg-[#E7DFCD] text-[#1B1814]">
+                        <span className="text-xs font-medium px-2.5 py-0.5 rounded bg-[#E7DFCD] text-[#1B1814] shrink-0">
                           {t.hero.cardDay}
                         </span>
                       </div>
@@ -405,9 +419,9 @@ export default function SparkLovePage() {
                       </div>
 
                       {/* Side A (You) */}
-                      <div className="rounded-xl bg-[#F9F5EC] border border-[#D3C8B2] p-4 space-y-1.5">
+                      <div className="rounded-xl bg-[#F9F5EC] border border-[#D3C8B2] p-3.5 sm:p-4 space-y-1.5">
                         <div className="flex items-center gap-2">
-                          <span className="w-6 h-6 rounded bg-[#C2381F] text-[#F9F5EC] font-bold text-xs flex items-center justify-center">
+                          <span className="w-6 h-6 rounded bg-[#C2381F] text-[#F9F5EC] font-bold text-xs flex items-center justify-center shrink-0">
                             A
                           </span>
                           <span className="text-xs font-bold text-[#C2381F]">
@@ -420,9 +434,9 @@ export default function SparkLovePage() {
                       </div>
 
                       {/* Side B (Partner) */}
-                      <div className="rounded-xl bg-[#F9F5EC] border border-[#D3C8B2] p-4 space-y-1.5">
+                      <div className="rounded-xl bg-[#F9F5EC] border border-[#D3C8B2] p-3.5 sm:p-4 space-y-1.5">
                         <div className="flex items-center gap-2">
-                          <span className="w-6 h-6 rounded bg-[#2340A0] text-[#F9F5EC] font-bold text-xs flex items-center justify-center">
+                          <span className="w-6 h-6 rounded bg-[#2340A0] text-[#F9F5EC] font-bold text-xs flex items-center justify-center shrink-0">
                             B
                           </span>
                           <span className="text-xs font-bold text-[#2340A0]">
@@ -506,11 +520,11 @@ export default function SparkLovePage() {
                     </p>
                     <ul className="space-y-3 pt-2 text-sm text-felt-gray">
                       <li className="flex items-start gap-2.5">
-                        <Check className="h-4.5 w-4.5 text-[#EE6446] shrink-0 mt-0.5" />
+                        <Check className="h-4 w-4 text-[#EE6446] shrink-0 mt-0.5" />
                         <span>{t.features.spark.b1}</span>
                       </li>
                       <li className="flex items-start gap-2.5">
-                        <Check className="h-4.5 w-4.5 text-[#EE6446] shrink-0 mt-0.5" />
+                        <Check className="h-4 w-4 text-[#EE6446] shrink-0 mt-0.5" />
                         <span>{t.features.spark.b2}</span>
                       </li>
                     </ul>
@@ -559,11 +573,11 @@ export default function SparkLovePage() {
                     </p>
                     <ul className="space-y-3 pt-2 text-sm text-felt-gray">
                       <li className="flex items-start gap-2.5">
-                        <Check className="h-4.5 w-4.5 text-[#E3A13A] shrink-0 mt-0.5" />
+                        <Check className="h-4 w-4 text-[#E3A13A] shrink-0 mt-0.5" />
                         <span>{t.features.match.b1}</span>
                       </li>
                       <li className="flex items-start gap-2.5">
-                        <Check className="h-4.5 w-4.5 text-[#E3A13A] shrink-0 mt-0.5" />
+                        <Check className="h-4 w-4 text-[#E3A13A] shrink-0 mt-0.5" />
                         <span>{t.features.match.b2}</span>
                       </li>
                     </ul>
@@ -629,18 +643,18 @@ export default function SparkLovePage() {
                     </p>
                     <ul className="space-y-3 pt-2 text-sm text-felt-gray">
                       <li className="flex items-start gap-2.5">
-                        <Check className="h-4.5 w-4.5 text-[#86A0EE] shrink-0 mt-0.5" />
+                        <Check className="h-4 w-4 text-[#86A0EE] shrink-0 mt-0.5" />
                         <span>{t.features.quizzes.b1}</span>
                       </li>
                       <li className="flex items-start gap-2.5">
-                        <Check className="h-4.5 w-4.5 text-[#86A0EE] shrink-0 mt-0.5" />
+                        <Check className="h-4 w-4 text-[#86A0EE] shrink-0 mt-0.5" />
                         <span>{t.features.quizzes.b2}</span>
                       </li>
                     </ul>
                   </div>
 
                   <div className="lg:col-span-6">
-                    <div className="rounded-2xl bg-[#1B1713] border border-[#3B342B] p-6 space-y-5">
+                    <div className="rounded-2xl bg-[#1B1713] border border-[#3B342B] p-5 sm:p-6 space-y-5">
                       <div className="flex flex-wrap gap-2">
                         {t.features.quizzes.themes.map((themeName, i) => (
                           <span
@@ -659,13 +673,15 @@ export default function SparkLovePage() {
                         <div className="text-sm font-semibold text-[#EFE7D6]">
                           « {t.features.quizzes.sampleQuestion} »
                         </div>
-                        <div className="flex items-center gap-2 text-xs text-[#C2B8A6]">
-                          <span className="px-1.5 py-0.5 rounded bg-[#EE6446] text-[#15120E] font-bold text-[10px]">
-                            A
-                          </span>
-                          <span className="px-1.5 py-0.5 rounded bg-[#86A0EE] text-[#15120E] font-bold text-[10px]">
-                            B
-                          </span>
+                        <div className="flex items-start sm:items-center gap-2 text-xs text-[#C2B8A6]">
+                          <div className="flex items-center gap-1.5 shrink-0 mt-0.5 sm:mt-0">
+                            <span className="px-1.5 py-0.5 rounded bg-[#EE6446] text-[#15120E] font-bold text-[10px]">
+                              A
+                            </span>
+                            <span className="px-1.5 py-0.5 rounded bg-[#86A0EE] text-[#15120E] font-bold text-[10px]">
+                              B
+                            </span>
+                          </div>
                           <span>{t.features.quizzes.sampleAnswerBoth}</span>
                         </div>
                       </div>
@@ -684,11 +700,11 @@ export default function SparkLovePage() {
                     </p>
                     <ul className="space-y-3 pt-2 text-sm text-felt-gray">
                       <li className="flex items-start gap-2.5">
-                        <Check className="h-4.5 w-4.5 text-[#74C49A] shrink-0 mt-0.5" />
+                        <Check className="h-4 w-4 text-[#74C49A] shrink-0 mt-0.5" />
                         <span>{t.features.journal.b1}</span>
                       </li>
                       <li className="flex items-start gap-2.5">
-                        <Check className="h-4.5 w-4.5 text-[#74C49A] shrink-0 mt-0.5" />
+                        <Check className="h-4 w-4 text-[#74C49A] shrink-0 mt-0.5" />
                         <span>{t.features.journal.b2}</span>
                       </li>
                     </ul>
@@ -697,9 +713,9 @@ export default function SparkLovePage() {
                   <div className="lg:col-span-6 lg:order-1 space-y-4">
                     <div className="rounded-2xl bg-[#1B1713] border border-[#3B342B] p-5 flex items-start gap-4">
                       <div className="w-14 h-14 rounded-xl bg-[#2A251F] border border-[#3B342B] flex items-center justify-center shrink-0">
-                        <Camera className="h-6 w-6 text-[#EE6446]" />
+                        <Camera className="h-6 w-6 text-[#EE6446] shrink-0" />
                       </div>
-                      <div className="space-y-1">
+                      <div className="min-w-0 space-y-1">
                         <div className="text-base font-semibold text-[#EFE7D6]">
                           {t.features.journal.memory1Title}
                         </div>
@@ -714,9 +730,9 @@ export default function SparkLovePage() {
 
                     <div className="rounded-2xl bg-[#1B1713] border border-[#3B342B] p-5 flex items-start gap-4">
                       <div className="w-14 h-14 rounded-xl bg-[#2A251F] border border-[#3B342B] flex items-center justify-center shrink-0">
-                        <BookOpen className="h-6 w-6 text-[#86A0EE]" />
+                        <BookOpen className="h-6 w-6 text-[#86A0EE] shrink-0" />
                       </div>
-                      <div className="space-y-1">
+                      <div className="min-w-0 space-y-1">
                         <div className="text-base font-semibold text-[#EFE7D6]">
                           {t.features.journal.memory2Title}
                         </div>
@@ -764,9 +780,9 @@ export default function SparkLovePage() {
           {/* ── 5. PORTFOLIO SPOTLIGHT (Master's in CS Engineering Section) ── */}
           <section id="engineering" className="py-[56px] md:py-[92px] border-b border-white/5">
             <div className="container mx-auto max-w-[1078px] px-5 md:px-10">
-              <div className="rounded-3xl bg-[#161310] border border-[#3B342B] p-7 sm:p-10 md:p-12 space-y-10">
+              <div className="rounded-3xl bg-[#161310] border border-[#3B342B] p-5 sm:p-10 md:p-12 space-y-8 sm:space-y-10">
                 <div className="max-w-3xl space-y-4">
-                  <h2 className="font-inter font-light text-[2rem] md:text-[2.8rem] leading-[1.05] tracking-tight text-paper">
+                  <h2 className="font-inter font-light text-[1.75rem] sm:text-[2rem] md:text-[2.8rem] leading-[1.05] tracking-tight text-paper">
                     {t.portfolio.title}
                   </h2>
                   <p className="text-base text-felt-gray leading-[1.65]">
@@ -774,11 +790,11 @@ export default function SparkLovePage() {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6">
                   {t.portfolio.cards.map((card, idx) => (
                     <div
                       key={idx}
-                      className="rounded-2xl bg-[#1F1B16] border border-[#3B342B] p-6 space-y-3"
+                      className="rounded-2xl bg-[#1F1B16] border border-[#3B342B] p-5 sm:p-6 space-y-3"
                     >
                       <h3 className="text-lg font-inter font-medium text-[#EFE7D6] leading-snug">
                         {card.title}
@@ -812,34 +828,41 @@ export default function SparkLovePage() {
                 <div className="h-[3px] bg-[#E3A13A]" />
                 <div className="h-[2px] bg-[#86A0EE]" />
               </div>
-              <h2 className="font-inter font-light text-[2.4rem] md:text-[3.5rem] leading-[0.95] tracking-tight text-paper max-w-2xl mx-auto">
+              <h2 className="font-inter font-light text-[2rem] sm:text-[2.4rem] md:text-[3.5rem] leading-[0.98] sm:leading-[0.95] tracking-tight text-paper max-w-2xl mx-auto">
                 {t.cta.title}
               </h2>
               <p className="text-base md:text-lg text-felt-gray max-w-xl mx-auto mt-5 leading-[1.6]">
                 {t.cta.desc}
               </p>
-              <div className="flex flex-wrap justify-center gap-4 mt-8">
-                <a
-                  href="https://github.com/yacine20005/Spark-Love/releases/latest"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="ghost-pill inline-flex items-center gap-2.5 bg-[#EE6446] text-[#15120E] font-semibold border-[#EE6446] hover:bg-[#f3775c]"
+              <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3.5 sm:gap-4 mt-8">
+                <button
+                  type="button"
+                  onClick={() => setIsApkModalOpen(true)}
+                  aria-haspopup="dialog"
+                  className="ghost-pill w-full sm:w-auto max-w-full min-h-[46px] px-5 sm:px-8 py-3 text-[15px] sm:text-base whitespace-normal sm:whitespace-nowrap text-center inline-flex items-center justify-center gap-2.5 bg-[#EE6446] text-[#15120E] font-semibold border-[#EE6446] hover:bg-[#f3775c] hover:text-[#15120E] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EE6446] focus-visible:ring-offset-2 focus-visible:ring-offset-obsidian"
                 >
-                  <Download className="h-4 w-4" />
+                  <AndroidIcon className="h-5 w-5 shrink-0" />
                   <span>{t.cta.downloadBtn}</span>
-                </a>
+                </button>
                 <a
                   href="https://github.com/yacine20005/Spark-Love"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="ghost-pill inline-flex items-center gap-2"
+                  className="ghost-pill w-full sm:w-auto max-w-full min-h-[46px] px-5 sm:px-8 py-3 text-[15px] sm:text-base whitespace-normal sm:whitespace-nowrap text-center inline-flex items-center justify-center gap-2"
                 >
-                  <Github className="h-4 w-4" />
+                  <Github className="h-4 w-4 shrink-0" />
                   <span>{t.cta.githubBtn}</span>
                 </a>
               </div>
             </div>
           </section>
     </ProjectPageShell>
+    <ApkOnboardingModal
+      open={isApkModalOpen}
+      onClose={() => setIsApkModalOpen(false)}
+      downloadUrl={APK_DOWNLOAD_URL}
+      language={language}
+    />
+    </>
   )
 }
