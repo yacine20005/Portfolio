@@ -135,7 +135,7 @@ export const translations: Record<'fr' | 'en', TranslationDictionary> = {
       title: 'sélection',
       projects: [
         { ...FEATURED_PROJECTS_STATIC[0], tagline: "Intégrez un chatbot RAG temps réel sur n'importe quel site web en une seule ligne de code." },
-        { ...FEATURED_PROJECTS_STATIC[1], tagline: "L'application mobile pour les couples : une question par jour, 100 quiz et des idées de sorties à matcher à deux." },
+        { ...FEATURED_PROJECTS_STATIC[1], tagline: "L'application mobile & web (iPhone, Android) pour les couples : une question par jour, 100 quiz et des idées de sorties à matcher à deux." },
         { ...FEATURED_PROJECTS_STATIC[2], tagline: "Consultez l'inventaire de vos marchands préférés en déplacement." },
         { ...FEATURED_PROJECTS_STATIC[3], tagline: "Votre coach LoL personnel, propulsé par l'IA dans Discord." },
         { ...FEATURED_PROJECTS_STATIC[4], tagline: "Rangement d'inventaire stratégique et roguelike d'exploration de donjons." },
@@ -264,7 +264,7 @@ export const translations: Record<'fr' | 'en', TranslationDictionary> = {
       title: 'featured',
       projects: [
         { ...FEATURED_PROJECTS_STATIC[0], tagline: 'Integrate a real-time RAG chatbot on any website with a single line of code.' },
-        { ...FEATURED_PROJECTS_STATIC[1], tagline: 'The mobile app for couples: a daily question, 100 quizzes, and date or movie ideas to match together.' },
+        { ...FEATURED_PROJECTS_STATIC[1], tagline: 'The mobile & web app (iPhone, Android) for couples: a daily question, 100 quizzes, and date or movie ideas to match together.' },
         { ...FEATURED_PROJECTS_STATIC[2], tagline: 'Check what your favorite vendors have in stock on the go.' },
         { ...FEATURED_PROJECTS_STATIC[3], tagline: 'Your personal LoL coach, powered by AI inside Discord.' },
         { ...FEATURED_PROJECTS_STATIC[4], tagline: 'Inventory management meets strategic roguelike dungeon crawling.' },

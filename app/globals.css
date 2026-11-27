@@ -149,11 +149,11 @@ html.lenis body {
   --color-accent-rgb: 245, 158, 11;
 }
 
-.theme-xur a:hover,
-.theme-spark-love a:hover,
-.theme-orbit-market a:hover,
-.theme-cobble-coach a:hover,
-.theme-backpack-hero a:hover {
+.theme-xur a:not([data-solid-cta]):hover,
+.theme-spark-love a:not([data-solid-cta]):hover,
+.theme-orbit-market a:not([data-solid-cta]):hover,
+.theme-cobble-coach a:not([data-solid-cta]):hover,
+.theme-backpack-hero a:not([data-solid-cta]):hover {
   color: var(--color-accent) !important;
 }
 

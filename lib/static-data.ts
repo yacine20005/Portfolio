@@ -116,7 +116,7 @@ export const FEATURED_PROJECTS_STATIC: FeaturedProjectStatic[] = [
   },
   {
     title: 'Spark Love',
-    tags: ['React Native', 'TypeScript', 'PostgreSQL', 'Supabase', 'Android'],
+    tags: ['React Native', 'PWA', 'Supabase', 'PostgreSQL', 'Android'],
     icon: React.createElement(Heart, { size: 24, className: 'h-6 w-6 shrink-0' }),
     link: '/spark-love',
     theme: {

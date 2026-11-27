@@ -9,14 +9,22 @@ import {
   Film,
   Calendar,
   Camera,
-  Github
+  Github,
+  ExternalLink,
+  Smartphone,
 } from "lucide-react"
 import { ShaderAnimation } from "@/components/ui/shader-lines"
 import { useLanguage } from "@/components/providers/language-context"
-import { ApkOnboardingModal } from "@/components/spark-love/apk-onboarding-modal"
+import {
+  ApkOnboardingModal,
+  type InstallPlatform,
+} from "@/components/spark-love/apk-onboarding-modal"
 
 const APK_DOWNLOAD_URL =
   "https://github.com/yacine20005/Spark-Love/releases/latest"
+const PWA_WEB_URL =
+  process.env.NEXT_PUBLIC_SPARK_LOVE_PWA_URL ||
+  "https://yacine20005.github.io/Spark-Love/"
 
 function AndroidIcon({ className = "h-5 w-5 shrink-0" }: { className?: string }) {
   return (
@@ -40,10 +48,11 @@ const content = {
     hero: {
       subtitle: "Prenez deux minutes par jour pour vous redécouvrir, rire et choisir vos soirées à deux.",
       desc: "Spark Love est un carnet partagé entre vous et votre partenaire. Comme sur une cassette enregistrée à deux, chacun répond sur sa face avant de retourner la bande pour découvrir ce que l'autre a écrit — sans influence, sans pression et loin des réseaux sociaux.",
+      ctaWebApp: "Ouvrir l'app (iPhone & Web)",
       ctaDownload: "Télécharger l'APK Android",
-      ctaDiscover: "Découvrir l'application",
       ctaGithub: "Code Source",
-      apkNote: "Version 1.0.0 · Gratuit sur Android · Aucun abonnement",
+      apkNote: "Version 1.0.0 · Gratuit sur iPhone (PWA), Web & Android · Aucun abonnement",
+      iosGuideLink: "Comment l'installer sur iPhone ?",
       cardDay: "Jour 142 ensemble",
       cardPrompt: "Quel est un souvenir de nous deux que tu te repasses souvent ?",
       sideALabel: "Toi",
@@ -135,8 +144,8 @@ const content = {
       title: "Prêt à deux en moins de 30 secondes",
       steps: [
         {
-          title: "Installez l'application",
-          desc: "Téléchargez gratuitement l'APK Android sur vos deux téléphones."
+          title: "Ouvrez ou installez l'application",
+          desc: "Lancez la Web App (PWA) directement sur iPhone (ajoutable à l'écran d'accueil via Safari) ou téléchargez l'APK Android gratuit."
         },
         {
           title: "Créez votre profil sans mot de passe",
@@ -162,11 +171,11 @@ const content = {
         },
         {
           title: "Tests d'intrusion SQL (pgTAP) et livraison continue",
-          desc: "Pour prouver qu'aucune fuite de données n'est possible entre deux partenaires ou entre deux couples, j'ai écrit une suite de tests automatisés directement en SQL avec pgTAP (simulacre d'accès avant révélation, tentatives d'écriture non autorisées) complétée par des tests unitaires TypeScript (Bun) et un pipeline GitHub Actions qui compile et publie automatiquement l'APK Android à chaque version."
+          desc: "Pour prouver qu'aucune fuite de données n'est possible entre deux partenaires ou entre deux couples, j'ai écrit une suite de tests automatisés directement en SQL avec pgTAP (simulacre d'accès avant révélation, tentatives d'écriture non autorisées) complétée par des tests unitaires TypeScript (Bun) et deux pipelines GitHub Actions : compilation de l'APK Android signé et déploiement continu de la PWA iOS/Web."
         }
       ],
       stackPills: [
-        "React Native & TypeScript",
+        "React Native & Expo Web (PWA)",
         "PostgreSQL (RLS & RPC)",
         "Supabase Auth & Private Storage",
         "Tests SQL pgTAP & Bun Test",
@@ -175,8 +184,10 @@ const content = {
     },
     cta: {
       title: "Envie d'essayer Spark Love avec votre partenaire ?",
-      desc: "Téléchargez la version 1.0 sur Android et répondez à votre première question du jour dès ce soir.",
-      downloadBtn: "Télécharger l'APK Android (v1.0.0)",
+      desc: "Lancez Spark Love immédiatement sur iPhone & navigateur (PWA) ou téléchargez l'APK Android, et répondez à votre première question du jour dès ce soir.",
+      webAppBtn: "Ouvrir sur iPhone & Web",
+      downloadBtn: "Télécharger l'APK Android",
+      iosGuideBtn: "Guide iPhone (PWA)",
       githubBtn: "Voir le projet sur GitHub"
     }
   },
@@ -185,10 +196,11 @@ const content = {
     hero: {
       subtitle: "Take two minutes a day to rediscover each other, laugh together, and pick your date nights effortlessly.",
       desc: "Spark Love is a private space shared between you and your partner. Like a mixtape recorded by the two of you, you each record your answer on your own side before flipping the tape to reveal what the other wrote — with zero influence, zero pressure, and far from social media.",
+      ctaWebApp: "Open App (iPhone & Web)",
       ctaDownload: "Download Android APK",
-      ctaDiscover: "Explore the app",
       ctaGithub: "Source Code",
-      apkNote: "Version 1.0.0 · Free on Android · No subscription",
+      apkNote: "Version 1.0.0 · Free on iPhone (PWA), Web & Android · No subscription",
+      iosGuideLink: "How to install on iPhone?",
       cardDay: "Day 142 together",
       cardPrompt: "What is a memory of us you replay often?",
       sideALabel: "You",
@@ -280,12 +292,12 @@ const content = {
       title: "Ready for the two of you in under 30 seconds",
       steps: [
         {
-          title: "Install the app",
-          desc: "Download the free Android APK on both of your phones."
+          title: "Open or install the app",
+          desc: "Launch the Web App (PWA) on iPhone & desktop (Add to Home Screen in Safari) or download the free Android APK."
         },
         {
           title: "Sign in without a password",
-          desc: "Log in effortlessly with a 6-digit email code or your Google account."
+          desc: "Log in effortlessly with an email code or your Google account."
         },
         {
           title: "Link up with a 6-character code",
@@ -307,11 +319,11 @@ const content = {
         },
         {
           title: "Automated SQL security tests (pgTAP) and CI/CD",
-          desc: "To prove that no data leak is possible between partners or across couples, I wrote an automated pgTAP SQL test suite that simulates premature reads and unauthorized writes directly against PostgreSQL, paired with Bun unit tests and a GitHub Actions pipeline that builds and publishes the signed Android APK on every release."
+          desc: "To prove that no data leak is possible between partners or across couples, I wrote an automated pgTAP SQL test suite that simulates premature reads and unauthorized writes directly against PostgreSQL, paired with Bun unit tests and dual GitHub Actions pipelines that build the signed Android APK and continuously deploy the iOS/Web PWA."
         }
       ],
       stackPills: [
-        "React Native & TypeScript",
+        "React Native & Expo Web (PWA)",
         "PostgreSQL (RLS & RPC)",
         "Supabase Auth & Private Storage",
         "pgTAP SQL Tests & Bun Test",
@@ -320,8 +332,10 @@ const content = {
     },
     cta: {
       title: "Ready to try Spark Love with your partner?",
-      desc: "Download version 1.0 on Android and answer your first Daily Spark together tonight.",
-      downloadBtn: "Download Android APK (v1.0.0)",
+      desc: "Launch Spark Love instantly on iPhone & web (PWA) or download the Android APK, and answer your first Daily Spark together tonight.",
+      webAppBtn: "Open on iPhone & Web",
+      downloadBtn: "Download Android APK",
+      iosGuideBtn: "iPhone Guide (PWA)",
       githubBtn: "View Project on GitHub"
     }
   }
@@ -329,8 +343,15 @@ const content = {
 
 export default function SparkLovePage() {
   const { language } = useLanguage()
-  const [isApkModalOpen, setIsApkModalOpen] = useState(false)
+  const [isInstallModalOpen, setIsInstallModalOpen] = useState(false)
+  const [installPlatform, setInstallPlatform] =
+    useState<InstallPlatform>("android")
   const t = content[language]
+
+  const openInstallModal = (platform: InstallPlatform) => {
+    setInstallPlatform(platform)
+    setIsInstallModalOpen(true)
+  }
 
   return (
     <>
@@ -364,21 +385,26 @@ export default function SparkLovePage() {
                   </p>
 
                   <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 pt-2">
-                    <button
-                      type="button"
-                      onClick={() => setIsApkModalOpen(true)}
-                      aria-haspopup="dialog"
+                    <a
+                      href={PWA_WEB_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-solid-cta="true"
                       className="ghost-pill w-full sm:w-auto max-w-full min-h-[46px] px-5 sm:px-7 py-3 text-[15px] sm:text-base whitespace-normal sm:whitespace-nowrap text-center inline-flex items-center justify-center gap-2.5 bg-[#EE6446] text-[#15120E] font-semibold border-[#EE6446] hover:bg-[#f3775c] hover:text-[#15120E] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EE6446] focus-visible:ring-offset-2 focus-visible:ring-offset-obsidian"
                     >
-                      <AndroidIcon className="h-5 w-5 shrink-0" />
+                      <Smartphone className="h-4 w-4 shrink-0" />
+                      <span>{t.hero.ctaWebApp}</span>
+                      <ExternalLink className="h-4 w-4 shrink-0 opacity-80" />
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => openInstallModal("android")}
+                      aria-haspopup="dialog"
+                      className="ghost-pill w-full sm:w-auto max-w-full min-h-[46px] px-5 sm:px-7 py-3 text-[15px] sm:text-base whitespace-normal sm:whitespace-nowrap text-center inline-flex items-center justify-center gap-2.5 border-[#EE6446]/60 bg-[#EE6446]/10 text-[#F9F5EC] font-medium hover:bg-[#EE6446]/20 hover:border-[#EE6446] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EE6446] focus-visible:ring-offset-2 focus-visible:ring-offset-obsidian"
+                    >
+                      <AndroidIcon className="h-5 w-5 shrink-0 text-[#EE6446]" />
                       <span>{t.hero.ctaDownload}</span>
                     </button>
-                    <a
-                      href="#features"
-                      className="ghost-pill w-full sm:w-auto max-w-full min-h-[46px] px-5 sm:px-7 py-3 text-[15px] sm:text-base whitespace-normal sm:whitespace-nowrap text-center inline-flex items-center justify-center gap-2 border-white/15 text-paper"
-                    >
-                      <span>{t.hero.ctaDiscover}</span>
-                    </a>
                     <a
                       href="https://github.com/yacine20005/Spark-Love"
                       target="_blank"
@@ -390,9 +416,17 @@ export default function SparkLovePage() {
                     </a>
                   </div>
 
-                  <p className="text-xs text-white/45 pt-1">
-                    {t.hero.apkNote}
-                  </p>
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-white/50 pt-1">
+                    <span>{t.hero.apkNote}</span>
+                    <button
+                      type="button"
+                      onClick={() => openInstallModal("ios")}
+                      aria-haspopup="dialog"
+                      className="inline-flex items-center text-[#EFE7D6] hover:text-[#EE6446] underline underline-offset-4 decoration-white/30 hover:decoration-[#EE6446] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EE6446] rounded"
+                    >
+                      {t.hero.iosGuideLink}
+                    </button>
+                  </div>
                 </div>
 
                 {/* Right Column: Tactile J-Card Preview */}
@@ -835,14 +869,33 @@ export default function SparkLovePage() {
                 {t.cta.desc}
               </p>
               <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3.5 sm:gap-4 mt-8">
-                <button
-                  type="button"
-                  onClick={() => setIsApkModalOpen(true)}
-                  aria-haspopup="dialog"
+                <a
+                  href={PWA_WEB_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-solid-cta="true"
                   className="ghost-pill w-full sm:w-auto max-w-full min-h-[46px] px-5 sm:px-8 py-3 text-[15px] sm:text-base whitespace-normal sm:whitespace-nowrap text-center inline-flex items-center justify-center gap-2.5 bg-[#EE6446] text-[#15120E] font-semibold border-[#EE6446] hover:bg-[#f3775c] hover:text-[#15120E] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EE6446] focus-visible:ring-offset-2 focus-visible:ring-offset-obsidian"
                 >
-                  <AndroidIcon className="h-5 w-5 shrink-0" />
+                  <Smartphone className="h-4 w-4 shrink-0" />
+                  <span>{t.cta.webAppBtn}</span>
+                  <ExternalLink className="h-4 w-4 shrink-0 opacity-80" />
+                </a>
+                <button
+                  type="button"
+                  onClick={() => openInstallModal("android")}
+                  aria-haspopup="dialog"
+                  className="ghost-pill w-full sm:w-auto max-w-full min-h-[46px] px-5 sm:px-8 py-3 text-[15px] sm:text-base whitespace-normal sm:whitespace-nowrap text-center inline-flex items-center justify-center gap-2.5 border-[#EE6446]/60 bg-[#EE6446]/10 text-[#F9F5EC] font-medium hover:bg-[#EE6446]/20 hover:border-[#EE6446] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EE6446] focus-visible:ring-offset-2 focus-visible:ring-offset-obsidian"
+                >
+                  <AndroidIcon className="h-5 w-5 shrink-0 text-[#EE6446]" />
                   <span>{t.cta.downloadBtn}</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => openInstallModal("ios")}
+                  aria-haspopup="dialog"
+                  className="ghost-pill w-full sm:w-auto max-w-full min-h-[46px] px-5 sm:px-8 py-3 text-[15px] sm:text-base whitespace-normal sm:whitespace-nowrap text-center inline-flex items-center justify-center gap-2 border-white/15 text-paper"
+                >
+                  <span>{t.cta.iosGuideBtn}</span>
                 </button>
                 <a
                   href="https://github.com/yacine20005/Spark-Love"
@@ -858,9 +911,11 @@ export default function SparkLovePage() {
           </section>
     </ProjectPageShell>
     <ApkOnboardingModal
-      open={isApkModalOpen}
-      onClose={() => setIsApkModalOpen(false)}
+      open={isInstallModalOpen}
+      onClose={() => setIsInstallModalOpen(false)}
       downloadUrl={APK_DOWNLOAD_URL}
+      pwaUrl={PWA_WEB_URL}
+      initialPlatform={installPlatform}
       language={language}
     />
     </>
